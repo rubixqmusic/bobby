@@ -1,0 +1,8 @@
+{
+    "K_a" : "left_button",
+    "K_d" : "right_button",
+    "K_w" : "up_button",
+    "K_s" : "down_button",
+    
+    "K_RETURN" : "start_button"
+}
