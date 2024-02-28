@@ -1,9 +1,13 @@
 import logging
 import pygame
 import math
+import os
+import json
 
 from res.settings import *
 from res.framework.state import State
+
+SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
 trees_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_trees.png"
@@ -36,10 +40,28 @@ text_grow_step_size = 0.1
 sine_degrees = 0.0
 grow_factor = 0
 
+FILE_1_NAME = "file_1.json"
+FILE_2_NAME = "file_2.json"
+FILE_3_NAME = "file_3.json"
+
 
 class FileSelectScreen(State):
     def on_state_enter(self, game):
+        if not os.path.exists(SAVE_DATA_PATH):
+            try:
+                os.mkdir(SAVE_DATA_PATH)
+            except:
+                logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
+        save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
+
+        for file_name in save_files:
+            filepath = f"{SAVE_DATA_PATH}/{file_name}"
+            if os.path.exists(filepath):
+                with open(filepath) as save_file:
+                    save_file_data = json.load(save_file)
+                    # load in the data you need to the file info images menu
+
         self.sine_degrees = 0
         self.grow_factor = 0
         self.game = game
@@ -105,22 +127,6 @@ class FadeIn(State):
             file_select_screen.state.set_state(file_select_screen, "select_file")
 
 
-# class FadeOutAndQuit(State):
-#     def on_state_enter(self, file_select_screen):
-#         self.min_fade = 0
-#         self.max_fade = 255
-#         self.fade = self.max_fade
-#         self.fade_step = 5
-    
-#     def draw(self, file_select_screen):
-#         if self.fade > self.min_fade:
-#             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-#             self.fade -= self.fade_step
-#         else:
-#             self.fade = 0
-#             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-#             file_select_screen.game.quit_game()
-
 class GoToTitleScreen(State):
     def on_state_enter(self, file_select_screen):
         self.min_fade = 0
@@ -136,7 +142,22 @@ class GoToTitleScreen(State):
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             file_select_screen.game.state.set_state(file_select_screen.game,"title_screen")
-            # file_select_screen.game.quit_game()    
+  
+
+class StartNewGame(State):
+    def on_state_enter(self, file_select_screen):
+        self.min_fade = 0
+        self.max_fade = 255
+        self.fade = self.max_fade
+        self.fade_step = 5
+    
+    def draw(self, file_select_screen):
+        if self.fade > self.min_fade:
+            file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            self.fade -= self.fade_step
+        else:
+            self.fade = 0
+            file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
 
 
 class SelectFile(State):
@@ -147,9 +168,9 @@ class SelectFile(State):
         self.file_info_font = pygame.font.Font(file_select_screen.game.load_resource(menu_selection_font_path),file_info_font_size)
 
         self.menu = [
-                        {"name" : "file_1", "text" : "NEW", "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "file_2", "text" : "NEW", "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "file_3", "text" : "NEW", "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
+                        {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
+                        {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
+                        {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
                         {"name" : "back", "text" : "Back"}
                     ]
     
@@ -167,6 +188,28 @@ class SelectFile(State):
                 file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
                 file_select_screen.state.set_state(file_select_screen, "go_to_title_screen")
 
+            if self.current_menu_selection == "file_1" or "file_2" or "file_3":
+                for menu_item in self.menu:
+                    if menu_item["name"] == self.current_menu_selection:
+                        filepath = f"{SAVE_DATA_PATH}/{menu_item['file_name']}"
+                        if os.path.exists(filepath):
+                            try:
+                                with open(filepath) as save_file:
+                                    save_file_data = json.load(save_file)
+
+                                    #load in game data here
+                            except:
+                                logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
+                            else:
+                                ...
+                        
+                        file_select_screen.game.set_current_save_file(menu_item["file_name"])
+
+                        if menu_item["last_saved"] == "EMPTY":
+                            file_select_screen.state.set_state(file_select_screen, "start_new_game")
+                        
+                        file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
+
     def draw(self, file_select_screen):
         draw_file_select_menu(file_select_screen,
                   self.menu, 
@@ -183,7 +226,8 @@ class SelectFile(State):
 file_select_screen_states = {
                         "fade_in" : FadeIn,
                         "select_file" : SelectFile,
-                        "go_to_title_screen" : GoToTitleScreen
+                        "go_to_title_screen" : GoToTitleScreen,
+                        "start_new_game" : StartNewGame
                         }
 
 def draw_file_select_menu(

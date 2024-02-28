@@ -35,6 +35,7 @@ class Game:
         
         self._input_events = {}
         self._current_music = ""
+        self._current_file_name = ""
 
         self.game_data = {}
         self.save_data = {}
@@ -84,6 +85,9 @@ class Game:
         logging.debug(f"program exited normally")
         sys.exit()
     
+    def set_current_save_file(self, file_name):
+        self._current_file_name = file_name
+        
     def game_should_quit(self):
         if "quit" in self._input_events:
             return True if self._input_events["quit"] == True else False
