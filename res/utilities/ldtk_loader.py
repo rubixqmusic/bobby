@@ -27,7 +27,7 @@ def load_ldtk(ldtk_file) -> dict:
                     new_scene = load_scene_from_ldtk(level)
                     ldtk_world.scenes.append(new_scene)
 
-            logging.debug(f"\n {ldtk_world.tilesets} \n")
+            # logging.debug(f"\n {ldtk_world.tilesets} \n")
 
             return ldtk_world
             

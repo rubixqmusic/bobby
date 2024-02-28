@@ -6,7 +6,7 @@ import logging
 from res.settings import *
 from res.utilities.ldtk_loader import load_ldtk
 from res.framework.state import State
-from res.framework.gamestates import init, splashscreen, titlescreen
+from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen
 from res.input_events import *
 
 OFF = 0
@@ -15,6 +15,10 @@ RELEASED = 2
 
 class Game:
     def __init__(self) -> None:
+
+        print(f"\n\n {sys.platform} \n\n")
+        print(f"\n\n {os.path.expanduser('~')} \n\n")
+
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
 
@@ -30,6 +34,7 @@ class Game:
         self.world = load_ldtk(self.load_resource(WORLD_DATA_PATH))
         
         self._input_events = {}
+        self._current_music = ""
 
         self.game_data = {}
         self.save_data = {}
@@ -48,10 +53,15 @@ class Game:
         pygame.transform.scale(self.get_screen(), pygame.display.get_window_size(), self.get_window()) 
     
     def _process_events(self):
+        self._input_events["quit"] = False
         for input_event in self._input_events:
             if self._input_events[input_event] == RELEASED:
                 self._input_events[input_event] = OFF
         for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                self._input_events["quit"] = True
+
             if event.type == pygame.KEYDOWN and event.key in input_events:
                 key_name = input_events[event.key]
                 if key_name in input_map:
@@ -73,6 +83,11 @@ class Game:
         pygame.quit()
         logging.debug(f"program exited normally")
         sys.exit()
+    
+    def game_should_quit(self):
+        if "quit" in self._input_events:
+            return True if self._input_events["quit"] == True else False
+        return False
     
     def quit_game(self):
         self._quit()
@@ -106,6 +121,9 @@ class Game:
             logging.debug(f"cannot play music: music filepath {filepath} does not exist")
             return
         
+        if self._current_music == filepath:
+            return
+        
         pygame.mixer.music.set_volume(volume)
 
         try:
@@ -115,6 +133,7 @@ class Game:
             return
         
         pygame.mixer.music.play(loop)
+        self._current_music = filepath
     
     def is_button_pressed(self, button_name, controller=None):
         if controller is None:
@@ -129,6 +148,7 @@ class Game:
 game_states = {
                 "init" : init.Init,
                 "splashscreen" : splashscreen.Splashscreen,
-                "title_screen" : titlescreen.TitleScreen
+                "title_screen" : titlescreen.TitleScreen,
+                "file_select_screen" : fileselectscreen.FileSelectScreen
                 }
         

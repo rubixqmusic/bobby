@@ -114,7 +114,25 @@ class FadeOutAndQuit(State):
             self.fade = 0
             title_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             title_screen.game.quit_game()
+
+
+class GoToFileSelectScreen(State):
+    def on_state_enter(self, title_screen):
+        self.min_fade = 0
+        self.max_fade = 255
+        self.fade = self.max_fade
+        self.fade_step = 5
     
+    def draw(self, title_screen):
+        if self.fade > self.min_fade:
+            title_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            self.fade -= self.fade_step
+        else:
+            self.fade = 0
+            title_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            title_screen.game.state.set_state(title_screen.game,"file_select_screen")
+            # title_screen.game.quit_game()    
+
 
 class StartGameOrQuit(State):
     def on_state_enter(self, title_screen): 
@@ -131,6 +149,7 @@ class StartGameOrQuit(State):
         if title_screen.game.is_button_released("down_button"):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+
         if title_screen.game.is_button_released("up_button"):
             self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
             title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
@@ -139,6 +158,7 @@ class StartGameOrQuit(State):
             if self.current_menu_selection == "start_game":
                 title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                 title_screen.state.set_state(title_screen, "pick_game_mode")
+
             if self.current_menu_selection == "quit_game":
                 title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                 title_screen.state.set_state(title_screen, "fade_out_and_quit")
@@ -170,6 +190,7 @@ class PickGameMode(State):
             if title_screen.game.is_button_released("down_button"):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+
             if title_screen.game.is_button_released("up_button"):
                 self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
@@ -178,6 +199,11 @@ class PickGameMode(State):
                 if self.current_menu_selection == "back":
                     title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                     title_screen.state.set_state(title_screen, "start_game_or_quit")
+            
+            if title_screen.game.is_button_released("start_button"):
+                if self.current_menu_selection == "story_mode":
+                    title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                    title_screen.state.set_state(title_screen, "go_to_file_select_screen")
     
     def draw(self, title_screen):
         draw_menu(self.menu, 
@@ -194,6 +220,7 @@ title_screen_states = {
                         "fade_in" : FadeIn,
                         "start_game_or_quit" : StartGameOrQuit,
                         "pick_game_mode" : PickGameMode,
+                        "go_to_file_select_screen" : GoToFileSelectScreen,
                         "fade_out_and_quit" : FadeOutAndQuit
                         }
 
