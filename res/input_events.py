@@ -6,7 +6,16 @@ input_map = {
                 "K_w" : "up_button",
                 "K_s" : "down_button",
                 
-                "K_RETURN" : "start_button"
+                "K_RETURN" : "start_button",
+
+                "BUTTONS" : {
+                                0 : "action_button_1",
+                                7 : "start_button"
+                },
+
+                # "HATS" :{
+                #             0 : []
+                #         }
             }
 
 
