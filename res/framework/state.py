@@ -13,7 +13,11 @@ class State:
     def set_state(self, object, new_state, *args):
         if new_state in self.states:
             object.state.on_state_exit(object)
-            next_state = self.states[new_state](self.states, *args)
+
+            if isinstance(self.states[new_state], tuple):
+                next_state = self.states[new_state][0](self.states, *args)
+            else:
+                next_state = self.states[new_state](self.states, *args)
             next_state.previous_state = object.state.name
             object.state = next_state
             object.state.name = new_state

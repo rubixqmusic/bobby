@@ -32,7 +32,7 @@ menu_drop_shadow_color = f"#000000"
 select_a_file_text = f"Select A File"
 select_a_file_text_y_position = 32
 
-file_info_font_size = 12
+file_info_font_size = 10
 
 text_y_spacing = 60
 max_text_grow = 5.0
@@ -47,20 +47,21 @@ FILE_3_NAME = "file_3.json"
 
 class FileSelectScreen(State):
     def on_state_enter(self, game):
-        if not os.path.exists(SAVE_DATA_PATH):
-            try:
-                os.mkdir(SAVE_DATA_PATH)
-            except:
-                logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
+        # if not os.path.exists(SAVE_DATA_PATH):
+        #     try:
+        #         os.mkdir(SAVE_DATA_PATH)
+        #     except:
+        #         logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
-        save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
+        # save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
 
-        for file_name in save_files:
-            filepath = f"{SAVE_DATA_PATH}/{file_name}"
-            if os.path.exists(filepath):
-                with open(filepath) as save_file:
-                    save_file_data = json.load(save_file)
-                    # load in the data you need to the file info images menu
+        # for file_name in save_files:
+        #     filepath = f"{SAVE_DATA_PATH}/{file_name}"
+        #     if os.path.exists(filepath):
+        #         with open(filepath) as save_file:
+        #             save_file_data = json.load(save_file)
+
+        #             # load in the data you need to the file info images menu
 
         self.sine_degrees = 0
         self.grow_factor = 0
@@ -158,7 +159,8 @@ class StartNewGame(State):
         else:
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-
+            file_select_screen.game.run_video_call_cutscene("pee_pee")
+            # file_select_screen.game.state.set_state(file_select_screen.game,"video_call_cutscene", "pee_pee")
 
 class SelectFile(State):
     def on_state_enter(self, file_select_screen): 
@@ -171,8 +173,30 @@ class SelectFile(State):
                         {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
                         {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
                         {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "back", "text" : "Back"}
+                        {"name" : "back", "text" : "Back"},
+                        # {"name" : "copy", "text" : "Copy"},
+                        # {"name" : "erase", "text" : "Erase"}
                     ]
+        
+        if not os.path.exists(SAVE_DATA_PATH):
+            try:
+                os.mkdir(SAVE_DATA_PATH)
+            except:
+                logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
+        
+        save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
+        index = 0
+        for file_name in save_files:
+            filepath = f"{SAVE_DATA_PATH}/{file_name}"
+            if os.path.exists(filepath):
+                with open(filepath) as save_file:
+                    save_file_data = json.load(save_file)
+                    if "last_saved" in save_file_data:
+                        self.menu[index]["last_saved"] = save_file_data["last_saved"]
+                    if "percent_to_plan" in save_file_data:
+                        self.menu[index]["percent_to_plan"] = save_file_data["percent_to_plan"]
+            index +=1
+
     
     def process_events(self, file_select_screen):            
         if file_select_screen.game.is_button_released("down_button"):
@@ -190,25 +214,26 @@ class SelectFile(State):
 
             if self.current_menu_selection == "file_1" or "file_2" or "file_3":
                 for menu_item in self.menu:
-                    if menu_item["name"] == self.current_menu_selection:
-                        filepath = f"{SAVE_DATA_PATH}/{menu_item['file_name']}"
-                        if os.path.exists(filepath):
-                            try:
-                                with open(filepath) as save_file:
-                                    save_file_data = json.load(save_file)
+                    if "file_name" in menu_item:
+                        if menu_item["name"] == self.current_menu_selection:
+                            filepath = f"{SAVE_DATA_PATH}/{menu_item['file_name']}"
+                            if os.path.exists(filepath):
+                                try:
+                                    with open(filepath) as save_file:
+                                        save_file_data = json.load(save_file)
 
-                                    #load in game data here
-                            except:
-                                logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
-                            else:
-                                ...
-                        
-                        file_select_screen.game.set_current_save_file(menu_item["file_name"])
+                                        #load in game data here
+                                except:
+                                    logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
+                                else:
+                                    ...
+                            
+                            file_select_screen.game.set_current_save_file(menu_item["file_name"])
 
-                        if menu_item["last_saved"] == "EMPTY":
-                            file_select_screen.state.set_state(file_select_screen, "start_new_game")
-                        
-                        file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
+                            if menu_item["last_saved"] == "EMPTY":
+                                file_select_screen.state.set_state(file_select_screen, "start_new_game")
+                            
+                            file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
 
     def draw(self, file_select_screen):
         draw_file_select_menu(file_select_screen,
@@ -248,7 +273,7 @@ def draw_file_select_menu(
     FILE_INFO_FONT_SIZE = 12
     Y_TEXT_POSITION = 28
     FILE_NUMBER_X_POSITION = 6
-    LAST_PLAYED_X_POSITION = 32
+    LAST_PLAYED_X_POSITION = 19
     PERCENT_X_POSITION = 105
 
     menu_item_index = 0

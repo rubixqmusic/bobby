@@ -6,7 +6,7 @@ import logging
 from res.settings import *
 from res.utilities.ldtk_loader import load_ldtk
 from res.framework.state import State
-from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen
+from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene
 from res.input_events import *
 
 OFF = 0
@@ -16,8 +16,8 @@ RELEASED = 2
 class Game:
     def __init__(self) -> None:
 
-        print(f"\n\n {sys.platform} \n\n")
-        print(f"\n\n {os.path.expanduser('~')} \n\n")
+        # print(f"\n\n {sys.platform} \n\n")
+        # print(f"\n\n {os.path.expanduser('~')} \n\n")
 
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
@@ -85,9 +85,12 @@ class Game:
         logging.debug(f"program exited normally")
         sys.exit()
     
+    def run_video_call_cutscene(self, cutscene_name):
+        self.state.set_state(self,"video_call_cutscene", cutscene_name)
+    
     def set_current_save_file(self, file_name):
         self._current_file_name = file_name
-        
+
     def game_should_quit(self):
         if "quit" in self._input_events:
             return True if self._input_events["quit"] == True else False
@@ -139,6 +142,10 @@ class Game:
         pygame.mixer.music.play(loop)
         self._current_music = filepath
     
+    def stop_music(self):
+        pygame.mixer.music.stop()
+        self._current_music = ""
+    
     def is_button_pressed(self, button_name, controller=None):
         if controller is None:
             if button_name in self._input_events:
@@ -153,6 +160,7 @@ game_states = {
                 "init" : init.Init,
                 "splashscreen" : splashscreen.Splashscreen,
                 "title_screen" : titlescreen.TitleScreen,
-                "file_select_screen" : fileselectscreen.FileSelectScreen
+                "file_select_screen" : fileselectscreen.FileSelectScreen,
+                "video_call_cutscene" : videocallcutscene.VideoCallCutscene
                 }
         
