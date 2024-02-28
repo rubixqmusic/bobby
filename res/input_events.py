@@ -1,5 +1,16 @@
 import pygame
 
+input_map = {
+                "K_a" : "left_button",
+                "K_d" : "right_button",
+                "K_w" : "up_button",
+                "K_s" : "down_button",
+                
+                "K_RETURN" : "start_button"
+            }
+
+
+
 input_events = {
                 pygame.K_0 : "K_0",
                 pygame.K_1 : "K_1",

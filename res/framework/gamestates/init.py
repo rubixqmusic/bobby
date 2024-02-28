@@ -13,10 +13,11 @@ class Init(State):
             game.state.set_state(game, "splashscreen")
 
     def process_events(self, game):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game.quit_game()
+        ...
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         game.quit_game()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    game.quit_game()
+        #     if event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_ESCAPE:
+        #             game.quit_game()

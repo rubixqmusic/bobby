@@ -9,6 +9,9 @@ from res.framework.state import State
 from res.framework.gamestates import init, splashscreen, titlescreen
 from res.input_events import *
 
+OFF = 0
+PRESSED = 1
+RELEASED = 2
 
 class Game:
     def __init__(self) -> None:
@@ -45,13 +48,22 @@ class Game:
         pygame.transform.scale(self.get_screen(), pygame.display.get_window_size(), self.get_window()) 
     
     def _process_events(self):
-        # for event in pygame.event.get():
-            ...
-
-            # event_name = input_events[event.key]
+        for input_event in self._input_events:
+            if self._input_events[input_event] == RELEASED:
+                self._input_events[input_event] = OFF
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key in input_events:
+                key_name = input_events[event.key]
+                if key_name in input_map:
+                    self._input_events[input_map[key_name]] = PRESSED
+            if event.type == pygame.KEYUP and event.key in input_events:
+                key_name = input_events[event.key]
+                if key_name in input_map:
+                    self._input_events[input_map[key_name]] = RELEASED 
 
     def run(self):
         while self.running:
+            self._process_events()
             self.state.process_events(self)
             self.state.update(self)
             self.state.draw(self)
@@ -104,6 +116,15 @@ class Game:
         
         pygame.mixer.music.play(loop)
     
+    def is_button_pressed(self, button_name, controller=None):
+        if controller is None:
+            if button_name in self._input_events:
+                return True if self._input_events[button_name] == PRESSED else False
+    
+    def is_button_released(self, button_name, controller=None):
+        if controller is None:
+            if button_name in self._input_events:
+                return True if self._input_events[button_name] == RELEASED else False
 
 game_states = {
                 "init" : init.Init,

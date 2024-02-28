@@ -117,8 +117,7 @@ class FadeOutAndQuit(State):
     
 
 class StartGameOrQuit(State):
-    def on_state_enter(self, title_screen):        # self.start_game_text = f"Start Game"
-        # self.quit_game_text = f"Quit Game"
+    def on_state_enter(self, title_screen): 
         self.text_y_start_position = 170        
         self.current_menu_selection = "start_game"
 
@@ -128,25 +127,21 @@ class StartGameOrQuit(State):
                         {"name" : "quit_game", "text" : "Quit Game"}
                     ]
     
-    def process_events(self, title_screen):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                title_screen.game.quit_game()
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_DOWN:
-                    self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                    title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
-                if event.key == pygame.K_UP:
-                    self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-                    title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+    def process_events(self, title_screen):            
+        if title_screen.game.is_button_released("down_button"):
+                self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
+                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+        if title_screen.game.is_button_released("up_button"):
+            self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
+            title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-                if event.key == pygame.K_RETURN:
-                    if self.current_menu_selection == "start_game":
-                        title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
-                        title_screen.state.set_state(title_screen, "pick_game_mode")
-                    if self.current_menu_selection == "quit_game":
-                        title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
-                        title_screen.state.set_state(title_screen, "fade_out_and_quit")
+        if title_screen.game.is_button_released("start_button"):
+            if self.current_menu_selection == "start_game":
+                title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                title_screen.state.set_state(title_screen, "pick_game_mode")
+            if self.current_menu_selection == "quit_game":
+                title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                title_screen.state.set_state(title_screen, "fade_out_and_quit")
 
     def draw(self, title_screen):
         draw_menu(self.menu, 
@@ -158,6 +153,7 @@ class StartGameOrQuit(State):
                   title_screen.game.get_screen(),
                   title_screen.grow_factor,
                   True)
+
 
 class PickGameMode(State):
     def on_state_enter(self, title_screen):
@@ -171,21 +167,17 @@ class PickGameMode(State):
                     ]
     
     def process_events(self, title_screen):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                title_screen.game.quit_game()
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_DOWN:
-                    self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                    title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
-                if event.key == pygame.K_UP:
-                    self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-                    title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+            if title_screen.game.is_button_released("down_button"):
+                self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
+                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+            if title_screen.game.is_button_released("up_button"):
+                self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
+                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-                if event.key == pygame.K_RETURN:
-                    if self.current_menu_selection == "back":
-                        title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
-                        title_screen.state.set_state(title_screen, "start_game_or_quit")
+            if title_screen.game.is_button_released("start_button"):
+                if self.current_menu_selection == "back":
+                    title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                    title_screen.state.set_state(title_screen, "start_game_or_quit")
     
     def draw(self, title_screen):
         draw_menu(self.menu, 
