@@ -4,8 +4,7 @@ import pygame
 from res.settings import *
 from res.framework.state import State
 
-class Splashscreen(State):
-        
+class Splashscreen(State):   
     def on_state_enter(self, game):
         logging.debug(f"loaded splashscreen state")
         self.text = "Kablio"
@@ -25,13 +24,6 @@ class Splashscreen(State):
 
     def process_events(self, game):
         ...
-        # for event in pygame.event.get():
-        #     if event.type == pygame.QUIT:
-        #         game.quit_game()
-
-        #     if event.type == pygame.KEYDOWN:
-        #         if event.key == pygame.K_ESCAPE:
-        #             game.quit_game()
     
     def draw(self, game):
         game.get_screen().fill(f"#000000")
