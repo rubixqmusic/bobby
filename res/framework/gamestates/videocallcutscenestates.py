@@ -1,5 +1,6 @@
 import pygame
 import logging
+import os
 
 from res.settings import *
 from res.framework.state import State
@@ -44,7 +45,7 @@ class VideoCallRinging(State):
                     self.selection = "decline"
                 elif self.selection == "decline":
                     self.selection = "accept"
-            elif video_call_cutscene.game.is_button_released("right_button"):
+            if video_call_cutscene.game.is_button_released("right_button"):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_SELECT_SOUND_PATH))
                 if self.selection == "accept":
                     self.selection = "decline"
@@ -104,11 +105,24 @@ class VideoCallRinging(State):
 
             video_call_cutscene.game.get_screen().fill("#000000")
             video_call_cutscene.game.get_screen().blit(self.video_call_blank_background,self.video_call_blank_background_rect)
-            # pygame.draw.rect(video_call_cutscene.game.get_screen(),self.SELECTION_RECT_COLOR,selection_rect,width=2)
-            # print(selection_rect)
-            # print(self.selection)
+
 
 class SetBackgroundImage(State):
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+        self.args = args[0]
+
+        self.background_number = self.args[0]
+        self.image_path = self.args[1]
+
+
+    def on_state_enter(self, video_call_cutscene):
+        image_path = video_call_cutscene.game.load_resource(f"{GRAPHICS_PATH}/{self.image_path}")
+        if os.path.exists(image_path) and self.background_number in video_call_cutscene.backgrounds:
+            video_call_cutscene.backgrounds[self.background_number]["path"] = self.image_path
+            video_call_cutscene.backgrounds[self.background_number]["image"] = pygame.image.load(image_path)
+        
+        video_call_cutscene.get_next_event()
     ...
 
 class SetCharacterAnimation(State):
@@ -118,4 +132,10 @@ class ShowDialog(State):
     ...
 
 class EndCall(State):
+    ...
+
+class Choice(State):
+    ...
+
+class GoTo(State):
     ...

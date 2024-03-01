@@ -109,8 +109,12 @@ class Game:
                 if not event.instance_id in self._joystick_events:
                     self._joystick_events[event.instance_id] = {}
                 if event.value[0] == 0:
-                    self._joystick_events[event.instance_id]["left_button"] = RELEASED
-                    self._joystick_events[event.instance_id]["right_button"] = RELEASED
+                    if "left_button" in self._joystick_events[event.instance_id]:
+                        if self._joystick_events[event.instance_id]["left_button"] == PRESSED:
+                            self._joystick_events[event.instance_id]["left_button"] = RELEASED
+                    if "right_button" in self._joystick_events[event.instance_id]:
+                        if self._joystick_events[event.instance_id]["right_button"] == PRESSED:
+                            self._joystick_events[event.instance_id]["right_button"] = RELEASED
                 if event.value[0] == 1:
                     self._joystick_events[event.instance_id]["right_button"] = PRESSED
                 if event.value[0] == -1:

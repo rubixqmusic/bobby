@@ -8,6 +8,7 @@ from res.settings import *
 from res.framework.state import State
 
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
+NEW_GAME_CUTSCENE_NAME = f"intro_1"
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
 trees_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_trees.png"
@@ -159,7 +160,7 @@ class StartNewGame(State):
         else:
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-            file_select_screen.game.run_video_call_cutscene("pee_pee")
+            file_select_screen.game.run_video_call_cutscene(NEW_GAME_CUTSCENE_NAME)
             # file_select_screen.game.state.set_state(file_select_screen.game,"video_call_cutscene", "pee_pee")
 
 class SelectFile(State):
