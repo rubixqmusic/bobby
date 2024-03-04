@@ -4,6 +4,7 @@ import os
 
 from res.settings import *
 from res.framework.state import State
+from res.framework.animatedsprite import AnimatedSprite
 
 VIDEO_CALL_RINGING_IMAGE_PATH = f"{GRAPHICS_PATH}/video_call_cutscenes/video_call_ringing.png"
 VIDEO_CALL_RINGING_MUSIC_PATH = f"{MUSIC_PATH}/video_call_ringing.mp3"
@@ -13,6 +14,7 @@ VIDEO_CALL_DECLINE_SOUND_PATH = f"{SOUNDS_PATH}/video_call_decline.wav"
 VIDEO_CALL_ACCEPT_SOUND_PATH = f"{SOUNDS_PATH}/video_call_accept.wav"
 
 VIDEO_CALL_BLANK_BACKGROUND_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_blank_background.png"
+VIDEO_CALL_TEXT_BOX_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_text_box.png"
 
 class VideoCallRinging(State):
     def on_state_enter(self, video_call_cutscene):
@@ -81,6 +83,13 @@ class VideoCallRinging(State):
                 # video_call_cutscene.game.play_music(video_call_cutscene.game.load_resource(VIDEO_CALL_RINGING_MUSIC_PATH))
             ...
     def accept_call_and_get_next_event(self, video_call_cutscene):
+        image_path = video_call_cutscene.game.load_resource(VIDEO_CALL_TEXT_BOX_PATH)
+        if os.path.exists(image_path):
+
+            # set the cutscene text box image to something other than None so that it is present for each new event in the cutscene
+            # until explicitly set to none again
+            video_call_cutscene.text_box["path"] = image_path
+            video_call_cutscene.text_box["image"] = pygame.image.load(image_path)
         video_call_cutscene.get_next_event()
         
     def draw(self, video_call_cutscene):
@@ -121,15 +130,67 @@ class SetBackgroundImage(State):
         if os.path.exists(image_path) and self.background_number in video_call_cutscene.backgrounds:
             video_call_cutscene.backgrounds[self.background_number]["path"] = self.image_path
             video_call_cutscene.backgrounds[self.background_number]["image"] = pygame.image.load(image_path)
-        
+        else:
+            logging.debug(f"image path is fucked up, homie, this is what you passed in: {image_path}. The fuck am I supposed to do with this??")
         video_call_cutscene.get_next_event()
+
     ...
 
 class SetCharacterAnimation(State):
-    ...
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+        self.args = args[0]
+
+        self.character_animation_number = self.args[0]
+        self.spritesheet_path = self.args[1]
+        self.animation_path = self.args[2]
+        self.starting_animation = self.args[3]
+
+    def on_state_enter(self, video_call_cutscene):
+        spritesheet_path = video_call_cutscene.game.load_resource(f"{GRAPHICS_PATH}/{self.spritesheet_path}")
+        animation_path = video_call_cutscene.game.load_resource(f"{ANIMATIONS_PATH}/{self.animation_path}")
+
+        # print(f"\n {os.path.exists(animation_path)} \n")
+
+        if os.path.exists(spritesheet_path) and os.path.exists(animation_path) and self.character_animation_number in video_call_cutscene.character_animations:
+            video_call_cutscene.character_animations[self.character_animation_number]["spritesheet_path"] = self.spritesheet_path
+            # video_call_cutscene.character_animations[self.character_animation_number]["animatied_sprite"] = AnimatedSprite(video_call_cutscene.game, video_call_cutscene.backgrounds[self.character_animation_number])
+
+            # animated_sprite = video_call_cutscene.character_animations[self.character_animation_number]["animatied_sprite"]
+
+            # animated_sprite = AnimatedSprite(video_call_cutscene.game, video_call_cutscene.game.get_screen())
+            animated_sprite = AnimatedSprite(video_call_cutscene.game, video_call_cutscene.backgrounds[self.character_animation_number]["image"])
+
+            animated_sprite.load_spritesheet(spritesheet_path)
+            animated_sprite.load_sprite_data(animation_path)
+            animated_sprite.set_animation(self.starting_animation)
+            animated_sprite.play()
+
+            video_call_cutscene.character_animations[self.character_animation_number]["animation_path"] = self.animation_path
+            video_call_cutscene.character_animations[self.character_animation_number]["starting_animation"] = self.starting_animation
+            video_call_cutscene.character_animations[self.character_animation_number]["animated_sprite"] = animated_sprite
+                 
+        else:
+            logging.debug(f"image path is fucked up, homie, this is what you passed in: {animation_path} {spritesheet_path}. The fuck am I supposed to do with this??")
+        video_call_cutscene.get_next_event()
 
 class ShowDialog(State):
-    ...
+
+    
+
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+
+        MAX_LINES = 2
+        TEXT_SIZE = 16
+        MAX_LINE_WIDTH = 17
+        
+        self.args = args[0]
+        self.dialog = self.args[0]
+        self.text_lines = []
+        self.text_surfaces = []
+
+
 
 class EndCall(State):
     ...

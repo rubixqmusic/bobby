@@ -18,6 +18,7 @@ MUSIC_PATH = "../audio/music"
 GRAPHICS_PATH = "../graphics"
 WORLD_DATA_PATH = "../bobby.ldtk"
 BASE_PATH = "../"
+ANIMATIONS_PATH = "../animations"
 
 DEFAULT_FONT = "default3.otf"
 

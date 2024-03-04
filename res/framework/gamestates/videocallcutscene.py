@@ -6,6 +6,9 @@ from res.framework.state import State
 from res.framework.gamestates.videocallcutscenestates import VideoCallRinging
 from res.framework.videocallcutscenes import cutscenes
 
+VIDEO_CALL_WINDOW_BORDER_COLOR = "#4854a0"
+TEXT_BOX_Y_POSITION = 174
+WINDOW_Y_POSITION = 54
 
 class VideoCallCutscene(State):
     def __init__(self, states: dict, *args) -> None:
@@ -13,9 +16,10 @@ class VideoCallCutscene(State):
         self.cutscene_name = args[0]
         self.cutscenes = cutscenes
         self.event_index = 0
+        self.text_box = {"path": None, "position" : [120,TEXT_BOX_Y_POSITION], "image" : None}
         self.backgrounds = {
-                            1 : {"path": None, "position" : [125, 70], "image" : None},
-                            2 : {"path": None, "position" : [275, 70], "image" : None}
+                            1 : {"path": None, "position" : [120, WINDOW_Y_POSITION], "image" : None},
+                            2 : {"path": None, "position" : [264, WINDOW_Y_POSITION], "image" : None}
                             }
         self.character_animations = {
                                     1 : {"spritesheet_path": None, "animation_path" : None, "starting_animation" : None, "animated_sprite" : None},
@@ -44,13 +48,49 @@ class VideoCallCutscene(State):
         self.state.process_events(self)
     
     def update(self, game):
+        for character_animation in self.character_animations:
+            if self.character_animations[character_animation]["animated_sprite"] is not None:
+                self.character_animations[character_animation]["animated_sprite"].update()
+
         self.state.update(self)
     
     def draw(self, game):
         game.get_screen().fill("#000000")
+
+        background_index = 0
         for background in self.backgrounds:
+            # draw zoom call "cameras"
             if self.backgrounds[background]["image"] is not None:
+                
+
+                character_animation_index = background_index + 1
+
+                if character_animation_index in self.character_animations:
+                    if self.character_animations[character_animation_index]["animated_sprite"] is not None:
+                        character_animation = self.character_animations[character_animation_index]["animated_sprite"]
+                        character_animation.set_position(self.backgrounds[background]["position"][0], self.backgrounds[background]["position"][1])
+                        character_animation.set_position(0,0)
+                        character_animation.draw()
+                        
+                        # print(character_animation.frames)
+                        
                 game.get_screen().blit(self.backgrounds[background]["image"], self.backgrounds[background]["position"])
+                # game.get_screen().blit(character_animation.get_frame_image(), (self.backgrounds[background]["position"][0], self.backgrounds[background]["position"][1]))
+
+                # draw blue rectangle around background to make it look like a zoom call
+                video_call_window_rect = self.backgrounds[background]["image"].get_rect()
+                video_call_window_rect[0] = self.backgrounds[background]["position"][0]
+                video_call_window_rect[1] = self.backgrounds[background]["position"][1]
+                pygame.draw.rect(game.get_screen(), VIDEO_CALL_WINDOW_BORDER_COLOR, video_call_window_rect,1)
+            
+            background_index += 1
+            
+            # draw the text box
+            if self.text_box["image"] is not None:
+                game.get_screen().blit(self.text_box["image"], self.text_box["position"])
+                # video_call_window_rect = self.backgrounds[background]["image"].get_rect()
+                # video_call_window_rect[0] = self.backgrounds[background]["position"][0]
+                # video_call_window_rect[1] = self.backgrounds[background]["position"][1]
         self.state.draw(self)
 
     def get_next_event(self):

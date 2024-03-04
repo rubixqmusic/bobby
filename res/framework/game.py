@@ -50,6 +50,7 @@ class Game:
 
     def _quit(self):
         self.running = False
+        # pygame.quit()
 
     def _update_clock(self):
         dt = self.clock.tick(FPS)/1000
