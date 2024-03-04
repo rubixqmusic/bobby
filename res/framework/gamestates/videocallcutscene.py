@@ -42,6 +42,12 @@ class VideoCallCutscene(State):
         self.event_index = 0
         self.state.start(self,self.event_index)
     
+    def go_to_next_event(self, cutscene_name):
+        states = self.get_states_from_cutscene(cutscene_name)
+        self.state = State(states)
+        self.event_index = 0
+        self.state.start(self,self.event_index)
+    
     def process_events(self, game):
         if game.game_should_quit():
             game.quit_game()

@@ -33,11 +33,13 @@ cutscenes = {
                             (ShowDialog, ("it's very simple, Bobby", {})),
                             (ShowDialog, ("Do whatever it takes to hit your number", {})),
                             (ShowDialog, ("or you're a dead motherfucker.", {})),
-                            (ShowDialog, ("Corporate wants us to get more rare stones, so I want you to really focus on those.", {})),
+                            (ShowDialog, ("Corporate wants us to get more rare stones,", {})),
+                            (ShowDialog, ("so I want you to really focus on those.", {})),
                             (ShowDialog, ("Oh, and one more thing...", {})),
                             (ShowDialog, ("Try to make sure you don't, uh...", {})),
                             (ShowDialog, ("injure too many bystanders", {})),
-                            (ShowDialog, ("that tends to get us a lot of complaints from HR, and thats bad", {})),
+                            (ShowDialog, ("that gets us a lot of complaints from HR,", {})),
+                            (ShowDialog, ("and thats bad", {})),
                             (Choice, ("Got it?", [["Yes", "intro_end"], ["No", "intro_no"]], {}))
                             ],
               "intro_no" :  [

@@ -1,6 +1,7 @@
 import pygame
 import logging
 import os
+import textwrap
 
 from res.settings import *
 from res.framework.state import State
@@ -15,6 +16,10 @@ VIDEO_CALL_ACCEPT_SOUND_PATH = f"{SOUNDS_PATH}/video_call_accept.wav"
 
 VIDEO_CALL_BLANK_BACKGROUND_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_blank_background.png"
 VIDEO_CALL_TEXT_BOX_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_text_box.png"
+
+DIALOG_FONT_PATH = f"{FONTS_PATH}/{DEFAULT_FONT}"
+DIALOG_SIZE = 12
+DIALOG_COLOR = f"#ffffff"
 
 class VideoCallRinging(State):
     def on_state_enter(self, video_call_cutscene):
@@ -183,14 +188,57 @@ class ShowDialog(State):
 
         MAX_LINES = 2
         TEXT_SIZE = 16
-        MAX_LINE_WIDTH = 17
-        
+        MAX_LINE_WIDTH = 32
+        # print(self)
         self.args = args[0]
         self.dialog = self.args[0]
-        self.text_lines = []
-        self.text_surfaces = []
+        
+        self.text_surfaces = {}
+        self.text_lines = textwrap.wrap(self.dialog, MAX_LINE_WIDTH)
+        self.number_of_lines = len(self.text_lines)
 
+        self.text_positions = [
+                                [124, 178],
+                                [124, 196]
+        ]
 
+        self.current_character = 0
+        self.current_line = 0
+
+        self.status = "get_next_character"
+    
+    def on_state_enter(self, video_call_cutscene):
+        self.font = pygame.font.Font(video_call_cutscene.game.load_resource(DIALOG_FONT_PATH), DIALOG_SIZE)
+    
+    def update(self, video_call_cutscene):
+
+        if self.status == "get_next_character":
+            if self.current_line > len(self.text_lines) -1:
+                self.current_line = 0
+                self.status = "wait_for_button"
+            elif self.current_character > len(self.text_lines[self.current_line]):
+                self.current_character = 0
+                self.current_line += 1   
+            else:
+                new_text = self.text_lines[self.current_line][0:self.current_character]
+                new_text_surface = self.font.render(new_text,True,DIALOG_COLOR)
+                self.text_surfaces[self.current_line] = new_text_surface
+                self.current_character += 1
+        
+        elif self.status == "wait_for_button":
+            if video_call_cutscene.game.is_button_released("start_button"):
+                self.status = "get_next_event"
+                video_call_cutscene.get_next_event()
+    
+    def draw(self, video_call_cutscene):
+        if self.text_surfaces != {}:
+            for text_surface in self.text_surfaces:
+                video_call_cutscene.game.get_screen().blit(self.text_surfaces[text_surface], self.text_positions[text_surface])
+
+            ...
+        
+
+    
 
 class EndCall(State):
     ...
@@ -199,4 +247,28 @@ class Choice(State):
     ...
 
 class GoTo(State):
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+        self.args = args[0]
+        self.next_cutscene = self.args[0]
+
+
+
+    def on_state_enter(self, video_call_cutscene):
+        # video_call_cutscene.go_to_next_event(self.next_cutscene)
+        states = video_call_cutscene.get_states_from_cutscene(self.next_cutscene)
+        # print(states)
+        video_call_cutscene.state = State(states)
+        video_call_cutscene.event_index = -1
+        video_call_cutscene.get_next_event()
+        # print(video_call_cutscene.state.states)
+        # video_call_cutscene.state.start(video_call_cutscene,0)
+    
+    def on_state_exit(self, video_call_cutscene):
+        print(video_call_cutscene.states[video_call_cutscene.event_index])        
+
+        
+
+        # video_call_cutscene.state.set_state(video_call_cutscene,video_call_cutscene.event_index)
+        
     ...
