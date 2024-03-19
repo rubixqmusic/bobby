@@ -12,7 +12,7 @@ NEW_GAME_CUTSCENE_NAME = f"intro_1"
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
 trees_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_trees.png"
-file_select_screen_music_path = f"{MUSIC_PATH}/test.mp3"
+file_select_screen_music_path = f"{MUSIC_PATH}/title_screen.mp3"
 file_select_background_path = f"{GRAPHICS_PATH}/backgrounds/file_select_background.png"
 # file_select_screen_text_path = f"{GRAPHICS_PATH}/backgrounds/file_select_screen_text.png"
 file_select_screen_menu_select_sound_path = f"{SOUNDS_PATH}/menu_select.wav"
@@ -78,7 +78,7 @@ class FileSelectScreen(State):
         self.menu_selection_font = pygame.font.Font(game.load_resource(menu_selection_font_path),menu_selection_text_size)
 
         self.select_a_file_font = pygame.font.Font(game.load_resource(menu_selection_font_path), select_a_file_font_size)
-        self.select_a_file_text_surface = self.select_a_file_font.render(select_a_file_text,False,main_text_color)
+        self.select_a_file_text_surface = self.select_a_file_font.render(select_a_file_text,True,main_text_color)
 
         game.play_music(game.load_resource(file_select_screen_music_path))
         
@@ -200,15 +200,15 @@ class SelectFile(State):
 
     
     def process_events(self, file_select_screen):            
-        if file_select_screen.game.is_button_released("down_button"):
+        if file_select_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 file_select_screen.game.play_sound(file_select_screen.game.load_resource(file_select_screen_menu_select_sound_path))
 
-        if file_select_screen.game.is_button_released("up_button"):
+        if file_select_screen.game.is_button_released(UP_BUTTON):
             self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
             file_select_screen.game.play_sound(file_select_screen.game.load_resource(file_select_screen_menu_select_sound_path))
 
-        if file_select_screen.game.is_button_released("start_button"):
+        if file_select_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "back":
                 file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
                 file_select_screen.state.set_state(file_select_screen, "go_to_title_screen")
@@ -281,9 +281,9 @@ def draw_file_select_menu(
     for menu_item in menu:
         if "bg_image" in menu_item:
             file_info_background = pygame.image.load(screen.game.load_resource(file_select_background_path))
-            file_number_text_surface = font.render(str(menu_item_index+1),False,(0,0,0))
-            last_played_text_surface = font.render(menu_item['last_saved'],False,(0,0,0))
-            percent_text_surface = font.render(menu_item['percent_to_plan'],False,(0,0,0))
+            file_number_text_surface = font.render(str(menu_item_index+1),True,(0,0,0))
+            last_played_text_surface = font.render(menu_item['last_saved'],True,(0,0,0))
+            percent_text_surface = font.render(menu_item['percent_to_plan'],True,(0,0,0))
 
             file_number_rect = file_number_text_surface.get_rect(center=(file_number_text_surface.get_rect().x + FILE_NUMBER_X_POSITION, Y_TEXT_POSITION))
             last_played_rect = file_number_text_surface.get_rect(center=(file_number_text_surface.get_rect().x + LAST_PLAYED_X_POSITION, Y_TEXT_POSITION))
@@ -303,11 +303,11 @@ def draw_file_select_menu(
                 file_info_rect = file_info_background.get_rect(center=(SCREEN_WIDTH/2, y_start + (menu_item_index*y_spacing)))
                 destination_surface.blit(file_info_background, file_info_rect)
         else:
-            text_surface = font.render(menu_item['text'],False,font_color)
+            text_surface = font.render(menu_item['text'],True,font_color)
             text_surface_base_size = text_surface.get_width(), text_surface.get_height()
             drop_shadow_surface = None
             if drop_shadow:
-                drop_shadow_surface = font.render(menu_item['text'],False,drop_shadow_color)
+                drop_shadow_surface = font.render(menu_item['text'],True,drop_shadow_color)
             
             if menu_item["name"] == current_selection:
                 if drop_shadow_surface is not None:
@@ -346,11 +346,11 @@ def draw_menu(menu: list,
     
     menu_item_index = 0
     for menu_item in menu:
-        text_surface = font.render(menu_item['text'],False,font_color)
+        text_surface = font.render(menu_item['text'],True,font_color)
         text_surface_base_size = text_surface.get_width(), text_surface.get_height()
         drop_shadow_surface = None
         if drop_shadow:
-            drop_shadow_surface = font.render(menu_item['text'],False,drop_shadow_color)
+            drop_shadow_surface = font.render(menu_item['text'],True,drop_shadow_color)
         
         if menu_item["name"] == current_selection:
             if drop_shadow_surface is not None:

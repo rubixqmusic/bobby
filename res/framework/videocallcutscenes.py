@@ -1,4 +1,4 @@
-from res.framework.gamestates.videocallcutscenestates import VideoCallRinging, SetBackgroundImage, PlaySound, Wait, SetCharacterAnimation, Choice, ShowDialog, GoTo, EndCall
+from res.framework.gamestates.videocallcutscenestates import VideoCallRinging, PlayMusic, SetBackgroundImage, PlaySound, Wait, SetCharacterAnimation, Choice, ShowDialog, GoTo, EndCall
 
 BLANK_BACKGROUND_PATH = f"backgrounds/video_call_blank_background.png"
 BEACH_BACKGROUND_PATH = f"backgrounds/video_call_beach_background.png"
@@ -13,19 +13,19 @@ BOSS_VIDEO_CALL_ANIMATION_PATH = f"boss_video_call.json"
 DENY_SOUND = f"deny.wav"
 COIN_SOUND = f"coin.wav"
 
+BACKGROUND_MUSIC = f"video_call.mp3"
+MUSIC_VOLUME = 0.5
+
 cutscenes = {
                 "intro_1" : [
                             (VideoCallRinging, {}),
+                            (PlayMusic, (BACKGROUND_MUSIC, MUSIC_VOLUME, {})),
                             (SetBackgroundImage, (1,BEACH_BACKGROUND_PATH, {})),
                             (SetBackgroundImage, (2,OFFICE_BACKGROUND_PATH, {})),
                             (SetCharacterAnimation, (1, BOSS_VIDEO_CALL_SPRITESHEET_PATH, BOSS_VIDEO_CALL_ANIMATION_PATH, "idle", {})),
                             (SetCharacterAnimation, (2, BOBBY_OFFICE_SPRITESHEET_PATH, BOBBY_OFFICE_ANIMATION_PATH, "idle", {})),
                             (Wait, (80, {})),
-                            (PlaySound, (DENY_SOUND, {})),
                             (ShowDialog, ("Bobby, my man", {})),
-
-                            # (Choice, ("Got it?", [["Yes", "intro_end"], ["No", "intro_no"]], {})),
-
                             (Wait, (60, {})),
                             (ShowDialog, ("what's good, brother?", {})),
                             (Wait, (60, {})),
@@ -81,7 +81,16 @@ cutscenes = {
                             (PlaySound, (COIN_SOUND,{})),
                             (Wait, (80, {})),
                             (ShowDialog, ("Alright, Bobby", {})),
-                            (ShowDialog, ("Get out there, and hit your fucking number", {})),
+                            (ShowDialog, ("Gonna have a BIG day", {})),
+                            (Wait, (20, {})),
+                            (ShowDialog, ("Time is money", {})),
+                            (Wait, (80, {})),
+                            (ShowDialog, ("Get out there and make it happen", {})),
+                            (Wait, (80, {})),
+                            (ShowDialog, ("...", {})),
+                            (Wait, (80, {})),
+                            (ShowDialog, ("...or I'll fucking kill you", {})),
+                            (Wait, (80, {})),
                             (EndCall,"level_select", {})
                           ]
             }

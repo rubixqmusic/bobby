@@ -7,7 +7,7 @@ from res.framework.state import State
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
 trees_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_trees.png"
-title_screen_music_path = f"{MUSIC_PATH}/test.mp3"
+title_screen_music_path = f"{MUSIC_PATH}/title_screen.mp3"
 title_screen_text_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_text.png"
 title_screen_menu_select_sound_path = f"{SOUNDS_PATH}/menu_select.wav"
 title_screen_menu_select_sound_volume = 0.7
@@ -51,7 +51,7 @@ class TitleScreen(State):
         self.trees_image_wrap_position = [self.trees_image_position[0] + self.trees_image.get_width(), self.trees_image_position[1]]
 
         self.title_text_image = pygame.image.load(self.game.load_resource(title_screen_text_path)).convert_alpha()
-        self.licensed_by_kablio_text_surface = self.licensed_by_kablio_font.render(licensed_by_kablio_text,False,main_text_color)
+        self.licensed_by_kablio_text_surface = self.licensed_by_kablio_font.render(licensed_by_kablio_text,True,main_text_color)
 
         game.play_music(game.load_resource(title_screen_music_path))
         
@@ -146,15 +146,15 @@ class StartGameOrQuit(State):
                     ]
     
     def process_events(self, title_screen):            
-        if title_screen.game.is_button_released("down_button"):
+        if title_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-        if title_screen.game.is_button_released("up_button"):
+        if title_screen.game.is_button_released(UP_BUTTON):
             self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
             title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-        if title_screen.game.is_button_released("start_button"):
+        if title_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "start_game":
                 title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                 title_screen.state.set_state(title_screen, "pick_game_mode")
@@ -187,20 +187,20 @@ class PickGameMode(State):
                     ]
     
     def process_events(self, title_screen):
-            if title_screen.game.is_button_released("down_button"):
+            if title_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-            if title_screen.game.is_button_released("up_button"):
+            if title_screen.game.is_button_released(UP_BUTTON):
                 self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
                 title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
 
-            if title_screen.game.is_button_released("start_button"):
+            if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "back":
                     title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                     title_screen.state.set_state(title_screen, "start_game_or_quit")
             
-            if title_screen.game.is_button_released("start_button"):
+            if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "story_mode":
                     title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
                     title_screen.state.set_state(title_screen, "go_to_file_select_screen")
@@ -239,11 +239,11 @@ def draw_menu(menu: list,
     
     menu_item_index = 0
     for menu_item in menu:
-        text_surface = font.render(menu_item['text'],False,font_color)
+        text_surface = font.render(menu_item['text'],True,font_color)
         text_surface_base_size = text_surface.get_width(), text_surface.get_height()
         drop_shadow_surface = None
         if drop_shadow:
-            drop_shadow_surface = font.render(menu_item['text'],False,drop_shadow_color)
+            drop_shadow_surface = font.render(menu_item['text'],True,drop_shadow_color)
         
         if menu_item["name"] == current_selection:
             if drop_shadow_surface is not None:

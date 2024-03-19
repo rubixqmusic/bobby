@@ -26,6 +26,7 @@ class Game:
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
         self.window = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(WINDOW_CAPTION)
+        pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
 
         self.running = True
         self.clock = pygame.time.Clock()

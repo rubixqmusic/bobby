@@ -14,9 +14,6 @@ class State:
            
     def set_state(self, object, new_state, *args):
         if new_state in self.states:
-
-            # print(object, new_state, *args)
-
             object.state.on_state_exit(object)
 
             if isinstance(self.states[new_state], tuple):

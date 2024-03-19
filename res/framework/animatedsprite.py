@@ -168,13 +168,11 @@ class AnimatedSprite():
         if self.animations == {} or self.frames == []:
             # logging.debug(f"sprite {self} has no frames or animations initialized!")
             return
-        # self.state.draw(self)
 
         self.draw_target.blit(self.spritesheet, 
                             (self.position.x, self.position.y), 
                             self.frames[self.frame]['frame'], 
                             special_flags=self.blend_mode)
-        # print(self.draw_target)
 
 
 class Stopped(State):

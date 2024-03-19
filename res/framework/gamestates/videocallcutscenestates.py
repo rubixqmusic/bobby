@@ -17,11 +17,15 @@ VIDEO_CALL_ACCEPT_SOUND_PATH = f"{SOUNDS_PATH}/video_call_accept.wav"
 
 VIDEO_CALL_BLANK_BACKGROUND_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_blank_background.png"
 VIDEO_CALL_TEXT_BOX_PATH = f"{GRAPHICS_PATH}/backgrounds/video_call_text_box.png"
+TEXT_BOX_ADVANCE_ICON = f"{GRAPHICS_PATH}/icons/text_box_advance_icon.png"
 
+DIALOG_ADVANCE_SOUND = f"{SOUNDS_PATH}/dialog_advance.wav"
 DIALOG_SOUND_PATH = f"{SOUNDS_PATH}/dialog.wav"
 DIALOG_FONT_PATH = f"{FONTS_PATH}/{DEFAULT_FONT}"
 DIALOG_SIZE = 12
 DIALOG_COLOR = f"#ffffff"
+
+CURRENT_SPEAKER_COLOR = f"#e3eaee"
 
 class VideoCallRinging(State):
     def on_state_enter(self, video_call_cutscene):
@@ -48,20 +52,20 @@ class VideoCallRinging(State):
     
     def update(self, video_call_cutscene):
         if self.status == "ringing":
-            if video_call_cutscene.game.is_button_released("left_button"):
+            if video_call_cutscene.game.is_button_released(LEFT_BUTTON):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_SELECT_SOUND_PATH))
                 if self.selection == "accept":
                     self.selection = "decline"
                 elif self.selection == "decline":
                     self.selection = "accept"
-            if video_call_cutscene.game.is_button_released("right_button"):
+            if video_call_cutscene.game.is_button_released(RIGHT_BUTTON):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_SELECT_SOUND_PATH))
                 if self.selection == "accept":
                     self.selection = "decline"
                 elif self.selection == "decline":
                     self.selection = "accept"
             
-            if video_call_cutscene.game.is_button_released("start_button"):
+            if video_call_cutscene.game.is_button_released(START_BUTTON):
                 if self.selection == "decline":
                     self.status = "decline"
                     video_call_cutscene.game.stop_music()
@@ -121,6 +125,45 @@ class VideoCallRinging(State):
 
             video_call_cutscene.game.get_screen().fill("#000000")
             video_call_cutscene.game.get_screen().blit(self.video_call_blank_background,self.video_call_blank_background_rect)
+
+class EndCall(State):
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+        self.args = args[0]
+        self._wait_timer = 120
+        self.status = "end_call"
+    
+    def load_next_game_state(self):
+        ...
+
+    def on_state_enter(self, video_call_cutscene):
+        self.video_call_blank_background = pygame.image.load(video_call_cutscene.game.load_resource(VIDEO_CALL_BLANK_BACKGROUND_PATH))
+        self.video_call_blank_background_rect = self.video_call_blank_background.get_rect(center=(SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_DECLINE_SOUND_PATH))
+
+    def update(self, video_call_cutscene):
+        if self.status == "end_call":
+            self._wait_timer -= 1
+            if self._wait_timer < 0:
+                self._wait_timer = 120
+                self.status = "load_next_game_state"
+        
+        elif self.status == "load_next_game_state":
+            self._wait_timer -= 1
+            if self._wait_timer < 0:
+                self._wait_timer = 120
+                self.status = "end"
+                self.load_next_game_state()
+    
+    def draw(self, video_call_cutscene):
+        if self.status == "end_call":
+            video_call_cutscene.game.get_screen().fill("#000000")
+            video_call_cutscene.game.get_screen().blit(self.video_call_blank_background,self.video_call_blank_background_rect)
+
+        elif self.status == "load_next_game_state" or "end":
+            video_call_cutscene.game.get_screen().fill("#000000")
+
+    ...
 
 
 class SetBackgroundImage(State):
@@ -191,27 +234,46 @@ class ShowDialog(State):
         # print(self)
         self.args = args[0]
         self.dialog = self.args[0]
+
+        self.sound_speed = 5
+        self.sound_speed_step = 0
+
+        self.text_advance_icon_blink_speed = 10
+        self.text_advance_icon_step = 0
+        self.text_advance_icon_position = [370, 195]
+        self.toggle_text_advance_icon = True
+        
+        
+        
         
         self.text_surfaces = {}
         self.text_lines = textwrap.wrap(self.dialog, MAX_LINE_WIDTH)
         self.number_of_lines = len(self.text_lines)
+        
 
         self.text_positions = [
                                 [124, 178],
                                 [124, 196]
         ]
 
+        
         self.current_character = 0
         self.current_line = 0
 
         self.status = "get_next_character"
     
     def on_state_enter(self, video_call_cutscene):
+        self.current_speaker_font = pygame.font.Font(video_call_cutscene.game.load_resource(DIALOG_FONT_PATH), 10)
+        self.text_advance_icon_surface = pygame.image.load(video_call_cutscene.game.load_resource(TEXT_BOX_ADVANCE_ICON))
         self.font = pygame.font.Font(video_call_cutscene.game.load_resource(DIALOG_FONT_PATH), DIALOG_SIZE)
     
     def update(self, video_call_cutscene):
 
         if self.status == "get_next_character":
+            self.sound_speed_step += 1
+            self.sound_speed_step = self.sound_speed_step%self.sound_speed
+            
+    
             if self.current_line > len(self.text_lines) -1:
                 self.current_line = 0
                 self.status = "wait_for_button"
@@ -223,10 +285,17 @@ class ShowDialog(State):
                 new_text_surface = self.font.render(new_text,True,DIALOG_COLOR)
                 self.text_surfaces[self.current_line] = new_text_surface
                 self.current_character += 1
-                video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(DIALOG_SOUND_PATH))
+                if self.sound_speed_step == 0:
+                    video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(DIALOG_SOUND_PATH))
         
         elif self.status == "wait_for_button":
-            if video_call_cutscene.game.is_button_released("start_button"):
+            self.text_advance_icon_step += 1
+            self.text_advance_icon_step = self.text_advance_icon_step%self.text_advance_icon_blink_speed
+            if self.text_advance_icon_step == 0:
+                self.toggle_text_advance_icon = not self.toggle_text_advance_icon
+
+            if video_call_cutscene.game.is_button_released(START_BUTTON):
+                video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(DIALOG_ADVANCE_SOUND))
                 self.status = "get_next_event"
                 video_call_cutscene.get_next_event()
     
@@ -235,7 +304,16 @@ class ShowDialog(State):
             for text_surface in self.text_surfaces:
                 video_call_cutscene.game.get_screen().blit(self.text_surfaces[text_surface], self.text_positions[text_surface])
 
-        
+        if self.status == "get_next_character":
+            if video_call_cutscene.backgrounds[1]["image"] is not None:
+                current_speaker_rect = video_call_cutscene.backgrounds[1]["image"].get_rect(topleft=video_call_cutscene.backgrounds[1]["position"])
+                pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 5)
+                current_speaker_text_surface = self.current_speaker_font.render(f"Cody Feiko", True, "#ffffff", "#0000ef")
+                video_call_cutscene.game.get_screen().blit(current_speaker_text_surface, (video_call_cutscene.backgrounds[1]["position"][0] + 10, video_call_cutscene.backgrounds[1]["position"][1] + 76))
+        elif self.status == "wait_for_button":
+            if self.toggle_text_advance_icon:
+                video_call_cutscene.game.get_screen().blit(self.text_advance_icon_surface, self.text_advance_icon_position)
+
 
 class Wait(State):
     def __init__(self, states: dict, *args) -> None:
@@ -246,15 +324,14 @@ class Wait(State):
     
     def update(self, video_call_cutscene):
         if self.status == "waiting":
+            if video_call_cutscene.game.is_button_released(START_BUTTON):
+                self.wait_time = 0
             self.wait_time -= 1
 
             if self.wait_time < 0:
                 self.status = "get_next_event"
                 video_call_cutscene.get_next_event()
 
-
-class EndCall(State):
-    ...
 
 class Choice(State):
     def __init__(self, states: dict, *args) -> None:
@@ -325,7 +402,7 @@ class Choice(State):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(DIALOG_SOUND_PATH))
         
         elif self.status == "make_choice":
-            if video_call_cutscene.game.is_button_released("start_button"):
+            if video_call_cutscene.game.is_button_released(START_BUTTON):
                 for choice in self.choices:
                     if choice["name"] == self.choice:
                         # video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_ACCEPT_SOUND_PATH))
@@ -334,10 +411,10 @@ class Choice(State):
                         video_call_cutscene.state = State(states)
                         video_call_cutscene.event_index = -1
                         video_call_cutscene.get_next_event()
-            elif video_call_cutscene.game.is_button_released("right_button"):
+            elif video_call_cutscene.game.is_button_released(RIGHT_BUTTON):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_SELECT_SOUND_PATH))
                 self.choice = self.get_next_menu_item(self.choices, self.choice)
-            elif video_call_cutscene.game.is_button_released("left_button"):
+            elif video_call_cutscene.game.is_button_released(LEFT_BUTTON):
                 video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_SELECT_SOUND_PATH))
                 self.choice = self.get_previous_menu_item(self.choices, self.choice)
 
@@ -346,7 +423,12 @@ class Choice(State):
         if self.text_surfaces != {}:
             for text_surface in self.text_surfaces:
                 video_call_cutscene.game.get_screen().blit(self.text_surfaces[text_surface], self.text_positions[text_surface])
-        if self.status == "make_choice":
+
+        if self.status == "get_next_character":
+            if video_call_cutscene.backgrounds[1]["image"] is not None:
+                    current_speaker_rect = video_call_cutscene.backgrounds[1]["image"].get_rect(topleft=video_call_cutscene.backgrounds[1]["position"])
+                    pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 5)
+        elif self.status == "make_choice":
             self.draw_menu(self.choices,self.choice, self.x_start, self.x_spacing, self.font, DIALOG_COLOR, video_call_cutscene.game.get_screen(), self.grow_factor)
     
     def draw_menu(self,
@@ -437,12 +519,17 @@ class GoTo(State):
         video_call_cutscene.state = State(states)
         video_call_cutscene.event_index = -1
         video_call_cutscene.get_next_event()
-    
-    def on_state_exit(self, video_call_cutscene):
-        print(video_call_cutscene.states[video_call_cutscene.event_index])        
+
+class PlayMusic(State):
+    def __init__(self, states: dict, *args) -> None:
+        super().__init__(states, *args)
+        self.args = args[0]
+        self.song_name = self.args[0]
+        self.volume = self.args[1]
+
+    def on_state_enter(self, video_call_cutscene):
+        video_call_cutscene.game.play_music(video_call_cutscene.game.load_resource(f"{MUSIC_PATH}/{self.song_name}"), self.volume)
+        video_call_cutscene.get_next_event()
+       
 
             
-
-            # video_call_cutscene.state.set_state(video_call_cutscene,video_call_cutscene.event_index)
-            
-        ...
