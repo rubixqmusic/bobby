@@ -65,7 +65,7 @@ class Splashscreen(State):
                 self.fade -= self.fade_step
             else:
                 self.event_step = 4
-                self.event_timer = 200
+                self.event_timer = 150
         
         if self.event_step == 4:
             self.event_timer -= 1

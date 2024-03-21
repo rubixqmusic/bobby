@@ -19,6 +19,11 @@ file_select_screen_menu_select_sound_path = f"{SOUNDS_PATH}/menu_select.wav"
 file_select_screen_menu_select_sound_volume = 0.7
 coin_sound_path = f"{SOUNDS_PATH}/coin.wav"
 
+BACK_FX = f"{SOUNDS_PATH}/video_call_decline.wav"
+
+SELECT_A_FILE_FX = f"{SOUNDS_PATH}/select_a_file.wav"
+ITS_BOBBY_TIME_FX = f"{SOUNDS_PATH}/its_bobby_time.wav"
+
 # scroll_speed = 1
 
 menu_selection_font_path = f"{FONTS_PATH}/{DEFAULT_FONT}"
@@ -81,6 +86,7 @@ class FileSelectScreen(State):
         self.select_a_file_text_surface = self.select_a_file_font.render(select_a_file_text,True,main_text_color)
 
         game.play_music(game.load_resource(file_select_screen_music_path))
+        
         
         self.state = State(file_select_screen_states)
         self.state.start(self, "fade_in")
@@ -148,6 +154,7 @@ class GoToTitleScreen(State):
 
 class StartNewGame(State):
     def on_state_enter(self, file_select_screen):
+        
         self.min_fade = 0
         self.max_fade = 255
         self.fade = self.max_fade
@@ -164,7 +171,10 @@ class StartNewGame(State):
             # file_select_screen.game.state.set_state(file_select_screen.game,"video_call_cutscene", "pee_pee")
 
 class SelectFile(State):
-    def on_state_enter(self, file_select_screen): 
+    def on_state_enter(self, file_select_screen):
+
+        file_select_screen.game.play_sound(file_select_screen.game.load_resource(SELECT_A_FILE_FX))
+
         self.menu_y_start_position = 72        
         self.current_menu_selection = "file_1"
 
@@ -210,7 +220,7 @@ class SelectFile(State):
 
         if file_select_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "back":
-                file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
+                file_select_screen.game.play_sound(file_select_screen.game.load_resource(BACK_FX))
                 file_select_screen.state.set_state(file_select_screen, "go_to_title_screen")
 
             if self.current_menu_selection == "file_1" or "file_2" or "file_3":
@@ -232,9 +242,11 @@ class SelectFile(State):
                             file_select_screen.game.set_current_save_file(menu_item["file_name"])
 
                             if menu_item["last_saved"] == "EMPTY":
+                                file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
+                                file_select_screen.game.stop_music()
                                 file_select_screen.state.set_state(file_select_screen, "start_new_game")
                             
-                            file_select_screen.game.play_sound(file_select_screen.game.load_resource(coin_sound_path))
+                            # file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
 
     def draw(self, file_select_screen):
         draw_file_select_menu(file_select_screen,

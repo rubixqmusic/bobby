@@ -13,6 +13,15 @@ title_screen_menu_select_sound_path = f"{SOUNDS_PATH}/menu_select.wav"
 title_screen_menu_select_sound_volume = 0.7
 coin_sound_path = f"{SOUNDS_PATH}/coin.wav"
 
+LETS_GO_FX = f"{SOUNDS_PATH}/lets_go.wav"
+FUCK_YOU_FX = f"{SOUNDS_PATH}/fuck_you.wav"
+STORY_MODE_FX = f"{SOUNDS_PATH}/story_mode.wav"
+BACK_FX = f"{SOUNDS_PATH}/video_call_decline.wav"
+
+BACKGROUND_ALPHA = 200
+
+BACKGROUND_SCROLL_SPEED = 50
+
 scroll_speed = 1
 
 menu_selection_font_path = f"{FONTS_PATH}/{DEFAULT_FONT}"
@@ -40,13 +49,23 @@ class TitleScreen(State):
         self.sine_degrees = 0
         self.grow_factor = 0
         self.game = game
+
+        self.background_scroll_step = 0
+
         self.background_image = pygame.image.load(self.game.load_resource(background_image_path)).convert_alpha()
-        self.background_image.set_alpha(200)
+        self.background_image.set_alpha(BACKGROUND_ALPHA)
+        self.background_image_wrap = pygame.image.load(self.game.load_resource(background_image_path)).convert_alpha()
+        self.background_image_wrap.set_alpha(BACKGROUND_ALPHA)
+
         self.trees_image = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
         self.trees_image_wrap = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
 
         self.menu_selection_font = pygame.font.Font(game.load_resource(menu_selection_font_path),menu_selection_text_size)
         self.licensed_by_kablio_font = pygame.font.Font(game.load_resource(menu_selection_font_path), licensed_by_kablio_text_size)
+
+        self.background_image_position = [0,0]
+        self.background_image_wrap_position = [self.background_image_position[0] + self.background_image.get_width(), self.background_image_position[1]]
+        
         self.trees_image_position = [0,0]
         self.trees_image_wrap_position = [self.trees_image_position[0] + self.trees_image.get_width(), self.trees_image_position[1]]
 
@@ -65,6 +84,16 @@ class TitleScreen(State):
         self.grow_factor = int(math.sin(self.sine_degrees) * max_text_grow)
         self.sine_degrees += text_grow_step_size%max_text_grow
 
+        self.background_scroll_step += 1
+        self.background_scroll_step = self.background_scroll_step%BACKGROUND_SCROLL_SPEED
+
+        if self.background_scroll_step == 0:
+            self.background_image_position[0] -= 1
+
+        if self.background_image_position[0] + self.background_image.get_width() < 0:
+            self.background_image_position[0] += self.background_image.get_width()
+        self.background_image_wrap_position[0] = self.background_image_position[0] + self.background_image.get_width()
+
         self.trees_image_position[0] -= scroll_speed
         if self.trees_image_position[0] + self.trees_image.get_width() < 0:
             self.trees_image_position[0] += self.trees_image.get_width()
@@ -76,7 +105,8 @@ class TitleScreen(State):
     def draw(self, game):
         text_rect = self.licensed_by_kablio_text_surface.get_rect(center=(SCREEN_WIDTH/2, licensed_by_kablio_text_y_position))
         game.get_screen().fill("#000000")
-        game.get_screen().blit(self.background_image, (0,0))
+        game.get_screen().blit(self.background_image, self.background_image_position)
+        game.get_screen().blit(self.background_image_wrap, self.background_image_wrap_position)
         game.get_screen().blit(self.trees_image, self.trees_image_position)
         game.get_screen().blit(self.trees_image_wrap, self.trees_image_wrap_position)
         game.get_screen().blit(self.title_text_image, (0,0))
@@ -156,11 +186,12 @@ class StartGameOrQuit(State):
 
         if title_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "start_game":
-                title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                title_screen.game.play_sound(title_screen.game.load_resource(LETS_GO_FX))
                 title_screen.state.set_state(title_screen, "pick_game_mode")
 
             if self.current_menu_selection == "quit_game":
-                title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                title_screen.game.play_sound(title_screen.game.load_resource(FUCK_YOU_FX))
+                title_screen.game.stop_music()
                 title_screen.state.set_state(title_screen, "fade_out_and_quit")
 
     def draw(self, title_screen):
@@ -197,12 +228,12 @@ class PickGameMode(State):
 
             if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "back":
-                    title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                    title_screen.game.play_sound(title_screen.game.load_resource(BACK_FX))
                     title_screen.state.set_state(title_screen, "start_game_or_quit")
             
             if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "story_mode":
-                    title_screen.game.play_sound(title_screen.game.load_resource(coin_sound_path))
+                    title_screen.game.play_sound(title_screen.game.load_resource(STORY_MODE_FX))
                     title_screen.state.set_state(title_screen, "go_to_file_select_screen")
     
     def draw(self, title_screen):
