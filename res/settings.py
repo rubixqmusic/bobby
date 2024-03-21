@@ -32,3 +32,5 @@ RIGHT_BUTTON = "right_button"
 START_BUTTON = "start_button"
 
 ACTION_BUTTON_1 = "action_button_1"
+
+GOLD_COLOR = "#fbcb1d"

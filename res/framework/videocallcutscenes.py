@@ -26,6 +26,9 @@ cutscenes = {
                             (SetCharacterAnimation, (2, BOBBY_OFFICE_SPRITESHEET_PATH, BOBBY_OFFICE_ANIMATION_PATH, "idle", {})),
                             (Wait, (80, {})),
                             (ShowDialog, ("Bobby, my man", {})),
+
+                            # (EndCall,("world_map", {})),
+
                             (Wait, (60, {})),
                             (ShowDialog, ("what's good, brother?", {})),
                             (Wait, (60, {})),
@@ -91,7 +94,7 @@ cutscenes = {
                             (Wait, (80, {})),
                             (ShowDialog, ("...or I'll fucking kill you", {})),
                             (Wait, (80, {})),
-                            (EndCall,"level_select", {})
+                            (EndCall,("world_map", {}))
                           ]
             }
             

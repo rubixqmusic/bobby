@@ -6,7 +6,7 @@ import logging
 from res.settings import *
 from res.utilities.ldtk_loader import load_ldtk
 from res.framework.state import State
-from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene
+from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap
 from res.input_events import *
 
 OFF = 0
@@ -169,6 +169,10 @@ class Game:
     def run_video_call_cutscene(self, cutscene_name):
         self.state.set_state(self,"video_call_cutscene", cutscene_name)
     
+    def load_world_map(self):
+        self.state.set_state(self, "world_map")
+        ...
+    
     def set_current_save_file(self, file_name):
         self._current_file_name = file_name
 
@@ -254,6 +258,7 @@ game_states = {
                 "splashscreen" : splashscreen.Splashscreen,
                 "title_screen" : titlescreen.TitleScreen,
                 "file_select_screen" : fileselectscreen.FileSelectScreen,
-                "video_call_cutscene" : videocallcutscene.VideoCallCutscene
+                "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
+                "world_map" : worldmap.WorldMap
                 }
         

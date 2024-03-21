@@ -130,10 +130,13 @@ class EndCall(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
         self.args = args[0]
+        self.next_game_state = self.args[0]
         self._wait_timer = 120
         self.status = "end_call"
     
-    def load_next_game_state(self):
+    def load_next_game_state(self, video_call_cutscene):
+        if self.next_game_state == "world_map":
+            video_call_cutscene.game.load_world_map()
         ...
 
     def on_state_enter(self, video_call_cutscene):
@@ -153,7 +156,7 @@ class EndCall(State):
             if self._wait_timer < 0:
                 self._wait_timer = 120
                 self.status = "end"
-                self.load_next_game_state()
+                self.load_next_game_state(video_call_cutscene)
     
     def draw(self, video_call_cutscene):
         if self.status == "end_call":
