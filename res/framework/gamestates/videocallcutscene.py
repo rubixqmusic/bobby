@@ -48,6 +48,13 @@ class VideoCallCutscene(State):
         self.event_index = 0
         self.state.start(self,self.event_index)
     
+    def load_next_game_state(self, next_state):
+
+        self.game.save_game()
+        
+        if next_state == "world_map":
+            self.game.load_world_map()
+    
     def process_events(self, game):
         if game.game_should_quit():
             game.quit_game()

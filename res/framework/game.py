@@ -2,12 +2,15 @@ import pygame
 import os
 import sys
 import logging
+import json
+from datetime import datetime
 
 from res.settings import *
 from res.utilities.ldtk_loader import load_ldtk
 from res.framework.state import State
 from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap
 from res.input_events import *
+from res.savedata import save_data
 
 OFF = 0
 PRESSED = 1
@@ -32,7 +35,16 @@ class Game:
         self.clock = pygame.time.Clock()
         self.delta_time = 0.0
 
-        self.world = load_ldtk(self.load_resource(WORLD_DATA_PATH))
+        # self.world = load_ldtk(self.load_resource(WORLD_DATA_PATH))
+        self.world = None
+
+        try:
+            with open(self.load_resource(WORLD_DATA_PATH)) as world_data:
+                self.world = json.load(world_data)
+        except:
+            logging.debug(f"FATAL ERROR: Could not load world data file, shit's fucked fam")
+        
+        # print(self.world["levels"])
         
         self._input_events = {}
         self._joystick_events = {}
@@ -42,9 +54,17 @@ class Game:
                                  }
         self._current_music = ""
         self._current_file_name = ""
+        self._current_save_file = ""
 
         self.game_data = {}
-        self.save_data = {}
+        self.save_data = save_data
+
+        if not os.path.exists(SAVE_DATA_PATH):
+            try:
+                os.mkdir(SAVE_DATA_PATH)
+            except:
+                logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
+        
 
         self.state = State(game_states)
         self.state.start(self,"init")
@@ -154,6 +174,10 @@ class Game:
                 #     self._joystick_ports[event.instance_id] = None
 
     def run(self):
+        if self.world is None:
+            pygame.quit()
+            logging.debug(f"program exited in a fucked up manner. No world file could be loaded, fam, so we aborted that shit")
+            sys.exit()
         while self.running:
             self._process_events()
             self.state.process_events(self)
@@ -171,10 +195,68 @@ class Game:
     
     def load_world_map(self):
         self.state.set_state(self, "world_map")
-        ...
     
-    def set_current_save_file(self, file_name):
-        self._current_file_name = file_name
+    def set_current_save_file(self, filepath):
+        self._current_save_file = filepath
+    
+    def get_levels_from_world(self):
+        return self.world["levels"]
+    
+    def save_game(self):
+        # if os.path.exists(self._current_save_file):
+
+        months = {
+                    1: "Jan",
+                    2: "Feb",
+                    3: "Mar",
+                    4: "Apr",
+                    5: "May",
+                    6: "Jun",
+                    7: "Jul",
+                    8: "Aug",
+                    9: "Sep",
+                    10: "Oct",
+                    11: "Nov",
+                    12: "Dec"
+
+        }
+        timestamp = datetime.today()
+        month = months[timestamp.month]
+        day = timestamp.day
+        year = timestamp.year
+        self.save_data["last_saved"] = f"{month} {day}, {year}"
+        try:
+            with open(self._current_save_file, 'w') as save_file:
+                json.dump(self.save_data, save_file)
+        except:
+            logging.debug(f"could not save game to file!")
+    
+    
+    def load_save_file(self, filepath):
+        if os.path.exists(filepath):
+            try:
+                with open(filepath) as save_file:
+                    save_file_data = json.load(save_file)
+
+                    for key, value in save_file_data:
+                        self.save_data[key] = value         
+            except:
+                logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
+        else:
+            logging.debug(f"could not load save file, filepath {filepath} does not exist!")
+    
+    def create_new_save_file(self, filepath):
+        try:
+            with open(filepath, 'w') as fp:
+                json.dump(self.save_data, fp)
+        except:
+            logging.debug(f"could not save file!")
+
+    def get_save_data(self, save_data):
+        if save_data in self.save_data:
+            return self.save_data[save_data]
+        else:
+            return None
 
     def game_should_quit(self):
         if "quit" in self._input_events:

@@ -7,7 +7,7 @@ import json
 from res.settings import *
 from res.framework.state import State
 
-SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
+# SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 NEW_GAME_CUTSCENE_NAME = f"intro_1"
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
@@ -46,9 +46,9 @@ text_grow_step_size = 0.1
 sine_degrees = 0.0
 grow_factor = 0
 
-FILE_1_NAME = "file_1.json"
-FILE_2_NAME = "file_2.json"
-FILE_3_NAME = "file_3.json"
+# FILE_1_NAME = "file_1.json"
+# FILE_2_NAME = "file_2.json"
+# FILE_3_NAME = "file_3.json"
 
 
 class FileSelectScreen(State):
@@ -101,12 +101,6 @@ class FileSelectScreen(State):
         self.grow_factor = int(math.sin(self.sine_degrees) * max_text_grow)
         self.sine_degrees += text_grow_step_size%max_text_grow
 
-        # self.trees_image_position[0] -= scroll_speed
-        # if self.trees_image_position[0] + self.trees_image.get_width() < 0:
-        #     self.trees_image_position[0] += self.trees_image.get_width()
-
-        # self.trees_image_wrap_position[0] = self.trees_image_position[0] + self.trees_image.get_width()
-
         self.state.update(self)
 
     def draw(self, game):
@@ -114,11 +108,14 @@ class FileSelectScreen(State):
         game.get_screen().fill("#000000")
         game.get_screen().blit(self.background_image, (0,0))
         game.get_screen().blit(self.trees_image, self.trees_image_position)
-        # game.get_screen().blit(self.trees_image_wrap, self.trees_image_wrap_position)
-        # game.get_screen().blit(self.title_text_image, (0,0))
         game.get_screen().blit(self.select_a_file_text_surface, text_rect)
         self.state.draw(self)
 
+    def start_new_game(self):
+        self.state.set_state(self, "start_new_game")
+
+    def load_saved_game(self):
+        self.state.set_state(self, "load_saved_game")
 
 class FadeIn(State):
     def on_state_enter(self, file_select_screen):
@@ -168,7 +165,25 @@ class StartNewGame(State):
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             file_select_screen.game.run_video_call_cutscene(NEW_GAME_CUTSCENE_NAME)
-            # file_select_screen.game.state.set_state(file_select_screen.game,"video_call_cutscene", "pee_pee")
+
+
+class LoadSavedGame(State):
+    def on_state_enter(self, file_select_screen):
+        
+        self.min_fade = 0
+        self.max_fade = 255
+        self.fade = self.max_fade
+        self.fade_step = 5
+    
+    def draw(self, file_select_screen):
+        if self.fade > self.min_fade:
+            file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            self.fade -= self.fade_step
+        else:
+            self.fade = 0
+            file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            file_select_screen.game.load_world_map()
+
 
 class SelectFile(State):
     def on_state_enter(self, file_select_screen):
@@ -189,11 +204,11 @@ class SelectFile(State):
                         # {"name" : "erase", "text" : "Erase"}
                     ]
         
-        if not os.path.exists(SAVE_DATA_PATH):
-            try:
-                os.mkdir(SAVE_DATA_PATH)
-            except:
-                logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
+        # if not os.path.exists(SAVE_DATA_PATH):
+        #     try:
+        #         os.mkdir(SAVE_DATA_PATH)
+        #     except:
+        #         logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
         save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
         index = 0
@@ -228,25 +243,20 @@ class SelectFile(State):
                     if "file_name" in menu_item:
                         if menu_item["name"] == self.current_menu_selection:
                             filepath = f"{SAVE_DATA_PATH}/{menu_item['file_name']}"
-                            if os.path.exists(filepath):
-                                try:
-                                    with open(filepath) as save_file:
-                                        save_file_data = json.load(save_file)
 
-                                        #load in game data here
-                                except:
-                                    logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
-                                else:
-                                    ...
-                            
-                            file_select_screen.game.set_current_save_file(menu_item["file_name"])
+                            file_select_screen.game.set_current_save_file(filepath)
 
                             if menu_item["last_saved"] == "EMPTY":
+                                file_select_screen.game.create_new_save_file(filepath)
+
                                 file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
                                 file_select_screen.game.stop_music()
-                                file_select_screen.state.set_state(file_select_screen, "start_new_game")
-                            
-                            # file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
+                                file_select_screen.start_new_game()
+                            else:
+                                file_select_screen.game.load_save_file(filepath)
+                                file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
+                                file_select_screen.game.stop_music()
+                                file_select_screen.load_saved_game()
 
     def draw(self, file_select_screen):
         draw_file_select_menu(file_select_screen,
@@ -265,7 +275,8 @@ file_select_screen_states = {
                         "fade_in" : FadeIn,
                         "select_file" : SelectFile,
                         "go_to_title_screen" : GoToTitleScreen,
-                        "start_new_game" : StartNewGame
+                        "start_new_game" : StartNewGame,
+                        "load_saved_game" : LoadSavedGame
                         }
 
 def draw_file_select_menu(
