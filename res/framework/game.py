@@ -190,6 +190,9 @@ class Game:
         logging.debug(f"program exited normally")
         sys.exit()
     
+    def get_fps(self):
+        return self.clock.get_fps()
+    
     def run_video_call_cutscene(self, cutscene_name):
         self.state.set_state(self,"video_call_cutscene", cutscene_name)
     

@@ -13,6 +13,8 @@ class Camera:
 
         self.surface = pygame.surface.Surface((width, height))
 
+        self._bounds_enabled = True
+
         self.limit_left = 0
         self.limit_right = SCREEN_WIDTH
         self.limit_top = 0
@@ -24,6 +26,24 @@ class Camera:
         self.limit_top = top
         self.limit_bottom = bottom
     
+    def get_position(self):
+        return self.x, self.y
+
+    def bounds_enabled(self):
+        return self._bounds_enabled
+    
+    def enable_bounds(self):
+        self._bounds_enabled = True
+
+    def disable_bounds(self):
+        self._bounds_enabled = False
+    
+    def set_position(self, x, y):
+        self.x = x
+        self.y = y
+        self.rect[0] = self.x
+        self.rect[1] = self.y
+    
     def center(self, center_x, center_y):
         self.rect.centerx = center_x
         self.rect.centery = center_y
@@ -33,9 +53,10 @@ class Camera:
     def move(self, x, y):
         self.x += x
         self.y += y
-        if self.x < self.limit_left or self.x > self.limit_right:
-            self.x -= x
-        if self.y < self.limit_top or self.y > self.limit_bottom:
-            self.y -= y
+        if self.bounds_enabled():
+            if self.x < self.limit_left or self.x > self.limit_right:
+                self.x -= x
+            if self.y < self.limit_top or self.y > self.limit_bottom:
+                self.y -= y
         self.rect[0] = self.x
         self.rect[1] = self.y
