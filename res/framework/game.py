@@ -260,6 +260,12 @@ class Game:
             return self.save_data[save_data]
         else:
             return None
+    
+    def get_level_data(self, level_name):
+        if level_name in self.save_data["levels"]:
+            return self.save_data["levels"][level_name]
+        else:
+            return None
 
     def game_should_quit(self):
         if "quit" in self._input_events:

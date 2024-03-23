@@ -5,6 +5,8 @@ from res.settings import *
 from res.framework.state import State
 from res.framework.camera import Camera
 from res.framework.worldmap.mappath import MapPath
+from res.framework.worldmap.landing import Landing
+from res.framework.worldmap.leveltile import LevelTile
 
 WORLD_MAP_MUSIC = f"{MUSIC_PATH}/world_map.mp3"
 BACKGROUND_IMAGE = f"{GRAPHICS_PATH}/backgrounds/world_map_background.png"
@@ -12,6 +14,10 @@ MAP_BOX = f"{GRAPHICS_PATH}/backgrounds/world_map_box.png"
 MAP_POSITION = 91, 66
 
 MAP_PATH_IMAGE = f"{GRAPHICS_PATH}/world_map/map_path.png"
+MAP_LANDING_IMAGE = f"{GRAPHICS_PATH}/world_map/landing.png"
+
+LEVEL_TILE_SPRITESHEET = f"{GRAPHICS_PATH}/world_map/level_tile.png"
+LEVEL_TILE_ANIMATION = f"{ANIMATIONS_PATH}/level_tile.json"
 
 
 class WorldMap(State):
@@ -31,6 +37,7 @@ class WorldMap(State):
         self.tile_layer_2 = {}
         self.level_tiles = []
         self.map_path = []
+        self.landings = []
         self.player = None
         self.overlay_layer_1 = {}
 
@@ -97,6 +104,10 @@ class WorldMap(State):
         self.state.process_events(self)
 
     def update(self, game):
+        if self.level_tiles:
+            for level_tile in self.level_tiles:
+                level_tile.update()
+
         self.state.update(self)
     
     def draw(self, game):
@@ -139,6 +150,18 @@ class WorldMap(State):
                 dest[0] -= camera_pos[0]
                 dest[1] -= camera_pos[1]
                 self.camera.surface.blit(map_path.image, dest)
+
+        if self.landings:
+            for landing in self.landings:
+                dest = [landing.x, landing.y]
+                camera_pos = self.camera.get_position()
+                dest[0] -= camera_pos[0]
+                dest[1] -= camera_pos[1]
+                self.camera.surface.blit(landing.image, dest)
+        
+        if self.level_tiles:
+            for level_tile in self.level_tiles:
+                level_tile.draw()
         
         if self.overlay_layer_1:
             tileset_path = game.load_resource(f"{BASE_PATH}{self.overlay_layer_1['tileset']}")
@@ -234,6 +257,30 @@ class LoadMap(State):
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])
                                         new_map_path = MapPath(entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image)
                                         world_map.map_path.append(new_map_path)
+                                    if property["__value"] == "landing":
+                                        try:
+                                            image = pygame.image.load(self.game.load_resource(MAP_LANDING_IMAGE))
+                                        except:
+                                            logging.debug(f"could not load map path image!!!")
+                                            image = pygame.surface.Surface([entity["width"], entity["height"]])
+                                        new_map_landing = Landing(entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image)
+                                        world_map.map_path.append(new_map_landing)
+                                    if property["__value"] == "level_tile":
+                                        level_name = None
+                                        for property in entity_properties:
+                                            if property["__identifier"] == "level_name":
+                                                level_name = property["__value"]
+                                        try:
+                                            spritesheet = self.game.load_resource(LEVEL_TILE_SPRITESHEET)
+                                        except:
+                                            logging.debug(f"could not load map path image!!!")
+                                            # spritesheet = pygame.surface.Surface([entity["width"], entity["height"]])
+                                        
+                                        animation = self.game.load_resource(LEVEL_TILE_ANIMATION)
+
+                                        new_level_tile = LevelTile(self.game, level_name, entity["__worldX"], entity["__worldY"], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera)
+                                        # entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image
+                                        world_map.level_tiles.append(new_level_tile)
 
                     if layer["__identifier"] == OVERLAY_1_LAYER_NAME:
                         world_map.overlay_layer_1["tileset"] = layer["__tilesetRelPath"]
@@ -242,8 +289,9 @@ class LoadMap(State):
                         world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.overlay_layer_1['tileset']}"))
                 break
         
-        world_map.camera.set_bounds(world_map.scene_x, world_map.scene_y, world_map.scene_width, world_map.scene_height)
-        world_map.camera.set_position(467,300)
+        world_map.camera.set_bounds(world_map.scene_x, world_map.scene_x + world_map.scene_width, world_map.scene_y, world_map.scene_y + world_map.scene_height)
+        # world_map.camera.set_position(467,300)
+        world_map.camera.center(self.player_start_position[0], self.player_start_position[1])
         world_map.fade_in()
     
     def draw(self, world_map):

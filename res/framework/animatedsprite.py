@@ -100,6 +100,9 @@ class AnimatedSprite():
         # print(self.frames)
         # return self
     
+    def set_draw_target(self, draw_target):
+        self.draw_target = draw_target
+    
     def get_spritesheet(self) -> pygame.surface.Surface:
         return self.spritesheet
 

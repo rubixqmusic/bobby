@@ -18,7 +18,7 @@ FUCK_YOU_FX = f"{SOUNDS_PATH}/fuck_you.wav"
 STORY_MODE_FX = f"{SOUNDS_PATH}/story_mode.wav"
 BACK_FX = f"{SOUNDS_PATH}/video_call_decline.wav"
 
-BACKGROUND_ALPHA = 200
+BACKGROUND_ALPHA = 256
 
 BACKGROUND_SCROLL_SPEED = 50
 

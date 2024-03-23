@@ -45,8 +45,25 @@ class Camera:
         self.rect[1] = self.y
     
     def center(self, center_x, center_y):
+        
         self.rect.centerx = center_x
         self.rect.centery = center_y
+        self.x = self.rect[0]
+        self.y = self.rect[1]
+        if self.bounds_enabled():
+            if self.x + self.width > self.limit_right:
+                self.x = self.limit_right - self.width          
+            if self.x < self.limit_left:
+                self.x = self.limit_left
+            if self.y + self.height > self.limit_bottom:
+                self.y = self.limit_bottom - self.height
+            if self.y < self.limit_top:
+                self.y = self.limit_top
+            self.rect[0] = self.x
+            self.rect[1] = self.y
+            
+            
+
         self.x = self.rect[0]
         self.y = self.rect[1]
     
