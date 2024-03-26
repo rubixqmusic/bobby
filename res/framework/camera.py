@@ -71,9 +71,13 @@ class Camera:
         self.x += x
         self.y += y
         if self.bounds_enabled():
-            if self.x < self.limit_left or self.x > self.limit_right:
-                self.x -= x
-            if self.y < self.limit_top or self.y > self.limit_bottom:
-                self.y -= y
+            if self.x + self.width > self.limit_right:
+                self.x = self.limit_right - self.width          
+            if self.x < self.limit_left:
+                self.x = self.limit_left
+            if self.y + self.height > self.limit_bottom:
+                self.y = self.limit_bottom - self.height
+            if self.y < self.limit_top:
+                self.y = self.limit_top
         self.rect[0] = self.x
         self.rect[1] = self.y

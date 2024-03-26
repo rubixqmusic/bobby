@@ -266,6 +266,11 @@ class Game:
             return self.save_data["levels"][level_name]
         else:
             return None
+    
+    def set_level_data(self, level_name, field, value):
+        if level_name in self.save_data["levels"]:
+            if field in self.save_data["levels"][level_name]:
+                self.save_data["levels"][level_name][field] = value
 
     def game_should_quit(self):
         if "quit" in self._input_events:

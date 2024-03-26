@@ -463,7 +463,6 @@
 						{ "px": [896,336], "src": [432,16], "f": 0, "t": 59, "d": [1400], "a": 1 },
 						{ "px": [912,336], "src": [432,16], "f": 0, "t": 59, "d": [1401], "a": 1 },
 						{ "px": [928,336], "src": [432,16], "f": 0, "t": 59, "d": [1402], "a": 1 },
-						{ "px": [592,352], "src": [448,0], "f": 0, "t": 28, "d": [1445], "a": 1 },
 						{ "px": [672,352], "src": [448,0], "f": 0, "t": 28, "d": [1450], "a": 1 },
 						{ "px": [832,352], "src": [432,16], "f": 0, "t": 59, "d": [1460], "a": 1 },
 						{ "px": [848,352], "src": [432,16], "f": 0, "t": 59, "d": [1461], "a": 1 },
@@ -472,7 +471,6 @@
 						{ "px": [896,352], "src": [432,16], "f": 0, "t": 59, "d": [1464], "a": 1 },
 						{ "px": [912,352], "src": [432,16], "f": 0, "t": 59, "d": [1465], "a": 1 },
 						{ "px": [928,352], "src": [432,16], "f": 0, "t": 59, "d": [1466], "a": 1 },
-						{ "px": [592,368], "src": [448,16], "f": 0, "t": 60, "d": [1509], "a": 1 },
 						{ "px": [672,368], "src": [448,16], "f": 0, "t": 60, "d": [1514], "a": 1 },
 						{ "px": [832,368], "src": [432,16], "f": 0, "t": 59, "d": [1524], "a": 1 },
 						{ "px": [848,368], "src": [432,16], "f": 0, "t": 59, "d": [1525], "a": 1 },
@@ -553,7 +551,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "world_map_object",
-							"__grid": [39,22],
+							"__grid": [37,22],
 							"__pivot": [0,0],
 							"__tags": ["world_map"],
 							"__tile": { "tilesetUid": 18, "x": 32, "y": 0, "w": 16, "h": 16 },
@@ -562,7 +560,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 12,
-							"px": [624,352],
+							"px": [592,352],
 							"fieldInstances": [
 								{ "__identifier": "type", "__type": "LocalEnum.world_map_object_type", "__value": "default_start", "__tile": { "tilesetUid": 18, "x": 32, "y": 0, "w": 16, "h": 16 }, "defUid": 16, "realEditorValues": [{
 									"id": "V_String",
@@ -570,7 +568,7 @@
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }
 							],
-							"__worldX": 624,
+							"__worldX": 592,
 							"__worldY": 352
 						},
 						{
@@ -779,28 +777,6 @@
 						},
 						{
 							"__identifier": "world_map_object",
-							"__grid": [39,22],
-							"__pivot": [0,0],
-							"__tags": ["world_map"],
-							"__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 },
-							"__smartColor": "#D77643",
-							"iid": "720acf30-d7b0-11ee-bd50-cf21eddb4efe",
-							"width": 16,
-							"height": 16,
-							"defUid": 12,
-							"px": [624,352],
-							"fieldInstances": [
-								{ "__identifier": "type", "__type": "LocalEnum.world_map_object_type", "__value": "landing", "__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 }, "defUid": 16, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["landing"]
-								}] },
-								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }
-							],
-							"__worldX": 624,
-							"__worldY": 352
-						},
-						{
-							"__identifier": "world_map_object",
 							"__grid": [46,24],
 							"__pivot": [0,0],
 							"__tags": ["world_map"],
@@ -823,6 +799,72 @@
 							],
 							"__worldX": 736,
 							"__worldY": 384
+						},
+						{
+							"__identifier": "world_map_object",
+							"__grid": [39,22],
+							"__pivot": [0,0],
+							"__tags": ["world_map"],
+							"__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#D77643",
+							"iid": "eec4f7b0-d7b0-11ee-bd50-258b8f383923",
+							"width": 16,
+							"height": 16,
+							"defUid": 12,
+							"px": [624,352],
+							"fieldInstances": [
+								{ "__identifier": "type", "__type": "LocalEnum.world_map_object_type", "__value": "landing", "__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 }, "defUid": 16, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["landing"]
+								}] },
+								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }
+							],
+							"__worldX": 624,
+							"__worldY": 352
+						},
+						{
+							"__identifier": "world_map_object",
+							"__grid": [38,22],
+							"__pivot": [0,0],
+							"__tags": ["world_map"],
+							"__tile": { "tilesetUid": 18, "x": 16, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#D77643",
+							"iid": "65f83300-d7b0-11ee-bd50-7b23b923f9eb",
+							"width": 16,
+							"height": 16,
+							"defUid": 12,
+							"px": [608,352],
+							"fieldInstances": [
+								{ "__identifier": "type", "__type": "LocalEnum.world_map_object_type", "__value": "path", "__tile": { "tilesetUid": 18, "x": 16, "y": 0, "w": 16, "h": 16 }, "defUid": 16, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["path"]
+								}] },
+								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }
+							],
+							"__worldX": 608,
+							"__worldY": 352
+						},
+						{
+							"__identifier": "world_map_object",
+							"__grid": [37,22],
+							"__pivot": [0,0],
+							"__tags": ["world_map"],
+							"__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#D77643",
+							"iid": "90080580-d7b0-11ee-bd50-6f42e9374a09",
+							"width": 16,
+							"height": 16,
+							"defUid": 12,
+							"px": [592,352],
+							"fieldInstances": [
+								{ "__identifier": "type", "__type": "LocalEnum.world_map_object_type", "__value": "landing", "__tile": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 }, "defUid": 16, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["landing"]
+								}] },
+								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] }
+							],
+							"__worldX": 592,
+							"__worldY": 352
 						}
 					]
 				},
@@ -2319,7 +2361,7 @@
 						{ "px": [544,352], "src": [224,0], "f": 0, "t": 14, "d": [1442], "a": 1 },
 						{ "px": [560,352], "src": [144,16], "f": 0, "t": 41, "d": [1443], "a": 1 },
 						{ "px": [576,352], "src": [192,32], "f": 0, "t": 76, "d": [1444], "a": 1 },
-						{ "px": [592,352], "src": [208,32], "f": 0, "t": 77, "d": [1445], "a": 1 },
+						{ "px": [592,352], "src": [160,16], "f": 0, "t": 42, "d": [1445], "a": 1 },
 						{ "px": [608,352], "src": [160,16], "f": 0, "t": 42, "d": [1446], "a": 1 },
 						{ "px": [624,352], "src": [160,16], "f": 0, "t": 42, "d": [1447], "a": 1 },
 						{ "px": [640,352], "src": [208,32], "f": 0, "t": 77, "d": [1448], "a": 1 },

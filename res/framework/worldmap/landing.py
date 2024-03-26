@@ -7,4 +7,5 @@ class Landing:
         self.width = width
         self.height = height
         self.image = image
+        self.rect = pygame.rect.Rect(x, y, width, height)
         pass

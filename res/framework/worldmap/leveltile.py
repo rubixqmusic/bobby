@@ -36,7 +36,5 @@ class LevelTile:
         self.animated_sprite.update()
     
     def draw(self):
-        # print(self.animated_sprite.position)
-        # print(self.animated_sprite.draw_target)
         self.animated_sprite.set_position(self.x - self.camera.x, self.y - self.camera.y)
         self.animated_sprite.draw()

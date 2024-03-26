@@ -7,6 +7,7 @@ from res.framework.camera import Camera
 from res.framework.worldmap.mappath import MapPath
 from res.framework.worldmap.landing import Landing
 from res.framework.worldmap.leveltile import LevelTile
+from res.framework.worldmap.player import Player
 
 WORLD_MAP_MUSIC = f"{MUSIC_PATH}/world_map.mp3"
 BACKGROUND_IMAGE = f"{GRAPHICS_PATH}/backgrounds/world_map_background.png"
@@ -19,6 +20,9 @@ MAP_LANDING_IMAGE = f"{GRAPHICS_PATH}/world_map/landing.png"
 LEVEL_TILE_SPRITESHEET = f"{GRAPHICS_PATH}/world_map/level_tile.png"
 LEVEL_TILE_ANIMATION = f"{ANIMATIONS_PATH}/level_tile.json"
 
+PLAYER_SPRITESHEET = f"{GRAPHICS_PATH}/world_map/world_map_player.png"
+PLAYER_ANIMATION = f"{ANIMATIONS_PATH}/world_map_player.json"
+
 
 class WorldMap(State):
     def on_state_enter(self, game):
@@ -28,10 +32,12 @@ class WorldMap(State):
         self.camera = Camera(0, 0, WORLD_MAP_WIDTH, WORLD_MAP_HEIGHT)
         
         self.background_image = pygame.image.load(game.load_resource(BACKGROUND_IMAGE)).convert_alpha()
-        self.background_image.set_alpha(160)
+        self.background_image.set_alpha(200)
         self.map_box = pygame.image.load(game.load_resource(MAP_BOX)).convert_alpha()
 
         self.tilesets = {}
+
+        self.tile_size = 16
 
         self.tile_layer_1 = {}
         self.tile_layer_2 = {}
@@ -107,6 +113,9 @@ class WorldMap(State):
         if self.level_tiles:
             for level_tile in self.level_tiles:
                 level_tile.update()
+        
+        if self.player:
+            self.player.update()
 
         self.state.update(self)
     
@@ -114,8 +123,10 @@ class WorldMap(State):
         game.get_screen().fill("#000000")
         game.get_screen().blit(self.background_image, (0,0))
         game.get_screen().blit(self.map_box, (0,0))
+        self.camera.surface.fill("#000000")
 
         if self.tile_layer_1:
+            
             tileset_path = game.load_resource(f"{BASE_PATH}{self.tile_layer_1['tileset']}")
 
             if tileset_path in self.tilesets:
@@ -125,9 +136,11 @@ class WorldMap(State):
                     source = tile["src"]
                     grid_size = self.tile_layer_1["grid_size"]
                     camera_pos = self.camera.get_position()
-                    dest[0] -= camera_pos[0]
-                    dest[1] -= camera_pos[1]
-                    self.camera.surface.blit(tileset_image,dest,[source[0], source[1], grid_size, grid_size])
+                    draw_x = dest[0] - camera_pos[0]
+                    draw_y = dest[1] - camera_pos[1]
+                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
+
+    
             
         if self.tile_layer_2:
             tileset_path = game.load_resource(f"{BASE_PATH}{self.tile_layer_2['tileset']}")
@@ -139,9 +152,9 @@ class WorldMap(State):
                     source = tile["src"]
                     grid_size = self.tile_layer_2["grid_size"]
                     camera_pos = self.camera.get_position()
-                    dest[0] -= camera_pos[0]
-                    dest[1] -= camera_pos[1]
-                    self.camera.surface.blit(tileset_image,dest,[source[0], source[1], grid_size, grid_size])
+                    draw_x = dest[0] - camera_pos[0]
+                    draw_y = dest[1] - camera_pos[1]
+                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
         
         if self.map_path:
             for map_path in self.map_path:
@@ -163,6 +176,9 @@ class WorldMap(State):
             for level_tile in self.level_tiles:
                 level_tile.draw()
         
+        if self.player:
+            self.player.draw()
+        
         if self.overlay_layer_1:
             tileset_path = game.load_resource(f"{BASE_PATH}{self.overlay_layer_1['tileset']}")
 
@@ -173,9 +189,9 @@ class WorldMap(State):
                     source = tile["src"]
                     grid_size = self.overlay_layer_1["grid_size"]
                     camera_pos = self.camera.get_position()
-                    dest[0] -= camera_pos[0]
-                    dest[1] -= camera_pos[1]
-                    self.camera.surface.blit(tileset_image,dest,[source[0], source[1], grid_size, grid_size])
+                    draw_x = dest[0] - camera_pos[0]
+                    draw_y = dest[1] - camera_pos[1]
+                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
 
         self.game.get_screen().blit(self.camera.surface, MAP_POSITION)
         
@@ -264,7 +280,7 @@ class LoadMap(State):
                                             logging.debug(f"could not load map path image!!!")
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])
                                         new_map_landing = Landing(entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image)
-                                        world_map.map_path.append(new_map_landing)
+                                        world_map.landings.append(new_map_landing)
                                     if property["__value"] == "level_tile":
                                         level_name = None
                                         for property in entity_properties:
@@ -288,6 +304,8 @@ class LoadMap(State):
                         world_map.overlay_layer_1["tiles"] = layer["gridTiles"]
                         world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.overlay_layer_1['tileset']}"))
                 break
+        
+        world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, self.game.load_resource(PLAYER_SPRITESHEET),self.game.load_resource(PLAYER_ANIMATION),world_map.camera.surface,world_map.camera)
         
         world_map.camera.set_bounds(world_map.scene_x, world_map.scene_x + world_map.scene_width, world_map.scene_y, world_map.scene_y + world_map.scene_height)
         # world_map.camera.set_position(467,300)
