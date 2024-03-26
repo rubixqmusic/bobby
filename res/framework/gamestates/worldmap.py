@@ -23,6 +23,10 @@ LEVEL_TILE_ANIMATION = f"{ANIMATIONS_PATH}/level_tile.json"
 PLAYER_SPRITESHEET = f"{GRAPHICS_PATH}/world_map/world_map_player.png"
 PLAYER_ANIMATION = f"{ANIMATIONS_PATH}/world_map_player.json"
 
+PERCENT_TO_PLAN_CENTER = [132,38]
+LEVEL_NAME_CENTER = [304,38]
+
+
 
 class WorldMap(State):
     def on_state_enter(self, game):
@@ -39,6 +43,10 @@ class WorldMap(State):
 
         self.tile_size = 16
 
+        self.font_size = 12
+        self.font_color = GOLD_COLOR
+        self.font = pygame.font.Font(game.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), self.font_size)
+
         self.tile_layer_1 = {}
         self.tile_layer_2 = {}
         self.level_tiles = []
@@ -53,6 +61,9 @@ class WorldMap(State):
         self.scene_height = 0
 
         self.scene_name = None
+        self.level_name = None
+        self.level_name_surface = None
+        self.percent_to_plan_surface = None
 
         game.play_music(game.load_resource(WORLD_MAP_MUSIC))
 
@@ -194,6 +205,13 @@ class WorldMap(State):
                     self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
 
         self.game.get_screen().blit(self.camera.surface, MAP_POSITION)
+
+        if self.level_name_surface:
+            level_name_rect = self.level_name_surface.get_rect(center=LEVEL_NAME_CENTER)
+            self.game.get_screen().blit(self.level_name_surface, level_name_rect)
+        if self.percent_to_plan_surface:
+            percent_rect = self.percent_to_plan_surface.get_rect(center=PERCENT_TO_PLAN_CENTER)
+            self.game.get_screen().blit(self.percent_to_plan_surface, percent_rect)
         
         self.state.draw(self)
 
@@ -213,6 +231,20 @@ class WorldMap(State):
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
     
+    def set_current_level(self, level_name):
+        if level_name == None:
+            return
+        if level_name == "landing":
+            self.level_name = "landing"
+            self.level_name_surface = None
+            self.percent_to_plan_surface = None
+            return
+        level_data = self.game.get_level_data(level_name)
+        if level_data:
+            self.level_name = level_name
+            self.level_name_surface = self.font.render(f"{level_data['name']}",True,self.font_color)
+            self.percent_to_plan_surface = self.font.render(f"{level_data['percent_to_plan']}/100 %",True,self.font_color)
+
     def fade_in(self):
         self.state.start(self, "fade_in")
 
@@ -334,6 +366,6 @@ class FadeIn(State):
 
 
 world_map_states = {
-            "fade_in" : FadeIn,
-            "load_map" : LoadMap
-}
+                    "fade_in" : FadeIn,
+                    "load_map" : LoadMap
+                    }

@@ -5,12 +5,15 @@ from res.framework.animatedsprite import AnimatedSprite
 from res.framework.state import State
 from res.framework.signal import Signal
 
+LAND_ON_LEVEL_SOUND = f"{SOUNDS_PATH}/land_on_level.wav"
+
 class Player:
     def __init__(self,game, world_map, x, y, width, height, spritesheet, animation, draw_target, camera) -> None:
         self.game = game
         self.world_map = world_map
         self.x = x
         self.y = y
+        self.offset_y = -8
         self.direction = "down"
         self.walking_speed = 1
         self.walking_speed_step = 0
@@ -43,18 +46,23 @@ class Player:
         self.rect[1] = self.y
     
     def draw(self):
-        self.animated_sprite.set_position(self.x - self.camera.x, self.y - self.camera.y)
+        self.animated_sprite.set_position(self.x - self.camera.x, self.y - self.camera.y +self.offset_y)
         self.animated_sprite.draw()
         self.state.draw(self)
 
     def set_player_idle(self):
         self.state.set_state(self, "idle")
     
-    def set_player_idle_on_landing(self):
+    def set_player_idle_on_landing(self,no_sound=False):
+        if no_sound == False:
+            self.game.play_sound(self.game.load_resource(LAND_ON_LEVEL_SOUND))
         self.current_level = "landing"
+        self.world_map.set_current_level("landing")
         self.state.set_state(self, "idle_on_landing")
 
     def set_player_idle_on_level(self, level_name, entrance_direction):
+        self.game.play_sound(self.game.load_resource(LAND_ON_LEVEL_SOUND))
+        self.world_map.set_current_level(level_name)
         self.state.set_state(self, "idle_on_level", level_name, entrance_direction)
     
     def set_player_walking(self):
@@ -433,7 +441,7 @@ class Idle(State):
 
         for landing in player.world_map.landings:          
             if player.rect.colliderect(landing.rect):
-                player.set_player_idle_on_landing()
+                player.set_player_idle_on_landing(no_sound=True)
 
 player_states = {
                     "init" : Init,
