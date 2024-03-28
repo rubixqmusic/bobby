@@ -45,6 +45,8 @@ grow_factor = 0
 
 class TitleScreen(State):
     def on_state_enter(self, game):
+
+        game.set_current_save_file("")
         
         self.sine_degrees = 0
         self.grow_factor = 0
