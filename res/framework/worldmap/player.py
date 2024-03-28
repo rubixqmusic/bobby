@@ -67,7 +67,13 @@ class Player:
     
     def set_player_walking(self):
         self.state.set_state(self, "walking")
+    
+    def set_player_starting_level(self):
+        self.state.set_state(self, "starting_level")
 
+
+class StartingLevel(State):
+    ...
 
 class IdleOnLevel(State):
     def __init__(self, states: dict, *args) -> None:
@@ -90,6 +96,10 @@ class IdleOnLevel(State):
         y_previous = player.y
         # started_walking = False
         if self.level_data:
+            if player.game.is_button_released(START_BUTTON) or player.game.is_button_released(ACTION_BUTTON_1):
+                player.animated_sprite.set_animation("level_start")
+                player.world_map.start_level()
+                player.set_player_starting_level()
             if self.level_data["money"] < self.level_data["quota"]:
                 if player.game.is_button_released(DOWN_BUTTON) and self.entrance_direction == "s":
                     
@@ -449,6 +459,7 @@ player_states = {
                     "idle" : Idle,
                     "idle_on_landing" : IdleOnLanding,
                     "idle_on_level" : IdleOnLevel,
-                    "walking" : Walking
+                    "walking" : Walking,
+                    "starting_level" : StartingLevel
 
                 }

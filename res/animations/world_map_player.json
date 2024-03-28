@@ -165,7 +165,7 @@
    { "name": "up", "from": 4, "to": 7, "direction": "forward", "color": "#000000ff" },
    { "name": "right", "from": 8, "to": 11, "direction": "forward", "color": "#000000ff" },
    { "name": "left", "from": 12, "to": 15, "direction": "forward", "color": "#000000ff" },
-   { "name": "start_level", "from": 16, "to": 16, "direction": "forward", "color": "#000000ff" }
+   { "name": "level_start", "from": 16, "to": 16, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }

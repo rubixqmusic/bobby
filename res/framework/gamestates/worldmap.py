@@ -38,6 +38,8 @@ LEVEL_NAME_CENTER = [304,38]
 MAX_TEXT_GROW = 5.0
 TEXT_GROW_STEP_SIZE = 0.1
 
+GO_BOBBY_TEXT = f"Go, Bobby!"
+
 
 
 class WorldMap(State):
@@ -280,6 +282,11 @@ class WorldMap(State):
         self.unpause()
         self.state.set_state(self, "map_active")
     
+    def start_level(self):
+        self.game.play_sound(self.game.load_resource(LEVEL_START_SOUND))
+        self.game.stop_music()
+        self.state.set_state(self, "start_level")
+
     def quit_menu(self):
         self.pause()
         self.state.set_state(self, "quit_menu")
@@ -303,6 +310,70 @@ class QuitToMainMenu(State):
             self.fade = 0
             world_map.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             world_map.game.load_title_screen()
+
+
+class StartLevel(State):
+    def on_state_enter(self, world_map: WorldMap):
+        self.rectangle_height = 16
+        self.rectangle_width = SCREEN_WIDTH + 128
+        self.x_step_size = 10
+        self.x_step = 0
+        self.max_x = SCREEN_WIDTH 
+        self.num_rectangles = int(SCREEN_HEIGHT/self.rectangle_height)
+        
+        self.go_bobby_text_surface = world_map.font.render(GO_BOBBY_TEXT, True, GOLD_COLOR)
+
+        self.timer = 20
+
+        self.status = "wait"
+    
+    def update(self, world_map: WorldMap):
+        if self.status == "wait":
+            self.timer -= 1
+            if self.timer < 0:
+                self.timer = 20
+                self.status = "rectangles"
+
+        elif self.status == "rectangles":
+            self.x_step += self.x_step_size
+            if self.x_step > self.max_x:
+                self.status = "hold_1"
+
+        elif self.status == "hold_1":
+            self.timer -= 1
+            if self.timer < 0:
+                self.timer = 120
+                self.status = "go_bobby"
+        
+        elif self.status == "go_bobby":
+            self.timer -= 1
+            if self.timer < 0:
+                self.timer = 120
+                self.status = "hold_2"
+            
+    
+    def draw(self, world_map: WorldMap):
+        if self.status == "rectangles":
+            for rectangle in range(self.num_rectangles):
+                if rectangle%2 == 1:
+                    x = SCREEN_WIDTH - self.x_step
+                elif rectangle%2 == 0:
+                    x = -SCREEN_WIDTH + self.x_step
+                rect = pygame.rect.Rect(x,rectangle*self.rectangle_height,self.rectangle_width, self.rectangle_height)
+                pygame.draw.rect(world_map.game.get_screen(),f"#000000", rect, border_radius=20)
+
+        elif self.status == "hold_1":
+            world_map.game.get_screen().fill(f"#000000")
+
+        elif self.status == "go_bobby":
+            rect = self.go_bobby_text_surface.get_rect(center=(SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            world_map.game.get_screen().fill(f"#000000")
+            world_map.game.get_screen().blit(self.go_bobby_text_surface, rect)
+        
+        elif self.status == "hold_2":
+            world_map.game.get_screen().fill(f"#000000")
+        
+
 
 class LoadMap(State):
     def __init__(self, states: dict, *args) -> None:
@@ -471,6 +542,7 @@ class QuitMenu(State):
                 elif self.current_menu_selection == "return_to_main_menu":
                     world_map.quit_to_main_menu()
                     world_map.game.play_sound(world_map.game.load_resource(RETURN_TO_MAIN_MENU_SOUND))
+                    world_map.game.stop_music()
             
 
         elif self.status == "close_menu":
@@ -511,6 +583,7 @@ class QuitMenu(State):
         if self.menu_box_step < 1:
             self.menu_box_step = 1
             self.set_status("return_to_map")
+
 
 def draw_menu(menu: list, 
               current_selection: str, 
@@ -577,10 +650,12 @@ def get_previous_menu_item(menu: list, current_selection: str):
         index += 1
     # return current_selection
 
+
 world_map_states = {
                     "fade_in" : FadeIn,
                     "load_map" : LoadMap,
                     "map_active" : MapActive,
                     "quit_menu" : QuitMenu,
+                    "start_level" : StartLevel,
                     "quit_to_main_menu" : QuitToMainMenu
                     }
