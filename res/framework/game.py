@@ -27,7 +27,11 @@ class Game:
 
         pygame.init()
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
-        self.window = pygame.display.set_mode(WINDOW_SIZE)
+
+        display_info = pygame.display.Info()
+        # self.window = pygame.display.set_mode(WINDOW_SIZE)
+        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+
         pygame.display.set_caption(WINDOW_CAPTION)
         pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
 
@@ -172,6 +176,9 @@ class Game:
                         self._joystick_ports[joystick] = None
                 # if event.instance_id in self._joystick_ports:
                 #     self._joystick_ports[event.instance_id] = None
+            
+            if self.is_button_released(QUIT_KEY):
+                self.quit_game()
 
     def run(self):
         if self.world is None:
@@ -195,6 +202,15 @@ class Game:
     
     def run_video_call_cutscene(self, cutscene_name):
         self.state.set_state(self,"video_call_cutscene", cutscene_name)
+    
+    def load_splashscreen(self):
+        self.state.set_state(self, "splashscreen")
+    
+    def load_title_screen(self):
+        self.state.set_state(self, "title_screen")
+    
+    def load_file_select_screen(self):
+        self.state.set_state(self, "file_select_screen")
     
     def load_world_map(self):
         self.state.set_state(self, "world_map")
@@ -234,7 +250,7 @@ class Game:
         except:
             logging.debug(f"could not save game to file!")
     
-    
+
     def load_save_file(self, filepath):
         if os.path.exists(filepath):
             try:
@@ -248,12 +264,14 @@ class Game:
         else:
             logging.debug(f"could not load save file, filepath {filepath} does not exist!")
     
+
     def create_new_save_file(self, filepath):
         try:
             with open(filepath, 'w') as fp:
                 json.dump(self.save_data, fp)
         except:
             logging.debug(f"could not save file!")
+
 
     def get_save_data(self, save_data):
         if save_data in self.save_data:
@@ -272,6 +290,10 @@ class Game:
             if field in self.save_data["levels"][level_name]:
                 self.save_data["levels"][level_name][field] = value
 
+    def set_current_level(self, level_name):
+        if "current_level" in self.save_data and level_name in self.save_data["levels"]:
+            self.save_data["current_levle"] = level_name
+            
     def game_should_quit(self):
         if "quit" in self._input_events:
             return True if self._input_events["quit"] == True else False

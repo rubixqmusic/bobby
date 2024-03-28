@@ -1,16 +1,24 @@
 import pygame
+from res.settings import *
 
 input_map = {
-                "K_a" : "left_button",
-                "K_d" : "right_button",
-                "K_w" : "up_button",
-                "K_s" : "down_button",
+                "K_a" : LEFT_BUTTON,
+                "K_d" : RIGHT_BUTTON,
+                "K_w" : UP_BUTTON,
+                "K_s" : DOWN_BUTTON,
                 
-                "K_RETURN" : "start_button",
+                "K_RETURN" : START_BUTTON,
+                "K_BACKSPACE" : SELECT_BUTTON,
+                "K_ESCAPE" : QUIT_KEY,
+                "K_SPACE" : ACTION_BUTTON_1,
+                "K_RALT" : ACTION_BUTTON_2,
+                "K_RCTRL" : ACTION_BUTTON_3,
+                "K_RSHIFT" : ACTION_BUTTON_4,
 
                 "BUTTONS" : {
-                                0 : "action_button_1",
-                                7 : "start_button"
+                                0 : ACTION_BUTTON_1,
+                                7 : START_BUTTON,
+                                8 : SELECT_BUTTON
                 },
 
                 # "HATS" :{
@@ -58,15 +66,18 @@ input_events = {
                 pygame.K_x : "K_x",
                 pygame.K_y : "K_y",
                 pygame.K_z : "K_z",
-
+                
+                pygame.K_ESCAPE: "K_ESCAPE",
                 pygame.K_TAB : "K_TAB",
                 pygame.K_RETURN : "K_RETURN",
+                pygame.K_RALT : "K_RALT",
                 pygame.K_LSHIFT : "K_LSHIFT",
                 pygame.K_RSHIFT : "K_RSHIFT",
                 pygame.K_CAPSLOCK : "K_CAPSLOCK",
                 pygame.K_BACKSPACE : "K_BACKSPACE",
                 pygame.K_LCTRL : "K_LCTRL",
                 pygame.K_RCTRL : "K_RCTRL",
+                pygame.K_SPACE : "K_SPACE",
 
                 pygame.K_SEMICOLON : "K_SEMICOLON",
                 pygame.K_QUOTE : "K_QUOTE",

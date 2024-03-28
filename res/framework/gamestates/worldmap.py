@@ -1,5 +1,6 @@
 import logging
 import pygame
+import math
 
 from res.settings import *
 from res.framework.state import State
@@ -23,15 +24,30 @@ LEVEL_TILE_ANIMATION = f"{ANIMATIONS_PATH}/level_tile.json"
 PLAYER_SPRITESHEET = f"{GRAPHICS_PATH}/world_map/world_map_player.png"
 PLAYER_ANIMATION = f"{ANIMATIONS_PATH}/world_map_player.json"
 
+QUIT_MENU_IMAGE = f"{GRAPHICS_PATH}/text_box/text_box.png"
+QUIT_MENU_SELECT_SOUND = f"{SOUNDS_PATH}/menu_select.wav"
+RETURN_TO_MAIN_MENU_SOUND = f"{SOUNDS_PATH}/return_to_main_menu.wav"
+LEVEL_START_SOUND = f"{SOUNDS_PATH}/level_start.wav"
+MENU_OPEN_SOUND = f"{SOUNDS_PATH}/menu_open.wav"
+MENU_CLOSE_SOUND = f"{SOUNDS_PATH}/menu_close.wav"
+
+
 PERCENT_TO_PLAN_CENTER = [132,38]
 LEVEL_NAME_CENTER = [304,38]
+
+MAX_TEXT_GROW = 5.0
+TEXT_GROW_STEP_SIZE = 0.1
 
 
 
 class WorldMap(State):
     def on_state_enter(self, game):
-
+        
         self.game = game
+        self.paused = False
+
+        self.sine_degrees = 0
+        self.grow_factor = 0
 
         self.camera = Camera(0, 0, WORLD_MAP_WIDTH, WORLD_MAP_HEIGHT)
         
@@ -40,7 +56,6 @@ class WorldMap(State):
         self.map_box = pygame.image.load(game.load_resource(MAP_BOX)).convert_alpha()
 
         self.tilesets = {}
-
         self.tile_size = 16
 
         self.font_size = 12
@@ -92,7 +107,6 @@ class WorldMap(State):
         else:
             for level in self.game.get_levels_from_world():
                 level_name = level["identifier"]
-                
                 level_layers = level["layerInstances"]
 
                 for layer in level_layers:
@@ -111,9 +125,7 @@ class WorldMap(State):
 
         self.state = State(world_map_states)
 
-        self.state.set_state(self, "load_map", scene_name, player_start_position)
-
-        # self.state.start(self, "fade_in")
+        self.load_map(scene_name, player_start_position)
     
     def process_events(self, game):
         if game.game_should_quit():
@@ -121,12 +133,17 @@ class WorldMap(State):
         self.state.process_events(self)
 
     def update(self, game):
-        if self.level_tiles:
-            for level_tile in self.level_tiles:
-                level_tile.update()
-        
-        if self.player:
-            self.player.update()
+
+        self.grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
+        self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
+
+        if not self.paused:
+            if self.level_tiles:
+                for level_tile in self.level_tiles:
+                    level_tile.update()
+            
+            if self.player:
+                self.player.update()
 
         self.state.update(self)
     
@@ -215,8 +232,7 @@ class WorldMap(State):
         
         self.state.draw(self)
 
-        # print(self.game.get_fps())
-    
+
     def load_tileset(self, image_path):
         if image_path not in self.tilesets:
             if os.path.exists(image_path):
@@ -231,6 +247,7 @@ class WorldMap(State):
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
     
+
     def set_current_level(self, level_name):
         if level_name == None:
             return
@@ -245,9 +262,47 @@ class WorldMap(State):
             self.level_name_surface = self.font.render(f"{level_data['name']}",True,self.font_color)
             self.percent_to_plan_surface = self.font.render(f"{level_data['percent_to_plan']}/100 %",True,self.font_color)
 
-    def fade_in(self):
-        self.state.start(self, "fade_in")
+    def pause(self):
+        self.paused = True
+    
+    def unpause(self):
+        self.paused = False
 
+    def load_map(self, scene_name, player_start_position):
+        self.pause() 
+        self.state.set_state(self, "load_map", scene_name, player_start_position)   
+    
+    def fade_in(self):
+        self.pause()
+        self.state.set_state(self, "fade_in")
+
+    def map_active(self):
+        self.unpause()
+        self.state.set_state(self, "map_active")
+    
+    def quit_menu(self):
+        self.pause()
+        self.state.set_state(self, "quit_menu")
+    
+    def quit_to_main_menu(self):
+        self.state.set_state(self, "quit_to_main_menu")
+
+
+class QuitToMainMenu(State):
+    def on_state_enter(self, world_map: WorldMap):
+        self.min_fade = 0
+        self.max_fade = 255
+        self.fade = self.max_fade
+        self.fade_step = 5
+    
+    def draw(self, world_map: WorldMap):
+        if self.fade > self.min_fade:
+            world_map.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            self.fade -= self.fade_step
+        else:
+            self.fade = 0
+            world_map.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
+            world_map.game.load_title_screen()
 
 class LoadMap(State):
     def __init__(self, states: dict, *args) -> None:
@@ -255,7 +310,8 @@ class LoadMap(State):
         self.scene_name = args[0]
         self.player_start_position = args[1]
 
-    def on_state_enter(self, world_map):
+    def on_state_enter(self, world_map: WorldMap):
+        # world_map.pause()
         self.game = world_map.game
         world_map.tile_layer_1 = {}
         world_map.tile_layer_2 = {}
@@ -349,23 +405,182 @@ class LoadMap(State):
         
 
 class FadeIn(State):
-    def on_state_enter(self, world_map):
+    def on_state_enter(self, world_map: WorldMap):
         self.min_fade = 0
         self.max_fade = 255
         self.fade = self.min_fade
         self.fade_step = 5
     
-    def draw(self, world_map):
+    def draw(self, world_map: WorldMap):
         if self.fade < self.max_fade:
             world_map.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             self.fade += self.fade_step
         else:
+            world_map.map_active()
+    
+    # def on_state_exit(self, world_map: WorldMap):
+    #     world_map.unpause()
+
+
+class MapActive(State):
+    def update(self, world_map: WorldMap):
+        if world_map.game.is_button_released(SELECT_BUTTON):
+            world_map.quit_menu()
+
+
+class QuitMenu(State):
+    def on_state_enter(self, world_map: WorldMap):
+        self.menu_box_surface = pygame.image.load(world_map.game.load_resource(QUIT_MENU_IMAGE))
+        self.menu_box_rect = self.menu_box_surface.get_rect()
+        self.menu_box_width = self.menu_box_surface.get_width()
+        self.max_menu_box_y = self.menu_box_surface.get_height()
+        self.min_menu_box_size = 1
+        self.menu_box_step_size = 10
+        self.menu_box_step = 0
+
+        self.current_menu_selection = "continue"
+
+        self.menu = [
+                        {"name" : "continue", "text": "Continue", "position" : [SCREEN_WIDTH/2, 128]},
+                        {"name" : "return_to_main_menu", "text": "Return To Main Menu", "position" : [SCREEN_WIDTH/2, 160]}
+                    ]
+        
+        self.set_status("open_menu")
+        world_map.game.play_sound(world_map.game.load_resource(MENU_OPEN_SOUND))
+
+    def update(self, world_map: WorldMap):
+        if self.status == "open_menu":
+            self.open_menu()
+
+        elif self.status == "menu_active":
+            if world_map.game.is_button_released(SELECT_BUTTON):
+                self.set_status("close_menu")
+                world_map.game.play_sound(world_map.game.load_resource(MENU_CLOSE_SOUND))
             
-            piss = 0
+            if world_map.game.is_button_released(DOWN_BUTTON):
+                self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
+                world_map.game.play_sound(world_map.game.load_resource(QUIT_MENU_SELECT_SOUND))
+            if world_map.game.is_button_released(UP_BUTTON):
+                self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
+                world_map.game.play_sound(world_map.game.load_resource(QUIT_MENU_SELECT_SOUND))
 
+            if world_map.game.is_button_released(START_BUTTON) or world_map.game.is_button_released(ACTION_BUTTON_1):
+                if self.current_menu_selection == "continue":
+                    self.set_status("close_menu")
+                    world_map.game.play_sound(world_map.game.load_resource(MENU_CLOSE_SOUND))
+                elif self.current_menu_selection == "return_to_main_menu":
+                    world_map.quit_to_main_menu()
+                    world_map.game.play_sound(world_map.game.load_resource(RETURN_TO_MAIN_MENU_SOUND))
+            
 
+        elif self.status == "close_menu":
+            self.close_menu()
+                # world_map.map_active()
+        elif self.status == "return_to_map":
+            world_map.map_active()
+    
+
+    def draw(self, world_map: WorldMap):
+        if self.status == "open_menu":
+            scaled_menu_image = pygame.transform.scale(self.menu_box_surface, [self.menu_box_width, self.menu_box_step])
+            menu_rect = scaled_menu_image.get_rect(center=(SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            world_map.game.get_screen().blit(scaled_menu_image, menu_rect)
+        
+        if self.status == "menu_active":
+            # scaled_menu_image = pygame.transform.scale(self.menu_box_surface, [self.menu_box_width, self.menu_box_step])
+            menu_rect = self.menu_box_surface.get_rect(center=(SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            world_map.game.get_screen().blit(self.menu_box_surface, menu_rect)
+            draw_menu(self.menu, self.current_menu_selection, world_map.font, world_map.font_color, world_map.game.get_screen(),world_map.grow_factor)
+
+        if self.status == "close_menu":
+            scaled_menu_image = pygame.transform.scale(self.menu_box_surface, [self.menu_box_width, self.menu_box_step])
+            menu_rect = scaled_menu_image.get_rect(center=(SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            world_map.game.get_screen().blit(scaled_menu_image, menu_rect)
+
+    def set_status(self, status):
+        self.status = status
+
+    def open_menu(self):
+        self.menu_box_step += self.menu_box_step_size
+        if self.menu_box_step > self.max_menu_box_y:
+            self.menu_box_step = self.max_menu_box_y
+            self.set_status("menu_active")
+    
+    def close_menu(self):
+        self.menu_box_step -= self.menu_box_step_size
+        if self.menu_box_step < 1:
+            self.menu_box_step = 1
+            self.set_status("return_to_map")
+
+def draw_menu(menu: list, 
+              current_selection: str, 
+            #   y_start: int, 
+            #   y_spacing: int, 
+              font: pygame.font.Font, 
+              font_color: str, 
+              destination_surface: pygame.surface.Surface, 
+              grow_factor: int,
+              drop_shadow=False,
+              drop_shadow_color=f"#000000",
+              drop_shadow_x=1,
+              drop_shadow_y=1):
+    
+    menu_item_index = 0
+    for menu_item in menu:
+        text_surface = font.render(menu_item['text'],True,font_color)
+        text_surface_base_size = text_surface.get_width(), text_surface.get_height()
+        drop_shadow_surface = None
+        if drop_shadow:
+            drop_shadow_surface = font.render(menu_item['text'],True,drop_shadow_color)
+        
+        if menu_item["name"] == current_selection:
+            if drop_shadow_surface is not None:
+                drop_shadow_surface_new = pygame.transform.scale(drop_shadow_surface, 
+                                    (text_surface_base_size[0] + grow_factor, 
+                                    text_surface_base_size[1] + grow_factor))
+                drop_shadow_rect = drop_shadow_surface_new.get_rect(center=(menu_item["position"][0] + drop_shadow_x, menu_item["position"][1]+drop_shadow_y))
+                destination_surface.blit(drop_shadow_surface, drop_shadow_rect)
+            
+            new_surface = pygame.transform.scale(text_surface, 
+                                    (text_surface_base_size[0] + grow_factor, 
+                                    text_surface_base_size[1] + grow_factor))
+            text_rect = new_surface.get_rect(center=(menu_item["position"][0], menu_item["position"][1]))
+            destination_surface.blit(new_surface, text_rect)
+        else:
+            if drop_shadow_surface is not None:
+                drop_shadow_rect = drop_shadow_surface.get_rect(center=(menu_item["position"][0] + drop_shadow_x, menu_item["position"][1]+drop_shadow_y))
+                destination_surface.blit(drop_shadow_surface, drop_shadow_rect)
+            text_rect = text_surface.get_rect(center=(menu_item["position"][0], menu_item["position"][1]))
+            destination_surface.blit(text_surface, text_rect)
+    
+        menu_item_index += 1
+    ...
+
+def get_next_menu_item(menu: list, current_selection: str):
+    index = 0
+    for menu_item in menu:
+        if menu_item["name"] == current_selection:
+            index += 1
+            if index > len(menu) - 1:
+                index = 0
+            return menu[index]["name"]
+        index += 1
+
+def get_previous_menu_item(menu: list, current_selection: str):
+    index = 0
+    for menu_item in menu:
+        if menu_item["name"] == current_selection:
+            index -= 1
+            if index < 0:
+                index = len(menu) - 1
+            return menu[index]["name"]
+        index += 1
+    # return current_selection
 
 world_map_states = {
                     "fade_in" : FadeIn,
-                    "load_map" : LoadMap
+                    "load_map" : LoadMap,
+                    "map_active" : MapActive,
+                    "quit_menu" : QuitMenu,
+                    "quit_to_main_menu" : QuitToMainMenu
                     }

@@ -146,7 +146,7 @@ class GoToTitleScreen(State):
         else:
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-            file_select_screen.game.state.set_state(file_select_screen.game,"title_screen")
+            file_select_screen.game.load_title_screen()
   
 
 class StartNewGame(State):

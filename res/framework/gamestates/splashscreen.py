@@ -70,6 +70,6 @@ class Splashscreen(State):
         if self.event_step == 4:
             self.event_timer -= 1
             if self.event_timer < 0:
-                game.state.set_state(game,"title_screen")
+                game.load_title_screen()
         
         

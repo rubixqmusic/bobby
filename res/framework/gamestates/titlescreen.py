@@ -160,7 +160,7 @@ class GoToFileSelectScreen(State):
         else:
             self.fade = 0
             title_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
-            title_screen.game.state.set_state(title_screen.game,"file_select_screen")
+            title_screen.game.load_file_select_screen()
             # title_screen.game.quit_game()    
 
 

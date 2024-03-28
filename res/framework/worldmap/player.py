@@ -81,6 +81,7 @@ class IdleOnLevel(State):
         if self.level_data:
             self.level_data["map_entrance_direction"] = self.entrance_direction
             player.game.set_level_data(self.level_name, "map_entrance_direction", self.entrance_direction)
+            player.game.set_current_level(self.level_name)
         player.animated_sprite.set_animation("down")
         self.started_walking = False
     
