@@ -1,4 +1,5 @@
 import os
+import enum
 
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
@@ -7,8 +8,8 @@ SCREEN_WIDTH = 512
 SCREEN_HEIGHT = 288
 SCREEN_SIZE = SCREEN_WIDTH, SCREEN_HEIGHT
 
-WINDOW_WIDTH = 1600 #1024
-WINDOW_HEIGHT = 900 #576
+WINDOW_WIDTH = 1024
+WINDOW_HEIGHT = 576
 WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT
 
 FPS = 60
@@ -56,6 +57,6 @@ OVERLAY_1_LAYER_NAME = "overlay_1"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 DEBUG_START_IN_STATE = "world_map"
 DEBUG_VIDEO_CALL_CUTSCENE = "intro_1"
