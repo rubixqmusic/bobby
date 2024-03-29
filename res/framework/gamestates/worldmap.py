@@ -9,9 +9,13 @@ from res.framework.worldmap.mappath import MapPath
 from res.framework.worldmap.landing import Landing
 from res.framework.worldmap.leveltile import LevelTile
 from res.framework.worldmap.player import Player
+from res.framework.animatedsprite import AnimatedSprite
 
 WORLD_MAP_MUSIC = f"{MUSIC_PATH}/world_map.mp3"
 BACKGROUND_IMAGE = f"{GRAPHICS_PATH}/backgrounds/world_map_background.png"
+
+MAP_ANIMATED_TILESET = f"{GRAPHICS_PATH}/animated_tilesets/world_map_tileset.png"
+MAP_ANIMATION = f"{TILESET_ANIMATIONS_PATH}/world_map_tileset.json"
 MAP_BOX = f"{GRAPHICS_PATH}/backgrounds/world_map_box.png"
 MAP_POSITION = 91, 66
 
@@ -50,6 +54,8 @@ class WorldMap(State):
 
         self.sine_degrees = 0
         self.grow_factor = 0
+
+        self.animated_tileset = None
 
         self.camera = Camera(0, 0, WORLD_MAP_WIDTH, WORLD_MAP_HEIGHT)
         
@@ -139,6 +145,9 @@ class WorldMap(State):
         self.grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
         self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
 
+        if self.animated_tileset:
+            self.animated_tileset.update()
+
         if not self.paused:
             if self.level_tiles:
                 for level_tile in self.level_tiles:
@@ -150,10 +159,18 @@ class WorldMap(State):
         self.state.update(self)
     
     def draw(self, game):
+
+        if self.animated_tileset:
+            self.animated_tileset.draw()
+            
         game.get_screen().fill("#000000")
         game.get_screen().blit(self.background_image, (0,0))
         game.get_screen().blit(self.map_box, (0,0))
         self.camera.surface.fill("#000000")
+
+
+        # future you: to solve the animated tile problem, just set an animated sprites draw target to the tileset's image
+        # in the 'tilesets' dictionary. then call update, and draw, and then blit from the tileset image
 
         if self.tile_layer_1:
             
@@ -463,6 +480,12 @@ class LoadMap(State):
                         world_map.overlay_layer_1["tiles"] = layer["gridTiles"]
                         world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.overlay_layer_1['tileset']}"))
                 break
+        
+        world_map.animated_tileset = AnimatedSprite(world_map.game, world_map.tilesets[self.game.load_resource(f"{BASE_PATH}{world_map.tile_layer_1['tileset']}")])
+        world_map.animated_tileset.load_spritesheet(world_map.game.load_resource(MAP_ANIMATED_TILESET))
+        world_map.animated_tileset.load_sprite_data(world_map.game.load_resource(MAP_ANIMATION))
+        world_map.animated_tileset.set_animation("idle")
+        world_map.animated_tileset.play()
         
         world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, self.game.load_resource(PLAYER_SPRITESHEET),self.game.load_resource(PLAYER_ANIMATION),world_map.camera.surface,world_map.camera)
         

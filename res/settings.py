@@ -21,6 +21,7 @@ GRAPHICS_PATH = "../graphics"
 WORLD_DATA_PATH = "../bobby.ldtk"
 BASE_PATH = "../"
 ANIMATIONS_PATH = "../animations"
+TILESET_ANIMATIONS_PATH = "../tileset_animations"
 
 DEFAULT_FONT = "default3.otf"
 
@@ -57,6 +58,6 @@ OVERLAY_1_LAYER_NAME = "overlay_1"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
+DEBUG_ENABLED = True
 DEBUG_START_IN_STATE = "world_map"
 DEBUG_VIDEO_CALL_CUTSCENE = "intro_1"
