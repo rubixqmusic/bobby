@@ -5,8 +5,9 @@ INCOMPLETE_ANIMATION = "incomplete"
 COMPLETE_ANIMATION = "complete"
 
 class LevelTile:
-    def __init__(self, game, level_name, x, y, tile_size, spritesheet, animation, draw_target, camera) -> None:
+    def __init__(self, game, level_name, x, y, tile_size, spritesheet, animation, draw_target, camera, leads_to_scene=None) -> None:
         self.game = game
+        self.leads_to_scene = leads_to_scene
         self.camera = camera
         self.complete = False
         self.level_name = level_name

@@ -6,7 +6,7 @@ from res.settings import *
 
 class Init(State):
     def on_state_enter(self, game):
-        logging.debug(f"loaded init state")
+        logging.debug(f"game has been initialized")
         if DEBUG_ENABLED:
             if DEBUG_START_IN_STATE == "title_screen":
                 game.load_title_screen()
@@ -16,6 +16,8 @@ class Init(State):
                 game.run_video_call_cutscene(DEBUG_VIDEO_CALL_CUTSCENE)
             elif DEBUG_START_IN_STATE == "world_map":
                 game.load_world_map()
+            elif DEBUG_START_IN_STATE == "playing_level":
+                game.load_level(DEBUG_LEVEL_NAME, DEBUG_LEVEL_START_POSITION, DEBUG_LEVEL_START_TRANSITION)
 
             else:
                 logging.debug(f"no DEBUG_START_IN_STATE named {DEBUG_START_IN_STATE}, loading title screen instead")

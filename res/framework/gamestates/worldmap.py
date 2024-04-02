@@ -145,10 +145,11 @@ class WorldMap(State):
         self.grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
         self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
 
-        if self.animated_tileset:
-            self.animated_tileset.update()
-
+    
         if not self.paused:
+            if self.animated_tileset:
+                self.animated_tileset.update()
+
             if self.level_tiles:
                 for level_tile in self.level_tiles:
                     level_tile.update()
@@ -162,7 +163,7 @@ class WorldMap(State):
 
         if self.animated_tileset:
             self.animated_tileset.draw()
-            
+
         game.get_screen().fill("#000000")
         game.get_screen().blit(self.background_image, (0,0))
         game.get_screen().blit(self.map_box, (0,0))
@@ -311,6 +312,18 @@ class WorldMap(State):
     def quit_to_main_menu(self):
         self.state.set_state(self, "quit_to_main_menu")
 
+    def load_scene(self):
+        for level in self.level_tiles:
+            if level.level_name == self.level_name:
+                if level.leads_to_scene == None:
+                    return
+                else:
+                    leads_to_scene_data = level.leads_to_scene
+                    scene_and_starting_position = self.game.get_scene_and_starting_position_from_iid(leads_to_scene_data["levelIid"], leads_to_scene_data["entityIid"])
+                    if scene_and_starting_position == None:
+                        return
+                    else:
+                        self.game.load_level(scene_and_starting_position[0], scene_and_starting_position[1], DEFAULT_TRANSITION)
 
 class QuitToMainMenu(State):
     def on_state_enter(self, world_map: WorldMap):
@@ -365,8 +378,14 @@ class StartLevel(State):
         elif self.status == "go_bobby":
             self.timer -= 1
             if self.timer < 0:
-                self.timer = 120
+                self.timer = 60
                 self.status = "hold_2"
+        
+        elif self.status == "hold_2":
+            self.timer -= 1
+            if self.timer < 0:
+                self.timer = 120
+                world_map.load_scene()
             
     
     def draw(self, world_map: WorldMap):
@@ -459,9 +478,12 @@ class LoadMap(State):
                                         world_map.landings.append(new_map_landing)
                                     if property["__value"] == "level_tile":
                                         level_name = None
+                                        leads_to_scene = None
                                         for property in entity_properties:
                                             if property["__identifier"] == "level_name":
                                                 level_name = property["__value"]
+                                            if property["__identifier"] == "leads_to_scene":
+                                                leads_to_scene = property["__value"]
                                         try:
                                             spritesheet = self.game.load_resource(LEVEL_TILE_SPRITESHEET)
                                         except:
@@ -470,7 +492,7 @@ class LoadMap(State):
                                         
                                         animation = self.game.load_resource(LEVEL_TILE_ANIMATION)
 
-                                        new_level_tile = LevelTile(self.game, level_name, entity["__worldX"], entity["__worldY"], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera)
+                                        new_level_tile = LevelTile(self.game, level_name, entity["__worldX"], entity["__worldY"], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera, leads_to_scene)
                                         # entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image
                                         world_map.level_tiles.append(new_level_tile)
 

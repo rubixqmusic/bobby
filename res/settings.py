@@ -45,6 +45,8 @@ ACTION_BUTTON_4 = "action_button_4"
 
 GOLD_COLOR = "#FBCB1D"
 
+DEFAULT_TRANSITION = "money_in"
+
 WORLD_MAP_WIDTH = 320
 WORLD_MAP_HEIGHT = 200
 WORLD_MAP_DEFAULT_SCENE = "world_map_main"
@@ -59,5 +61,8 @@ OVERLAY_1_LAYER_NAME = "overlay_1"
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = True
-DEBUG_START_IN_STATE = "world_map"
+DEBUG_START_IN_STATE = "playing_level"
+DEBUG_LEVEL_NAME = "sunset_beach"
+DEBUG_LEVEL_START_POSITION = [0,0]
+DEBUG_LEVEL_START_TRANSITION = "money_in"
 DEBUG_VIDEO_CALL_CUTSCENE = "intro_1"

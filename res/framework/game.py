@@ -8,7 +8,7 @@ from datetime import datetime
 from res.settings import *
 from res.utilities.ldtk_loader import load_ldtk
 from res.framework.state import State
-from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap
+from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
 from res.input_events import *
 from res.savedata import save_data
 
@@ -215,8 +215,21 @@ class Game:
     def load_world_map(self):
         self.state.set_state(self, "world_map")
     
+    def load_level(self, level_name, player_start_position=[0,0], transition=DEFAULT_TRANSITION):
+        self.state.set_state(self, "playing_level", level_name, player_start_position, transition)
+    
     def set_current_save_file(self, filepath):
         self._current_save_file = filepath
+    
+    def get_scene_and_starting_position_from_iid(self, level_iid, entrance_iid)->tuple:
+        for level in self.get_levels_from_world():
+            if level["iid"] == level_iid:
+                for layer in level["layerInstances"]:
+                    if layer["__identifier"] == ENTITIES_LAYER_NAME:
+                        for entity in layer["entityInstances"]:
+                            if entity["iid"] == entrance_iid:
+                                return level["identifier"], entity["px"]
+        return None
     
     def get_levels_from_world(self):
         return self.world["levels"]
@@ -377,6 +390,7 @@ game_states = {
                 "title_screen" : titlescreen.TitleScreen,
                 "file_select_screen" : fileselectscreen.FileSelectScreen,
                 "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
-                "world_map" : worldmap.WorldMap
+                "world_map" : worldmap.WorldMap,
+                "playing_level" : playinglevel.PlayingLevel
                 }
         

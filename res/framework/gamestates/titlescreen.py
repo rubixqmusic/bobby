@@ -46,6 +46,7 @@ grow_factor = 0
 class TitleScreen(State):
     def on_state_enter(self, game):
 
+        logging.debug(f"title screen loaded")
         game.set_current_save_file("")
         
         self.sine_degrees = 0
