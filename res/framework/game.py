@@ -229,10 +229,25 @@ class Game:
                         for entity in layer["entityInstances"]:
                             if entity["iid"] == entrance_iid:
                                 return level["identifier"], entity["px"]
+
         return None
     
     def get_levels_from_world(self):
         return self.world["levels"]
+    
+    def load_tileset(self, image_path, tilesets):
+        if image_path not in tilesets:
+            if os.path.exists(image_path):
+                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+                tilesets[image_path] = new_tileset_surface
+            else:
+                logging.debug(f"could not load tileset! image path {image_path} does not exist!")
+        else:
+            if os.path.exists(image_path):
+                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+                tilesets[image_path] = new_tileset_surface
+            else:
+                logging.debug(f"could not load tileset! image path {image_path} does not exist!")
     
     def save_game(self):
         # if os.path.exists(self._current_save_file):

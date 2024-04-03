@@ -32,20 +32,21 @@ class PlayingLevel(State):
     def clear_scene(self):
         self.width = None
         self.height = None
+        self.tilesets = {}
         self.bg_color = f"#000000"
         self.bg_image = None
         self.bg_1 = None
         self.bg_2 = None
         self.bg_3 = None
-        self.ground_1 = None
-        self.ground_2 = None
-        self.main_ground = None
-        self.objects = None
+        self.ground_1 = {}
+        self.ground_2 = {}
+        self.main_ground = {}
+        self.objects = {}
         self.player = None
-        self.overlay_1 = None
-        self.overlay_2 = None
-        self.fg_1 = None
-        self.fg_2 = None
+        self.overlay_1 = {}
+        self.overlay_2 = {}
+        self.fg_1 = {}
+        self.fg_2 = {}
 
     def on_state_enter(self, game):
         self.game = game
@@ -66,11 +67,19 @@ class PlayingLevel(State):
         # self.state.process_events(self)
     
     def update(self, game):
+        CAMSPD = 3
         if game.is_button_pressed(RIGHT_BUTTON):
-            self.camera.move(10,0)
+            self.camera.move(CAMSPD,0)
         if game.is_button_pressed(LEFT_BUTTON):
-            self.camera.move(-10,0)
-
+            self.camera.move(-CAMSPD,0)
+        if game.is_button_pressed(UP_BUTTON):
+            self.camera.move(0,-CAMSPD)
+        if game.is_button_pressed(DOWN_BUTTON):
+            self.camera.move(0, CAMSPD)
+        
+        
+        if self.bg_image:
+            self.bg_image.update()
 
         self.state.update(self)
 
@@ -78,7 +87,8 @@ class PlayingLevel(State):
         game.get_screen().fill(self.bg_color)
         
         if self.bg_image:
-            game.get_screen().blit(self.bg_image, [0,0])
+            # self.camera.surface.blit(self.bg_image, [0,0])
+            self.bg_image.draw()
         
         if self.bg_1:
             camera_pos = self.camera.get_position()
@@ -95,28 +105,65 @@ class PlayingLevel(State):
 
             wrap_x = draw_x + self.bg_1["image"].get_width()  
 
-            game.get_screen().blit(self.bg_1["image"], [draw_x,draw_y])
-            game.get_screen().blit(self.bg_1["image"], [wrap_x,draw_y])
+            self.camera.surface.blit(self.bg_1["image"], [draw_x,draw_y])
+            self.camera.surface.blit(self.bg_1["image"], [wrap_x,draw_y])
         
         if self.bg_2:
+
             camera_pos = self.camera.get_position()
+
+            # print(camera_pos)
+
             parallax_x = int(camera_pos[0] * self.bg_2["parallax_x"])
             parallax_y = int(camera_pos[1] * self.bg_2["parallax_y"])
-            print(f"parallax_x: {parallax_x}")
 
             draw_x = 0 - parallax_x
-            draw_y = 0 - parallax_y
+            # draw_y = 0 - parallax_y 
+            draw_y = 0 - parallax_y#camera_pos[1]  
 
             wrap_x = draw_x + self.bg_2["image"].get_width()  
 
-            print(f"draw x and wrap x: {draw_x, wrap_x}")
-            print(f"camera pos: {self.camera.get_position()}")
+            # print(self.game.get_fps())
+
                       
-            game.get_screen().blit(self.bg_2["image"], [draw_x,draw_y])
-            game.get_screen().blit(self.bg_2["image"], [wrap_x ,draw_y])
+            self.camera.surface.blit(self.bg_2["image"], [draw_x,draw_y])
+            self.camera.surface.blit(self.bg_2["image"], [wrap_x ,draw_y])
 
         if self.bg_3:
-            game.get_screen().blit(self.bg_3["image"], [0,0])
+            camera_pos = self.camera.get_position()
+
+            # print(camera_pos)
+
+            parallax_x = int(camera_pos[0] * self.bg_3["parallax_x"])
+            parallax_y = int(camera_pos[1] * self.bg_3["parallax_y"])
+
+            draw_x = 0 - parallax_x
+            # draw_y = 0 - parallax_y 
+            draw_y = 0 - parallax_y#camera_pos[1]  
+
+            wrap_x = draw_x + self.bg_3["image"].get_width()  
+
+            # print(self.game.get_fps())
+
+                      
+            self.camera.surface.blit(self.bg_3["image"], [draw_x,draw_y])
+            self.camera.surface.blit(self.bg_3["image"], [wrap_x ,draw_y])
+        
+        if self.main_ground:
+            tileset_path = game.load_resource(f"{BASE_PATH}{self.main_ground['tileset']}")
+
+            if tileset_path in self.tilesets:
+                tileset_image = self.tilesets[tileset_path]
+                for tile in self.main_ground["tiles"]:
+                    dest = tile["px"]
+                    source = tile["src"]
+                    grid_size = self.main_ground["grid_size"]
+                    camera_pos = self.camera.get_position()
+                    draw_x = dest[0] - camera_pos[0]
+                    draw_y = dest[1] - camera_pos[1]
+                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
+        
+        self.game.get_screen().blit(self.camera.surface, [0,0])
 
         self.state.draw(self)
 
@@ -167,36 +214,49 @@ class LoadScene(State):
                     if level_property["__identifier"] == "background":
                         if level_property["__value"]:
                             bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_image/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
+                            bg_animation_data = level.game.load_resource(f"{ANIMATIONS_PATH}/{level_property['__value']}.json")
                             
-                            if os.path.exists(bg_image_path):
-                                level.bg_image = pygame.image.load(bg_image_path)
+                            if os.path.exists(bg_image_path) and os.path.exists(bg_animation_data):
+                                level.bg_image = AnimatedSprite(level.game, level.camera.surface)
+                                level.bg_image.load_spritesheet(bg_image_path)
+                                level.bg_image.load_sprite_data(bg_animation_data)
+                                level.bg_image.set_animation("idle")
+                                level.bg_image.set_position(0,0)
+                                level.bg_image.play()
                             
                             bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_1/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
                             
                             if os.path.exists(bg_image_path):
                                 level.bg_1 = {}
-                                level.bg_1["parallax_x"] = 0.05
-                                level.bg_1["parallax_y"] = 0.1
+                                level.bg_1["parallax_x"] = 0.01
+                                level.bg_1["parallax_y"] = 1.0
                                 level.bg_1["image"] = pygame.image.load(bg_image_path)
                             
                             bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_2/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
                             
                             if os.path.exists(bg_image_path):
                                 level.bg_2 = {}
-                                level.bg_2["parallax_x"] = 0.1
-                                level.bg_2["parallax_y"] = 0.5
+                                level.bg_2["parallax_x"] = 0.05
+                                level.bg_2["parallax_y"] = 0.9
                                 level.bg_2["image"] = pygame.image.load(bg_image_path)
-                
 
                             bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_3/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
                             
                             if os.path.exists(bg_image_path):
                                 level.bg_3 = {}
-                                level.bg_3["parallax_x"] = 0.3
-                                level.bg_3["parallax_y"] = 0.75
+                                level.bg_3["parallax_x"] = 0.1
+                                level.bg_3["parallax_y"] = 0.7
                                 level.bg_3["image"] = pygame.image.load(bg_image_path)
-                    
-                    level.camera.set_bounds(0, level.width, 0, level.height)
+                
+                for layer in scene["layerInstances"]:
+                    if layer["__identifier"] == MAIN_GROUND_LAYER_NAME:
+                        level.main_ground["tileset"] = layer["__tilesetRelPath"]
+                        level.main_ground["grid_size"] = layer["__gridSize"]
+                        level.main_ground["tiles"] = layer["autoLayerTiles"]
+                        level.game.load_tileset(level.game.load_resource(f"{BASE_PATH}{level.main_ground['tileset']}"), level.tilesets)
+                level.camera.set_bounds(0, level.width, 0, level.height)
+                level.camera.center(self.player_start_position[0], self.player_start_position[1])
+                print(self.player_start_position)
 
 
 
