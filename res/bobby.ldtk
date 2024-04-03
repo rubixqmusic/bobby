@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 25,
+	"nextUid": 26,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -557,6 +557,43 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
+		},
+		{
+			"identifier": "background",
+			"doc": null,
+			"__type": "String",
+			"uid": 25,
+			"type": "F_String",
+			"isArray": false,
+			"canBeNull": true,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "NameAndValue",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"exportToToc": false,
+			"searchable": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": null,
+			"textLanguageMode": null,
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -579,7 +616,10 @@
 			"__smartColor": "#ADADB5",
 			"__bgPos": null,
 			"externalRelPath": null,
-			"fieldInstances": [{ "__identifier": "music", "__type": "String", "__value": "default", "__tile": null, "defUid": 24, "realEditorValues": [] }],
+			"fieldInstances": [
+				{ "__identifier": "music", "__type": "String", "__value": "default", "__tile": null, "defUid": 24, "realEditorValues": [] },
+				{ "__identifier": "background", "__type": "String", "__value": null, "__tile": null, "defUid": 25, "realEditorValues": [] }
+			],
 			"layerInstances": [
 				{
 					"__identifier": "overlay_1",
@@ -902,7 +942,7 @@
 							"__smartColor": "#D77643",
 							"iid": "1eeaf620-d7b0-11ee-bfc5-6fe0da4721c1",
 							"width": 16,
-							"height": 16,    
+							"height": 16,
 							"defUid": 12,
 							"px": [736,384],
 							"fieldInstances": [
@@ -3610,7 +3650,13 @@
 			"__smartColor": "#8FA2C3",
 			"__bgPos": null,
 			"externalRelPath": null,
-			"fieldInstances": [{ "__identifier": "music", "__type": "String", "__value": "default", "__tile": null, "defUid": 24, "realEditorValues": [] }],
+			"fieldInstances": [
+				{ "__identifier": "music", "__type": "String", "__value": "default", "__tile": null, "defUid": 24, "realEditorValues": [] },
+				{ "__identifier": "background", "__type": "String", "__value": "sunset", "__tile": null, "defUid": 25, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["sunset"]
+				}] }
+			],
 			"layerInstances": [
 				{
 					"__identifier": "overlay_1",
