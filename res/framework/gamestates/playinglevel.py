@@ -260,7 +260,7 @@ class LoadScene(State):
                             if os.path.exists(bg_image_path):
                                 level.bg_3 = {}
                                 level.bg_3["parallax_x"] = 0.6
-                                level.bg_3["parallax_y"] = 0.7
+                                level.bg_3["parallax_y"] = 0.3
                                 level.bg_3["image"] = pygame.image.load(bg_image_path)
                 
                 for layer in scene["layerInstances"]:
