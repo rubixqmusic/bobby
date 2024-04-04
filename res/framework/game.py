@@ -29,8 +29,8 @@ class Game:
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
 
         display_info = pygame.display.Info()
-        self.window = pygame.display.set_mode(WINDOW_SIZE)
-        # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+        # self.window = pygame.display.set_mode(WINDOW_SIZE)
+        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
 
         pygame.display.set_caption(WINDOW_CAPTION)
         pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
