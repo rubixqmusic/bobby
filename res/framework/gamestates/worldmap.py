@@ -88,7 +88,7 @@ class WorldMap(State):
         self.level_name_surface = None
         self.percent_to_plan_surface = None
 
-        game.play_music(game.load_resource(WORLD_MAP_MUSIC))
+        game.play_music(WORLD_MAP_MUSIC)
 
         current_level = self.game.get_save_data('current_level')
         scene_name = None
@@ -175,7 +175,7 @@ class WorldMap(State):
 
         if self.tile_layer_1:
             
-            tileset_path = game.load_resource(f"{BASE_PATH}{self.tile_layer_1['tileset']}")
+            tileset_path = f"{BASE_PATH}{self.tile_layer_1['tileset']}"
 
             if tileset_path in self.tilesets:
                 tileset_image = self.tilesets[tileset_path]
@@ -191,7 +191,7 @@ class WorldMap(State):
     
             
         if self.tile_layer_2:
-            tileset_path = game.load_resource(f"{BASE_PATH}{self.tile_layer_2['tileset']}")
+            tileset_path = f"{BASE_PATH}{self.tile_layer_2['tileset']}"
 
             if tileset_path in self.tilesets:
                 tileset_image = self.tilesets[tileset_path]
@@ -228,7 +228,7 @@ class WorldMap(State):
             self.player.draw()
         
         if self.overlay_layer_1:
-            tileset_path = game.load_resource(f"{BASE_PATH}{self.overlay_layer_1['tileset']}")
+            tileset_path = f"{BASE_PATH}{self.overlay_layer_1['tileset']}"
 
             if tileset_path in self.tilesets:  
                 tileset_image = self.tilesets[tileset_path]
@@ -255,14 +255,14 @@ class WorldMap(State):
 
     def load_tileset(self, image_path):
         if image_path not in self.tilesets:
-            if os.path.exists(image_path):
-                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+            if self.game.resource_exists(image_path):
+                new_tileset_surface = pygame.image.load(self.game.load_resource(image_path)).convert_alpha()
                 self.tilesets[image_path] = new_tileset_surface
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
         else:
-            if os.path.exists(image_path):
-                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+            if self.game.resource_exists(image_path):
+                new_tileset_surface = pygame.image.load(self.game.load_resource(image_path)).convert_alpha()
                 self.tilesets[image_path] = new_tileset_surface
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
@@ -301,7 +301,7 @@ class WorldMap(State):
         self.state.set_state(self, "map_active")
     
     def start_level(self):
-        self.game.play_sound(self.game.load_resource(LEVEL_START_SOUND))
+        self.game.play_sound(LEVEL_START_SOUND)
         self.game.stop_music()
         self.state.set_state(self, "start_level")
 
@@ -447,12 +447,12 @@ class LoadMap(State):
                         world_map.tile_layer_1["tileset"] = layer["__tilesetRelPath"]
                         world_map.tile_layer_1["grid_size"] = layer["__gridSize"]
                         world_map.tile_layer_1["tiles"] = layer["gridTiles"]
-                        world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.tile_layer_1['tileset']}"))
+                        world_map.load_tileset(f"{BASE_PATH}{world_map.tile_layer_1['tileset']}")
                     if layer["__identifier"] == GROUND_2_LAYER_NAME:
                         world_map.tile_layer_2["tileset"] = layer["__tilesetRelPath"]
                         world_map.tile_layer_2["grid_size"] = layer["__gridSize"]
                         world_map.tile_layer_2["tiles"] = layer["gridTiles"]
-                        world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.tile_layer_2['tileset']}"))
+                        world_map.load_tileset(f"{BASE_PATH}{world_map.tile_layer_2['tileset']}")
 
                     if layer["__identifier"] == ENTITIES_LAYER_NAME:
                         entity_instances = layer["entityInstances"]
@@ -485,12 +485,12 @@ class LoadMap(State):
                                             if property["__identifier"] == "leads_to_scene":
                                                 leads_to_scene = property["__value"]
                                         try:
-                                            spritesheet = self.game.load_resource(LEVEL_TILE_SPRITESHEET)
+                                            spritesheet = LEVEL_TILE_SPRITESHEET
                                         except:
                                             logging.debug(f"could not load map path image!!!")
                                             # spritesheet = pygame.surface.Surface([entity["width"], entity["height"]])
                                         
-                                        animation = self.game.load_resource(LEVEL_TILE_ANIMATION)
+                                        animation = LEVEL_TILE_ANIMATION
 
                                         new_level_tile = LevelTile(self.game, level_name, entity["__worldX"], entity["__worldY"], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera, leads_to_scene)
                                         # entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image
@@ -500,16 +500,18 @@ class LoadMap(State):
                         world_map.overlay_layer_1["tileset"] = layer["__tilesetRelPath"]
                         world_map.overlay_layer_1["grid_size"] = layer["__gridSize"]
                         world_map.overlay_layer_1["tiles"] = layer["gridTiles"]
-                        world_map.load_tileset(self.game.load_resource(f"{BASE_PATH}{world_map.overlay_layer_1['tileset']}"))
+                        world_map.load_tileset(f"{BASE_PATH}{world_map.overlay_layer_1['tileset']}")
                 break
         
-        world_map.animated_tileset = AnimatedSprite(world_map.game, world_map.tilesets[self.game.load_resource(f"{BASE_PATH}{world_map.tile_layer_1['tileset']}")])
-        world_map.animated_tileset.load_spritesheet(world_map.game.load_resource(MAP_ANIMATED_TILESET))
-        world_map.animated_tileset.load_sprite_data(world_map.game.load_resource(MAP_ANIMATION))
+        world_map.animated_tileset = AnimatedSprite(world_map.game, world_map.tilesets[f"{BASE_PATH}{world_map.tile_layer_1['tileset']}"])
+        world_map.animated_tileset.load_spritesheet(MAP_ANIMATED_TILESET)
+        world_map.animated_tileset.load_sprite_data(MAP_ANIMATION)
         world_map.animated_tileset.set_animation("idle")
         world_map.animated_tileset.play()
+
+        print(world_map.animated_tileset.spritesheet, world_map.animated_tileset.animations)
         
-        world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, self.game.load_resource(PLAYER_SPRITESHEET),self.game.load_resource(PLAYER_ANIMATION),world_map.camera.surface,world_map.camera)
+        world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, PLAYER_SPRITESHEET, PLAYER_ANIMATION,world_map.camera.surface,world_map.camera)
         
         world_map.camera.set_bounds(world_map.scene_x, world_map.scene_x + world_map.scene_width, world_map.scene_y, world_map.scene_y + world_map.scene_height)
         # world_map.camera.set_position(467,300)
@@ -562,7 +564,7 @@ class QuitMenu(State):
                     ]
         
         self.set_status("open_menu")
-        world_map.game.play_sound(world_map.game.load_resource(MENU_OPEN_SOUND))
+        world_map.game.play_sound(MENU_OPEN_SOUND)
 
     def update(self, world_map: WorldMap):
         if self.status == "open_menu":
@@ -571,22 +573,22 @@ class QuitMenu(State):
         elif self.status == "menu_active":
             if world_map.game.is_button_released(SELECT_BUTTON):
                 self.set_status("close_menu")
-                world_map.game.play_sound(world_map.game.load_resource(MENU_CLOSE_SOUND))
+                world_map.game.play_sound(MENU_CLOSE_SOUND)
             
             if world_map.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                world_map.game.play_sound(world_map.game.load_resource(QUIT_MENU_SELECT_SOUND))
+                world_map.game.play_sound(QUIT_MENU_SELECT_SOUND)
             if world_map.game.is_button_released(UP_BUTTON):
                 self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-                world_map.game.play_sound(world_map.game.load_resource(QUIT_MENU_SELECT_SOUND))
+                world_map.game.play_sound(QUIT_MENU_SELECT_SOUND)
 
             if world_map.game.is_button_released(START_BUTTON) or world_map.game.is_button_released(ACTION_BUTTON_1):
                 if self.current_menu_selection == "continue":
                     self.set_status("close_menu")
-                    world_map.game.play_sound(world_map.game.load_resource(MENU_CLOSE_SOUND))
+                    world_map.game.play_sound(MENU_CLOSE_SOUND)
                 elif self.current_menu_selection == "return_to_main_menu":
                     world_map.quit_to_main_menu()
-                    world_map.game.play_sound(world_map.game.load_resource(RETURN_TO_MAIN_MENU_SOUND))
+                    world_map.game.play_sound(RETURN_TO_MAIN_MENU_SOUND)
                     world_map.game.stop_music()
             
 

@@ -52,8 +52,8 @@ class PlayingLevel(State):
         self.game = game
         self.camera = Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
         self.transition_overlay = AnimatedSprite(self.game, self.game.get_screen())
-        self.transition_overlay.load_spritesheet(self.game.load_resource(TRANSITION_SPRITESHEET))
-        self.transition_overlay.load_sprite_data(self.game.load_resource(TRANSITION_ANIMATION))
+        self.transition_overlay.load_spritesheet(TRANSITION_SPRITESHEET)
+        self.transition_overlay.load_sprite_data(TRANSITION_ANIMATION)
         self.transition_overlay.set_animation("idle")
 
         self.state = State(level_states)
@@ -151,7 +151,7 @@ class PlayingLevel(State):
             self.camera.surface.blit(self.bg_3["image"], [wrap_x ,draw_y])
         
         if self.ground_2:
-            tileset_path = game.load_resource(f"{BASE_PATH}{self.ground_2['tileset']}")
+            tileset_path = f"{BASE_PATH}{self.ground_2['tileset']}"
 
             if tileset_path in self.tilesets:
                 tileset_image = self.tilesets[tileset_path]
@@ -165,7 +165,7 @@ class PlayingLevel(State):
                     self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
 
         if self.main_ground:
-            tileset_path = game.load_resource(f"{BASE_PATH}{self.main_ground['tileset']}")
+            tileset_path = f"{BASE_PATH}{self.main_ground['tileset']}"
 
             if tileset_path in self.tilesets:
                 tileset_image = self.tilesets[tileset_path]
@@ -225,13 +225,13 @@ class LoadScene(State):
                 for level_property in scene["fieldInstances"]:
                     if level_property["__identifier"] == "music":
                         if level_property["__value"] in LEVEL_MUSIC:
-                            level.game.play_music(level.game.load_resource(LEVEL_MUSIC[level_property["__value"]]))
+                            level.game.play_music(LEVEL_MUSIC[level_property["__value"]])
                     if level_property["__identifier"] == "background":
                         if level_property["__value"]:
-                            bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_image/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
-                            bg_animation_data = level.game.load_resource(f"{ANIMATIONS_PATH}/{level_property['__value']}.json")
+                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_image/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                            bg_animation_data = f"{ANIMATIONS_PATH}/{level_property['__value']}.json"
                             
-                            if os.path.exists(bg_image_path) and os.path.exists(bg_animation_data):
+                            if level.game.resource_exists(bg_image_path) and level.game.resource_exists(bg_animation_data):
                                 level.bg_image = AnimatedSprite(level.game, level.camera.surface)
                                 level.bg_image.load_spritesheet(bg_image_path)
                                 level.bg_image.load_sprite_data(bg_animation_data)
@@ -239,42 +239,44 @@ class LoadScene(State):
                                 level.bg_image.set_position(0,0)
                                 level.bg_image.play()
                             
-                            bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_1/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
+                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_1/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
                             
-                            if os.path.exists(bg_image_path):
+                            if level.game.resource_exists(bg_image_path):
                                 level.bg_1 = {}
                                 level.bg_1["parallax_x"] = 0.01
                                 level.bg_1["parallax_y"] = 1.0
-                                level.bg_1["image"] = pygame.image.load(bg_image_path)
+                                level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                             
-                            bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_2/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
+                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_2/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
                             
-                            if os.path.exists(bg_image_path):
+                            if level.game.resource_exists(bg_image_path):
                                 level.bg_2 = {}
                                 level.bg_2["parallax_x"] = 0.05
                                 level.bg_2["parallax_y"] = 0.9
-                                level.bg_2["image"] = pygame.image.load(bg_image_path)
+                                level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
 
-                            bg_image_path = level.game.load_resource(f"{GRAPHICS_PATH}/scene_backgrounds/bg_3/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}")
+                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_3/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
                             
-                            if os.path.exists(bg_image_path):
+                            if level.game.resource_exists(bg_image_path):
                                 level.bg_3 = {}
                                 level.bg_3["parallax_x"] = 0.6
                                 level.bg_3["parallax_y"] = 0.3
-                                level.bg_3["image"] = pygame.image.load(bg_image_path)
+                                level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                 
                 for layer in scene["layerInstances"]:
                     if layer["__identifier"] == GROUND_2_LAYER_NAME:
                         level.ground_2["tileset"] = layer["__tilesetRelPath"]
                         level.ground_2["grid_size"] = layer["__gridSize"]
                         level.ground_2["tiles"] = layer["gridTiles"]
-                        level.game.load_tileset(level.game.load_resource(f"{BASE_PATH}{level.ground_2['tileset']}"), level.tilesets)
+                        level.game.load_tileset(f"{BASE_PATH}{level.ground_2['tileset']}", level.tilesets)
 
                     if layer["__identifier"] == MAIN_GROUND_LAYER_NAME:
                         level.main_ground["tileset"] = layer["__tilesetRelPath"]
                         level.main_ground["grid_size"] = layer["__gridSize"]
                         level.main_ground["tiles"] = layer["autoLayerTiles"]
-                        level.game.load_tileset(level.game.load_resource(f"{BASE_PATH}{level.main_ground['tileset']}"), level.tilesets)
+                        level.game.load_tileset(f"{BASE_PATH}{level.main_ground['tileset']}", level.tilesets)
+                
+                print(level.tilesets)
 
                 level.camera.set_bounds(0, level.width, 0, level.height)
                 level.camera.center(self.player_start_position[0], self.player_start_position[1])

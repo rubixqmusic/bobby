@@ -3,6 +3,7 @@ import enum
 
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
+EXECUTABLE_NAME = "Bobbys-Money-Maddness.appimage"
 
 SCREEN_WIDTH = 512
 SCREEN_HEIGHT = 288
@@ -14,16 +15,26 @@ WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT
 
 FPS = 60
 
-FONTS_PATH = "../fonts"
-SOUNDS_PATH = "../audio/fx"
-MUSIC_PATH = "../audio/music"
-GRAPHICS_PATH = "../graphics"
-WORLD_DATA_PATH = "../bobby.ldtk"
-BASE_PATH = "../"
-ANIMATIONS_PATH = "../animations"
-TILESET_ANIMATIONS_PATH = "../tileset_animations"
+RESOURCE_FILE_NAME = "bob.res"
+# FONTS_PATH = "../fonts"
+# SOUNDS_PATH = "../audio/fx"
+# MUSIC_PATH = "../audio/music"
+# GRAPHICS_PATH = "../graphics"
+# WORLD_DATA_PATH = "../bobby.ldtk"
+# BASE_PATH = "../"
+# ANIMATIONS_PATH = "../animations"
+# TILESET_ANIMATIONS_PATH = "../tileset_animations"
+FONTS_PATH = "res/fonts"
+SOUNDS_PATH = "res/audio/fx"
+MUSIC_PATH = "res/audio/music"
+GRAPHICS_PATH = "res/graphics"
+WORLD_DATA_PATH = "res/bobby.ldtk"
+BASE_PATH = "res/"
+ANIMATIONS_PATH = "res/animations"
+TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 
 DEFAULT_FONT = "default3.otf"
+DEFAULT_FONT_SIZE = 16
 
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 
@@ -62,8 +73,8 @@ OVERLAY_2_LAYER_NAME = "overlay_2"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
-DEBUG_START_IN_STATE = "playing_level"
+DEBUG_ENABLED = True
+DEBUG_START_IN_STATE = "splashscreen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [185,466]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

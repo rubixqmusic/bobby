@@ -7,7 +7,7 @@ save_data = {
                                 "sunset_beach" : {
                                                   "name" : "Sunset Beach",
                                                   "quota" : 200, 
-                                                  "money" : 300, 
+                                                  "money" : 0, 
                                                   "percent_to_plan" : 150, 
                                                   "rare_stones" : 0, 
                                                   "coins" : 0,

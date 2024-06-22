@@ -41,7 +41,7 @@ class Splashscreen(State):
                 self.event_step = 1
         
         if self.event_step == 1:
-            game.play_sound(game.load_resource(f"{SOUNDS_PATH}/coin.wav"))
+            game.play_sound(f"{SOUNDS_PATH}/coin.wav")
             self.event_step = 2
         
         if self.event_step == 2:

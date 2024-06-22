@@ -25,8 +25,8 @@ class Player:
         self.level = None
 
         self.animated_sprite = AnimatedSprite(game,draw_target)
-        self.animated_sprite.load_spritesheet(game.load_resource(spritesheet))
-        self.animated_sprite.load_sprite_data(game.load_resource(animation))
+        self.animated_sprite.load_spritesheet(spritesheet)
+        self.animated_sprite.load_sprite_data(animation)
         self.animated_sprite.set_position(self.x, self.y)
 
         self.state = State(player_states)
@@ -55,13 +55,13 @@ class Player:
     
     def set_player_idle_on_landing(self,no_sound=False):
         if no_sound == False:
-            self.game.play_sound(self.game.load_resource(LAND_ON_LEVEL_SOUND))
+            self.game.play_sound(LAND_ON_LEVEL_SOUND)
         self.current_level = "landing"
         self.world_map.set_current_level("landing")
         self.state.set_state(self, "idle_on_landing")
 
     def set_player_idle_on_level(self, level_name, entrance_direction):
-        self.game.play_sound(self.game.load_resource(LAND_ON_LEVEL_SOUND))
+        self.game.play_sound(LAND_ON_LEVEL_SOUND)
         self.world_map.set_current_level(level_name)
         self.state.set_state(self, "idle_on_level", level_name, entrance_direction)
     

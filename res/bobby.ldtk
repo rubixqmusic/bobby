@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 66,
+	"nextUid": 68,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1557,7 +1557,7 @@
 			"tags": ["world_map"],
 			"tagsSourceEnumUid": null,
 			"enumTags": [],
-			"customData": [],
+			"customData": [{ "tileId": 33, "data": "cum" }],
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "1111100001111111110000000000000011111000011111011100000000000000111110000111110111000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001110000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
@@ -1753,6 +1753,88 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
+		},
+		{
+			"identifier": "bg_image",
+			"doc": null,
+			"__type": "String",
+			"uid": 66,
+			"type": "F_Text",
+			"isArray": false,
+			"canBeNull": true,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"exportToToc": false,
+			"searchable": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": {
+				"id": "V_String",
+				"params": ["{\n  \"bg_image\" : null,\n  \"animation\" : null\n}"]
+			},
+			"textLanguageMode": "LangJson",
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
+		},
+		{
+			"identifier": "bg_1",
+			"doc": null,
+			"__type": "String",
+			"uid": 67,
+			"type": "F_Text",
+			"isArray": false,
+			"canBeNull": true,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"exportToToc": false,
+			"searchable": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": {
+				"id": "V_String",
+				"params": [
+					"{\n  \"image\" : null,\n  \"parallax_x\" : 1.0,\n  \"parallax_y\" : 1.0,\n  \"blend_mode\" : \"normal\"\n}"
+				]
+			},
+			"textLanguageMode": "LangJson",
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -1781,7 +1863,9 @@
 				{ "__identifier": "biome", "__type": "LocalEnum.biomes", "__value": "beach", "__tile": null, "defUid": 29, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["beach"]
-				}] }
+				}] },
+				{ "__identifier": "bg_image", "__type": "String", "__value": "{\n  \"bg_image\" : null,\n  \"animation\" : null\n}", "__tile": null, "defUid": 66, "realEditorValues": [] },
+				{ "__identifier": "bg_1", "__type": "String", "__value": "{\n  \"image\" : null,\n  \"parallax_x\" : 1.0,\n  \"parallax_y\" : 1.0,\n  \"blend_mode\" : \"normal\"\n}", "__tile": null, "defUid": 67, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -4914,6 +4998,11 @@
 				{ "__identifier": "biome", "__type": "LocalEnum.biomes", "__value": "beach", "__tile": null, "defUid": 29, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["beach"]
+				}] },
+				{ "__identifier": "bg_image", "__type": "String", "__value": "{\n  \"bg_image\" : null,\n  \"animation\" : null\n}", "__tile": null, "defUid": 66, "realEditorValues": [] },
+				{ "__identifier": "bg_1", "__type": "String", "__value": "{\"bg_image\" : \"sunset\", \"parallax_x\" : 0.2, \"parallax_y\" : 1.0}", "__tile": null, "defUid": 67, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["{\"bg_image\" : \"sunset\", \"parallax_x\" : 0.2, \"parallax_y\" : 1.0}"]
 				}] }
 			],
 			"layerInstances": [

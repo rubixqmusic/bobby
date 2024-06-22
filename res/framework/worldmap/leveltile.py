@@ -15,8 +15,8 @@ class LevelTile:
         self.y = y
         self.rect = pygame.rect.Rect(x, y, tile_size, tile_size )
         self.animated_sprite = AnimatedSprite(game,draw_target)
-        self.animated_sprite.load_spritesheet(game.load_resource(spritesheet))
-        self.animated_sprite.load_sprite_data(game.load_resource(animation))
+        self.animated_sprite.load_spritesheet(spritesheet)
+        self.animated_sprite.load_sprite_data(animation)
         self.animated_sprite.set_position(self.x, self.y)
 
         level_data = game.get_level_data(self.level_name)

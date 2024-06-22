@@ -3,6 +3,8 @@ import os
 import sys
 import logging
 import json
+import base64
+import io
 from datetime import datetime
 
 from res.settings import *
@@ -18,7 +20,9 @@ RELEASED = 2
 
 class Game:
     def __init__(self) -> None:
-
+        
+        self._resource_pack = {}
+        self._load_resource_pack()
         # print(f"\n\n {sys.platform} \n\n")
         # print(f"\n\n {os.path.expanduser('~')} \n\n")
 
@@ -29,24 +33,29 @@ class Game:
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
 
         display_info = pygame.display.Info()
-        # self.window = pygame.display.set_mode(WINDOW_SIZE)
-        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+        self.window = pygame.display.set_mode(WINDOW_SIZE)
+        # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
 
         pygame.display.set_caption(WINDOW_CAPTION)
         pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
+
+        
 
         self.running = True
         self.clock = pygame.time.Clock()
         self.delta_time = 0.0
 
         # self.world = load_ldtk(self.load_resource(WORLD_DATA_PATH))
-        self.world = None
+        
 
-        try:
-            with open(self.load_resource(WORLD_DATA_PATH)) as world_data:
-                self.world = json.load(world_data)
-        except:
-            logging.debug(f"FATAL ERROR: Could not load world data file, shit's fucked fam")
+        self.world = None
+        self.world = json.load(self.load_resource(WORLD_DATA_PATH))
+
+        # try:
+        #     with open(self.load_resource(WORLD_DATA_PATH)) as world_data:
+        #         self.world = json.load(world_data)
+        # except:
+        #     logging.debug(f"FATAL ERROR: Could not load world data file, shit's fucked fam")
         
         # print(self.world["levels"])
         
@@ -63,6 +72,8 @@ class Game:
         self.game_data = {}
         self.save_data = save_data
 
+        self.debug_font = pygame.font.Font(self.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), DEFAULT_FONT_SIZE)
+
         if not os.path.exists(SAVE_DATA_PATH):
             try:
                 os.mkdir(SAVE_DATA_PATH)
@@ -72,6 +83,7 @@ class Game:
 
         self.state = State(game_states)
         self.state.start(self,"init")
+
 
     def _quit(self):
         self.running = False
@@ -182,14 +194,15 @@ class Game:
 
     def run(self):
         if self.world is None:
-            pygame.quit()
             logging.debug(f"program exited in a fucked up manner. No world file could be loaded, fam, so we aborted that shit")
+            pygame.quit()
             sys.exit()
         while self.running:
             self._process_events()
             self.state.process_events(self)
             self.state.update(self)
             self.state.draw(self)
+            self._draw_debug() if DEBUG_ENABLED else None
             self._draw_screen_to_window()
             pygame.display.flip()
             self._update_clock()
@@ -197,6 +210,11 @@ class Game:
         logging.debug(f"program exited normally")
         sys.exit()
     
+    def _draw_debug(self):
+        debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
+
+        self.get_screen().blit(debug_fps, (400, 20))
+
     def get_fps(self):
         return self.clock.get_fps()
     
@@ -237,18 +255,34 @@ class Game:
     
     def load_tileset(self, image_path, tilesets):
         if image_path not in tilesets:
-            if os.path.exists(image_path):
-                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+            if self.resource_exists(image_path):
+                new_tileset_surface = pygame.image.load(self.load_resource(image_path)).convert_alpha()
                 tilesets[image_path] = new_tileset_surface
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
         else:
-            if os.path.exists(image_path):
-                new_tileset_surface = pygame.image.load(image_path).convert_alpha()
+            if self.resource_exists(image_path):
+                new_tileset_surface = pygame.image.load(self.load_resource(image_path)).convert_alpha()
                 tilesets[image_path] = new_tileset_surface
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
     
+    def _load_resource_pack(self):
+
+        with open(RESOURCE_FILE_NAME) as resource_pack:
+            resource_pack_decoded = base64.b64decode(resource_pack.read())
+            resource_pack_data = json.loads(resource_pack_decoded)
+           
+            for key in resource_pack_data:
+                new_value = base64.b64decode(resource_pack_data[key])
+                self._resource_pack[key] = new_value
+    
+    def resource_exists(self, resource_path: str) -> bool:
+        return True if resource_path in self._resource_pack else False
+
+            
+
+
     def save_game(self):
         # if os.path.exists(self._current_save_file):
 
@@ -341,13 +375,19 @@ class Game:
         return self.window
     
     def load_resource(self, path):
-        return os.path.join(os.path.dirname(os.path.abspath(__file__)),path)
+        if path in self._resource_pack:
+            return io.BytesIO(self._resource_pack[path])
+        else:
+            return None
     
     def play_sound(self,filepath):
-        if not os.path.exists(filepath):
-            logging.debug(f"cannot play fx: fx filepath {filepath} does not exist")
+        # if not os.path.exists(filepath):
+        #     logging.debug(f"cannot play fx: fx filepath {filepath} does not exist")
+        #     return
+        if not self.resource_exists(filepath):
             return
-        sound = pygame.mixer.Sound(filepath)
+        
+        sound = pygame.mixer.Sound(self.load_resource(filepath))
 
         try:
             pygame.mixer.Sound.play(sound)
@@ -355,17 +395,20 @@ class Game:
             logging.debug(f"could not play sounsound fx! here is the sound fx that was passed: {sound}")
 
     def play_music(self,filepath, volume=1.0, loop=-1):
-        if not os.path.exists(filepath):
-            logging.debug(f"cannot play music: music filepath {filepath} does not exist")
-            return
+        # if not os.path.exists(filepath):
+        #     logging.debug(f"cannot play music: music filepath {filepath} does not exist")
+        #     return
         
         if self._current_music == filepath:
+            return
+        
+        if not self.resource_exists(filepath):
             return
         
         pygame.mixer.music.set_volume(volume)
 
         try:
-            pygame.mixer.music.load(filepath)
+            pygame.mixer.music.load(self.load_resource(filepath))
         except:
             logging.error("could not load music!")
             return

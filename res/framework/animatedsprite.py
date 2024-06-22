@@ -52,28 +52,35 @@ class AnimatedSprite():
         return True if self.enabled else False
     
     def load_spritesheet(self, spritesheet_path):
-        if isinstance(spritesheet_path, pygame.surface.Surface):
-            self.spritesheet = spritesheet_path
+        # if isinstance(spritesheet_path, pygame.surface.Surface):
+        #     self.spritesheet = spritesheet_path
+        #     self.spritesheet_changed.emit(self.spritesheet)
+        # elif isinstance(spritesheet_path, str):
+        #     path = spritesheet_path
+        #     if os.path.exists(path):
+        #         self.spritesheet = pygame.image.load(path).convert_alpha()
+        #         self.spritesheet_changed.emit(self.spritesheet)
+        #     else:
+        #         logging.warning(f"could not load sprite image, image path {spritesheet_path} does not exist!\n")
+        # return self
+        if self.game.resource_exists(spritesheet_path):
+            self.spritesheet = pygame.image.load(self.game.load_resource(spritesheet_path)).convert_alpha()
             self.spritesheet_changed.emit(self.spritesheet)
-        elif isinstance(spritesheet_path, str):
-            path = spritesheet_path
-            if os.path.exists(path):
-                self.spritesheet = pygame.image.load(path).convert_alpha()
-                self.spritesheet_changed.emit(self.spritesheet)
-            else:
-                logging.warning(f"could not load sprite image, image path {spritesheet_path} does not exist!\n")
-        return self
     
     def load_sprite_data(self, data_path):
         # sprite_data_path = f"{ANIMATIONS_PATH}/{data_path}"
         sprite_data = {}
-        if isinstance(data_path, dict):
-            sprite_data = data_path
-        elif isinstance(data_path, str):
-            sprite_data_path = data_path
-            if os.path.exists(sprite_data_path):
-                with open(sprite_data_path, "r") as data:
-                    sprite_data = json.load(data)
+        # if isinstance(data_path, dict):
+        #     sprite_data = data_path
+        # elif isinstance(data_path, str):
+        #     sprite_data_path = data_path
+        #     if os.path.exists(sprite_data_path):
+        #         with open(sprite_data_path, "r") as data:
+        #             sprite_data = json.load(data)
+        
+        if self.game.resource_exists(data_path):
+            sprite_data = json.load(self.game.load_resource(data_path))
+
 
         if 'frames' in sprite_data:
 

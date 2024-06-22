@@ -18,6 +18,8 @@ class Init(State):
                 game.load_world_map()
             elif DEBUG_START_IN_STATE == "playing_level":
                 game.load_level(DEBUG_LEVEL_NAME, DEBUG_LEVEL_START_POSITION, DEBUG_LEVEL_START_TRANSITION)
+            elif DEBUG_START_IN_STATE == "splashscreen":
+                game.load_splashscreen()
 
             else:
                 logging.debug(f"no DEBUG_START_IN_STATE named {DEBUG_START_IN_STATE}, loading title screen instead")

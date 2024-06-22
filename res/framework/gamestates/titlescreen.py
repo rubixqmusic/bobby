@@ -75,7 +75,7 @@ class TitleScreen(State):
         self.title_text_image = pygame.image.load(self.game.load_resource(title_screen_text_path)).convert_alpha()
         self.licensed_by_kablio_text_surface = self.licensed_by_kablio_font.render(licensed_by_kablio_text,True,main_text_color)
 
-        game.play_music(game.load_resource(title_screen_music_path))
+        game.play_music(title_screen_music_path)
         
         self.state = State(title_screen_states)
         self.state.start(self, "fade_in")
@@ -181,19 +181,19 @@ class StartGameOrQuit(State):
     def process_events(self, title_screen):            
         if title_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+                title_screen.game.play_sound(title_screen_menu_select_sound_path)
 
         if title_screen.game.is_button_released(UP_BUTTON):
             self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-            title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+            title_screen.game.play_sound(title_screen_menu_select_sound_path)
 
         if title_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "start_game":
-                title_screen.game.play_sound(title_screen.game.load_resource(LETS_GO_FX))
+                title_screen.game.play_sound(LETS_GO_FX)
                 title_screen.state.set_state(title_screen, "pick_game_mode")
 
             if self.current_menu_selection == "quit_game":
-                title_screen.game.play_sound(title_screen.game.load_resource(FUCK_YOU_FX))
+                title_screen.game.play_sound(FUCK_YOU_FX)
                 title_screen.game.stop_music()
                 title_screen.state.set_state(title_screen, "fade_out_and_quit")
 
@@ -223,20 +223,20 @@ class PickGameMode(State):
     def process_events(self, title_screen):
             if title_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+                title_screen.game.play_sound(title_screen_menu_select_sound_path)
 
             if title_screen.game.is_button_released(UP_BUTTON):
                 self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-                title_screen.game.play_sound(title_screen.game.load_resource(title_screen_menu_select_sound_path))
+                title_screen.game.play_sound(title_screen_menu_select_sound_path)
 
             if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "back":
-                    title_screen.game.play_sound(title_screen.game.load_resource(BACK_FX))
+                    title_screen.game.play_sound(BACK_FX)
                     title_screen.state.set_state(title_screen, "start_game_or_quit")
             
             if title_screen.game.is_button_released(START_BUTTON):
                 if self.current_menu_selection == "story_mode":
-                    title_screen.game.play_sound(title_screen.game.load_resource(STORY_MODE_FX))
+                    title_screen.game.play_sound(STORY_MODE_FX)
                     title_screen.state.set_state(title_screen, "go_to_file_select_screen")
     
     def draw(self, title_screen):

@@ -85,7 +85,7 @@ class FileSelectScreen(State):
         self.select_a_file_font = pygame.font.Font(game.load_resource(menu_selection_font_path), select_a_file_font_size)
         self.select_a_file_text_surface = self.select_a_file_font.render(select_a_file_text,True,main_text_color)
 
-        game.play_music(game.load_resource(file_select_screen_music_path))
+        game.play_music(file_select_screen_music_path)
         
         
         self.state = State(file_select_screen_states)
@@ -197,7 +197,7 @@ class LoadSavedGame(State):
 class SelectFile(State):
     def on_state_enter(self, file_select_screen):
 
-        file_select_screen.game.play_sound(file_select_screen.game.load_resource(SELECT_A_FILE_FX))
+        file_select_screen.game.play_sound(SELECT_A_FILE_FX)
 
         self.menu_y_start_position = 72        
         self.current_menu_selection = "file_1"
@@ -236,15 +236,15 @@ class SelectFile(State):
     def process_events(self, file_select_screen):            
         if file_select_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
-                file_select_screen.game.play_sound(file_select_screen.game.load_resource(file_select_screen_menu_select_sound_path))
+                file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
 
         if file_select_screen.game.is_button_released(UP_BUTTON):
             self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
-            file_select_screen.game.play_sound(file_select_screen.game.load_resource(file_select_screen_menu_select_sound_path))
+            file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
 
         if file_select_screen.game.is_button_released(START_BUTTON):
             if self.current_menu_selection == "back":
-                file_select_screen.game.play_sound(file_select_screen.game.load_resource(BACK_FX))
+                file_select_screen.game.play_sound(BACK_FX)
                 file_select_screen.state.set_state(file_select_screen, "go_to_title_screen")
 
             if self.current_menu_selection == "file_1" or "file_2" or "file_3":
@@ -258,12 +258,12 @@ class SelectFile(State):
                             if menu_item["last_saved"] == "EMPTY":
                                 file_select_screen.game.create_new_save_file(filepath)
 
-                                file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
+                                file_select_screen.game.play_sound(ITS_BOBBY_TIME_FX)
                                 file_select_screen.game.stop_music()
                                 file_select_screen.start_new_game()
                             else:
                                 file_select_screen.game.load_save_file(filepath)
-                                file_select_screen.game.play_sound(file_select_screen.game.load_resource(ITS_BOBBY_TIME_FX))
+                                file_select_screen.game.play_sound(ITS_BOBBY_TIME_FX)
                                 file_select_screen.game.stop_music()
                                 file_select_screen.load_saved_game()
 
