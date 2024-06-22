@@ -1,5 +1,5 @@
 import pygame
-from res.settings import *
+from settings import *
 
 input_map = {
                 "K_a" : LEFT_BUTTON,

@@ -1,8 +1,8 @@
 import logging
 import pygame
 
-from res.framework.state import State
-from res.settings import *
+from src.state import State
+from settings import *
 
 class Init(State):
     def on_state_enter(self, game):

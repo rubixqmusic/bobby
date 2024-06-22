@@ -1,7 +1,7 @@
 import pygame
 import logging
 
-from res.settings import *
+from settings import *
 
 class Camera:
     def __init__(self, x, y, width, height) -> None:

@@ -16,14 +16,30 @@ WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT
 FPS = 60
 
 RESOURCE_FILE_NAME = "bob.res"
-# FONTS_PATH = "../fonts"
-# SOUNDS_PATH = "../audio/fx"
-# MUSIC_PATH = "../audio/music"
-# GRAPHICS_PATH = "../graphics"
-# WORLD_DATA_PATH = "../bobby.ldtk"
-# BASE_PATH = "../"
-# ANIMATIONS_PATH = "../animations"
-# TILESET_ANIMATIONS_PATH = "../tileset_animations"
+RESOURCE_DIRS = [
+                    "res/animations", 
+                    "res/audio/fx", 
+                    "res/audio/music", 
+                    "res/fonts", 
+                    "res/graphics/animated_tilesets", 
+                    "res/graphics/backgrounds",
+                    "res/graphics/entities", 
+                    "res/graphics/hud", 
+                    "res/graphics/icons",
+                    "res/graphics/player",
+                    "res/graphics/scene_backgrounds",
+                    "res/graphics/scene_backgrounds/bg_1",
+                    "res/graphics/scene_backgrounds/bg_2",
+                    "res/graphics/scene_backgrounds/bg_3",
+                    "res/graphics/scene_backgrounds/bg_image",
+                    "res/graphics/screen_transitions",
+                    "res/graphics/text_box",
+                    "res/graphics/tilesets",
+                    "res/graphics/video_call_cutscenes",
+                    "res/graphics/world_map",
+                    "res/tileset_animations"
+                ]
+
 FONTS_PATH = "res/fonts"
 SOUNDS_PATH = "res/audio/fx"
 MUSIC_PATH = "res/audio/music"
@@ -36,6 +52,7 @@ TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 DEFAULT_FONT = "default3.otf"
 DEFAULT_FONT_SIZE = 16
 
+SAVE_DATA_FILE_NAME = "bob.sav"
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 
 FILE_1_NAME = "file_1.json"

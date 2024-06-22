@@ -2,8 +2,8 @@ import logging
 import pygame
 import math
 
-from res.settings import *
-from res.framework.state import State
+from settings import *
+from src.state import State
 
 background_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_background.png"
 trees_image_path = f"{GRAPHICS_PATH}/backgrounds/title_screen_trees.png"

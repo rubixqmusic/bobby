@@ -4,8 +4,8 @@ import math
 import os
 import json
 
-from res.settings import *
-from res.framework.state import State
+from settings import *
+from src.state import State
 
 # SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 NEW_GAME_CUTSCENE_NAME = f"intro_1"

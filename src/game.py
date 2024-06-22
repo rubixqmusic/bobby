@@ -7,12 +7,12 @@ import base64
 import io
 from datetime import datetime
 
-from res.settings import *
-from res.utilities.ldtk_loader import load_ldtk
-from res.framework.state import State
-from res.framework.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
+from settings import *
+# from res.utilities.ldtk_loader import load_ldtk
+from src.state import State
+from src.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
 from res.input_events import *
-from res.savedata import save_data
+from savedata import save_data
 
 OFF = 0
 PRESSED = 1
@@ -23,41 +23,39 @@ class Game:
         
         self._resource_pack = {}
         self._load_resource_pack()
-        # print(f"\n\n {sys.platform} \n\n")
-        # print(f"\n\n {os.path.expanduser('~')} \n\n")
+
+        self.save_data_template = {}
+
+        for key in save_data:
+            self.save_data_template[key] = save_data[key]
+            
+        self.save_data = save_data
+        
+        self._save_file_database = {}
+        self._load_save_file_database()
 
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
 
         pygame.init()
-        self.screen = pygame.surface.Surface(SCREEN_SIZE)
 
+        self.screen = pygame.surface.Surface(SCREEN_SIZE)
         display_info = pygame.display.Info()
         self.window = pygame.display.set_mode(WINDOW_SIZE)
-        # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
-
         pygame.display.set_caption(WINDOW_CAPTION)
-        pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
 
-        
+        if not self._resource_pack:
+            logging.error(f"no resource file could be found. womp womp. aborting this horseshit. fuck you")
+            pygame.quit()
+            sys.exit()
+
+        pygame.display.set_icon(pygame.image.load(self.load_resource(f"{GRAPHICS_PATH}/icons/icon.png")))
 
         self.running = True
         self.clock = pygame.time.Clock()
         self.delta_time = 0.0
-
-        # self.world = load_ldtk(self.load_resource(WORLD_DATA_PATH))
-        
-
         self.world = None
         self.world = json.load(self.load_resource(WORLD_DATA_PATH))
-
-        # try:
-        #     with open(self.load_resource(WORLD_DATA_PATH)) as world_data:
-        #         self.world = json.load(world_data)
-        # except:
-        #     logging.debug(f"FATAL ERROR: Could not load world data file, shit's fucked fam")
-        
-        # print(self.world["levels"])
         
         self._input_events = {}
         self._joystick_events = {}
@@ -70,7 +68,6 @@ class Game:
         self._current_save_file = ""
 
         self.game_data = {}
-        self.save_data = save_data
 
         self.debug_font = pygame.font.Font(self.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), DEFAULT_FONT_SIZE)
 
@@ -80,7 +77,6 @@ class Game:
             except:
                 logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
-
         self.state = State(game_states)
         self.state.start(self,"init")
 
@@ -193,6 +189,10 @@ class Game:
                 self.quit_game()
 
     def run(self):
+        if self._resource_pack is None:
+            logging.debug(f"program exited in a fucked up manner. We couldn't find a resource pack. fuck you")
+            pygame.quit()
+            sys.exit()
         if self.world is None:
             logging.debug(f"program exited in a fucked up manner. No world file could be loaded, fam, so we aborted that shit")
             pygame.quit()
@@ -267,21 +267,43 @@ class Game:
             else:
                 logging.debug(f"could not load tileset! image path {image_path} does not exist!")
     
-    def _load_resource_pack(self):
 
-        with open(RESOURCE_FILE_NAME) as resource_pack:
-            resource_pack_decoded = base64.b64decode(resource_pack.read())
-            resource_pack_data = json.loads(resource_pack_decoded)
-           
-            for key in resource_pack_data:
-                new_value = base64.b64decode(resource_pack_data[key])
-                self._resource_pack[key] = new_value
+    def _load_save_file_database(self):
+        if os.path.exists(SAVE_DATA_FILE_NAME):
+            with open(SAVE_DATA_FILE_NAME) as save_file_database:
+                save_file_database_decoded = base64.b64decode(save_file_database.read())
+                save_file_database_data = json.loads(save_file_database_decoded)
+
+                for key in save_file_database_data:
+                    new_value = save_file_database_data[key]
+                    self._save_file_database[key] = new_value
+        else:
+            save_file_names = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
+            for filename in save_file_names:
+                self._save_file_database[filename] = {}
+                for key in self.save_data_template:
+                    self._save_file_database[filename][key] = self.save_data_template[key]
+
+            with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
+                save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
+                
+
+    def _load_resource_pack(self):
+        try:
+            with open(RESOURCE_FILE_NAME) as resource_pack:
+                resource_pack_decoded = base64.b64decode(resource_pack.read())
+                resource_pack_data = json.loads(resource_pack_decoded)
+            
+                for key in resource_pack_data:
+                    new_value = base64.b64decode(resource_pack_data[key])
+                    self._resource_pack[key] = new_value
+
+        except FileNotFoundError:
+            logging.error(f"uh oh! no resrouce file named {RESOURCE_FILE_NAME} could be found!")
     
+
     def resource_exists(self, resource_path: str) -> bool:
         return True if resource_path in self._resource_pack else False
-
-            
-
 
     def save_game(self):
         # if os.path.exists(self._current_save_file):

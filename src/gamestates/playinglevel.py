@@ -2,10 +2,10 @@ import logging
 import pygame
 import math
 
-from res.settings import *
-from res.framework.state import State
-from res.framework.camera import Camera
-from res.framework.animatedsprite import AnimatedSprite
+from settings import *
+from src.state import State
+from src.camera import Camera
+from src.animatedsprite import AnimatedSprite
 
 TRANSITION_SPRITESHEET = f"{GRAPHICS_PATH}/screen_transitions/screen_transitions.png"
 TRANSITION_ANIMATION = f"{ANIMATIONS_PATH}/screen_transitions.json"

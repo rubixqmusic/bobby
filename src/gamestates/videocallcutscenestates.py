@@ -4,9 +4,9 @@ import os
 import textwrap
 import math
 
-from res.settings import *
-from res.framework.state import State
-from res.framework.animatedsprite import AnimatedSprite
+from settings import *
+from src.state import State
+from src.animatedsprite import AnimatedSprite
 
 VIDEO_CALL_RINGING_IMAGE_PATH = f"{GRAPHICS_PATH}/video_call_cutscenes/video_call_ringing.png"
 VIDEO_CALL_RINGING_MUSIC_PATH = f"{MUSIC_PATH}/video_call_ringing.mp3"

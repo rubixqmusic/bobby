@@ -1,10 +1,10 @@
 import pygame
 import logging
 
-from res.settings import *
-from res.framework.state import State
-from res.framework.gamestates.videocallcutscenestates import VideoCallRinging
-from res.framework.videocallcutscenes import cutscenes
+from settings import *
+from src.state import State
+from src.gamestates.videocallcutscenestates import VideoCallRinging
+from src.videocallcutscenes import cutscenes
 
 VIDEO_CALL_WINDOW_BORDER_COLOR = "#4854a0"
 TEXT_BOX_Y_POSITION = 174

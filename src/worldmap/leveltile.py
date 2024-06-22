@@ -1,5 +1,5 @@
 import pygame
-from res.framework.animatedsprite import AnimatedSprite
+from src.animatedsprite import AnimatedSprite
 
 INCOMPLETE_ANIMATION = "incomplete"
 COMPLETE_ANIMATION = "complete"

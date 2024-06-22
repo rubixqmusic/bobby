@@ -2,14 +2,14 @@ import logging
 import pygame
 import math
 
-from res.settings import *
-from res.framework.state import State
-from res.framework.camera import Camera
-from res.framework.worldmap.mappath import MapPath
-from res.framework.worldmap.landing import Landing
-from res.framework.worldmap.leveltile import LevelTile
-from res.framework.worldmap.player import Player
-from res.framework.animatedsprite import AnimatedSprite
+from settings import *
+from src.state import State
+from src.camera import Camera
+from src.worldmap.mappath import MapPath
+from src.worldmap.landing import Landing
+from src.worldmap.leveltile import LevelTile
+from src.worldmap.player import Player
+from src.animatedsprite import AnimatedSprite
 
 WORLD_MAP_MUSIC = f"{MUSIC_PATH}/world_map.mp3"
 BACKGROUND_IMAGE = f"{GRAPHICS_PATH}/backgrounds/world_map_background.png"

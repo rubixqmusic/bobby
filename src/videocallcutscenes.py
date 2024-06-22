@@ -1,4 +1,4 @@
-from res.framework.gamestates.videocallcutscenestates import VideoCallRinging, PlayMusic, SetBackgroundImage, PlaySound, Wait, SetCharacterAnimation, Choice, ShowDialog, GoTo, EndCall
+from src.gamestates.videocallcutscenestates import VideoCallRinging, PlayMusic, SetBackgroundImage, PlaySound, Wait, SetCharacterAnimation, Choice, ShowDialog, GoTo, EndCall
 
 BLANK_BACKGROUND_PATH = f"backgrounds/video_call_blank_background.png"
 BEACH_BACKGROUND_PATH = f"backgrounds/video_call_beach_background.png"

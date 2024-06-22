@@ -3,9 +3,9 @@ import logging
 import os
 import json
 
-from res.framework.signal import Signal
-from res.framework.state import State
-from res.settings import *
+from src.signal import Signal
+from src.state import State
+from settings import *
 
 
 class AnimatedSprite():

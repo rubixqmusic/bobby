@@ -1,9 +1,9 @@
 import pygame
 
-from res.settings import *
-from res.framework.animatedsprite import AnimatedSprite
-from res.framework.state import State
-from res.framework.signal import Signal
+from settings import *
+from src.animatedsprite import AnimatedSprite
+from src.state import State
+from src.signal import Signal
 
 LAND_ON_LEVEL_SOUND = f"{SOUNDS_PATH}/land_on_level.wav"
 

@@ -1,8 +1,8 @@
 import logging
 import pygame
 
-from res.settings import *
-from res.framework.state import State
+from settings import *
+from src.state import State
 
 KABLIO_IMAGE_PATH = f"{GRAPHICS_PATH}/backgrounds/kablio.png"
 
