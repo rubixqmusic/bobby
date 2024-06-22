@@ -46,28 +46,9 @@ text_grow_step_size = 0.1
 sine_degrees = 0.0
 grow_factor = 0
 
-# FILE_1_NAME = "file_1.json"
-# FILE_2_NAME = "file_2.json"
-# FILE_3_NAME = "file_3.json"
-
 
 class FileSelectScreen(State):
     def on_state_enter(self, game):
-        # if not os.path.exists(SAVE_DATA_PATH):
-        #     try:
-        #         os.mkdir(SAVE_DATA_PATH)
-        #     except:
-        #         logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
-        
-        # save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
-
-        # for file_name in save_files:
-        #     filepath = f"{SAVE_DATA_PATH}/{file_name}"
-        #     if os.path.exists(filepath):
-        #         with open(filepath) as save_file:
-        #             save_file_data = json.load(save_file)
-
-        #             # load in the data you need to the file info images menu
 
         self.sine_degrees = 0
         self.grow_factor = 0
@@ -213,11 +194,6 @@ class SelectFile(State):
                         # {"name" : "erase", "text" : "Erase"}
                     ]
         
-        # if not os.path.exists(SAVE_DATA_PATH):
-        #     try:
-        #         os.mkdir(SAVE_DATA_PATH)
-        #     except:
-        #         logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
         save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
         index = 0
