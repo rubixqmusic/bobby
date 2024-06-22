@@ -189,26 +189,30 @@ class Game:
                 self.quit_game()
 
     def run(self):
-        if self._resource_pack is None:
-            logging.debug(f"program exited in a fucked up manner. We couldn't find a resource pack. fuck you")
+        if not self._resource_pack:
+            logging.error(f"program exited in a fucked up manner. We couldn't find a resource pack. fuck you")
             pygame.quit()
             sys.exit()
         if self.world is None:
-            logging.debug(f"program exited in a fucked up manner. No world file could be loaded, fam, so we aborted that shit")
+            logging.error(f"program exited in a fucked up manner. No world file could be loaded, fam, so we aborted that shit")
             pygame.quit()
             sys.exit()
         while self.running:
-            self._process_events()
-            self.state.process_events(self)
-            self.state.update(self)
-            self.state.draw(self)
-            self._draw_debug() if DEBUG_ENABLED else None
-            self._draw_screen_to_window()
-            pygame.display.flip()
-            self._update_clock()
+            self._iterate()
         pygame.quit()
         logging.debug(f"program exited normally")
         sys.exit()
+    
+    def _iterate(self):
+        self._process_events()
+        self.state.process_events(self)
+        self.state.update(self)
+        self.state.draw(self)
+        if DEBUG_ENABLED:
+            self._draw_debug()  
+        self._draw_screen_to_window()
+        pygame.display.flip()
+        self._update_clock()
     
     def _draw_debug(self):
         debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
@@ -284,9 +288,14 @@ class Game:
                 for key in self.save_data_template:
                     self._save_file_database[filename][key] = self.save_data_template[key]
 
-            with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
-                save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
-                
+            self._write_save_file_database()
+            # with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
+            #     save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
+    
+    def _write_save_file_database(self):
+        with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
+            save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
+
 
     def _load_resource_pack(self):
         try:
@@ -328,33 +337,65 @@ class Game:
         day = timestamp.day
         year = timestamp.year
         self.save_data["last_saved"] = f"{month} {day}, {year}"
-        try:
-            with open(self._current_save_file, 'w') as save_file:
-                json.dump(self.save_data, save_file)
-        except:
-            logging.debug(f"could not save game to file!")
+
+        if self._current_save_file in self._save_file_database:
+            for key in self.save_data:
+                self._save_file_database[self._current_save_file][key] = self.save_data[key]
+            
+            # print(self._save_file_database[self._current_save_file])
+
+
+            self._write_save_file_database()
+        else:
+            logging.error(f"could not write save file database to disk! make sure you have the correct permissions, or correct save file selected!")
+
+        # try:
+        #     with open(self._current_save_file, 'w') as save_file:
+        #         json.dump(self.save_data, save_file)
+        # except:
+        #     logging.debug(f"could not save game to file!")
     
 
     def load_save_file(self, filepath):
-        if os.path.exists(filepath):
-            try:
-                with open(filepath) as save_file:
-                    save_file_data = json.load(save_file)
 
-                    for key, value in save_file_data:
-                        self.save_data[key] = value         
-            except:
-                logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
+        
+
+
+        if filepath in self._save_file_database:
+            for key in self._save_file_database[filepath]:
+                self.save_data[key] = self._save_file_database[filepath][key]
         else:
-            logging.debug(f"could not load save file, filepath {filepath} does not exist!")
+            logging.error(f"no save file called {filepath}, could not load save file")
+
+        # if os.path.exists(filepath):
+        #     try:
+        #         with open(filepath) as save_file:
+        #             save_file_data = json.load(save_file)
+
+        #             for key, value in save_file_data:
+        #                 self.save_data[key] = value         
+        #     except:
+        #         logging.debug(f"could not load in save file {filepath}! someone made an oopsie goofer")
+        # else:
+        #     logging.debug(f"could not load save file, filepath {filepath} does not exist!")
     
 
     def create_new_save_file(self, filepath):
-        try:
-            with open(filepath, 'w') as fp:
-                json.dump(self.save_data, fp)
-        except:
-            logging.debug(f"could not save file!")
+        if filepath in self._save_file_database:
+            for key in self.save_data_template:
+                self.save_data[key] = self.save_data_template[key]
+                self._save_file_database[filepath][key] = self.save_data_template[key]
+            self._write_save_file_database()
+        else:
+            for key in self.save_data_template:
+                self.save_data[key] = self.save_data_template[key]
+            logging.error(f"could not create new save file and write to disk!")
+
+        # try:
+        #     with open(filepath, 'w') as fp:
+        #         json.dump(self.save_data, fp)
+        # except:
+        #     logging.debug(f"could not save file!")
 
 
     def get_save_data(self, save_data):
@@ -362,6 +403,9 @@ class Game:
             return self.save_data[save_data]
         else:
             return None
+    
+    def set_save_data(self, key, value):
+        self.save_data[key] = value
     
     def get_level_data(self, level_name):
         if level_name in self.save_data["levels"]:

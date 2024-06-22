@@ -222,14 +222,16 @@ class SelectFile(State):
         save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
         index = 0
         for file_name in save_files:
-            filepath = f"{SAVE_DATA_PATH}/{file_name}"
-            if os.path.exists(filepath):
-                with open(filepath) as save_file:
-                    save_file_data = json.load(save_file)
-                    if "last_saved" in save_file_data:
-                        self.menu[index]["last_saved"] = save_file_data["last_saved"]
-                    if "percent_to_plan" in save_file_data:
-                        self.menu[index]["percent_to_plan"] = save_file_data["percent_to_plan"]
+            filepath = file_name
+            if file_name in file_select_screen.game._save_file_database:
+                
+                # print(file_select_screen.game._save_file_database[file_name])
+                
+                if "last_saved" in file_select_screen.game._save_file_database[file_name]:
+                    # print("FUCK YOU")
+                    self.menu[index]["last_saved"] = file_select_screen.game._save_file_database[file_name]["last_saved"]
+                if "percent_to_plan" in file_select_screen.game._save_file_database[file_name]:
+                    self.menu[index]["percent_to_plan"] = file_select_screen.game._save_file_database[file_name]["percent_to_plan"]
             index +=1
 
     
@@ -251,7 +253,7 @@ class SelectFile(State):
                 for menu_item in self.menu:
                     if "file_name" in menu_item:
                         if menu_item["name"] == self.current_menu_selection:
-                            filepath = f"{SAVE_DATA_PATH}/{menu_item['file_name']}"
+                            filepath = menu_item['file_name']
 
                             file_select_screen.game.set_current_save_file(filepath)
 
