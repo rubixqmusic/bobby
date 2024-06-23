@@ -243,6 +243,9 @@ class Game:
     def set_current_save_file(self, filepath):
         self._current_save_file = filepath
     
+    def get_current_save_file(self):
+        return self._current_save_file
+    
     def get_scene_and_starting_position_from_iid(self, level_iid, entrance_iid)->tuple:
         for level in self.get_levels_from_world():
             if level["iid"] == level_iid:

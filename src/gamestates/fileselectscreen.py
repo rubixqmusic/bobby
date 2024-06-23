@@ -35,6 +35,13 @@ menu_drop_shadow_x = 1
 menu_drop_shadow_y = 1
 menu_drop_shadow_color = f"#000000"
 
+SELECT_A_FILE_TEXT = f"Select A File"
+ERASE_FILE_TEXT = f"Erase File"
+SELECT_SOURCE_FILE_TEXT = f"Select Source File"
+SELECT_DESTINATION_FILE_TEXT = f"Select Destination File"
+ARE_YOU_SURE_TEXT = f"Are You Sure?"
+FILE_ERASED_TEXT = f"File Erased!"
+FILE_COPIED_TEXT = f"File Copied!"
 select_a_file_text = f"Select A File"
 select_a_file_text_y_position = 32
 
@@ -64,13 +71,16 @@ class FileSelectScreen(State):
         self.menu_selection_font = pygame.font.Font(game.load_resource(menu_selection_font_path),menu_selection_text_size)
 
         self.select_a_file_font = pygame.font.Font(game.load_resource(menu_selection_font_path), select_a_file_font_size)
-        self.select_a_file_text_surface = self.select_a_file_font.render(select_a_file_text,True,main_text_color)
+        self.select_a_file_text_surface = None
 
         game.play_music(file_select_screen_music_path)
         
         
         self.state = State(file_select_screen_states)
         self.state.start(self, "fade_in")
+    
+    def set_select_a_file_text(self, new_text):
+        self.select_a_file_text_surface = self.select_a_file_font.render(new_text,True,main_text_color)
 
     def process_events(self, game):
         if game.game_should_quit():
@@ -85,11 +95,12 @@ class FileSelectScreen(State):
         self.state.update(self)
 
     def draw(self, game):
-        text_rect = self.select_a_file_text_surface.get_rect(center=(SCREEN_WIDTH/2, select_a_file_text_y_position))
         game.get_screen().fill("#000000")
         game.get_screen().blit(self.background_image, (0,0))
         game.get_screen().blit(self.trees_image, self.trees_image_position)
-        game.get_screen().blit(self.select_a_file_text_surface, text_rect)
+        if self.select_a_file_text_surface is not None:
+            text_rect = self.select_a_file_text_surface.get_rect(center=(SCREEN_WIDTH/2, select_a_file_text_y_position))
+            game.get_screen().blit(self.select_a_file_text_surface, text_rect) 
         self.state.draw(self)
 
     def start_new_game(self):
@@ -98,8 +109,20 @@ class FileSelectScreen(State):
     def load_saved_game(self):
         self.state.set_state(self, "load_saved_game")
 
+    def erase_file(self):
+        self.state.set_state(self, "erase_file")
+
+    def confirm_erase(self):
+        self.state.set_state(self, "confirm_erase")
+    
+    def file_erased(self):
+        self.state.set_state(self, "file_erased")
+    
+    def select_file(self):
+        self.state.set_state(self, "select_file")
+
 class FadeIn(State):
-    def on_state_enter(self, file_select_screen):
+    def on_state_enter(self, file_select_screen: FileSelectScreen):
         self.min_fade = 0
         self.max_fade = 255
         self.fade = self.min_fade
@@ -110,7 +133,7 @@ class FadeIn(State):
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             self.fade += self.fade_step
         else:
-            file_select_screen.state.set_state(file_select_screen, "select_file")
+            file_select_screen.select_file()
 
 
 class GoToTitleScreen(State):
@@ -176,7 +199,9 @@ class LoadSavedGame(State):
 
 
 class SelectFile(State):
-    def on_state_enter(self, file_select_screen):
+    def on_state_enter(self, file_select_screen: FileSelectScreen):
+
+        file_select_screen.set_select_a_file_text(SELECT_A_FILE_TEXT)
 
         file_select_screen.game.play_sound(SELECT_A_FILE_FX)
 
@@ -186,12 +211,12 @@ class SelectFile(State):
         self.file_info_font = pygame.font.Font(file_select_screen.game.load_resource(menu_selection_font_path),file_info_font_size)
 
         self.menu = [
-                        {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100"},
-                        {"name" : "back", "text" : "Back"},
-                        # {"name" : "copy", "text" : "Copy"},
-                        # {"name" : "erase", "text" : "Erase"}
+                        {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 72]},
+                        {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 122]},
+                        {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 172]},
+                        {"name" : "back", "text" : "Back", "position" : [SCREEN_WIDTH/2, 220]},
+                        {"name" : "copy", "text" : "Copy", "position" : [SCREEN_WIDTH/2, 240]},
+                        {"name" : "erase", "text" : "Erase", "position" : [SCREEN_WIDTH/2, 260]}
                     ]
         
         
@@ -211,7 +236,7 @@ class SelectFile(State):
             index +=1
 
     
-    def process_events(self, file_select_screen):            
+    def process_events(self, file_select_screen: FileSelectScreen):            
         if file_select_screen.game.is_button_released(DOWN_BUTTON):
                 self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
                 file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
@@ -224,6 +249,9 @@ class SelectFile(State):
             if self.current_menu_selection == "back":
                 file_select_screen.game.play_sound(BACK_FX)
                 file_select_screen.state.set_state(file_select_screen, "go_to_title_screen")
+            if self.current_menu_selection == "erase":
+                file_select_screen.game.play_sound(SELECT_A_FILE_FX)
+                file_select_screen.erase_file()
 
             if self.current_menu_selection == "file_1" or "file_2" or "file_3":
                 for menu_item in self.menu:
@@ -258,12 +286,169 @@ class SelectFile(State):
                   True)
 
 
+class EraseFile(State):
+    def on_state_enter(self, file_select_screen: FileSelectScreen):
+
+        file_select_screen.set_select_a_file_text(ERASE_FILE_TEXT)
+
+        # file_select_screen.game.play_sound(SELECT_A_FILE_FX)
+
+        self.menu_y_start_position = 72        
+        self.current_menu_selection = "file_1"
+
+        self.file_info_font = pygame.font.Font(file_select_screen.game.load_resource(menu_selection_font_path),file_info_font_size)
+
+        self.menu = [
+                        {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 72]},
+                        {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 122]},
+                        {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 172]},
+                        {"name" : "back", "text" : "Back", "position" : [SCREEN_WIDTH/2, 220]},
+                        # {"name" : "copy", "text" : "Copy", "position" : [SCREEN_WIDTH/2, 240]},
+                        # {"name" : "erase", "text" : "Erase", "position" : [SCREEN_WIDTH/2, 260]}
+                    ]
+        
+        
+        save_files = [FILE_1_NAME, FILE_2_NAME, FILE_3_NAME]
+        index = 0
+        for file_name in save_files:
+            filepath = file_name
+            if file_name in file_select_screen.game._save_file_database:
+                
+                # print(file_select_screen.game._save_file_database[file_name])
+                
+                if "last_saved" in file_select_screen.game._save_file_database[file_name]:
+                    # print("FUCK YOU")
+                    self.menu[index]["last_saved"] = file_select_screen.game._save_file_database[file_name]["last_saved"]
+                if "percent_to_plan" in file_select_screen.game._save_file_database[file_name]:
+                    self.menu[index]["percent_to_plan"] = file_select_screen.game._save_file_database[file_name]["percent_to_plan"]
+            index +=1
+
+    
+    def process_events(self, file_select_screen):            
+        if file_select_screen.game.is_button_released(DOWN_BUTTON):
+                self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
+                file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
+
+        if file_select_screen.game.is_button_released(UP_BUTTON):
+            self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
+            file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
+
+        if file_select_screen.game.is_button_released(START_BUTTON):
+            if self.current_menu_selection == "back":
+                file_select_screen.game.play_sound(BACK_FX)
+                file_select_screen.select_file()
+
+            if self.current_menu_selection == "file_1" or "file_2" or "file_3":
+                for menu_item in self.menu:
+                    if "file_name" in menu_item:
+                        if menu_item["name"] == self.current_menu_selection:
+                            filepath = menu_item['file_name']
+
+                            file_select_screen.game.set_current_save_file(filepath)
+
+                            file_select_screen.confirm_erase()
+
+                            # if menu_item["last_saved"] == "EMPTY":
+                            #     file_select_screen.game.create_new_save_file(filepath)
+
+                            #     file_select_screen.game.play_sound(ITS_BOBBY_TIME_FX)
+                            #     file_select_screen.game.stop_music()
+                            #     file_select_screen.start_new_game()
+                            # else:
+                            #     file_select_screen.game.load_save_file(filepath)
+                            #     file_select_screen.game.play_sound(ITS_BOBBY_TIME_FX)
+                            #     file_select_screen.game.stop_music()
+                            #     file_select_screen.load_saved_game()
+
+    def draw(self, file_select_screen):
+        draw_file_select_menu(file_select_screen,
+                  self.menu, 
+                  self.current_menu_selection, 
+                  self.menu_y_start_position, 
+                  text_y_spacing, 
+                  self.file_info_font, 
+                  menu_selection_text_color,
+                  file_select_screen.game.get_screen(),
+                  file_select_screen.grow_factor,
+                  True)
+
+
+class ConfirmErase(State):
+    def on_state_enter(self, file_select_screen: FileSelectScreen):
+
+        file_select_screen.set_select_a_file_text(ARE_YOU_SURE_TEXT)
+
+        # file_select_screen.game.play_sound(SELECT_A_FILE_FX)
+
+        self.menu_y_start_position = 72        
+        self.current_menu_selection = "no"
+
+        self.file_info_font = pygame.font.Font(file_select_screen.game.load_resource(menu_selection_font_path),file_info_font_size)
+
+        self.menu = [
+                        # {"name" : "file_1", "text" : "NEW", "file_name" : FILE_1_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 72]},
+                        # {"name" : "file_2", "text" : "NEW", "file_name" : FILE_2_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 122]},
+                        # {"name" : "file_3", "text" : "NEW", "file_name" : FILE_3_NAME, "bg_image" : file_select_background_path, "date_created" : "", "last_saved": "EMPTY", "percent_to_plan" : "0/100", "position" : [SCREEN_WIDTH/2, 172]},
+                        {"name" : "yes", "text" : "Yes", "position" : [SCREEN_WIDTH/2, 120]},
+                        {"name" : "no", "text" : "No", "position" : [SCREEN_WIDTH/2, 140]},
+                        # {"name" : "erase", "text" : "Erase", "position" : [SCREEN_WIDTH/2, 260]}
+                    ]
+        
+
+    
+    def process_events(self, file_select_screen):            
+        if file_select_screen.game.is_button_released(DOWN_BUTTON):
+                self.current_menu_selection = get_next_menu_item(self.menu, self.current_menu_selection)
+                file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
+
+        if file_select_screen.game.is_button_released(UP_BUTTON):
+            self.current_menu_selection = get_previous_menu_item(self.menu, self.current_menu_selection)
+            file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
+
+        if file_select_screen.game.is_button_released(START_BUTTON):
+            if self.current_menu_selection == "no":
+                file_select_screen.game.play_sound(BACK_FX)
+                file_select_screen.select_file()
+            
+            if self.current_menu_selection == "yes":
+                file_select_screen.game.play_sound(SELECT_A_FILE_FX)
+                file_select_screen.game.create_new_save_file(file_select_screen.game.get_current_save_file())
+                # file_select_screen.game.save_game()
+                file_select_screen.file_erased()
+
+
+    def draw(self, file_select_screen):
+        draw_file_select_menu(file_select_screen,
+                  self.menu, 
+                  self.current_menu_selection, 
+                  self.menu_y_start_position, 
+                  text_y_spacing, 
+                  self.file_info_font, 
+                  menu_selection_text_color,
+                  file_select_screen.game.get_screen(),
+                  file_select_screen.grow_factor,
+                  True)
+
+
+class FileErased(State):
+    def on_state_enter(self, file_select_screen: FileSelectScreen):
+
+        file_select_screen.set_select_a_file_text(FILE_ERASED_TEXT)
+
+    def process_events(self, file_select_screen):            
+        if file_select_screen.game.is_button_released(START_BUTTON):
+            file_select_screen.select_file()
+
+
 file_select_screen_states = {
                         "fade_in" : FadeIn,
                         "select_file" : SelectFile,
                         "go_to_title_screen" : GoToTitleScreen,
                         "start_new_game" : StartNewGame,
-                        "load_saved_game" : LoadSavedGame
+                        "load_saved_game" : LoadSavedGame,
+                        "erase_file" : EraseFile,
+                        "confirm_erase" : ConfirmErase,
+                        "file_erased" : FileErased
                         }
 
 def draw_file_select_menu(
@@ -307,10 +492,10 @@ def draw_file_select_menu(
             if menu_item["name"] == current_selection:
                 new_surface = pygame.transform.scale(file_info_background, (file_info_base_size[0] + grow_factor, file_info_base_size[1]+grow_factor))
 
-                file_info_rect = new_surface.get_rect(center=(SCREEN_WIDTH/2, y_start + (menu_item_index*y_spacing)))
+                file_info_rect = new_surface.get_rect(center=(menu_item["position"]))
                 destination_surface.blit(new_surface, file_info_rect)
             else:
-                file_info_rect = file_info_background.get_rect(center=(SCREEN_WIDTH/2, y_start + (menu_item_index*y_spacing)))
+                file_info_rect = file_info_background.get_rect(center=(menu_item["position"]))
                 destination_surface.blit(file_info_background, file_info_rect)
         else:
             text_surface = font.render(menu_item['text'],True,font_color)
@@ -324,19 +509,19 @@ def draw_file_select_menu(
                     drop_shadow_surface_new = pygame.transform.scale(drop_shadow_surface, 
                                         (text_surface_base_size[0] + grow_factor, 
                                         text_surface_base_size[1] + grow_factor))
-                    drop_shadow_rect = drop_shadow_surface_new.get_rect(center=(SCREEN_WIDTH/2 + drop_shadow_x, y_start + (menu_item_index*y_spacing)+drop_shadow_y))
+                    drop_shadow_rect = drop_shadow_surface_new.get_rect(center=(menu_item["position"][0] + drop_shadow_x, menu_item["position"][1]+drop_shadow_y))
                     destination_surface.blit(drop_shadow_surface, drop_shadow_rect)
                 
                 new_surface = pygame.transform.scale(text_surface, 
                                         (text_surface_base_size[0] + grow_factor, 
                                         text_surface_base_size[1] + grow_factor))
-                text_rect = new_surface.get_rect(center=(SCREEN_WIDTH/2, y_start + (menu_item_index*y_spacing)))
+                text_rect = new_surface.get_rect(center=(menu_item["position"]))
                 destination_surface.blit(new_surface, text_rect)
             else:
                 if drop_shadow_surface is not None:
-                    drop_shadow_rect = drop_shadow_surface.get_rect(center=(SCREEN_WIDTH/2 + drop_shadow_x, y_start + (menu_item_index*y_spacing)+drop_shadow_y))
+                    drop_shadow_rect = drop_shadow_surface.get_rect(center=(menu_item["position"][0] + drop_shadow_x, menu_item["position"][1]+drop_shadow_y))
                     destination_surface.blit(drop_shadow_surface, drop_shadow_rect)
-                text_rect = text_surface.get_rect(center=(SCREEN_WIDTH/2, y_start + (menu_item_index*y_spacing)))
+                text_rect = text_surface.get_rect(center=(menu_item["position"]))
                 destination_surface.blit(text_surface, text_rect)
     
         menu_item_index += 1
