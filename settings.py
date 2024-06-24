@@ -18,6 +18,7 @@ FPS = 60
 RESOURCE_FILE_NAME = "bob.res"
 RESOURCE_DIRS = [
                     "res/animations", 
+                    "res/cutscenes",
                     "res/audio/fx", 
                     "res/audio/music", 
                     "res/fonts", 
@@ -50,7 +51,7 @@ ANIMATIONS_PATH = "res/animations"
 TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 
 DEFAULT_FONT = "default3.otf"
-DEFAULT_FONT_SIZE = 16
+DEFAULT_FONT_SIZE = 12
 
 SAVE_DATA_FILE_NAME = "bob.sav"
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
@@ -90,8 +91,8 @@ OVERLAY_2_LAYER_NAME = "overlay_2"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = True
-DEBUG_START_IN_STATE = "file_select_screen"
+DEBUG_ENABLED = False
+DEBUG_START_IN_STATE = "title_screen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [185,466]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

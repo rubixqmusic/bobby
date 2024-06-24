@@ -42,7 +42,7 @@ LEVEL_NAME_CENTER = [304,38]
 MAX_TEXT_GROW = 5.0
 TEXT_GROW_STEP_SIZE = 0.1
 
-GO_BOBBY_TEXT = f"Go, Bobby!"
+GO_BOBBY_TEXT = f"It's Bobby Time!"
 
 
 

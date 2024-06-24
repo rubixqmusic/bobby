@@ -3,8 +3,9 @@ import pygame
 
 from settings import *
 from src.state import State
+from src.screens.splashscreen.resources import *
 
-KABLIO_IMAGE_PATH = f"{GRAPHICS_PATH}/backgrounds/kablio.png"
+
 
 class Splashscreen(State):   
     def on_state_enter(self, game):

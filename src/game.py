@@ -8,9 +8,9 @@ import io
 from datetime import datetime
 
 from settings import *
-# from res.utilities.ldtk_loader import load_ldtk
 from src.state import State
-from src.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
+# from src.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
+from src.screens.screens import screens
 from res.input_events import *
 from savedata import save_data
 
@@ -77,7 +77,7 @@ class Game:
             except:
                 logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
-        self.state = State(game_states)
+        self.state = State(screens)
         self.state.start(self,"init")
 
 
@@ -215,9 +215,18 @@ class Game:
         self._update_clock()
     
     def _draw_debug(self):
-        debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
+        camera_pos = [0,0]
+        try:
+            camera_pos[0] = self.state.camera.get_position()[0]
+            camera_pos[1] = self.state.camera.get_position()[1]
+        except AttributeError:
+            pass
 
-        self.get_screen().blit(debug_fps, (400, 20))
+        debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
+        debug_camera_pos = self.debug_font.render(f"Camera Pos: {camera_pos}", True, (255,255,255))
+
+        self.get_screen().blit(debug_fps, (12, 12))
+        self.get_screen().blit(debug_camera_pos, (12, 28))
 
     def get_fps(self):
         return self.clock.get_fps()
@@ -233,6 +242,9 @@ class Game:
     
     def load_file_select_screen(self):
         self.state.set_state(self, "file_select_screen")
+
+    def load_settings_screen(self):
+        self.state.set_state(self, "settings_screen")
     
     def load_world_map(self):
         self.state.set_state(self, "world_map")
@@ -290,10 +302,7 @@ class Game:
                 self._save_file_database[filename] = {}
                 for key in self.save_data_template:
                     self._save_file_database[filename][key] = self.save_data_template[key]
-
             self._write_save_file_database()
-            # with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
-            #     save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
     
     def _write_save_file_database(self):
         with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
@@ -394,6 +403,11 @@ class Game:
                 self.save_data[key] = self.save_data_template[key]
             logging.error(f"could not create new save file and write to disk!")
 
+    def copy_save_file(self, source_file, destination_file):
+        if source_file in self._save_file_database and destination_file in self._save_file_database:
+            for key in self._save_file_database[source_file]:
+                self._save_file_database[destination_file][key] = self._save_file_database[source_file][key]
+            self._write_save_file_database()
         # try:
         #     with open(filepath, 'w') as fp:
         #         json.dump(self.save_data, fp)
@@ -511,13 +525,13 @@ class Game:
                 if button_name in self._joystick_events[controller_instance_id]:
                     return True if self._joystick_events[controller_instance_id][button_name] == RELEASED else False
 
-game_states = {
-                "init" : init.Init,
-                "splashscreen" : splashscreen.Splashscreen,
-                "title_screen" : titlescreen.TitleScreen,
-                "file_select_screen" : fileselectscreen.FileSelectScreen,
-                "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
-                "world_map" : worldmap.WorldMap,
-                "playing_level" : playinglevel.PlayingLevel
-                }
+# game_states = {
+#                 "init" : init.Init,
+#                 "splashscreen" : splashscreen.Splashscreen,
+#                 "title_screen" : titlescreen.TitleScreen,
+#                 "file_select_screen" : fileselectscreen.FileSelectScreen,
+#                 "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
+#                 "world_map" : worldmap.WorldMap,
+#                 "playing_level" : playinglevel.PlayingLevel
+#                 }
         

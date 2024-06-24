@@ -12,6 +12,8 @@ class Init(State):
                 game.load_title_screen()
             elif DEBUG_START_IN_STATE == "file_select_screen":
                 game.load_file_select_screen()
+            elif DEBUG_START_IN_STATE == "settings_screen":
+                game.load_settings_screen()
             elif DEBUG_START_IN_STATE == "video_call_cutscene":
                 game.run_video_call_cutscene(DEBUG_VIDEO_CALL_CUTSCENE)
             elif DEBUG_START_IN_STATE == "world_map":

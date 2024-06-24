@@ -3,7 +3,7 @@ import logging
 
 from settings import *
 from src.state import State
-from src.gamestates.videocallcutscenestates import VideoCallRinging
+from src.screens.videocallcutscenestates import VideoCallRinging
 from src.videocallcutscenes import cutscenes
 
 VIDEO_CALL_WINDOW_BORDER_COLOR = "#4854a0"
