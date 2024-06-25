@@ -275,8 +275,7 @@ class LoadScene(State):
                         level.main_ground["grid_size"] = layer["__gridSize"]
                         level.main_ground["tiles"] = layer["autoLayerTiles"]
                         level.game.load_tileset(f"{BASE_PATH}{level.main_ground['tileset']}", level.tilesets)
-                
-                print(level.tilesets)
+
 
                 level.camera.set_bounds(0, level.width, 0, level.height)
                 level.camera.center(self.player_start_position[0], self.player_start_position[1])

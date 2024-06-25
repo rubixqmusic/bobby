@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     icon_path = f"res/graphics/icons/icon.ico"
 
-    os.system(f"pyinstaller main.py -n \"{EXECUTABLE_NAME}\" --onefile -i\"{icon_path}\"")
+    os.system(f"pyinstaller --noconsole main.py -n \"{EXECUTABLE_NAME}\" --onefile -i\"{icon_path}\"")
 
     generate_resource_pack(RESOURCE_DIRS, RESOURCE_FILE_NAME)
 

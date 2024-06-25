@@ -156,6 +156,7 @@ class FadeIn(State):
         else:
             file_select_screen.select_file()
 
+
 class GoToTitleScreen(State):
     def on_state_enter(self, file_select_screen):
         self.min_fade = 0
@@ -172,6 +173,7 @@ class GoToTitleScreen(State):
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             file_select_screen.game.load_title_screen()
   
+
 class StartNewGame(State):
     def on_state_enter(self, file_select_screen):
         
@@ -188,6 +190,7 @@ class StartNewGame(State):
             self.fade = 0
             file_select_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             file_select_screen.game.run_video_call_cutscene(NEW_GAME_CUTSCENE_NAME)
+
 
 class LoadSavedGame(State):
     def on_state_enter(self, file_select_screen):
@@ -214,6 +217,7 @@ class LoadSavedGame(State):
                 self.hold -= 1
             else:
                 file_select_screen.game.load_world_map()
+
 
 class SelectFile(State):
     def on_state_enter(self, file_select_screen: FileSelectScreen):

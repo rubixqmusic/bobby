@@ -81,6 +81,7 @@ class TitleScreen(State):
         game.get_screen().blit(self.licensed_by_kablio_text_surface, text_rect)
         self.state.draw(self)
 
+
     def go_to_file_select_screen(self):
         self.state.set_state(self, "go_to_file_select_screen")
 

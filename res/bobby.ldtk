@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 68,
+	"nextUid": 69,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1835,6 +1835,43 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
+		},
+		{
+			"identifier": "script",
+			"doc": null,
+			"__type": "String",
+			"uid": 68,
+			"type": "F_Text",
+			"isArray": false,
+			"canBeNull": true,
+			"arrayMinLength": null,
+			"arrayMaxLength": null,
+			"editorDisplayMode": "Hidden",
+			"editorDisplayScale": 1,
+			"editorDisplayPos": "Above",
+			"editorLinkStyle": "StraightArrow",
+			"editorDisplayColor": null,
+			"editorAlwaysShow": false,
+			"editorShowInWorld": true,
+			"editorCutLongValues": true,
+			"editorTextSuffix": null,
+			"editorTextPrefix": null,
+			"useForSmartColor": false,
+			"exportToToc": false,
+			"searchable": false,
+			"min": null,
+			"max": null,
+			"regex": null,
+			"acceptFileTypes": null,
+			"defaultOverride": null,
+			"textLanguageMode": "LangPython",
+			"symmetricalRef": false,
+			"autoChainRef": true,
+			"allowOutOfLevelRef": true,
+			"allowedRefs": "OnlySame",
+			"allowedRefsEntityUid": null,
+			"allowedRefTags": [],
+			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -1865,7 +1902,8 @@
 					"params": ["beach"]
 				}] },
 				{ "__identifier": "bg_image", "__type": "String", "__value": "{\n  \"bg_image\" : null,\n  \"animation\" : null\n}", "__tile": null, "defUid": 66, "realEditorValues": [] },
-				{ "__identifier": "bg_1", "__type": "String", "__value": "{\n  \"image\" : null,\n  \"parallax_x\" : 1.0,\n  \"parallax_y\" : 1.0,\n  \"blend_mode\" : \"normal\"\n}", "__tile": null, "defUid": 67, "realEditorValues": [] }
+				{ "__identifier": "bg_1", "__type": "String", "__value": "{\n  \"image\" : null,\n  \"parallax_x\" : 1.0,\n  \"parallax_y\" : 1.0,\n  \"blend_mode\" : \"normal\"\n}", "__tile": null, "defUid": 67, "realEditorValues": [] },
+				{ "__identifier": "script", "__type": "String", "__value": null, "__tile": null, "defUid": 68, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -5003,6 +5041,12 @@
 				{ "__identifier": "bg_1", "__type": "String", "__value": "{\"bg_image\" : \"sunset\", \"parallax_x\" : 0.2, \"parallax_y\" : 1.0}", "__tile": null, "defUid": 67, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["{\"bg_image\" : \"sunset\", \"parallax_x\" : 0.2, \"parallax_y\" : 1.0}"]
+				}] },
+				{ "__identifier": "script", "__type": "String", "__value": "def _on_scene_loaded():\n  bob.get_camera(\"piss_cam\")\n  bob.move_entity(\"pee_pee_boss\", [9,4])\n  bob.load_level(\"assfuck_caverns\", [200,194])\n \ndef _on_update(delta):\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\n    bob.kill_entity(\"fuckboy\")", "__tile": null, "defUid": 68, "realEditorValues": [{
+					"id": "V_String",
+					"params": [
+						"def _on_scene_loaded():\\n  bob.get_camera(\"piss_cam\")\\n  bob.move_entity(\"pee_pee_boss\", [9,4])\\n  bob.load_level(\"assfuck_caverns\", [200,194])\\n \\ndef _on_update(delta):\\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\\n    bob.kill_entity(\"fuckboy\")"
+					]
 				}] }
 			],
 			"layerInstances": [
