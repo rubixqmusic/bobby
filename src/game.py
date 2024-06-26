@@ -42,7 +42,7 @@ class Game:
 
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
         display_info = pygame.display.Info()
-        self.window = pygame.display.set_mode(WINDOW_SIZE)
+        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
         pygame.display.set_caption(WINDOW_CAPTION)
 
         if not self._resource_pack:
@@ -108,7 +108,7 @@ class Game:
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                self._input_events["quit"] = True
+                self.quit_game()
 
             if event.type == pygame.KEYDOWN and event.key in input_events:
                 key_name = input_events[event.key]
@@ -228,6 +228,8 @@ class Game:
 
         self.get_screen().blit(debug_fps, (12, 12))
         self.get_screen().blit(debug_camera_pos, (12, 28))
+
+    
 
     def get_fps(self):
         return self.clock.get_fps()
@@ -413,6 +415,13 @@ class Game:
         #         json.dump(self.save_data, fp)
         # except:
         #     logging.debug(f"could not save file!")
+
+    def set_display_mode(self, display_mode):
+        if display_mode == "fullscreen":
+            display_info = pygame.display.Info()
+            pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+        else:
+            pygame.display.set_mode(display_mode)
 
 
     def get_save_data(self, save_data):

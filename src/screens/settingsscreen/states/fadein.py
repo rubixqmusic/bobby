@@ -13,4 +13,4 @@ class FadeIn(State):
             settings_screen.game.get_screen().fill((self.fade,self.fade,self.fade), special_flags=pygame.BLEND_MULT)
             self.fade += self.fade_step
         else:
-            settings_screen.select_setting()
+            settings_screen.display_settings()

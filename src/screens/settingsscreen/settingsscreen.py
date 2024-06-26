@@ -62,3 +62,6 @@ class SettingsScreen(State):
 
     def select_setting(self):
         self.state.set_state(self, "select_setting")
+
+    def display_settings(self):
+        self.state.set_state(self, "display_settings")

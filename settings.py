@@ -13,6 +13,13 @@ WINDOW_WIDTH = 1024
 WINDOW_HEIGHT = 576
 WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT
 
+DISPLAY_MODES = {
+                    "fullscreen" : "fullscreen",
+                    "mode_1" : (2048, 1152),
+                    "mode_2" : (1024, 576),
+                    "mode_3" : (512, 288)
+                }
+
 FPS = 60
 
 RESOURCE_FILE_NAME = "bob.res"
