@@ -8,6 +8,7 @@ import io
 from datetime import datetime
 
 from settings import *
+from src.utilities.resourcemanager import *
 from src.state import State
 # from src.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
 from src.screens.screens import screens
@@ -290,8 +291,8 @@ class Game:
     def _load_save_file_database(self):
         if os.path.exists(SAVE_DATA_FILE_NAME):
             with open(SAVE_DATA_FILE_NAME) as save_file_database:
-                save_file_database_decoded = base64.b64decode(save_file_database.read())
-                save_file_database_data = json.loads(save_file_database_decoded)
+                # save_file_database_decoded = base64.b64decode(save_file_database.read())
+                save_file_database_data = decode_resource_file_to_object(save_file_database)
 
                 for key in save_file_database_data:
                     new_value = save_file_database_data[key]
@@ -305,19 +306,18 @@ class Game:
             self._write_save_file_database()
     
     def _write_save_file_database(self):
-        with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
-            save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
+        write_resource_file_to_disk(SAVE_DATA_FILE_NAME, self._save_file_database)
+        # with open(SAVE_DATA_FILE_NAME, 'wb') as save_file:
+        #     save_file.write(base64.b64encode(json.dumps(self._save_file_database).encode()))
 
 
     def _load_resource_pack(self):
         try:
             with open(RESOURCE_FILE_NAME) as resource_pack:
-                resource_pack_decoded = base64.b64decode(resource_pack.read())
-                resource_pack_data = json.loads(resource_pack_decoded)
+                resource_pack_data = decode_resource_file_to_object(resource_pack)
             
                 for key in resource_pack_data:
-                    new_value = base64.b64decode(resource_pack_data[key])
-                    self._resource_pack[key] = new_value
+                    self._resource_pack[key] = generate_decoded_resource(resource_pack_data, key)
 
         except FileNotFoundError:
             logging.error(f"uh oh! no resrouce file named {RESOURCE_FILE_NAME} could be found!")

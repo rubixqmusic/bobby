@@ -4,7 +4,7 @@ from src.screens.titlescreen.resources import *
 from src.state import State
 from src.menu import Menu
 
-from settings import *
+# from settings import *
 
 
 class PickGameMode(State):

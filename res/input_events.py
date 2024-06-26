@@ -6,6 +6,11 @@ input_map = {
                 "K_d" : RIGHT_BUTTON,
                 "K_w" : UP_BUTTON,
                 "K_s" : DOWN_BUTTON,
+
+                "K_LEFT" : LEFT_BUTTON,
+                "K_RIGHT" : RIGHT_BUTTON,
+                "K_UP" : UP_BUTTON,
+                "K_DOWN" : DOWN_BUTTON,
                 
                 "K_RETURN" : START_BUTTON,
                 "K_BACKSPACE" : SELECT_BUTTON,
@@ -87,6 +92,10 @@ input_events = {
                 pygame.K_SLASH : "K_SLASH",
                 pygame.K_LEFTBRACKET : "K_LEFTBRACKET",
                 pygame.K_RIGHTBRACKET : "K_RIGHTBRACKET",
+                pygame.K_UP : "K_UP",
+                pygame.K_LEFT : "K_LEFT",
+                pygame.K_DOWN : "K_DOWN",
+                pygame.K_RIGHT : "K_RIGHT",
 
                 pygame.JOYAXISMOTION : "JOYAXISMOTION",
                 pygame.JOYBALLMOTION : "JOYBALLMOTION",
