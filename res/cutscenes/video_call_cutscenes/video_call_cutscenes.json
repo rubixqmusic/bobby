@@ -2,11 +2,13 @@
     
         "intro_1" : [
                     ["VideoCallRinging", {}],
+                    
                     ["PlayMusic", ["BACKGROUND_MUSIC", "MUSIC_VOLUME", {}]],
-                    ["SetBackgroundImage", [1,"BEACH_BACKGROUND_PATH", {}]],
-                    ["SetBackgroundImage", [2,"OFFICE_BACKGROUND_PATH", {}]],
-                    ["SetCharacterAnimation", [1, "BOSS_VIDEO_CALL_SPRITESHEET_PATH", "BOSS_VIDEO_CALL_ANIMATION_PATH", "idle", {}]],
-                    ["SetCharacterAnimation", [2, "BOBBY_OFFICE_SPRITESHEET_PATH", "BOBBY_OFFICE_ANIMATION_PATH", "idle", {}]],
+                    ["SetBackgroundImage", [1,"BEACH", {}]],
+                    ["SetBackgroundImage", [2,"OFFICE", {}]],
+                    ["SetCharacterAnimation", [1, "BOSS_SPRITESHEET", "BOSS_ANIMATION", "idle", {}]],
+                    ["SetCharacterAnimation", [2, "BOBBY_SPRITESHEET", "BOBBY_ANIMATION", "idle", {}]],
+
                     ["Wait", [80, {}]],
                     ["ShowDialog", ["Bobby, my man", {}]],
 

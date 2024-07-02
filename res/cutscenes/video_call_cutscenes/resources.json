@@ -1,0 +1,17 @@
+{
+    "BLANK" : "backgrounds/video_call_blank_background.png",
+    "BEACH" : "backgrounds/video_call_beach_background.png",
+    "OFFICE" : "backgrounds/video_call_office_background.png",
+
+    "BOBBY_SPRITESHEET" : "video_call_cutscenes/bobby_in_office.png",
+    "BOBBY_ANIMATION" : "bobby_in_office.json",
+
+    "BOSS_SPRITESHEET" : "video_call_cutscenes/boss_video_call.png",
+    "BOSS_ANIMATION" : "boss_video_call.json",
+
+    "DENY_SOUND" : "deny.wav",
+    "COIN_SOUND" : "coin.wav",
+
+    "BACKGROUND_MUSIC" : "video_call.mp3",
+    "MUSIC_VOLUME" : 0.5
+}

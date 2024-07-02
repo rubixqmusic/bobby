@@ -36,6 +36,7 @@ class FileSelectScreen(State):
         
         self.state = State(file_select_screen_states)
         self.state.start(self, "fade_in")
+        
     
     def set_select_a_file_text(self, new_text):
         self.select_a_file_text_surface = self.select_a_file_font.render(new_text,True,main_text_color)

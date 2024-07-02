@@ -3,8 +3,8 @@ import logging
 
 from settings import *
 from src.state import State
-from src.screens.videocallcutscenestates import VideoCallRinging
-from src.videocallcutscenes import cutscenes
+# from src.screens.videocallcutscenestates import VideoCallRinging
+from src.screens.videocallcutscene.screenstates import cutscenes
 
 VIDEO_CALL_WINDOW_BORDER_COLOR = "#4854a0"
 TEXT_BOX_Y_POSITION = 174
@@ -113,4 +113,4 @@ class VideoCallCutscene(State):
         else:
             logging.debug(f"could not get next video call cutscene event!")
 
-cutscene_states = {"ringing": VideoCallRinging}
+# cutscene_states = {"ringing": VideoCallRinging}

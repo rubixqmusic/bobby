@@ -47,7 +47,7 @@ class EraseFile(State):
             file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
 
         if file_select_screen.game.is_button_released(START_BUTTON):
-            if self.current_menu_selection == "back":
+            if self.menu.get_current_selection() == "back":
                 file_select_screen.game.play_sound(BACK_FX)
                 file_select_screen.select_file()
 

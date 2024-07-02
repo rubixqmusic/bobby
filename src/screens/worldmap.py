@@ -509,7 +509,7 @@ class LoadMap(State):
         world_map.animated_tileset.set_animation("idle")
         world_map.animated_tileset.play()
 
-        print(world_map.animated_tileset.spritesheet, world_map.animated_tileset.animations)
+        # print(world_map.animated_tileset.spritesheet, world_map.animated_tileset.animations)
         
         world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, PLAYER_SPRITESHEET, PLAYER_ANIMATION,world_map.camera.surface,world_map.camera)
         

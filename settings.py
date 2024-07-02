@@ -25,7 +25,7 @@ FPS = 60
 RESOURCE_FILE_NAME = "bob.res"
 RESOURCE_DIRS = [
                     "res/animations", 
-                    "res/cutscenes",
+                    "res/cutscenes/video_call_cutscenes",
                     "res/audio/fx", 
                     "res/audio/music", 
                     "res/fonts", 
@@ -99,7 +99,7 @@ OVERLAY_2_LAYER_NAME = "overlay_2"
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = False
-DEBUG_START_IN_STATE = "file_select_screen"
+DEBUG_START_IN_STATE = "video_call_cutscene"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [185,466]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

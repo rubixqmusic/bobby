@@ -1,20 +1,15 @@
-from src.screens.videocallcutscenestates import VideoCallRinging, PlayMusic, SetBackgroundImage, PlaySound, Wait, SetCharacterAnimation, Choice, ShowDialog, GoTo, EndCall
+from src.screens.videocallcutscene.states.choice import Choice
+from src.screens.videocallcutscene.states.endcall import EndCall
+from src.screens.videocallcutscene.states.goto import GoTo
+from src.screens.videocallcutscene.states.playmusic import PlayMusic
+from src.screens.videocallcutscene.states.playsound import PlaySound
+from src.screens.videocallcutscene.states.setbackgroundimage import SetBackgroundImage
+from src.screens.videocallcutscene.states.setcharacteranimation import SetCharacterAnimation
+from src.screens.videocallcutscene.states.videocallringing import VideoCallRinging
+from src.screens.videocallcutscene.states.wait import Wait
+from src.screens.videocallcutscene.states.showdialog import ShowDialog
 
-BLANK_BACKGROUND_PATH = f"backgrounds/video_call_blank_background.png"
-BEACH_BACKGROUND_PATH = f"backgrounds/video_call_beach_background.png"
-OFFICE_BACKGROUND_PATH = f"backgrounds/video_call_office_background.png"
-
-BOBBY_OFFICE_SPRITESHEET_PATH = f"video_call_cutscenes/bobby_in_office.png"
-BOBBY_OFFICE_ANIMATION_PATH = f"bobby_in_office.json"
-
-BOSS_VIDEO_CALL_SPRITESHEET_PATH = f"video_call_cutscenes/boss_video_call.png"
-BOSS_VIDEO_CALL_ANIMATION_PATH = f"boss_video_call.json"
-
-DENY_SOUND = f"deny.wav"
-COIN_SOUND = f"coin.wav"
-
-BACKGROUND_MUSIC = f"video_call.mp3"
-MUSIC_VOLUME = 0.5
+from src.screens.videocallcutscene.resources import *
 
 cutscenes = {
                 "intro_1" : [
@@ -97,4 +92,3 @@ cutscenes = {
                             (EndCall,("world_map", {}))
                           ]
             }
-            
