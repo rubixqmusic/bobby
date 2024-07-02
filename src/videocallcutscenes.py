@@ -27,7 +27,7 @@ cutscenes = {
                             (Wait, (80, {})),
                             (ShowDialog, ("Bobby, my man", {})),
 
-                            # (EndCall,("world_map", {})),
+                            (EndCall,("world_map", {})),
 
                             (Wait, (60, {})),
                             (ShowDialog, ("what's good, brother?", {})),

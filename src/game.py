@@ -9,6 +9,7 @@ from datetime import datetime
 
 from settings import *
 from src.utilities.resourcemanager import *
+from src.bob import bob
 from src.state import State
 # from src.gamestates import init, splashscreen, titlescreen, fileselectscreen, videocallcutscene, worldmap, playinglevel
 from src.screens.screens import screens
@@ -78,6 +79,8 @@ class Game:
             except:
                 logging.debug(f"Could not create save data path {SAVE_DATA_PATH}, make sure you have proper privileges to create this file!")
         
+        bob.init(self)
+
         self.state = State(screens)
         self.state.start(self,"init")
 
@@ -355,26 +358,12 @@ class Game:
         if self._current_save_file in self._save_file_database:
             for key in self.save_data:
                 self._save_file_database[self._current_save_file][key] = self.save_data[key]
-            
-            # print(self._save_file_database[self._current_save_file])
-
-
             self._write_save_file_database()
         else:
             logging.error(f"could not write save file database to disk! make sure you have the correct permissions, or correct save file selected!")
 
-        # try:
-        #     with open(self._current_save_file, 'w') as save_file:
-        #         json.dump(self.save_data, save_file)
-        # except:
-        #     logging.debug(f"could not save game to file!")
-    
 
     def load_save_file(self, filepath):
-
-        
-
-
         if filepath in self._save_file_database:
             for key in self._save_file_database[filepath]:
                 self.save_data[key] = self._save_file_database[filepath][key]

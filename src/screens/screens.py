@@ -1,5 +1,6 @@
 
-from src.screens import fileselectscreen, videocallcutscene, worldmap, playinglevel
+from src.screens import videocallcutscene, worldmap, playinglevel
+from src.screens.fileselectscreen import fileselectscreen
 from src.screens.initscreen import init
 from src.screens.settingsscreen import settingsscreen
 from src.screens.splashscreen import splashscreen
