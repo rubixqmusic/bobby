@@ -6,6 +6,8 @@ from shutil import copytree, rmtree, move
 
 from settings import *
 
+'''this module is used to manage resource packing and reading. It handles all associated encoding/decoding and compression. it is used to both load and read resource files as well as generate the resource pack during the build process'''
+
 def generate_resource_pack(resource_dirs, resource_file_name):
     resource_pack = {}
 

@@ -3,7 +3,7 @@ import enum
 
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
-EXECUTABLE_NAME = "Bobbys-Money-Maddness.appimage"
+EXECUTABLE_NAME = "Bobbys-Money-Maddness"
 
 SCREEN_WIDTH = 512
 SCREEN_HEIGHT = 288
@@ -98,8 +98,8 @@ OVERLAY_2_LAYER_NAME = "overlay_2"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
-DEBUG_START_IN_STATE = "video_call_cutscene"
+DEBUG_ENABLED = True
+DEBUG_START_IN_STATE = "world_map"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [185,466]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

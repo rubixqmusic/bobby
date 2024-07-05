@@ -1,6 +1,5 @@
 import os
-import json
-import base64
+import platform
 from shutil import copytree, rmtree, move
 from src.utilities.resourcemanager import *
 
@@ -14,7 +13,16 @@ if __name__ == '__main__':
 
     icon_path = f"res/graphics/icons/icon.ico"
 
-    os.system(f"pyinstaller --noconsole main.py -n \"{EXECUTABLE_NAME}\" --onefile -i\"{icon_path}\"")
+    extension = ""
+    
+    if platform.system() == 'Windows':
+        extension = ".exe"
+    if platform.system() == 'Linux':
+        extension = ".appimage"
+    if platform.system() == 'Darwin':
+        extension = ".app"
+
+    os.system(f"pyinstaller --noconsole main.py -n \"{EXECUTABLE_NAME}{extension}\" --onefile -i\"{icon_path}\"")
 
     generate_resource_pack(RESOURCE_DIRS, RESOURCE_FILE_NAME)
 

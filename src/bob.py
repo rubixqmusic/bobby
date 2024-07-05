@@ -12,15 +12,12 @@ class Bob:
 
     def play_sound(self, sound) -> None:
         self._game.play_sound(sound)
-        return None
 
     def play_music(self, music, volume = 1.0, loop = -1) -> None:
         self._game.play_music(music, volume, loop)
-        return None
     
     def stop_music(self) -> None:
         self._game.stop_music()
-        return None
     
     def quit(self) -> None:
         self._game.quit_game()
@@ -39,8 +36,5 @@ class Bob:
     
     def is_button_released(self, button, controller = 1) -> bool:
         return self._game.is_button_released(button, controller)
-
-    
-
 
 bob = Bob()

@@ -71,6 +71,11 @@ menus = {
                                     {"name" : "yes",    "text" : "Yes, let's copy it",     "position" : [SCREEN_WIDTH/2, 100]},
                                     {"name" : "no",     "text" : "I'll think about it",     "position" : [SCREEN_WIDTH/2, 150]},
                                 ],
+
+            "world_map_quit_menu" : [
+                                        {"name" : "continue",               "text": "Continue",                 "position" : [SCREEN_WIDTH/2, 128]},
+                                        {"name" : "return_to_main_menu",    "text": "Return To Main Menu",      "position" : [SCREEN_WIDTH/2, 160]}
+                                    ]
                         
                             
         }
