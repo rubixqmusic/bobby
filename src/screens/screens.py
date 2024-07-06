@@ -1,5 +1,5 @@
 
-from src.screens import playinglevel
+from src.screens.gameplay import gameplay
 from src.screens.worldmap import worldmap
 from src.screens.videocallcutscene import videocallcutscene
 from src.screens.fileselectscreen import fileselectscreen
@@ -17,5 +17,5 @@ screens = {
                 "file_select_screen" : fileselectscreen.FileSelectScreen,
                 "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
                 "world_map" : worldmap.WorldMap,
-                "playing_level" : playinglevel.PlayingLevel,
+                "gameplay" : gameplay.Gameplay,
                 }

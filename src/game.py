@@ -256,7 +256,7 @@ class Game:
         self.state.set_state(self, "world_map")
     
     def load_level(self, level_name, player_start_position=[0,0], transition=DEFAULT_TRANSITION):
-        self.state.set_state(self, "playing_level", level_name, player_start_position, transition)
+        self.state.set_state(self, "gameplay", level_name, player_start_position, transition)
     
     def set_current_save_file(self, filepath):
         self._current_save_file = filepath

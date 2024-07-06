@@ -23,7 +23,7 @@ class Init(State):
                 game.run_video_call_cutscene(DEBUG_VIDEO_CALL_CUTSCENE)
             elif DEBUG_START_IN_STATE == "world_map":
                 game.load_world_map()
-            elif DEBUG_START_IN_STATE == "playing_level":
+            elif DEBUG_START_IN_STATE == "gameplay":
                 game.load_level(DEBUG_LEVEL_NAME, DEBUG_LEVEL_START_POSITION, DEBUG_LEVEL_START_TRANSITION)
             elif DEBUG_START_IN_STATE == "splashscreen":
                 game.load_splashscreen()
