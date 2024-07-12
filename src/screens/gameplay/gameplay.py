@@ -9,8 +9,6 @@ from src.camera import Camera
 from src.animatedsprite import AnimatedSprite
 
 
-
-
 class Gameplay(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
@@ -20,9 +18,19 @@ class Gameplay(State):
         self.transition_in = args[2]
         self.transition_out = None
         self.paused = False
+        self.onscreen_tile_count = 0
+        self.hitboxes = {}
         self.clear_scene()
     
     def clear_scene(self):
+        self.hitboxes = {}
+
+        for type in HITBOX_TYPES:
+            self.hitboxes[type] = []
+            for i in range(MAX_HITBOXES):
+                self.hitboxes[type].append(None)
+
+        self.gravity = DEFAULT_GRAVITY
         self.width = None
         self.height = None
         self.tilesets = {}
@@ -36,6 +44,11 @@ class Gameplay(State):
         self.main_ground = {}
         self.objects = {}
         self.player = None
+        self.entities = []
+
+        for i in range(MAX_ENTITIES):
+            self.entities.append(None)
+
         self.overlay_1 = {}
         self.overlay_2 = {}
         self.fg_1 = {}
@@ -48,6 +61,7 @@ class Gameplay(State):
         self.transition_overlay.load_spritesheet(TRANSITION_SPRITESHEET)
         self.transition_overlay.load_sprite_data(TRANSITION_ANIMATION)
         self.transition_overlay.set_animation("idle")
+        
 
         self.state = State(level_states)
 
@@ -60,28 +74,33 @@ class Gameplay(State):
         # self.state.process_events(self)
     
     def update(self, game):
+        delta = game.get_delta_time()
+
         if not self.paused:
-            CAMSPD = 3
-            if game.is_button_pressed(RIGHT_BUTTON):
-                self.camera.move(CAMSPD,0)
-            if game.is_button_pressed(LEFT_BUTTON):
-                self.camera.move(-CAMSPD,0)
-            if game.is_button_pressed(UP_BUTTON):
-                self.camera.move(0,-CAMSPD)
-            if game.is_button_pressed(DOWN_BUTTON):
-                self.camera.move(0, CAMSPD)
-            
+            # CAMSPD = 3
+            # if game.is_button_pressed(RIGHT_BUTTON):
+            #     self.camera.move(CAMSPD,0)
+            # if game.is_button_pressed(LEFT_BUTTON):
+            #     self.camera.move(-CAMSPD,0)
+            # if game.is_button_pressed(UP_BUTTON):
+            #     self.camera.move(0,-CAMSPD)
+            # if game.is_button_pressed(DOWN_BUTTON):
+            #     self.camera.move(0, CAMSPD)
             
             if self.bg_image:
                 self.bg_image.update()
+            
+            if self.player:
+                self.player.update(delta)
 
             self.state.update(self)
 
     def draw(self, game):
+        self.onscreen_tile_count = 0
+        
         game.get_screen().fill(self.bg_color)
         
         if self.bg_image:
-            # self.camera.surface.blit(self.bg_image, [0,0])
             self.bg_image.draw()
         
         if self.bg_1:
@@ -137,8 +156,6 @@ class Gameplay(State):
 
             wrap_x = draw_x + self.bg_3["image"].get_width()  
 
-            # print(self.game.get_fps())
-
                       
             self.camera.surface.blit(self.bg_3["image"], [draw_x,draw_y])
             self.camera.surface.blit(self.bg_3["image"], [wrap_x ,draw_y])
@@ -151,11 +168,14 @@ class Gameplay(State):
                 for tile in self.ground_2["tiles"]:
                     dest = tile["px"]
                     source = tile["src"]
-                    grid_size = self.main_ground["grid_size"]
-                    camera_pos = self.camera.get_position()
-                    draw_x = dest[0] - camera_pos[0]
-                    draw_y = dest[1] - camera_pos[1]
-                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
+                    grid_size = self.ground_2["grid_size"]
+                    tile_rect = pygame.rect.Rect(dest[0], dest[1], grid_size, grid_size)
+                    if tile_rect.colliderect(self.camera.rect):
+                        camera_pos = self.camera.get_position()
+                        self.onscreen_tile_count += 1
+                        draw_x = dest[0] - camera_pos[0]
+                        draw_y = dest[1] - camera_pos[1]
+                        self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
 
         if self.main_ground:
             tileset_path = f"{BASE_PATH}{self.main_ground['tileset']}"
@@ -166,11 +186,23 @@ class Gameplay(State):
                     dest = tile["px"]
                     source = tile["src"]
                     grid_size = self.main_ground["grid_size"]
-                    camera_pos = self.camera.get_position()
-                    draw_x = dest[0] - camera_pos[0]
-                    draw_y = dest[1] - camera_pos[1]
-                    self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
+                    tile_rect = pygame.rect.Rect(dest[0], dest[1], grid_size, grid_size)
+                    if tile_rect.colliderect(self.camera.rect):
+                        self.onscreen_tile_count += 1
+                        camera_pos = self.camera.get_position()
+                        draw_x = dest[0] - camera_pos[0]
+                        draw_y = dest[1] - camera_pos[1]
+                        self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
         
+        if self.player:
+            self.player.draw()
+        
+        if self.hitboxes and DEBUG_ENABLED and DEBUG_SHOW_HITBOXES:
+            for type in self.hitboxes:
+                for hitbox in self.hitboxes[type]:
+                    if hitbox is not None:
+                        pygame.draw.rect(self.camera.surface, (0,0,255), (hitbox.get_hitbox()[0] - self.camera.x, hitbox.get_hitbox()[1] - self.camera.y, hitbox.get_hitbox()[2], hitbox.get_hitbox()[3]), 1)
+
         self.game.get_screen().blit(self.camera.surface, [0,0])
 
         self.state.draw(self)
@@ -195,6 +227,23 @@ class Gameplay(State):
     
     def start_scene(self):
         self.state.set_state(self, "level_active")
+
+    def get_onscreen_tile_count(self):
+        return self.onscreen_tile_count
+    
+    def register_hitbox(self, new_hitbox):
+        hitbox_type = new_hitbox.get_type()
+        if not hitbox_type in self.hitboxes:
+            logging.debug(f"could not register hitbox! hitbox type {hitbox_type} is not a valid hitbox type!")
+            return
+        for i in range(MAX_HITBOXES):
+            if self.hitboxes[hitbox_type][i] == None:
+                self.hitboxes[hitbox_type][i] = new_hitbox
+                return
+        logging.debug(f"could not add hitbox! all available hitbox slots are full")
+        return
+
+        
 
 
 

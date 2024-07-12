@@ -10,3 +10,19 @@ LEVEL_MUSIC = {
                }
 
 BACKGROUND_IMAGE_FILE_EXTENSION = f".png"
+
+DEFAULT_GRAVITY = 5
+
+LEVEL_TILESET_IDENTIFIER = "levels"
+
+HITBOX_TYPES = ["ground", "bobby"]
+
+MAX_ENTITIES = 1000
+
+MAX_HITBOXES = 5000
+
+TILE_DATA = {
+                "ground" :  {
+                                "solid" : True,
+                             }
+}

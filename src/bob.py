@@ -9,7 +9,6 @@ class Bob:
     def load_resource(self, resource_path) -> None:
         return self._game.load_resource(resource_path)
         
-
     def play_sound(self, sound) -> None:
         self._game.play_sound(sound)
 

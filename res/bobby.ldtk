@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 69,
+	"nextUid": 72,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1557,7 +1557,7 @@
 			"tags": ["world_map"],
 			"tagsSourceEnumUid": null,
 			"enumTags": [],
-			"customData": [{ "tileId": 33, "data": "cum" }],
+			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "1111100001111111110000000000000011111000011111011100000000000000111110000111110111000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001110000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111110000000000000000000000000001111100000000000000000000000000011111000000000000000000000000000111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
@@ -1623,7 +1623,23 @@
 			"tags": ["levels"],
 			"tagsSourceEnumUid": null,
 			"enumTags": [],
-			"customData": [],
+			"customData": [
+				{ "tileId": 0, "data": "ground" },
+				{ "tileId": 1, "data": "ground" },
+				{ "tileId": 2, "data": "ground" },
+				{ "tileId": 3, "data": "ground" },
+				{ "tileId": 4, "data": "ground" },
+				{ "tileId": 32, "data": "ground" },
+				{ "tileId": 33, "data": "ground" },
+				{ "tileId": 34, "data": "ground" },
+				{ "tileId": 35, "data": "ground" },
+				{ "tileId": 36, "data": "ground" },
+				{ "tileId": 64, "data": "ground" },
+				{ "tileId": 65, "data": "ground" },
+				{ "tileId": 66, "data": "ground" },
+				{ "tileId": 67, "data": "ground" },
+				{ "tileId": 68, "data": "ground" }
+			],
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "0101100010110000000000000000000011111001111100000000000000000000010110001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
@@ -1839,10 +1855,10 @@
 		{
 			"identifier": "script",
 			"doc": null,
-			"__type": "String",
+			"__type": "Array<String>",
 			"uid": 68,
 			"type": "F_Text",
-			"isArray": false,
+			"isArray": true,
 			"canBeNull": true,
 			"arrayMinLength": null,
 			"arrayMaxLength": null,
@@ -1903,7 +1919,7 @@
 				}] },
 				{ "__identifier": "bg_image", "__type": "String", "__value": "{\n  \"bg_image\" : null,\n  \"animation\" : null\n}", "__tile": null, "defUid": 66, "realEditorValues": [] },
 				{ "__identifier": "bg_1", "__type": "String", "__value": "{\n  \"image\" : null,\n  \"parallax_x\" : 1.0,\n  \"parallax_y\" : 1.0,\n  \"blend_mode\" : \"normal\"\n}", "__tile": null, "defUid": 67, "realEditorValues": [] },
-				{ "__identifier": "script", "__type": "String", "__value": null, "__tile": null, "defUid": 68, "realEditorValues": [] }
+				{ "__identifier": "script", "__type": "Array<String>", "__value": [], "__tile": null, "defUid": 68, "realEditorValues": [] }
 			],
 			"layerInstances": [
 				{
@@ -5042,12 +5058,16 @@
 					"id": "V_String",
 					"params": ["{\"bg_image\" : \"sunset\", \"parallax_x\" : 0.2, \"parallax_y\" : 1.0}"]
 				}] },
-				{ "__identifier": "script", "__type": "String", "__value": "def _on_scene_loaded():\n  bob.get_camera(\"piss_cam\")\n  bob.move_entity(\"pee_pee_boss\", [9,4])\n  bob.load_level(\"assfuck_caverns\", [200,194])\n \ndef _on_update(delta):\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\n    bob.kill_entity(\"fuckboy\")", "__tile": null, "defUid": 68, "realEditorValues": [{
+				{ "__identifier": "script", "__type": "Array<String>", "__value": [
+					"def _on_scene_loaded():\n  bob.get_camera(\"piss_cam\")\n  bob.move_entity(\"pee_pee_boss\", [9,4])\n  bob.load_level(\"assfuck_caverns\", [200,194])\n \ndef _on_update(delta):\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\n    bob.kill_entity(\"fuckboy\")",
+					null,
+					null
+				], "__tile": null, "defUid": 68, "realEditorValues": [ {
 					"id": "V_String",
 					"params": [
 						"def _on_scene_loaded():\\n  bob.get_camera(\"piss_cam\")\\n  bob.move_entity(\"pee_pee_boss\", [9,4])\\n  bob.load_level(\"assfuck_caverns\", [200,194])\\n \\ndef _on_update(delta):\\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\\n    bob.kill_entity(\"fuckboy\")"
 					]
-				}] }
+				}, null, null ] }
 			],
 			"layerInstances": [
 				{

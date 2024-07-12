@@ -1,8 +1,11 @@
 import pygame
+from math import floor
 
 from src.state import State
 from src.animatedsprite import AnimatedSprite
 from src.screens.gameplay.resources import *
+from src.entities.bobby.bobby import Bobby
+from src.components.hitbox import Hitbox
 
 class LoadScene(State):
     def __init__(self, states: dict, *args) -> None:
@@ -12,6 +15,7 @@ class LoadScene(State):
         self.transition_in = args[2]
 
     def on_state_enter(self, level): 
+        self.game = level.game
         level.clear_scene()
 
         for scene in level.game.get_levels_from_world():
@@ -23,6 +27,8 @@ class LoadScene(State):
                 level.height = scene["pxHei"]
                 level.bg_color = scene["__bgColor"]
                 for level_property in scene["fieldInstances"]:
+                    if level_property["__identifier"] == "gravity":
+                        level.gravity = level_property["__value"]
                     if level_property["__identifier"] == "music":
                         if level_property["__value"] in LEVEL_MUSIC:
                             level.game.play_music(LEVEL_MUSIC[level_property["__value"]])
@@ -63,6 +69,8 @@ class LoadScene(State):
                                 level.bg_3["parallax_y"] = 0.3
                                 level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                 
+                tileset_data = self.get_tileset_data()
+
                 for layer in scene["layerInstances"]:
                     if layer["__identifier"] == GROUND_2_LAYER_NAME:
                         level.ground_2["tileset"] = layer["__tilesetRelPath"]
@@ -70,17 +78,69 @@ class LoadScene(State):
                         level.ground_2["tiles"] = layer["gridTiles"]
                         level.game.load_tileset(f"{BASE_PATH}{level.ground_2['tileset']}", level.tilesets)
 
+                        if tileset_data:
+                            for tile in level.ground_2["tiles"]:
+                                tile_id = self.get_tile_id_from_x_y(tile["src"][0], tile["src"][1], tileset_data["width"], level.ground_2["grid_size"])                                
+                                if tile_id in tileset_data:
+                                    tile_type = tileset_data[tile_id]
+                                    hitbox = Hitbox()
+                                    hitbox.set_type(tile_type)
+                                    hitbox.set_hitbox(tile["px"][0], tile["px"][1], level.ground_2["grid_size"], level.ground_2["grid_size"])
+                                    hitbox.set_position(tile["px"][0], tile["px"][1])
+                                    level.register_hitbox(hitbox)
+
                     if layer["__identifier"] == MAIN_GROUND_LAYER_NAME:
                         level.main_ground["tileset"] = layer["__tilesetRelPath"]
                         level.main_ground["grid_size"] = layer["__gridSize"]
                         level.main_ground["tiles"] = layer["autoLayerTiles"]
                         level.game.load_tileset(f"{BASE_PATH}{level.main_ground['tileset']}", level.tilesets)
 
+                        if tileset_data:
+                            for tile in level.main_ground["tiles"]:
+                                tile_id = self.get_tile_id_from_x_y(tile["src"][0], tile["src"][1], tileset_data["width"], level.main_ground["grid_size"])
+                                if tile_id in tileset_data:
+                                    tile_type = tileset_data[tile_id]
+                                    hitbox = Hitbox()
+                                    hitbox.set_type(tile_type)
+                                    hitbox.set_hitbox(tile["px"][0], tile["px"][1], level.main_ground["grid_size"], level.main_ground["grid_size"])
+                                    hitbox.set_position(tile["px"][0], tile["px"][1])
+                                    level.register_hitbox(hitbox)
+
+                
+
 
                 level.camera.set_bounds(0, level.width, 0, level.height)
                 level.camera.center(self.player_start_position[0], self.player_start_position[1])
+                level.player = Bobby([self.player_start_position[0], self.player_start_position[1]], level.camera, DEFAULT_GRAVITY, level.camera.surface, level.hitboxes)
 
-
+        # print(level.hitboxes)
 
         if self.transition_in == "money_in":
             level.money_in_transition()
+    
+    def get_tileset_data(self):
+        tileset_data = {}
+        world = self.game.get_world()
+        if world:
+            tilesets = world["defs"]["tilesets"]
+
+            for tileset in tilesets:
+                if tileset["identifier"] == LEVEL_TILESET_IDENTIFIER:
+
+                    tileset_data['width'] = tileset["pxWid"]/tileset["tileGridSize"]
+                    
+                    for data in tileset["customData"]:
+
+                        tileset_data[data["tileId"]] = data["data"]
+            # print(tileset_data)
+        return tileset_data
+    
+    def get_tile_id_from_x_y(self, x, y, tileset_width_in_tiles, grid_size):
+        x = floor(x/grid_size)
+        y = floor(y/grid_size)
+
+
+        return int(y * tileset_width_in_tiles + x)
+    
+
+

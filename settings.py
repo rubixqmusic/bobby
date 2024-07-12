@@ -99,6 +99,7 @@ OVERLAY_2_LAYER_NAME = "overlay_2"
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = False
+DEBUG_SHOW_HITBOXES = True
 DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [185,466]

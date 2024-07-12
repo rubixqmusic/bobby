@@ -220,17 +220,25 @@ class Game:
     
     def _draw_debug(self):
         camera_pos = [0,0]
+        number_of_tiles = 0
         try:
             camera_pos[0] = self.state.camera.get_position()[0]
             camera_pos[1] = self.state.camera.get_position()[1]
         except AttributeError:
             pass
 
+        try:
+            number_of_tiles = self.state.get_onscreen_tile_count()
+        except ArithmeticError:
+            pass
+
         debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
         debug_camera_pos = self.debug_font.render(f"Camera Pos: {camera_pos}", True, (255,255,255))
+        debug_number_of_tiles = self.debug_font.render(f"Number of Tiles: {number_of_tiles}", True, (255,255,255))
 
         self.get_screen().blit(debug_fps, (12, 12))
         self.get_screen().blit(debug_camera_pos, (12, 28))
+        self.get_screen().blit(debug_number_of_tiles, (12, 44))
 
     
 
@@ -522,14 +530,9 @@ class Game:
             if controller_instance_id in self._joystick_events:
                 if button_name in self._joystick_events[controller_instance_id]:
                     return True if self._joystick_events[controller_instance_id][button_name] == RELEASED else False
+                
+    
+    def get_world(self):
+        return self.world
 
-# game_states = {
-#                 "init" : init.Init,
-#                 "splashscreen" : splashscreen.Splashscreen,
-#                 "title_screen" : titlescreen.TitleScreen,
-#                 "file_select_screen" : fileselectscreen.FileSelectScreen,
-#                 "video_call_cutscene" : videocallcutscene.VideoCallCutscene,
-#                 "world_map" : worldmap.WorldMap,
-#                 "playing_level" : playinglevel.PlayingLevel
-#                 }
         
