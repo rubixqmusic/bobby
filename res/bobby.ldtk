@@ -5121,7 +5121,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "entrance",
-							"__grid": [2,30],
+							"__grid": [4,26],
 							"__pivot": [0,0],
 							"__tags": ["entrance_and_exits"],
 							"__tile": { "tilesetUid": 18, "x": 64, "y": 0, "w": 16, "h": 16 },
@@ -5130,13 +5130,13 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 19,
-							"px": [32,480],
+							"px": [64,416],
 							"fieldInstances": [
 								{ "__identifier": "player_start_position", "__type": "Point", "__value": null, "__tile": null, "defUid": 20, "realEditorValues": [] },
 								{ "__identifier": "entrance_type", "__type": "LocalEnum.entrance_types", "__value": "default", "__tile": { "tilesetUid": 18, "x": 64, "y": 0, "w": 16, "h": 16 }, "defUid": 22, "realEditorValues": [] }
 							],
-							"__worldX": 2080,
-							"__worldY": 480
+							"__worldX": 2112,
+							"__worldY": 416
 						}
 					]
 				},

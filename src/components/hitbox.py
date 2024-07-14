@@ -6,6 +6,7 @@ from settings import *
 
 class Hitbox:
     def __init__(self) -> None:
+        self._enabled = True
         self._hitbox = pygame.rect.Rect(0,0,0,0)
         self._position = pygame.Vector2((0,0))
         self._offset = pygame.Vector2((0,0))
@@ -14,7 +15,7 @@ class Hitbox:
         self._colliders = None
         self._groups = []
         self.properties = {}
-        # self.on_collision = Signal()
+        self.on_collision = Signal()
 
     def set_groups(self, groups: list):
         self._groups = groups
@@ -63,8 +64,9 @@ class Hitbox:
         for collision_type in self._collision_types:
             if collision_type in self._colliders:
                 for hitbox in self._colliders[collision_type]:
-                    if self._hitbox.colliderect(hitbox.get_hitbox()):
-                        collisions.append(hitbox)
+                    if hitbox is not None:
+                        if self._hitbox.colliderect(hitbox.get_hitbox()):
+                            collisions.append(hitbox)
         return collisions
 
     def set_type(self, type):
@@ -80,4 +82,13 @@ class Hitbox:
         if key in self.properties:
             return self.properties[key]
         return None
+    
+    def enable(self):
+        self._enabled = True
+
+    def disable(self):
+        self._enabled = False
+
+    def is_enabled(self) -> bool:
+        return True if self._enabled else False
     

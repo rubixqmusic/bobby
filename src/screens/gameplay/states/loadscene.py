@@ -87,6 +87,7 @@ class LoadScene(State):
                                     hitbox.set_type(tile_type)
                                     hitbox.set_hitbox(tile["px"][0], tile["px"][1], level.ground_2["grid_size"], level.ground_2["grid_size"])
                                     hitbox.set_position(tile["px"][0], tile["px"][1])
+            
                                     level.register_hitbox(hitbox)
 
                     if layer["__identifier"] == MAIN_GROUND_LAYER_NAME:

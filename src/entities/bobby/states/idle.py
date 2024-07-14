@@ -6,11 +6,19 @@ from src.entities.bobby.resources import *
 class Idle(State):
     def update(self, bobby, delta):
         bobby.velocity.x = 0
+        bobby.velocity.y = 0
+        if bobby.is_on_ground():
+            bobby.velocity.y = 0
+        else:
+            bobby.falling()
+            return
 
-        if bob.is_button_pressed(RIGHT_BUTTON):
-            bobby.velocity.x = bobby.speed
-        elif bob.is_button_pressed(LEFT_BUTTON):
-            bobby.velocity.x = -bobby.speed
+        if bob.is_button_pressed(RIGHT_BUTTON) or bob.is_button_pressed(LEFT_BUTTON):
+            bobby.running()
+            return
+        
+        if bob.is_button_pressed(ACTION_BUTTON_1):
+            bobby.jumping()
+            return
 
-        bobby.position.x += bobby.velocity.x
-        bobby.camera.move(bobby.velocity.x, bobby.velocity.y)
+        bobby.move(bobby.velocity.x, bobby.velocity.y)
