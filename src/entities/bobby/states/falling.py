@@ -15,6 +15,9 @@ class Falling(State):
             return
         else:
             bobby.velocity.y += bobby.gravity
+        
+        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.coyote_time > 0:
+            bobby.jumping()
             
         if bob.is_button_pressed(RIGHT_BUTTON):
             bobby.velocity.x = int(bobby.speed)

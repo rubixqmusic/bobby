@@ -17,7 +17,8 @@ class Idle(State):
             bobby.running()
             return
         
-        if bob.is_button_pressed(ACTION_BUTTON_1):
+        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+            bobby.jump_button_reset = False
             bobby.jumping()
             return
 

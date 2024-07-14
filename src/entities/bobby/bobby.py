@@ -14,8 +14,11 @@ class Bobby(Entity):
         super().__init__()
 
         self.set_name("bobby")
+        self.jump_button_reset = True
+        self.lock_x_during_jump = False
         self.direction = RIGHT
-        self.jump_velocity = 0
+        self.jump_velocity = JUMP_VELOCITY
+        self.jump_time = 0
         self.camera = camera
         self.speed = 3
         self.coyote_time = 0
@@ -48,6 +51,10 @@ class Bobby(Entity):
 
 
     def update(self, delta):
+        # if bob.is_button_pressed(ACTION_BUTTON_1):
+        #     self.jump_button_reset = False
+        if bob.is_button_released(ACTION_BUTTON_1):
+            self.jump_button_reset = True
 
         self.state.update(self, delta)
         self.sprite.update(delta)
@@ -99,8 +106,17 @@ class Bobby(Entity):
             self.sprite.set_animation(WALL_SLIDE_LEFT)
         self.state.set_state(self, WALL_SLIDE_STATE)
 
-    def jumping(self):
+    def jumping(self, x_velocity=0, lock_x=False):
         self.jump_velocity = JUMP_VELOCITY
+        self.jump_time = JUMP_TIME
+        if not x_velocity:
+            self.velocity.x = 0
+        else:
+            self.velocity.x = x_velocity
+        
+        if lock_x:
+            self.lock_x_during_jump = True
+
         self.state.set_state(self, JUMPING_STATE)
 
 
@@ -165,10 +181,33 @@ class Bobby(Entity):
             
             self.position.y += y
         
-        
+
         if current_state == JUMPING_STATE:
             self.position.x += x
+            self.hitbox.set_position(self.position.x, self.position.y - 1)
+            collisions = self.hitbox.get_collisions()
+
+            for collision in collisions:
+                if collision.get_type() in SOLID_OBJECTS:
+                    self.resolve_solid_collision_x(collision)
+                    # self.wall_slide()
+
             self.position.y += y
+            self.hitbox.set_position(self.position.x, self.position.y - 1)
+            collisions = self.hitbox.get_collisions()
+
+            for collision in collisions:
+                if collision.get_type() in SOLID_OBJECTS:
+
+                    # print(collision.get_hitbox().top)
+                    self.resolve_solid_collision_y(collision)
+                    # self.position.y -= y
+                    self.falling()
+                    break
+
+
+
+
         # self.hitbox.set_position(self.position.x, self.position.y)
         # collisions = self.hitbox.get_collisions()
         # current_state = self.state.get_name()
@@ -217,12 +256,14 @@ class Bobby(Entity):
                 self.velocity.y = 0
                 
         elif self.velocity.y < 0:
-            if self.hitbox.get_hitbox().top > hitbox.get_hitbox().bottom:
+            if self.hitbox.get_hitbox().top < hitbox.get_hitbox().bottom:
                 self.hitbox.get_hitbox().top = hitbox.get_hitbox().bottom
                 y_difference = self.hitbox.get_hitbox()[1] - hitbox_previous_y
                 self.position.y += y_difference
-                # self.position.y += 1
+                self.position.y += 1
                 self.velocity.y = 0
+        else:
+            pass
     
     def resolve_solid_collision_x(self, hitbox):
         hitbox_previous_x = int(self.hitbox.get_hitbox()[0])

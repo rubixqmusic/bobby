@@ -10,11 +10,7 @@ class Running(State):
         if bobby.is_on_ground():
             bobby.velocity.y = 0
         else:
-            bobby.falling()
-            return
-        
-        if bob.is_button_pressed(ACTION_BUTTON_1):
-            bobby.jumping()
+            bobby.falling(True)
             return
         
         if bob.is_button_pressed(RIGHT_BUTTON):
@@ -23,6 +19,25 @@ class Running(State):
             bobby.velocity.x -= bobby.speed
         else:
             bobby.idle()
+            return
+        
+        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+            bobby.jump_button_reset = False
+            
+            bobby.hitbox.set_position(bobby.position.x + bobby.velocity.x, bobby.position.y -1)
+            collisions = bobby.hitbox.get_collisions()
+
+            if collisions:
+                for collision in collisions:
+                    if collision.get_type() in SOLID_OBJECTS:
+                        bobby.resolve_solid_collision_x(collision)
+                        bobby.jumping(lock_x=True)
+                        
+                        return
+                    else:
+                        bobby.jumping()
+            else:
+                bobby.jumping()
             return
         
         if bobby.velocity.x > 0:

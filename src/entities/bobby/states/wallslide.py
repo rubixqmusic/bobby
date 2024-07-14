@@ -12,6 +12,18 @@ class WallSlide(State):
             return
         else:
             bobby.velocity.y += int(bobby.gravity/2)
+
+        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+            bobby.jump_button_reset = False
+            if bobby.direction == RIGHT:
+                bobby.move(-2,0)
+                bobby.jumping(-2)
+                return
+            
+            elif bobby.direction == LEFT:
+                bobby.move(2,0)
+                bobby.jumping(2)
+                return
             
         if bob.is_button_pressed(RIGHT_BUTTON):
             bobby.velocity.x = bobby.speed

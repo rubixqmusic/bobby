@@ -42,9 +42,9 @@ class Game:
         pygame.init()
 
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
-        # display_info = pygame.display.Info()
-        # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
-        self.window = pygame.display.set_mode(SCREEN_SIZE)
+        display_info = pygame.display.Info()
+        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+        # self.window = pygame.display.set_mode(WINDOW_SIZE)
         pygame.display.set_caption(WINDOW_CAPTION)
 
         if not self._resource_pack:
