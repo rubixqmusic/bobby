@@ -77,15 +77,6 @@ class Gameplay(State):
         delta = game.get_delta_time()
 
         if not self.paused:
-            # CAMSPD = 3
-            # if game.is_button_pressed(RIGHT_BUTTON):
-            #     self.camera.move(CAMSPD,0)
-            # if game.is_button_pressed(LEFT_BUTTON):
-            #     self.camera.move(-CAMSPD,0)
-            # if game.is_button_pressed(UP_BUTTON):
-            #     self.camera.move(0,-CAMSPD)
-            # if game.is_button_pressed(DOWN_BUTTON):
-            #     self.camera.move(0, CAMSPD)
             
             if self.bg_image:
                 self.bg_image.update()

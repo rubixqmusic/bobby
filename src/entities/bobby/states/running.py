@@ -24,13 +24,14 @@ class Running(State):
         if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
             bobby.jump_button_reset = False
             
-            bobby.hitbox.set_position(bobby.position.x + bobby.velocity.x, bobby.position.y -1)
+            bobby.hitbox.set_position(bobby.position.x + 1, bobby.position.y -1)
             collisions = bobby.hitbox.get_collisions()
 
             if collisions:
                 for collision in collisions:
                     if collision.get_type() in SOLID_OBJECTS:
                         bobby.resolve_solid_collision_x(collision)
+
                         bobby.jumping(lock_x=True)
                         
                         return
@@ -46,5 +47,10 @@ class Running(State):
         elif bobby.velocity.x < 0:
             bobby.direction = LEFT
             bobby.sprite.set_animation(RUNNING_LEFT)
+
+        if bobby.velocity.x and bobby.velocity.y != 0:
+            bobby.velocity.normalize()
+        x = int(bobby.velocity.x * delta)
+        y = int(bobby.velocity.y * delta)
         
-        bobby.move(bobby.velocity.x, bobby.velocity.y)
+        bobby.move(x, y)

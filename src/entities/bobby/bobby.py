@@ -20,7 +20,7 @@ class Bobby(Entity):
         self.jump_velocity = JUMP_VELOCITY
         self.jump_time = 0
         self.camera = camera
-        self.speed = 3
+        self.speed = SPEED
         self.coyote_time = 0
         self.gravity = gravity
         self.position = pygame.Vector2(starting_position)
@@ -48,9 +48,9 @@ class Bobby(Entity):
         self.state = State(player_states)
 
         self.idle()
-
-
+        
     def update(self, delta):
+
         # if bob.is_button_pressed(ACTION_BUTTON_1):
         #     self.jump_button_reset = False
         if bob.is_button_released(ACTION_BUTTON_1):
@@ -81,11 +81,13 @@ class Bobby(Entity):
             self.sprite.set_animation(IDLE_RIGHT)
         self.state.set_state(self, IDLE_STATE)
 
-    def falling(self, coyote_time=False):
+    def falling(self, coyote_time=0, x_velocity=0):
         if coyote_time:
             self.coyote_time = COYOTE_TIME
         else:
             self.coyote_time = 0
+
+        self.velocity.x = x_velocity
 
         if self.direction == RIGHT:
             self.sprite.set_animation(FALLING_RIGHT)
@@ -183,6 +185,9 @@ class Bobby(Entity):
         
 
         if current_state == JUMPING_STATE:
+            
+            # print(x)
+
             self.position.x += x
             self.hitbox.set_position(self.position.x, self.position.y - 1)
             collisions = self.hitbox.get_collisions()

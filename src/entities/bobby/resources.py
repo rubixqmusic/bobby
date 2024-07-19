@@ -5,6 +5,8 @@ CHARACTER_ANIMATION = f"{ANIMATIONS_PATH}/bobby.json"
 COLLISION_TYPES = ["ground"]
 SOLID_OBJECTS = ["ground"]
 
+JUMP_SOUND = f"{SOUNDS_PATH}/jump.wav"
+
 
 RIGHT = "right"
 LEFT = "left"
@@ -26,7 +28,10 @@ WALL_SLIDE_LEFT = "wall_slide_left"
 JUMPING_RIGHT = "jump_right"
 JUMPING_LEFT = "jump_left"
 
-COYOTE_TIME = 25
-JUMP_VELOCITY = 6
-JUMP_TIME = 15
+SPEED = 200
+COYOTE_TIME =  10
+JUMP_VELOCITY = 230
+JUMP_TIME = 17
 JUMP_HOLD = 8
+
+WALL_SLIDE_DELAY = 10
