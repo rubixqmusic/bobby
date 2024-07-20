@@ -2,6 +2,7 @@ import pygame
 
 from src.state import State
 from src.entity import Entity
+from src.signal import Signal
 from src.entities.bobby.resources import *
 from src.entities.bobby.entitystates import player_states
 
@@ -23,6 +24,7 @@ class Bobby(Entity):
         self.speed = SPEED
         self.coyote_time = 0
         self.gravity = gravity
+        self.generate_particles = Signal()
         self.position = pygame.Vector2(starting_position)
         self.velocity = pygame.Vector2([0,0])
 
@@ -36,12 +38,14 @@ class Bobby(Entity):
         
 
         self.hitbox = Hitbox()
+        self.hitbox._debug_show_range = True
         self.hitbox.set_type("bobby")
         self.hitbox.set_collision_types(COLLISION_TYPES)
         self.hitbox.set_colliders(hitboxes)
         self.hitbox.set_hitbox(0,0, 10,24)
         self.hitbox.set_offset(26,24)
         self.hitbox.set_position(self.position.x, self.position.y)
+        
 
         self.camera.center(self.hitbox.get_hitbox().centerx, self.hitbox.get_hitbox().centery)
 
@@ -50,7 +54,7 @@ class Bobby(Entity):
         self.idle()
         
     def update(self, delta):
-
+        
         # if bob.is_button_pressed(ACTION_BUTTON_1):
         #     self.jump_button_reset = False
         if bob.is_button_released(ACTION_BUTTON_1):
@@ -67,8 +71,11 @@ class Bobby(Entity):
         self.sprite.draw()
 
         if DEBUG_ENABLED and DEBUG_SHOW_HITBOXES:
-            pygame.draw.rect(self.camera.surface, (255,0,0), (self.hitbox.get_hitbox()[0] - self.camera.x, self.hitbox.get_hitbox()[1] - self.camera.y, self.hitbox.get_hitbox()[2], self.hitbox.get_hitbox()[3]), 1)
-
+            pygame.draw.rect(self.camera.surface, DEBUG_HITBOX_COLOR, (self.hitbox.get_hitbox()[0] - self.camera.x, self.hitbox.get_hitbox()[1] - self.camera.y, self.hitbox.get_hitbox()[2], self.hitbox.get_hitbox()[3]), 1)
+            if self.hitbox._debug_show_range:
+                            hitbox_range = pygame.rect.Rect(0,0, self.hitbox._range, self.hitbox._range)
+                            hitbox_range.center = self.hitbox._hitbox.center
+                            pygame.draw.rect(self.camera.surface, DEBUG_HITBOX_RANGE_COLOR, (hitbox_range[0] - self.camera.x, hitbox_range[1] - self.camera.y, hitbox_range[2], hitbox_range[3]), 1)
 # STATE TRANSITIONS
 
     def idle(self):

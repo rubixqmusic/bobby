@@ -11,6 +11,8 @@ class Jumping(State):
         self.jump_hold = JUMP_HOLD
         self.extra_hold = False
         bob.play_sound(JUMP_SOUND)
+
+        bobby.generate_particles.emit(JUMP_PARTICLE, [bobby.position.x + 32, bobby.position.y + 47],{})
         # bobby.velocity.x = bobby.speed /2
 
     def on_state_exit(self, bobby):
@@ -18,15 +20,7 @@ class Jumping(State):
         
     def update(self, bobby, delta):
 
-        # bobby.velocity.x = 0
         bobby.velocity.y = 0
-        # if bobby.is_on_ceiling():
-        #     bobby.falling()
-        #     return
-        if bobby.jump_time < 0 and self.jump_hold < 0:
-            bobby.falling()
-            return
-        
         if self.wall_jump and bobby.jump_time > 0:
             velocity = bobby.jump_velocity
             bobby.velocity.y -= velocity
@@ -42,7 +36,7 @@ class Jumping(State):
         
         if not bob.is_button_pressed(ACTION_BUTTON_1) and self.jump_button_released == False:
             self.jump_button_released = True
-            bobby.jump_time = 5
+            bobby.jump_time -= 10
         
         if bobby.velocity.x > 0:
             bobby.direction = RIGHT
@@ -50,6 +44,10 @@ class Jumping(State):
         elif bobby.velocity.x < 0:
             bobby.direction = LEFT
             bobby.sprite.set_animation(JUMPING_LEFT)
+
+        if bobby.jump_time < 0 and self.jump_hold < 0:
+            bobby.falling(x_velocity=bobby.velocity.x)
+            return
 
         if bobby.velocity.x and bobby.velocity.y != 0:
             bobby.velocity.normalize()
@@ -64,5 +62,5 @@ class Jumping(State):
         if bobby.jump_time < 0:
             if bob.is_button_pressed(ACTION_BUTTON_1) and self.extra_hold == False:
                 self.extra_hold = True
-                self.jump_hold += JUMP_HOLD
+                self.jump_hold += EXTRA_JUMP_HOLD
             self.jump_hold -=1

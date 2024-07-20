@@ -14,6 +14,8 @@ class Hitbox:
         self._collision_types = []
         self._colliders = None
         self._groups = []
+        self._range = DEFAULT_HITBOX_RANGE
+        self._debug_show_range = False
         self.properties = {}
         self.on_collision = Signal()
 
@@ -58,6 +60,8 @@ class Hitbox:
         self._colliders = colliders
     
     def get_collisions(self):
+        if not self._enabled:
+            return []
         if not self._colliders:
             return []
         collisions = []
@@ -65,8 +69,11 @@ class Hitbox:
             if collision_type in self._colliders:
                 for hitbox in self._colliders[collision_type]:
                     if hitbox is not None:
-                        if self._hitbox.colliderect(hitbox.get_hitbox()):
-                            collisions.append(hitbox)
+                        hitbox_range = pygame.rect.Rect(0,0,self._range, self._range)
+                        hitbox_range.center = self._hitbox.center
+                        if hitbox_range.colliderect(hitbox.get_hitbox()):
+                            if self._hitbox.colliderect(hitbox.get_hitbox()):
+                                collisions.append(hitbox)
         return collisions
 
     def set_type(self, type):

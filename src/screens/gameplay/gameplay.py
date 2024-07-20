@@ -7,6 +7,7 @@ from src.screens.gameplay.screenstates import level_states
 from src.state import State
 from src.camera import Camera
 from src.animatedsprite import AnimatedSprite
+from src.particleengine import ParticleEngine
 
 
 class Gameplay(State):
@@ -20,6 +21,7 @@ class Gameplay(State):
         self.paused = False
         self.onscreen_tile_count = 0
         self.hitboxes = {}
+        self.particle_engine = None
         self.clear_scene()
     
     def clear_scene(self):
@@ -62,7 +64,7 @@ class Gameplay(State):
         self.transition_overlay.load_sprite_data(TRANSITION_ANIMATION)
         self.transition_overlay.set_animation("idle")
         
-
+        self.particle_engine = ParticleEngine(MAX_PARTICLES, self.camera.surface, self.camera)
         self.state = State(level_states)
 
         # level_name = self.level_name
@@ -85,6 +87,8 @@ class Gameplay(State):
                 self.player.update(delta)
 
             self.state.update(self)
+        
+        self.particle_engine.update(delta)
 
     def draw(self, game):
         self.onscreen_tile_count = 0
@@ -188,11 +192,16 @@ class Gameplay(State):
         if self.player:
             self.player.draw()
         
+        
+        
         if self.hitboxes and DEBUG_ENABLED and DEBUG_SHOW_HITBOXES:
             for type in self.hitboxes:
                 for hitbox in self.hitboxes[type]:
                     if hitbox is not None:
                         pygame.draw.rect(self.camera.surface, (0,0,255), (hitbox.get_hitbox()[0] - self.camera.x, hitbox.get_hitbox()[1] - self.camera.y, hitbox.get_hitbox()[2], hitbox.get_hitbox()[3]), 1)
+                        
+        if self.particle_engine:
+            self.particle_engine.draw()
 
         self.game.get_screen().blit(self.camera.surface, [0,0])
 

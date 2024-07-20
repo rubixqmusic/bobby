@@ -21,7 +21,7 @@ class Falling(State):
             bobby.coyote_time -= 1
         if bobby.coyote_time <= 0:
             bobby.coyote_time = 0
-        bobby.velocity.x = 0
+        bobby.velocity.x = self.lock_x_velocity
         bobby.velocity.y = 0
         if bobby.is_on_ground():
             # bobby.position.y -= 1
@@ -33,9 +33,10 @@ class Falling(State):
         if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.coyote_time > 0 and bobby.jump_button_reset:
             bobby.jumping()
 
-        if self.lock_x_velocity:
-            bobby.velocity.x = self.lock_x_velocity
-        elif not self.jumping_into_wall: 
+        # if self.lock_x_velocity:
+        #     bobby.velocity.x = self.lock_x_velocity
+        # elif not self.jumping_into_wall: 
+        if not self.jumping_into_wall:
 
             if bob.is_button_pressed(RIGHT_BUTTON):
                 bobby.velocity.x = int(bobby.speed)

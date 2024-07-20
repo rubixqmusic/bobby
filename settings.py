@@ -1,6 +1,7 @@
 import os
 import enum
 
+
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
 EXECUTABLE_NAME = "Bobbys-Money-Maddness"
@@ -94,12 +95,18 @@ MAIN_GROUND_LAYER_NAME = "main_ground"
 OVERLAY_1_LAYER_NAME = "overlay_1"
 OVERLAY_2_LAYER_NAME = "overlay_2"
 
+DEFAULT_HITBOX_RANGE = 128
+
+PARTICLE_CIRCLE = "particle_circle"
+
+JUMP_PARTICLE = "jump_particle"
+
 
 
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = True
-DEBUG_SHOW_HITBOXES = True
+DEBUG_SHOW_HITBOXES = False
 DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
