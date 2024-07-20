@@ -19,7 +19,7 @@ HITBOX_TYPES = ["ground", "bobby"]
 
 MAX_ENTITIES = 1000
 MAX_HITBOXES = 5000
-MAX_PARTICLES = 10000
+MAX_PARTICLES = 3000
 
 TILE_DATA = {
                 "ground" :  {

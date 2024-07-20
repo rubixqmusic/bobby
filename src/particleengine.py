@@ -1,4 +1,7 @@
 import pygame
+import random
+import logging
+
 from settings import *
 
 class ParticleEngine:
@@ -16,16 +19,38 @@ class ParticleEngine:
         # type, position, size, shape, color, lifetime, properties
         
         if particle_type == JUMP_PARTICLE:
+
+           
             index = 0
             for particle in self._particles:
                 if particle == None:   
                     size = 4
                     shape = PARTICLE_CIRCLE
                     color = (200,200,255)
-                    lifetime = 6
-                    self._particles[index] = [particle_type, position, size, shape, color, lifetime, properties]
-                    break
+                    lifetime = 4
+                    if index <= len(self._particles) -1:
+                        self._particles[index] = [particle_type, position, size, shape, color, lifetime, properties]
+                    return
                 index += 1
+
+        elif particle_type == DUST_PARTICLE:
+            number_of_particles = random.randint(1,5)
+            index = 0
+            for particle in self._particles:
+                if particle == None:
+                    x_pos = random.randint(1, 2)
+                    size = 2
+                    position[0] += x_pos
+                    shape = PARTICLE_CIRCLE
+                    color = (255, 180, 0)
+                    lifetime = 5
+                    if index <= len(self._particles) -1:
+                        self._particles[index] = [particle_type, position, size, shape, color, lifetime, properties]
+                    number_of_particles -= 1
+                    if number_of_particles <= 0:
+                        return
+                index += 1
+            # logging.debug(f"could not add particle! all available particle slots full")
 
             
     def update(self, delta):
@@ -39,11 +64,19 @@ class ParticleEngine:
                     self._particles[index] = None
                     continue
                 else:
+
                     if particle[0] == JUMP_PARTICLE:
                         pygame.draw.circle(self._draw_target, particle[4], (particle[1][0] - self._camera.x, particle[1][1] - self._camera.y), particle[2], particle[5])
                         particle[2] += 1
                         particle[5] -= 1
+                    
+                    if particle[0] == DUST_PARTICLE:
 
+                        
+                        pygame.draw.circle(self._draw_target, particle[4], (particle[1][0] - self._camera.x, particle[1][1] - self._camera.y), particle[2], particle[5])
+                        particle[1][1] -= 1
+                        particle[2] += 0.5
+                        particle[5] -= 1
             index += 1
 
         ...
