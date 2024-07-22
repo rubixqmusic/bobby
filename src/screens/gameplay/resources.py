@@ -29,7 +29,11 @@ DEFAULT_GRAVITY = 230
 
 LEVEL_TILESET_IDENTIFIER = "levels"
 
-HITBOX_TYPES = ["ground", "bobby"]
+# entity identifiers
+
+GOLD_COIN_ENTITY = "gold_coin"
+
+HITBOX_TYPES = ["ground", "bobby", "gold_coin"]
 
 MAX_ENTITIES = 1000
 MAX_HITBOXES = 5000

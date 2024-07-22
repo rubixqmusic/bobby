@@ -3,10 +3,11 @@ from src.bob import bob
 
 from src.entities.bobby.resources import *
 
-class Running(State):
+class Pivot(State):
+    def on_state_enter(self, bobby):
+        self.pivot_time = PIVOT_TIME
+
     def update(self, bobby, delta):
-        previous_x_velocity = bobby.velocity.x
-        previous_y_velocity = bobby.velocity.y
         bobby.velocity.x = 0
         bobby.velocity.y = 0
         if bobby.is_on_ground():
@@ -15,21 +16,12 @@ class Running(State):
             bobby.falling(True)
             return
         
-        if bob.is_button_pressed(RIGHT_BUTTON):
-            bobby.velocity.x += bobby.speed
-        elif bob.is_button_pressed(LEFT_BUTTON):
-            bobby.velocity.x -= bobby.speed
-        else:
-            bobby.idle()
-            return
-        
-        # if bob.is_button_pressed(RIGHT_BUTTON) and previous_x_velocity < 0:
-        #     bobby.pivot()
+        # if bob.is_button_pressed(RIGHT_BUTTON) and bobby.direction == RIGHT:
+        #     bobby.running()
         #     return
-        # if bob.is_button_pressed(LEFT_BUTTON) and previous_x_velocity > 0:
-        #     bobby.pivot()
+        # if bob.is_button_pressed(LEFT_BUTTON) and bobby.direction == LEFT:
+        #     bobby.running()
         #     return
-
         
         if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
             bobby.jump_button_reset = False
@@ -51,16 +43,25 @@ class Running(State):
                 bobby.jumping()
             return
         
-        if bobby.velocity.x > 0:
-            bobby.direction = RIGHT
-            bobby.set_animation(RUNNING_RIGHT)
-        elif bobby.velocity.x < 0:
-            bobby.direction = LEFT
-            bobby.set_animation(RUNNING_LEFT)
-
-        if bobby.velocity.x and bobby.velocity.y != 0:
-            bobby.velocity.normalize()
+        if bobby.direction == LEFT:
+            bobby.velocity.x = int(-SPEED * 0.5)
+        elif bobby.direction == RIGHT:
+            bobby.velocity.x = int(SPEED * 0.5)
+        
         x = int(bobby.velocity.x * delta)
         y = int(bobby.velocity.y * delta)
         
         bobby.move(x, y)
+
+        print(self.pivot_time)
+
+        self.pivot_time -= 1
+
+        if self.pivot_time <= 0:
+            if bobby.direction == RIGHT:
+                bobby.direction = LEFT
+            if bobby.direction == LEFT:
+                bobby.direction = RIGHT
+            bobby.idle()
+            return
+        

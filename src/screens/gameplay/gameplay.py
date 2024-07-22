@@ -87,9 +87,28 @@ class Gameplay(State):
             self.pause_menu()
 
         if not self.paused:
+
+            for hitbox_type in self.hitboxes:
+                hitbox_index = 0
+                for hitbox in self.hitboxes[hitbox_type]:
+                    if hitbox:
+                        if hitbox._alive == False:
+                            self.hitboxes[hitbox_type][hitbox_index] = None
+                    hitbox_index += 1
+
             
             if self.bg_image:
                 self.bg_image.update()
+
+            entity_index = 0
+            for entity in self.entities:
+                if entity:
+                    if entity._alive == False:
+                        self.entities[entity_index] = None
+                    else:
+                        entity.update(delta)
+                entity_index += 1
+
             
             if self.player:
                 self.player.update(delta)
@@ -197,6 +216,10 @@ class Gameplay(State):
                         draw_y = dest[1] - camera_pos[1]
                         self.camera.surface.blit(tileset_image,[draw_x,draw_y],[source[0], source[1], grid_size, grid_size])
         
+        for entity in self.entities:
+            if entity:
+                entity.draw()
+
         if self.player:
             self.player.draw()
         
@@ -245,7 +268,7 @@ class Gameplay(State):
         self.state.set_state(self, "return_to_world_map")
     
     def pause_menu(self):
-        if not self.paused:
+        if self.state.get_name() == "level_active":
             self.pause()
             self.state.set_state(self, "pause_menu")
 

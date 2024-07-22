@@ -5,6 +5,7 @@ from src.state import State
 from src.animatedsprite import AnimatedSprite
 from src.screens.gameplay.resources import *
 from src.entities.bobby.bobby import Bobby
+from src.entities.coin.coin import Coin
 from src.components.hitbox import Hitbox
 
 class LoadScene(State):
@@ -107,8 +108,13 @@ class LoadScene(State):
                                     hitbox.set_position(tile["px"][0], tile["px"][1])
                                     level.register_hitbox(hitbox)
 
-                
-
+                    if layer["__identifier"] == ENTITIES_LAYER_NAME:
+                        entity_instances = layer["entityInstances"]
+                        for entity in entity_instances:
+                            if entity["__identifier"] == GOLD_COIN_ENTITY:
+                                new_coin = Coin(entity["px"], level.camera, DEFAULT_GRAVITY, level.camera.surface, level.hitboxes, GOLD_COIN_ENTITY)
+                                level.register_hitbox(new_coin.hitbox)
+                                level.entities.append(new_coin)
 
                 level.camera.set_bounds(0, level.width, 0, level.height)
                 level.camera.center(self.player_start_position[0], self.player_start_position[1])

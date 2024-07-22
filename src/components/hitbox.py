@@ -16,6 +16,7 @@ class Hitbox:
         self._groups = []
         self._range = DEFAULT_HITBOX_RANGE
         self._debug_show_range = False
+        self._alive = True
         self.properties = {}
         self.on_collision = Signal()
 

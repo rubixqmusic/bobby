@@ -106,10 +106,11 @@ DUST_PARTICLE = "dust_particle"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
+DEBUG_ENABLED = True
 DEBUG_SHOW_HITBOXES = False
 DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"
 DEBUG_VIDEO_CALL_CUTSCENE = "intro_1"
+

@@ -15,6 +15,7 @@ class Bobby(Entity):
         super().__init__()
 
         self.set_name("bobby")
+        self.type = "bobby"
         self.jump_button_reset = True
         self.lock_x_during_jump = False
         self.direction = RIGHT
@@ -117,6 +118,16 @@ class Bobby(Entity):
             self.set_animation(WALL_SLIDE_LEFT)
         self.state.set_state(self, WALL_SLIDE_STATE)
 
+    def pivot(self):
+        if self.direction == RIGHT:
+            self.set_animation(PIVOT_RIGHT)
+        elif self.direction == LEFT:
+            self.set_animation(PIVOT_LEFT)
+        # else:
+        #     self.direction = RIGHT
+        #     self.set_animation(PIVOT_RIGHT)
+        self.state.set_state(self, PIVOT_STATE)
+
     def jumping(self, x_velocity=0, lock_x=False):
         self.jump_velocity = JUMP_VELOCITY
         self.jump_time = JUMP_TIME
@@ -143,6 +154,8 @@ class Bobby(Entity):
             for collision in collisions:
                 if collision.get_type() in SOLID_OBJECTS:
                     self.resolve_solid_collision_x(collision)
+                elif collision.get_type() in ITEMS:
+                    collision.on_collision.emit(self)
                     
             self.position.y += y
             self.hitbox.set_position(self.position.x, self.position.y - 1)
@@ -152,6 +165,30 @@ class Bobby(Entity):
                 for collision in collisions:
                     if collision.get_type() in SOLID_OBJECTS:
                         self.resolve_solid_collision_y(collision)
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
+
+        if current_state == PIVOT_STATE:
+            self.position.x += x
+            self.hitbox.set_position(self.position.x, self.position.y - 1)
+            collisions = self.hitbox.get_collisions()
+
+            for collision in collisions:
+                if collision.get_type() in SOLID_OBJECTS:
+                    self.resolve_solid_collision_x(collision)
+                elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
+                    
+            self.position.y += y
+            self.hitbox.set_position(self.position.x, self.position.y - 1)
+            collisions = self.hitbox.get_collisions()
+
+            if collisions:
+                for collision in collisions:
+                    if collision.get_type() in SOLID_OBJECTS:
+                        self.resolve_solid_collision_y(collision)
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
         
 
         if current_state == FALLING_STATE:
@@ -165,6 +202,8 @@ class Bobby(Entity):
                         self.resolve_solid_collision_x(collision)
                         self.wall_slide()
                         break
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
 
             self.position.y += y
             self.hitbox.set_position(self.position.x, self.position.y - 1)
@@ -174,6 +213,8 @@ class Bobby(Entity):
                 for collision in collisions:
                     if collision.get_type() in SOLID_OBJECTS:
                         self.resolve_solid_collision_y(collision)
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
 
 
         if current_state == WALL_SLIDE_STATE:
@@ -187,6 +228,8 @@ class Bobby(Entity):
                 for collision in collisions:
                     if collision.get_type() in SOLID_OBJECTS:
                         self.resolve_solid_collision_x(collision)
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
                     else:
                         self.falling()
             
@@ -204,6 +247,8 @@ class Bobby(Entity):
             for collision in collisions:
                 if collision.get_type() in SOLID_OBJECTS:
                     self.resolve_solid_collision_x(collision)
+                elif collision.get_type() in ITEMS:
+                    collision.on_collision.emit(self)
                     # self.wall_slide()
 
             self.position.y += y
@@ -218,6 +263,8 @@ class Bobby(Entity):
                     # self.position.y -= y
                     self.falling()
                     break
+                elif collision.get_type() in ITEMS:
+                    collision.on_collision.emit(self)
 
 
 
