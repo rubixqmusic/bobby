@@ -9,6 +9,8 @@ from src.camera import Camera
 from src.animatedsprite import AnimatedSprite
 from src.particleengine import ParticleEngine
 
+from src.entities.coin.coin import Coin
+
 
 class Gameplay(State):
     def __init__(self, states: dict, *args) -> None:
@@ -24,6 +26,7 @@ class Gameplay(State):
         self.onscreen_tile_count = 0
         self.hitboxes = {}
         self.particle_engine = None
+        self.new_entity_queue = []
         self.clear_scene()
     
     def clear_scene(self):
@@ -87,6 +90,8 @@ class Gameplay(State):
             self.pause_menu()
 
         if not self.paused:
+
+            self._add_queued_entities_to_scene()
 
             for hitbox_type in self.hitboxes:
                 hitbox_index = 0
@@ -262,6 +267,7 @@ class Gameplay(State):
         self.state.set_state(self, "level_active")
     
     def return_to_title_screen(self):
+        self.game.save_game()
         self.state.set_state(self, "return_to_title_screen")
 
     def return_to_world_map(self):
@@ -274,6 +280,27 @@ class Gameplay(State):
 
     def get_onscreen_tile_count(self):
         return self.onscreen_tile_count
+    
+
+    def spawn_new_entity(self, entity_data):
+        if entity_data["__identifier"] == GOLD_COIN_ENTITY:
+            new_coin = Coin(entity_data["px"], self.camera, DEFAULT_GRAVITY, self.camera.surface, self.hitboxes, GOLD_COIN_ENTITY)
+            self.register_hitbox(new_coin.hitbox)
+            self.new_entity_queue.append(new_coin)
+    
+    
+    def _add_queued_entities_to_scene(self):
+        if self.new_entity_queue:
+            entity_slot_index = 0
+            new_entity_queue_index = 0
+            for entity_slot in self.entities:
+                if new_entity_queue_index > len(self.new_entity_queue) - 1:
+                    break
+                if entity_slot == None:
+                    self.entities[entity_slot_index] = self.new_entity_queue[new_entity_queue_index]
+                    new_entity_queue_index += 1
+                entity_slot_index += 1
+            self.new_entity_queue = []
     
     def register_hitbox(self, new_hitbox):
         hitbox_type = new_hitbox.get_type()

@@ -15,6 +15,7 @@ class Player:
         self.y = y
         self.offset_y = -8
         self.direction = "down"
+        self.level_entrance_direction = None
         self.walking_speed = 1
         self.walking_speed_step = 0
         self.camera = camera
@@ -98,6 +99,7 @@ class IdleOnLevel(State):
         if self.level_data:
             if player.game.is_button_released(START_BUTTON) or player.game.is_button_released(ACTION_BUTTON_1):
                 player.animated_sprite.set_animation("level_start")
+                player.world_map.level_name = self.level_name
                 player.world_map.start_level()
                 player.set_player_starting_level()
             if self.level_data["money"] < self.level_data["quota"]:
@@ -436,6 +438,7 @@ class Walking(State):
                 if player.rect.colliderect(level.rect):
                     if player.x == level.x and player.y == level.y:
                         player.set_player_idle_on_level(level.level_name, entrance_direction)
+                        player.level_entrance_direction = entrance_direction
 
 class Init(State):
     def on_state_enter(self, player: Player):
@@ -448,7 +451,9 @@ class Idle(State):
         for level_tile in player.world_map.level_tiles:
             if player.rect.colliderect(level_tile.rect):
                 player.current_level = level_tile.level_name
-                player.set_player_idle()
+                level_data = player.game.get_level_data(player.current_level)
+                entrance_direction = level_data["map_entrance_direction"]
+                player.set_player_idle_on_level(level_tile.level_name, entrance_direction)
 
         for landing in player.world_map.landings:          
             if player.rect.colliderect(landing.rect):

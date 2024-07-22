@@ -11,7 +11,7 @@ save_data = {
                                                   "percent_to_plan" : 150, 
                                                   "rare_stones" : 0, 
                                                   "coins" : 0,
-                                                  "map_entrance_direction" : None
+                                                  "map_entrance_direction" : "n"
                                                   },
 
                                 "sunken_ass_ship" : {

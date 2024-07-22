@@ -266,6 +266,7 @@ class WorldMap(State):
     def start_level(self):
         self.game.play_sound(LEVEL_START_SOUND)
         self.game.stop_music()
+        self.game.set_save_data("current_level", self.level_name)
         self.state.set_state(self, "start_level")
 
     def quit_menu(self):
@@ -273,6 +274,7 @@ class WorldMap(State):
         self.state.set_state(self, "quit_menu")
     
     def quit_to_main_menu(self):
+        self.game.save_game()
         self.state.set_state(self, "quit_to_main_menu")
 
     def load_scene(self):

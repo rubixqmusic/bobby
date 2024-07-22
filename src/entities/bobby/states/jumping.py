@@ -30,13 +30,13 @@ class Jumping(State):
         if not self.wall_jump and not bobby.lock_x_during_jump:
  
             if bob.is_button_pressed(RIGHT_BUTTON):
-                bobby.velocity.x = bobby.speed
+                bobby.velocity.x = int(bobby.speed * 0.75)
             elif bob.is_button_pressed(LEFT_BUTTON):
-                bobby.velocity.x = -bobby.speed
+                bobby.velocity.x = int(-bobby.speed * 0.75)
         
         if not bob.is_button_pressed(ACTION_BUTTON_1) and self.jump_button_released == False:
             self.jump_button_released = True
-            bobby.jump_time -= 10
+            bobby.jump_time -= JUMP_RELEASE
         
         if bobby.velocity.x > 0:
             bobby.direction = RIGHT
