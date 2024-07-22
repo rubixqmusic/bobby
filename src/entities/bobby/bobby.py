@@ -32,7 +32,7 @@ class Bobby(Entity):
         self.sprite.load_spritesheet(bob.load_resource(CHARACTER_SPRITESHEET))
         self.sprite.load_animation(bob.load_resource(CHARACTER_ANIMATION))
         self.sprite.set_draw_target(draw_target)
-        self.sprite.set_animation("idle_right")
+        self.sprite.set_animation(IDLE_RIGHT)
         self.sprite.set_position(200,200)
         self.sprite.play()
         
@@ -50,6 +50,8 @@ class Bobby(Entity):
         self.camera.center(self.hitbox.get_hitbox().centerx, self.hitbox.get_hitbox().centery)
 
         self.state = State(player_states)
+
+        self.set_animation(IDLE_RIGHT)
 
         self.idle()
         
@@ -80,12 +82,12 @@ class Bobby(Entity):
 
     def idle(self):
         if self.direction == RIGHT:
-            self.sprite.set_animation(IDLE_RIGHT)
+            self.set_animation(IDLE_RIGHT)
         elif self.direction == LEFT:
-            self.sprite.set_animation(IDLE_LEFT)
+            self.set_animation(IDLE_LEFT)
         else:
             self.direction = RIGHT
-            self.sprite.set_animation(IDLE_RIGHT)
+            self.set_animation(IDLE_RIGHT)
         self.state.set_state(self, IDLE_STATE)
 
     def falling(self, coyote_time=0, x_velocity=0):
@@ -97,12 +99,12 @@ class Bobby(Entity):
         self.velocity.x = x_velocity
 
         if self.direction == RIGHT:
-            self.sprite.set_animation(FALLING_RIGHT)
+            self.set_animation(FALLING_RIGHT)
         elif self.direction == LEFT:
-            self.sprite.set_animation(FALLING_LEFT)
+            self.set_animation(FALLING_LEFT)
         else:
             self.direction = RIGHT
-            self.sprite.set_animation(FALLING_RIGHT)
+            self.set_animation(FALLING_RIGHT)
         self.state.set_state(self, FALLING_STATE)
     
     def running(self):
@@ -110,9 +112,9 @@ class Bobby(Entity):
 
     def wall_slide(self):
         if self.direction == RIGHT:
-            self.sprite.set_animation(WALL_SLIDE_RIGHT)
+            self.set_animation(WALL_SLIDE_RIGHT)
         elif self.direction == LEFT:
-            self.sprite.set_animation(WALL_SLIDE_LEFT)
+            self.set_animation(WALL_SLIDE_LEFT)
         self.state.set_state(self, WALL_SLIDE_STATE)
 
     def jumping(self, x_velocity=0, lock_x=False):
@@ -229,6 +231,9 @@ class Bobby(Entity):
         #         if collision.get_type() in SOLID_OBJECTS:
         #             self.resolve_solid_collision_y(collision)
         ...
+
+    def set_animation(self, animation_name: str):
+        self.sprite.set_animation(animation_name)
 
 
     def is_on_ground(self):

@@ -28,7 +28,6 @@ cutscenes = {
                             (ShowDialog, ("what's good, brother?", {})),
                             (Wait, (60, {})),
                             (ShowDialog, ("just wanted to hop on a call real quick", {})),
-                            (Wait, (60, {})),
                             (ShowDialog, ("so we could connect on a couple of things", {})),
                             (Wait, (80, {})),
                             (ShowDialog, ("...okay... so...", {})),

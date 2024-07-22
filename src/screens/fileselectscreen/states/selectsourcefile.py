@@ -42,7 +42,7 @@ class SelectSourceFile(State):
             self.menu.get_previous_menu_item()
             file_select_screen.game.play_sound(file_select_screen_menu_select_sound_path)
 
-        if file_select_screen.game.is_button_released(START_BUTTON):
+        if file_select_screen.game.is_button_released(START_BUTTON) or file_select_screen.game.is_button_released(ACTION_BUTTON_1):
             if self.menu.get_current_selection() == "back":
                 file_select_screen.game.play_sound(BACK_FX)
                 file_select_screen.select_file()

@@ -74,7 +74,7 @@ class Choice(State):
                 video_call_cutscene.game.play_sound(DIALOG_SOUND_PATH)
         
         elif self.status == "make_choice":
-            if video_call_cutscene.game.is_button_released(START_BUTTON):
+            if video_call_cutscene.game.is_button_released(START_BUTTON) or video_call_cutscene.game.is_button_released(ACTION_BUTTON_1):
                 for choice in self.choices:
                     if choice["name"] == self.choice:
                         # video_call_cutscene.game.play_sound(video_call_cutscene.game.load_resource(VIDEO_CALL_ACCEPT_SOUND_PATH))

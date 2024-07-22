@@ -47,10 +47,10 @@ class Falling(State):
         # bobby.position.x += bobby.velocity.x
         if bobby.velocity.x > 0:
             bobby.direction = RIGHT
-            bobby.sprite.set_animation(FALLING_RIGHT)
+            bobby.set_animation(FALLING_RIGHT)
         elif bobby.velocity.x < 0:
             bobby.direction = LEFT
-            bobby.sprite.set_animation(FALLING_LEFT)
+            bobby.set_animation(FALLING_LEFT)
 
         if bobby.velocity.x and bobby.velocity.y != 0:
             bobby.velocity.normalize()

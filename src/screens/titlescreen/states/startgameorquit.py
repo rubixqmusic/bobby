@@ -17,7 +17,7 @@ class StartGameOrQuit(State):
             self.menu.get_previous_menu_item()
             title_screen.game.play_sound(title_screen_menu_select_sound_path)
 
-        if title_screen.game.is_button_released(START_BUTTON):
+        if title_screen.game.is_button_released(START_BUTTON) or title_screen.game.is_button_released(ACTION_BUTTON_1):
             if self.menu.get_current_selection() == "start_game":
                 title_screen.game.play_sound(LETS_GO_FX)
                 title_screen.go_to_file_select_screen()

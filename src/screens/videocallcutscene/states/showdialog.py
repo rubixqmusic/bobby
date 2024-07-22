@@ -74,7 +74,7 @@ class ShowDialog(State):
             if self.text_advance_icon_step == 0:
                 self.toggle_text_advance_icon = not self.toggle_text_advance_icon
 
-            if video_call_cutscene.game.is_button_released(START_BUTTON):
+            if video_call_cutscene.game.is_button_released(START_BUTTON) or video_call_cutscene.game.is_button_released(ACTION_BUTTON_1):
                 video_call_cutscene.game.play_sound(DIALOG_ADVANCE_SOUND)
                 self.status = "get_next_event"
                 video_call_cutscene.get_next_event()

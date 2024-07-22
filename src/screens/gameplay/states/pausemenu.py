@@ -57,7 +57,7 @@ class PauseMenu(State):
                 # gameplay.map_active()
         elif self.status == "return_to_map":
             gameplay.level_active()
-            gameplay.unpause()
+            # gameplay.unpause()
     
 
     def draw(self, gameplay):

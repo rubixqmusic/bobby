@@ -40,7 +40,7 @@ class VideoCallRinging(State):
                 elif self.selection == "decline":
                     self.selection = "accept"
             
-            if video_call_cutscene.game.is_button_released(START_BUTTON):
+            if video_call_cutscene.game.is_button_released(START_BUTTON) or video_call_cutscene.game.is_button_released(ACTION_BUTTON_1):
                 if self.selection == "decline":
                     self.status = "decline"
                     video_call_cutscene.game.stop_music()

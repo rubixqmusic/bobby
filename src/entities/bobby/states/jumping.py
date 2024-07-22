@@ -40,10 +40,10 @@ class Jumping(State):
         
         if bobby.velocity.x > 0:
             bobby.direction = RIGHT
-            bobby.sprite.set_animation(JUMPING_RIGHT)
+            bobby.set_animation(JUMPING_RIGHT)
         elif bobby.velocity.x < 0:
             bobby.direction = LEFT
-            bobby.sprite.set_animation(JUMPING_LEFT)
+            bobby.set_animation(JUMPING_LEFT)
 
         if bobby.jump_time < 0 and self.jump_hold < 0:
             bobby.falling(x_velocity=bobby.velocity.x)

@@ -235,6 +235,7 @@ class Gameplay(State):
         self.state.set_state(self, "level_active")
     
     def level_active(self):
+        self.unpause()
         self.state.set_state(self, "level_active")
     
     def return_to_title_screen(self):
@@ -244,7 +245,9 @@ class Gameplay(State):
         self.state.set_state(self, "return_to_world_map")
     
     def pause_menu(self):
-        self.state.set_state(self, "pause_menu")
+        if not self.paused:
+            self.pause()
+            self.state.set_state(self, "pause_menu")
 
     def get_onscreen_tile_count(self):
         return self.onscreen_tile_count

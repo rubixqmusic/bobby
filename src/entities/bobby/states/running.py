@@ -43,10 +43,10 @@ class Running(State):
         
         if bobby.velocity.x > 0:
             bobby.direction = RIGHT
-            bobby.sprite.set_animation(RUNNING_RIGHT)
+            bobby.set_animation(RUNNING_RIGHT)
         elif bobby.velocity.x < 0:
             bobby.direction = LEFT
-            bobby.sprite.set_animation(RUNNING_LEFT)
+            bobby.set_animation(RUNNING_LEFT)
 
         if bobby.velocity.x and bobby.velocity.y != 0:
             bobby.velocity.normalize()

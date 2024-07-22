@@ -27,7 +27,7 @@ class SelectSetting(State):
             self.menu.get_previous_menu_item()
             settings_screen.game.play_sound(MENU_SELECT_SOUND)
 
-        if settings_screen.game.is_button_released(START_BUTTON):
+        if settings_screen.game.is_button_released(START_BUTTON) or settings_screen.game.is_button_released(ACTION_BUTTON_1):
             if self.menu.get_current_selection() == "back":
                 settings_screen.game.play_sound(BACK_FX)
                 settings_screen.go_to_title_screen()
