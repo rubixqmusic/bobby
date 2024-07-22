@@ -19,6 +19,8 @@ class Gameplay(State):
         self.transition_in = args[2]
         self.transition_out = None
         self.paused = False
+        self.text_grow_factor = 0
+        self.sine_degrees = 0
         self.onscreen_tile_count = 0
         self.hitboxes = {}
         self.particle_engine = None
@@ -58,6 +60,7 @@ class Gameplay(State):
 
     def on_state_enter(self, game):
         self.game = game
+        self.font = pygame.font.Font(game.load_resource(PAUSE_MENU_FONT), PAUSE_MENU_FONT_SIZE)
         self.camera = Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
         self.transition_overlay = AnimatedSprite(self.game, self.game.get_screen())
         self.transition_overlay.load_spritesheet(TRANSITION_SPRITESHEET)
@@ -77,6 +80,11 @@ class Gameplay(State):
     
     def update(self, game):
         delta = game.get_delta_time()
+        self.text_grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
+        self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
+
+        if game.is_button_released(SELECT_BUTTON):
+            self.pause_menu()
 
         if not self.paused:
             
@@ -86,7 +94,7 @@ class Gameplay(State):
             if self.player:
                 self.player.update(delta)
 
-            self.state.update(self)
+        self.state.update(self)
         
         self.particle_engine.update(delta)
 
@@ -192,8 +200,6 @@ class Gameplay(State):
         if self.player:
             self.player.draw()
         
-        
-        
         if self.hitboxes and DEBUG_ENABLED and DEBUG_SHOW_HITBOXES:
             for type in self.hitboxes:
                 for hitbox in self.hitboxes[type]:
@@ -227,6 +233,18 @@ class Gameplay(State):
     
     def start_scene(self):
         self.state.set_state(self, "level_active")
+    
+    def level_active(self):
+        self.state.set_state(self, "level_active")
+    
+    def return_to_title_screen(self):
+        self.state.set_state(self, "return_to_title_screen")
+
+    def return_to_world_map(self):
+        self.state.set_state(self, "return_to_world_map")
+    
+    def pause_menu(self):
+        self.state.set_state(self, "pause_menu")
 
     def get_onscreen_tile_count(self):
         return self.onscreen_tile_count

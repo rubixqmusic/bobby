@@ -75,6 +75,12 @@ menus = {
             "world_map_quit_menu" : [
                                         {"name" : "continue",               "text": "Continue",                 "position" : [SCREEN_WIDTH/2, 128]},
                                         {"name" : "return_to_main_menu",    "text": "Return To Main Menu",      "position" : [SCREEN_WIDTH/2, 160]}
+                                    ],
+
+            "gameplay_pause_menu" : [
+                                        {"name" : "continue",               "text": "Continue",                 "position" : [SCREEN_WIDTH/2, 122]},
+                                        {"name" : "return_to_world_map",    "text": "Return To World Map",      "position" : [SCREEN_WIDTH/2, 144]},
+                                        {"name" : "return_to_title_screen", "text": "Return To Title Screen",   "position" : [SCREEN_WIDTH/2, 166]}
                                     ]
                         
                             

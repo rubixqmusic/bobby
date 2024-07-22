@@ -19,8 +19,6 @@ class ParticleEngine:
         # type, position, size, shape, color, lifetime, properties
         
         if particle_type == JUMP_PARTICLE:
-
-           
             index = 0
             for particle in self._particles:
                 if particle == None:   
@@ -34,7 +32,7 @@ class ParticleEngine:
                 index += 1
 
         elif particle_type == DUST_PARTICLE:
-            number_of_particles = random.randint(1,5)
+            number_of_particles = random.randint(1,2)
             index = 0
             for particle in self._particles:
                 if particle == None:
@@ -42,8 +40,8 @@ class ParticleEngine:
                     size = 2
                     position[0] += x_pos
                     shape = PARTICLE_CIRCLE
-                    color = (255, 180, 0)
-                    lifetime = 5
+                    color = (200,200,255)
+                    lifetime = 3
                     if index <= len(self._particles) -1:
                         self._particles[index] = [particle_type, position, size, shape, color, lifetime, properties]
                     number_of_particles -= 1
@@ -75,6 +73,7 @@ class ParticleEngine:
                         
                         pygame.draw.circle(self._draw_target, particle[4], (particle[1][0] - self._camera.x, particle[1][1] - self._camera.y), particle[2], particle[5])
                         particle[1][1] -= 1
+                        # if particle[5] % 2 == 0:
                         particle[2] += 0.5
                         particle[5] -= 1
             index += 1

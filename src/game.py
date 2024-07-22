@@ -220,26 +220,26 @@ class Game:
         self._update_clock()
     
     def _draw_debug(self):
-        camera_pos = [0,0]
-        number_of_tiles = 0
-        try:
-            camera_pos[0] = self.state.camera.get_position()[0]
-            camera_pos[1] = self.state.camera.get_position()[1]
-        except AttributeError:
-            pass
+        # camera_pos = [0,0]
+        # number_of_tiles = 0
+        # try:
+        #     camera_pos[0] = self.state.camera.get_position()[0]
+        #     camera_pos[1] = self.state.camera.get_position()[1]
+        # except AttributeError:
+        #     pass
 
-        try:
-            number_of_tiles = self.state.get_onscreen_tile_count()
-        except ArithmeticError:
-            pass
+        # try:
+        #     number_of_tiles = self.state.get_onscreen_tile_count()
+        # except ArithmeticError:
+        #     pass
 
         debug_fps = self.debug_font.render(f"FPS: {int(self.get_fps())}", True, (255,255,255))
-        debug_camera_pos = self.debug_font.render(f"Camera Pos: {camera_pos}", True, (255,255,255))
-        debug_number_of_tiles = self.debug_font.render(f"Number of Tiles: {number_of_tiles}", True, (255,255,255))
+        # debug_camera_pos = self.debug_font.render(f"Camera Pos: {camera_pos}", True, (255,255,255))
+        # debug_number_of_tiles = self.debug_font.render(f"Number of Tiles: {number_of_tiles}", True, (255,255,255))
 
         self.get_screen().blit(debug_fps, (12, 12))
-        self.get_screen().blit(debug_camera_pos, (12, 28))
-        self.get_screen().blit(debug_number_of_tiles, (12, 44))
+        # self.get_screen().blit(debug_camera_pos, (12, 28))
+        # self.get_screen().blit(debug_number_of_tiles, (12, 44))
 
     
 
