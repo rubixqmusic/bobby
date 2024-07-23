@@ -1,6 +1,7 @@
 import os
 import enum
 
+VERSION = f"0.0.1"
 
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
@@ -61,6 +62,8 @@ TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 DEFAULT_FONT = "default3.otf"
 DEFAULT_FONT_SIZE = 12
 
+VIDEO_CALL_FONT = "video_call_font.ttf"
+
 SAVE_DATA_FILE_NAME = "bob.sav"
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
 
@@ -108,7 +111,7 @@ DUST_PARTICLE = "dust_particle"
 
 DEBUG_ENABLED = True
 DEBUG_SHOW_HITBOXES = True
-DEBUG_START_IN_STATE = "gameplay"
+DEBUG_START_IN_STATE = "video_call_cutscene"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

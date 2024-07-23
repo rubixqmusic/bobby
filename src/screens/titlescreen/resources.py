@@ -29,7 +29,7 @@ menu_drop_shadow_x = 1
 menu_drop_shadow_y = 1
 menu_drop_shadow_color = f"#000000"
 
-licensed_by_kablio_text = f"Licensed By Kablio©"
+licensed_by_kablio_text = f"Version {VERSION} Licensed By Kablio©"
 licensed_by_kablio_text_y_position = 272
 
 text_y_spacing = 25

@@ -1,8 +1,11 @@
 import pygame
 import textwrap
 
+import pygame.freetype
+
 from src.state import State
 from src.screens.videocallcutscene.resources import *
+
 
 class ShowDialog(State):
     def __init__(self, states: dict, *args) -> None:
@@ -10,7 +13,7 @@ class ShowDialog(State):
 
         MAX_LINES = 2
         TEXT_SIZE = 16
-        MAX_LINE_WIDTH = 32
+        MAX_LINE_WIDTH = 38
         # print(self)
         self.args = args[0]
         self.dialog = self.args[0]
@@ -32,8 +35,8 @@ class ShowDialog(State):
         
 
         self.text_positions = [
-                                [124, 178],
-                                [124, 196]
+                                [124, 176],
+                                [124, 194]
         ]
 
         
