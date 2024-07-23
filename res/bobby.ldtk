@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 75,
+	"nextUid": 76,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1390,6 +1390,43 @@
 					"tilesetUid": null
 				},
 				{
+					"identifier": "display_name",
+					"doc": null,
+					"__type": "String",
+					"uid": 75,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
 					"identifier": "leads_to_scene",
 					"doc": null,
 					"__type": "EntityRef",
@@ -2200,6 +2237,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2225,6 +2263,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2250,6 +2289,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2275,6 +2315,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2300,6 +2341,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2325,6 +2367,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2350,6 +2393,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2378,6 +2422,7 @@
 									"id": "V_String",
 									"params": ["sunken_ass_ship"]
 								}] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2405,6 +2450,10 @@
 								{ "__identifier": "level_name", "__type": "String", "__value": "sunset_beach", "__tile": null, "defUid": 13, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["sunset_beach"]
+								}] },
+								{ "__identifier": "display_name", "__type": "String", "__value": "Sunset Beach", "__tile": null, "defUid": 75, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Sunset Beach"]
 								}] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": {
 									"entityIid": "f6e6e320-d7b0-11ee-baec-7f986c8ddd42",
@@ -2445,6 +2494,7 @@
 									"id": "V_String",
 									"params": ["sunken_ass_ship"]
 								}] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2470,6 +2520,7 @@
 									"params": ["landing"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2495,6 +2546,7 @@
 									"params": ["default_start"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2520,6 +2572,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2545,6 +2598,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2570,6 +2624,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2595,6 +2650,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2620,6 +2676,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2645,6 +2702,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2670,6 +2728,7 @@
 									"params": ["path"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2695,6 +2754,7 @@
 									"params": ["landing"]
 								}] },
 								{ "__identifier": "level_name", "__type": "String", "__value": null, "__tile": null, "defUid": 13, "realEditorValues": [] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
@@ -2723,6 +2783,7 @@
 									"id": "V_String",
 									"params": ["sunken_ass_ship"]
 								}] },
+								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 200, "__tile": null, "defUid": 73, "realEditorValues": [{ "id": "V_Int", "params": [200] }] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": "w", "__tile": null, "defUid": 74, "realEditorValues": [{

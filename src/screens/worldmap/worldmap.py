@@ -242,7 +242,7 @@ class WorldMap(State):
         level_data = self.game.get_level_data(level_name)
         if level_data:
             self.level_name = level_name
-            self.level_name_surface = self.font.render(f"{level_data['name']}",True,self.font_color)
+            self.level_name_surface = self.font.render(f"{level_data['display_name']}",True,self.font_color)
             self.percent_to_plan_surface = self.font.render(f"{level_data['percent_to_plan']}/100 %",True,self.font_color)
 
     def pause(self):

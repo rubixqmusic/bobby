@@ -26,16 +26,6 @@ class Game:
         self._resource_pack = {}
         self._load_resource_pack()
 
-        self.save_data_template = {}
-
-        for key in save_data:
-            self.save_data_template[key] = save_data[key]
-            
-        self.save_data = save_data
-        
-        self._save_file_database = {}
-        self._load_save_file_database()
-
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
 
@@ -59,6 +49,20 @@ class Game:
         self.delta_time = 0.0
         self.world = None
         self.world = json.load(self.load_resource(WORLD_DATA_PATH))
+
+        save_data["levels"] = self._get_levels_save_data()
+
+        print(save_data["levels"])
+
+        self.save_data_template = {}
+
+        for key in save_data:
+            self.save_data_template[key] = save_data[key]
+            
+        self.save_data = save_data
+        
+        self._save_file_database = {}
+        self._load_save_file_database()
         
         self._input_events = {}
         self._joystick_events = {}
@@ -535,5 +539,42 @@ class Game:
     
     def get_world(self):
         return self.world
+    
+    def _get_levels_save_data(self):
+        levels_save_data = {}
+        for level in self.get_levels_from_world():
+            level_layers = level["layerInstances"]
+            for layer in level_layers:
+                if layer["__identifier"] == ENTITIES_LAYER_NAME:
+                    entity_instances = layer["entityInstances"]
+                    for entity in entity_instances:
+                        if entity["__identifier"] == "world_map_object":
+                            entity_properties = entity["fieldInstances"]
+                            for property in entity_properties:
+                                if property["__value"] == "level_tile":
+                                    level_name = None
+                                    leads_to_scene = None
+                                    display_name = None
+                                    quota = None
+                                    entrance_direction = None
+                                    for property in entity_properties:
+                                        if property["__identifier"] == "level_name":
+                                            level_name = property["__value"]
+                                        if property["__identifier"] == "display_name":
+                                            display_name = property["__value"]
+                                        if property["__identifier"] == "quota":
+                                            quota = property["__value"]
+                                        if property["__identifier"] == "entrance_direction":
+                                            entrance_direction = property["__value"]
+                                    levels_save_data[level_name] = {"display_name" : display_name, 
+                                                                    "quota" : quota, 
+                                                                    "entrance_direction" : entrance_direction, 
+                                                                    "money" : 0, 
+                                                                    "percent_to_plan" : 0, 
+                                                                    "rare_stones" : 0, 
+                                                                    "coins" : 0}
+        return levels_save_data
+
+
 
         
