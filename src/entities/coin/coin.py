@@ -34,8 +34,8 @@ class Coin(Entity):
         self.hitbox.set_type(DEFAULT_COIN_TYPE)
         self.hitbox.set_collision_types("bobby")
         self.hitbox.set_colliders(hitboxes)
-        self.hitbox.set_hitbox(0,0,8,8)
-        self.hitbox.set_offset(4,4)
+        self.hitbox.set_hitbox(0,0,12,12)
+        self.hitbox.set_offset(2,2)
         self.hitbox.set_position(self.position.x, self.position.y)
         self.hitbox.on_collision.attach(self, "hit")
 

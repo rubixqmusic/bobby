@@ -52,7 +52,7 @@ class Game:
 
         save_data["levels"] = self._get_levels_save_data()
 
-        print(save_data["levels"])
+        # print(save_data["levels"])
 
         self.save_data_template = {}
 
@@ -553,7 +553,7 @@ class Game:
                             for property in entity_properties:
                                 if property["__value"] == "level_tile":
                                     level_name = None
-                                    leads_to_scene = None
+                                    time_limit = None
                                     display_name = None
                                     quota = None
                                     entrance_direction = None
@@ -566,13 +566,18 @@ class Game:
                                             quota = property["__value"]
                                         if property["__identifier"] == "entrance_direction":
                                             entrance_direction = property["__value"]
+                                        if property["__identifier"] == "time_limit":
+                                            time_limit = property["__value"]
                                     levels_save_data[level_name] = {"display_name" : display_name, 
                                                                     "quota" : quota, 
                                                                     "entrance_direction" : entrance_direction, 
                                                                     "money" : 0, 
                                                                     "percent_to_plan" : 0, 
                                                                     "rare_stones" : 0, 
-                                                                    "coins" : 0}
+                                                                    "coins" : 0,
+                                                                    "hr" : 0,
+                                                                    "time_completed" : 0,
+                                                                    "time_limit" : time_limit}
         return levels_save_data
 
 

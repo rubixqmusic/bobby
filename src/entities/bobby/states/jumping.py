@@ -30,9 +30,9 @@ class Jumping(State):
         if not self.wall_jump and not bobby.lock_x_during_jump:
  
             if bob.is_button_pressed(RIGHT_BUTTON):
-                bobby.velocity.x = int(bobby.speed * 0.75)
+                bobby.velocity.x = bobby.speed # int(bobby.speed * 0.75)
             elif bob.is_button_pressed(LEFT_BUTTON):
-                bobby.velocity.x = int(-bobby.speed * 0.75)
+                bobby.velocity.x = -bobby.speed # int(-bobby.speed * 0.75)
         
         if not bob.is_button_pressed(ACTION_BUTTON_1) and self.jump_button_released == False:
             self.jump_button_released = True
@@ -49,8 +49,8 @@ class Jumping(State):
             bobby.falling(x_velocity=bobby.velocity.x)
             return
 
-        if bobby.velocity.x and bobby.velocity.y != 0:
-            bobby.velocity.normalize()
+        # if bobby.velocity.x and bobby.velocity.y != 0:
+        #     bobby.velocity.normalize()
 
         x = int(bobby.velocity.x * delta)
         y = int(bobby.velocity.y * delta)

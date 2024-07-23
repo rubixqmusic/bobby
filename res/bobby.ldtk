@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 76,
+	"nextUid": 77,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1536,6 +1536,43 @@
 					"allowedRefsEntityUid": null,
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "time_limit",
+					"doc": null,
+					"__type": "Int",
+					"uid": 76,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [0] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		},
@@ -1674,7 +1711,7 @@
 			"hollow": false,
 			"color": "#EAD4AA",
 			"renderMode": "Tile",
-			"showName": true,
+			"showName": false,
 			"tilesetId": 18,
 			"tileRenderMode": "FitInside",
 			"tileRect": { "tilesetUid": 18, "x": 0, "y": 16, "w": 16, "h": 16 },
@@ -2240,7 +2277,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 624,
 							"__worldY": 368
@@ -2266,7 +2304,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 640,
 							"__worldY": 384
@@ -2292,7 +2331,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 656,
 							"__worldY": 384
@@ -2318,7 +2358,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 672,
 							"__worldY": 384
@@ -2344,7 +2385,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 688,
 							"__worldY": 384
@@ -2370,7 +2412,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 704,
 							"__worldY": 384
@@ -2396,7 +2439,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 720,
 							"__worldY": 384
@@ -2425,7 +2469,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 384
@@ -2468,7 +2513,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": "n", "__tile": null, "defUid": 74, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["n"]
-								}] }
+								}] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 624,
 							"__worldY": 384
@@ -2497,7 +2543,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 384
@@ -2523,7 +2570,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 624,
 							"__worldY": 352
@@ -2549,7 +2597,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 624,
 							"__worldY": 352
@@ -2575,7 +2624,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 368
@@ -2601,7 +2651,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 352
@@ -2627,7 +2678,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 336
@@ -2653,7 +2705,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 320
@@ -2679,7 +2732,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 304
@@ -2705,7 +2759,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 288
@@ -2731,7 +2786,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 272
@@ -2757,7 +2813,8 @@
 								{ "__identifier": "display_name", "__type": "String", "__value": null, "__tile": null, "defUid": 75, "realEditorValues": [] },
 								{ "__identifier": "leads_to_scene", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 23, "realEditorValues": [] },
 								{ "__identifier": "quota", "__type": "Int", "__value": 0, "__tile": null, "defUid": 73, "realEditorValues": [] },
-								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] }
+								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 256
@@ -2789,7 +2846,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": "w", "__tile": null, "defUid": 74, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["w"]
-								}] }
+								}] },
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
 							"__worldX": 736,
 							"__worldY": 384
@@ -6533,18 +6591,18 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,
 						1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,
 						1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-						1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+						1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,
 						1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,
@@ -6675,6 +6733,12 @@
 						{ "px": [1680,384], "src": [16,0], "f": 0, "t": 1, "d": [31,4713], "a": 1 },
 						{ "px": [1696,384], "src": [16,0], "f": 0, "t": 1, "d": [31,4714], "a": 1 },
 						{ "px": [1712,384], "src": [16,0], "f": 0, "t": 1, "d": [31,4715], "a": 1 },
+						{ "px": [912,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4857], "a": 1 },
+						{ "px": [928,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4858], "a": 1 },
+						{ "px": [944,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4859], "a": 1 },
+						{ "px": [960,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4860], "a": 1 },
+						{ "px": [976,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4861], "a": 1 },
+						{ "px": [992,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4862], "a": 1 },
 						{ "px": [1568,400], "src": [16,0], "f": 0, "t": 1, "d": [31,4898], "a": 1 },
 						{ "px": [1536,432], "src": [16,0], "f": 0, "t": 1, "d": [31,5280], "a": 1 },
 						{ "px": [1744,432], "src": [16,0], "f": 0, "t": 1, "d": [31,5293], "a": 1 },
@@ -6877,6 +6941,12 @@
 						{ "px": [2048,320], "src": [16,32], "f": 0, "t": 65, "d": [32,3968], "a": 1 },
 						{ "px": [2064,320], "src": [16,32], "f": 0, "t": 65, "d": [32,3969], "a": 1 },
 						{ "px": [2080,320], "src": [16,32], "f": 0, "t": 65, "d": [32,3970], "a": 1 },
+						{ "px": [912,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4089], "a": 1 },
+						{ "px": [928,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4090], "a": 1 },
+						{ "px": [944,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4091], "a": 1 },
+						{ "px": [960,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4092], "a": 1 },
+						{ "px": [976,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4093], "a": 1 },
+						{ "px": [992,336], "src": [16,32], "f": 0, "t": 65, "d": [32,4094], "a": 1 },
 						{ "px": [1360,368], "src": [16,32], "f": 0, "t": 65, "d": [32,4501], "a": 1 },
 						{ "px": [1376,368], "src": [16,32], "f": 0, "t": 65, "d": [32,4502], "a": 1 },
 						{ "px": [1392,368], "src": [16,32], "f": 0, "t": 65, "d": [32,4503], "a": 1 },
@@ -6984,20 +7054,15 @@
 						{ "px": [896,320], "src": [0,16], "f": 0, "t": 32, "d": [33,3896], "a": 1 },
 						{ "px": [2896,320], "src": [0,16], "f": 0, "t": 32, "d": [33,4021], "a": 1 },
 						{ "px": [736,336], "src": [0,16], "f": 0, "t": 32, "d": [33,4078], "a": 1 },
-						{ "px": [896,336], "src": [0,16], "f": 0, "t": 32, "d": [33,4088], "a": 1 },
 						{ "px": [2896,336], "src": [0,16], "f": 0, "t": 32, "d": [33,4213], "a": 1 },
 						{ "px": [736,352], "src": [0,16], "f": 0, "t": 32, "d": [33,4270], "a": 1 },
-						{ "px": [896,352], "src": [0,16], "f": 0, "t": 32, "d": [33,4280], "a": 1 },
 						{ "px": [2896,352], "src": [0,16], "f": 0, "t": 32, "d": [33,4405], "a": 1 },
 						{ "px": [736,368], "src": [0,16], "f": 0, "t": 32, "d": [33,4462], "a": 1 },
-						{ "px": [896,368], "src": [0,16], "f": 0, "t": 32, "d": [33,4472], "a": 1 },
 						{ "px": [2896,368], "src": [0,16], "f": 0, "t": 32, "d": [33,4597], "a": 1 },
 						{ "px": [736,384], "src": [0,16], "f": 0, "t": 32, "d": [33,4654], "a": 1 },
-						{ "px": [896,384], "src": [0,16], "f": 0, "t": 32, "d": [33,4664], "a": 1 },
 						{ "px": [1584,384], "src": [0,16], "f": 0, "t": 32, "d": [33,4707], "a": 1 },
 						{ "px": [2896,384], "src": [0,16], "f": 0, "t": 32, "d": [33,4789], "a": 1 },
 						{ "px": [736,400], "src": [0,16], "f": 0, "t": 32, "d": [33,4846], "a": 1 },
-						{ "px": [896,400], "src": [0,16], "f": 0, "t": 32, "d": [33,4856], "a": 1 },
 						{ "px": [2896,400], "src": [0,16], "f": 0, "t": 32, "d": [33,4981], "a": 1 },
 						{ "px": [736,416], "src": [0,16], "f": 0, "t": 32, "d": [33,5038], "a": 1 },
 						{ "px": [896,416], "src": [0,16], "f": 0, "t": 32, "d": [33,5048], "a": 1 },
@@ -7090,19 +7155,14 @@
 						{ "px": [1008,320], "src": [32,16], "f": 0, "t": 34, "d": [34,3903], "a": 1 },
 						{ "px": [0,336], "src": [32,16], "f": 0, "t": 34, "d": [34,4032], "a": 1 },
 						{ "px": [832,336], "src": [32,16], "f": 0, "t": 34, "d": [34,4084], "a": 1 },
-						{ "px": [1008,336], "src": [32,16], "f": 0, "t": 34, "d": [34,4095], "a": 1 },
 						{ "px": [0,352], "src": [32,16], "f": 0, "t": 34, "d": [34,4224], "a": 1 },
 						{ "px": [832,352], "src": [32,16], "f": 0, "t": 34, "d": [34,4276], "a": 1 },
-						{ "px": [1008,352], "src": [32,16], "f": 0, "t": 34, "d": [34,4287], "a": 1 },
 						{ "px": [0,368], "src": [32,16], "f": 0, "t": 34, "d": [34,4416], "a": 1 },
 						{ "px": [832,368], "src": [32,16], "f": 0, "t": 34, "d": [34,4468], "a": 1 },
-						{ "px": [1008,368], "src": [32,16], "f": 0, "t": 34, "d": [34,4479], "a": 1 },
 						{ "px": [0,384], "src": [32,16], "f": 0, "t": 34, "d": [34,4608], "a": 1 },
 						{ "px": [832,384], "src": [32,16], "f": 0, "t": 34, "d": [34,4660], "a": 1 },
-						{ "px": [1008,384], "src": [32,16], "f": 0, "t": 34, "d": [34,4671], "a": 1 },
 						{ "px": [0,400], "src": [32,16], "f": 0, "t": 34, "d": [34,4800], "a": 1 },
 						{ "px": [832,400], "src": [32,16], "f": 0, "t": 34, "d": [34,4852], "a": 1 },
-						{ "px": [1008,400], "src": [32,16], "f": 0, "t": 34, "d": [34,4863], "a": 1 },
 						{ "px": [1728,400], "src": [32,16], "f": 0, "t": 34, "d": [34,4908], "a": 1 },
 						{ "px": [0,416], "src": [32,16], "f": 0, "t": 34, "d": [34,4992], "a": 1 },
 						{ "px": [832,416], "src": [32,16], "f": 0, "t": 34, "d": [34,5044], "a": 1 },
@@ -7140,6 +7200,7 @@
 						{ "px": [1664,368], "src": [32,0], "f": 0, "t": 2, "d": [35,4520], "a": 1 },
 						{ "px": [1904,368], "src": [32,0], "f": 0, "t": 2, "d": [35,4535], "a": 1 },
 						{ "px": [1728,384], "src": [32,0], "f": 0, "t": 2, "d": [35,4716], "a": 1 },
+						{ "px": [1008,400], "src": [32,0], "f": 0, "t": 2, "d": [35,4863], "a": 1 },
 						{ "px": [1792,432], "src": [32,0], "f": 0, "t": 2, "d": [35,5296], "a": 1 },
 						{ "px": [2240,464], "src": [32,0], "f": 0, "t": 2, "d": [35,5708], "a": 1 },
 						{ "px": [2416,496], "src": [32,0], "f": 0, "t": 2, "d": [35,6103], "a": 1 },
@@ -7157,6 +7218,7 @@
 						{ "px": [1072,368], "src": [0,0], "f": 0, "t": 0, "d": [36,4483], "a": 1 },
 						{ "px": [1584,368], "src": [0,0], "f": 0, "t": 0, "d": [36,4515], "a": 1 },
 						{ "px": [1824,368], "src": [0,0], "f": 0, "t": 0, "d": [36,4530], "a": 1 },
+						{ "px": [896,400], "src": [0,0], "f": 0, "t": 0, "d": [36,4856], "a": 1 },
 						{ "px": [1552,400], "src": [0,0], "f": 0, "t": 0, "d": [36,4897], "a": 1 },
 						{ "px": [1520,432], "src": [0,0], "f": 0, "t": 0, "d": [36,5279], "a": 1 },
 						{ "px": [656,480], "src": [0,0], "f": 0, "t": 0, "d": [36,5801], "a": 1 },
@@ -7172,6 +7234,7 @@
 						{ "px": [1200,288], "src": [0,32], "f": 0, "t": 64, "d": [37,3531], "a": 1 },
 						{ "px": [1072,320], "src": [0,32], "f": 0, "t": 64, "d": [37,3907], "a": 1 },
 						{ "px": [2032,320], "src": [0,32], "f": 0, "t": 64, "d": [37,3967], "a": 1 },
+						{ "px": [896,336], "src": [0,32], "f": 0, "t": 64, "d": [37,4088], "a": 1 },
 						{ "px": [1344,368], "src": [0,32], "f": 0, "t": 64, "d": [37,4500], "a": 1 },
 						{ "px": [1952,368], "src": [0,32], "f": 0, "t": 64, "d": [37,4538], "a": 1 },
 						{ "px": [1072,384], "src": [0,32], "f": 0, "t": 64, "d": [37,4675], "a": 1 },
@@ -7189,6 +7252,7 @@
 						{ "px": [1312,288], "src": [32,32], "f": 0, "t": 66, "d": [38,3538], "a": 1 },
 						{ "px": [1152,320], "src": [32,32], "f": 0, "t": 66, "d": [38,3912], "a": 1 },
 						{ "px": [2096,320], "src": [32,32], "f": 0, "t": 66, "d": [38,3971], "a": 1 },
+						{ "px": [1008,336], "src": [32,32], "f": 0, "t": 66, "d": [38,4095], "a": 1 },
 						{ "px": [1440,368], "src": [32,32], "f": 0, "t": 66, "d": [38,4506], "a": 1 },
 						{ "px": [2016,368], "src": [32,32], "f": 0, "t": 66, "d": [38,4542], "a": 1 },
 						{ "px": [1152,384], "src": [32,32], "f": 0, "t": 66, "d": [38,4680], "a": 1 },
@@ -7650,12 +7714,6 @@
 						{ "px": [784,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4081], "a": 1 },
 						{ "px": [800,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4082], "a": 1 },
 						{ "px": [816,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4083], "a": 1 },
-						{ "px": [912,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4089], "a": 1 },
-						{ "px": [928,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4090], "a": 1 },
-						{ "px": [944,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4091], "a": 1 },
-						{ "px": [960,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4092], "a": 1 },
-						{ "px": [976,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4093], "a": 1 },
-						{ "px": [992,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4094], "a": 1 },
 						{ "px": [2912,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4214], "a": 1 },
 						{ "px": [2928,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4215], "a": 1 },
 						{ "px": [2944,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4216], "a": 1 },
@@ -7671,12 +7729,6 @@
 						{ "px": [784,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4273], "a": 1 },
 						{ "px": [800,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4274], "a": 1 },
 						{ "px": [816,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4275], "a": 1 },
-						{ "px": [912,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4281], "a": 1 },
-						{ "px": [928,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4282], "a": 1 },
-						{ "px": [944,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4283], "a": 1 },
-						{ "px": [960,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4284], "a": 1 },
-						{ "px": [976,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4285], "a": 1 },
-						{ "px": [992,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4286], "a": 1 },
 						{ "px": [2912,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4406], "a": 1 },
 						{ "px": [2928,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4407], "a": 1 },
 						{ "px": [2944,352], "src": [16,16], "f": 0, "t": 33, "d": [43,4408], "a": 1 },
@@ -7692,12 +7744,6 @@
 						{ "px": [784,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4465], "a": 1 },
 						{ "px": [800,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4466], "a": 1 },
 						{ "px": [816,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4467], "a": 1 },
-						{ "px": [912,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4473], "a": 1 },
-						{ "px": [928,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4474], "a": 1 },
-						{ "px": [944,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4475], "a": 1 },
-						{ "px": [960,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4476], "a": 1 },
-						{ "px": [976,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4477], "a": 1 },
-						{ "px": [992,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4478], "a": 1 },
 						{ "px": [2912,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4598], "a": 1 },
 						{ "px": [2928,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4599], "a": 1 },
 						{ "px": [2944,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4600], "a": 1 },
@@ -7712,12 +7758,6 @@
 						{ "px": [768,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4656], "a": 1 },
 						{ "px": [784,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4657], "a": 1 },
 						{ "px": [800,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4658], "a": 1 },
-						{ "px": [912,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4665], "a": 1 },
-						{ "px": [928,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4666], "a": 1 },
-						{ "px": [944,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4667], "a": 1 },
-						{ "px": [960,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4668], "a": 1 },
-						{ "px": [976,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4669], "a": 1 },
-						{ "px": [992,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4670], "a": 1 },
 						{ "px": [1600,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4708], "a": 1 },
 						{ "px": [1616,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4709], "a": 1 },
 						{ "px": [1632,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4710], "a": 1 },
@@ -7736,12 +7776,6 @@
 						{ "px": [784,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4849], "a": 1 },
 						{ "px": [800,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4850], "a": 1 },
 						{ "px": [816,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4851], "a": 1 },
-						{ "px": [912,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4857], "a": 1 },
-						{ "px": [928,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4858], "a": 1 },
-						{ "px": [944,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4859], "a": 1 },
-						{ "px": [960,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4860], "a": 1 },
-						{ "px": [976,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4861], "a": 1 },
-						{ "px": [992,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4862], "a": 1 },
 						{ "px": [1600,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4900], "a": 1 },
 						{ "px": [1616,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4901], "a": 1 },
 						{ "px": [1632,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4902], "a": 1 },
@@ -8788,6 +8822,7 @@
 						{ "px": [1088,336], "src": [64,48], "f": 0, "t": 100, "d": [60,4100], "a": 1 },
 						{ "px": [2032,336], "src": [48,48], "f": 0, "t": 99, "d": [60,4159], "a": 1 },
 						{ "px": [2064,336], "src": [64,48], "f": 0, "t": 100, "d": [60,4161], "a": 1 },
+						{ "px": [928,352], "src": [64,48], "f": 0, "t": 100, "d": [60,4282], "a": 1 },
 						{ "px": [1376,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4694], "a": 1 },
 						{ "px": [1392,384], "src": [48,48], "f": 0, "t": 99, "d": [60,4695], "a": 1 },
 						{ "px": [1952,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4730], "a": 1 },
