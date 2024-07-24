@@ -5,7 +5,7 @@ from settings import *
 from src.state import State
 from src.screens.videocallcutscene.screenstates import cutscenes
 
-VIDEO_CALL_WINDOW_BORDER_COLOR = "#4854a0"
+VIDEO_CALL_WINDOW_BORDER_COLOR = "#5b6063"
 TEXT_BOX_Y_POSITION = 174
 WINDOW_Y_POSITION = 54
 
@@ -93,13 +93,16 @@ class VideoCallCutscene(State):
                 video_call_window_rect = self.backgrounds[background]["image"].get_rect()
                 video_call_window_rect[0] = self.backgrounds[background]["position"][0]
                 video_call_window_rect[1] = self.backgrounds[background]["position"][1]
-                pygame.draw.rect(game.get_screen(), VIDEO_CALL_WINDOW_BORDER_COLOR, video_call_window_rect,1)
+                pygame.draw.rect(game.get_screen(), VIDEO_CALL_WINDOW_BORDER_COLOR, video_call_window_rect,1, border_radius=2)
             
             background_index += 1
             
             # draw the text box
             if self.text_box["image"] is not None:
+                ...
                 game.get_screen().blit(self.text_box["image"], self.text_box["position"])
+
+
                 # video_call_window_rect = self.backgrounds[background]["image"].get_rect()
                 # video_call_window_rect[0] = self.backgrounds[background]["position"][0]
                 # video_call_window_rect[1] = self.backgrounds[background]["position"][1]

@@ -13,7 +13,7 @@ class ShowDialog(State):
 
         MAX_LINES = 2
         TEXT_SIZE = 16
-        MAX_LINE_WIDTH = 38
+        MAX_LINE_WIDTH = 41
         # print(self)
         self.args = args[0]
         self.dialog = self.args[0]
@@ -23,7 +23,7 @@ class ShowDialog(State):
 
         self.text_advance_icon_blink_speed = 10
         self.text_advance_icon_step = 0
-        self.text_advance_icon_position = [370, 195]
+        self.text_advance_icon_position = [373, 199]
         self.toggle_text_advance_icon = True
         
         
