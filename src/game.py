@@ -32,9 +32,9 @@ class Game:
         pygame.init()
 
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
-        display_info = pygame.display.Info()
-        self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
-        # self.window = pygame.display.set_mode(WINDOW_SIZE, flags=pygame.SCALED, vsync=1)
+        # display_info = pygame.display.Info()
+        # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
+        self.window = pygame.display.set_mode(WINDOW_SIZE, flags=pygame.SCALED, vsync=1)
         pygame.display.set_caption(WINDOW_CAPTION)
 
         if not self._resource_pack:
@@ -217,7 +217,7 @@ class Game:
         self.state.process_events(self)
         self.state.update(self)
         self.state.draw(self)
-        if DEBUG_ENABLED:
+        if DEBUG_ENABLED and DEBUG_SHOW_DEBUG_INFO:
             self._draw_debug()  
         self._draw_screen_to_window()
         pygame.display.flip()
