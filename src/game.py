@@ -65,11 +65,11 @@ class Game:
         self._load_save_file_database()
         
         self._input_events = {}
-        self._joystick_events = {}
-        self._joysticks = {}
-        self._joystick_ports = { 1: None,
-                                 2: None
-                                 }
+        # self._joystick_events = {}
+        # self._joysticks = {}
+        # self._joystick_ports = { 1: None,
+        #                          2: None
+        #                          }
         self._current_music = ""
         self._current_file_name = ""
         self._current_save_file = ""
@@ -107,10 +107,10 @@ class Game:
             if self._input_events[input_event] == RELEASED:
                 self._input_events[input_event] = OFF
 
-        for instance_id in self._joystick_events:
-            for joystick_event in self._joystick_events[instance_id]:
-                if self._joystick_events[instance_id][joystick_event] == RELEASED:
-                    self._joystick_events[instance_id][joystick_event] = OFF
+        # for instance_id in self._joystick_events:
+        #     for joystick_event in self._joystick_events[instance_id]:
+        #         if self._joystick_events[instance_id][joystick_event] == RELEASED:
+        #             self._joystick_events[instance_id][joystick_event] = OFF
         
         # print(self._joystick_events)
         for event in pygame.event.get():
@@ -127,73 +127,70 @@ class Game:
                 if key_name in input_map:
                     self._input_events[input_map[key_name]] = RELEASED
         
-            if event.type == pygame.JOYBUTTONDOWN:
-                if not event.instance_id in self._joystick_events:
-                    self._joystick_events[event.instance_id] = {}
-                if event.button in input_map["BUTTONS"]:
-                    button_name = input_map["BUTTONS"][event.button]
-                    self._joystick_events[event.instance_id][button_name] = PRESSED
-                # print(event)
-                # print(self._joystick_events)
+            # if event.type == pygame.JOYBUTTONDOWN:
+            #     if not event.instance_id in self._joystick_events:
+            #         self._joystick_events[event.instance_id] = {}
+            #     if event.button in input_map["BUTTONS"]:
+            #         button_name = input_map["BUTTONS"][event.button]
+            #         self._joystick_events[event.instance_id][button_name] = PRESSED
+              
             
-            if event.type == pygame.JOYBUTTONUP:
-                if not event.instance_id in self._joystick_events:
-                    self._joystick_events[event.instance_id] = {}
-                if event.button in input_map["BUTTONS"]:
-                    button_name = input_map["BUTTONS"][event.button]
-                    self._joystick_events[event.instance_id][button_name] = RELEASED
-                # print(self._joystick_events)
+            # if event.type == pygame.JOYBUTTONUP:
+            #     if not event.instance_id in self._joystick_events:
+            #         self._joystick_events[event.instance_id] = {}
+            #     if event.button in input_map["BUTTONS"]:
+            #         button_name = input_map["BUTTONS"][event.button]
+            #         self._joystick_events[event.instance_id][button_name] = RELEASED
+            #     # print(self._joystick_events)
 
-            if event.type == pygame.JOYAXISMOTION:
-                ...
-                # print(event)
+            # if event.type == pygame.JOYAXISMOTION:
+            #     ...
+        
             
-            if event.type == pygame.JOYHATMOTION:
-                if not event.instance_id in self._joystick_events:
-                    self._joystick_events[event.instance_id] = {}
-                if event.value[0] == 0:
-                    if "left_button" in self._joystick_events[event.instance_id]:
-                        if self._joystick_events[event.instance_id]["left_button"] == PRESSED:
-                            self._joystick_events[event.instance_id]["left_button"] = RELEASED
-                    if "right_button" in self._joystick_events[event.instance_id]:
-                        if self._joystick_events[event.instance_id]["right_button"] == PRESSED:
-                            self._joystick_events[event.instance_id]["right_button"] = RELEASED
-                if event.value[0] == 1:
-                    self._joystick_events[event.instance_id]["right_button"] = PRESSED
-                if event.value[0] == -1:
-                    self._joystick_events[event.instance_id]["left_button"] = PRESSED
+            # if event.type == pygame.JOYHATMOTION:
+            #     if not event.instance_id in self._joystick_events:
+            #         self._joystick_events[event.instance_id] = {}
+            #     if event.value[0] == 0:
+            #         if "left_button" in self._joystick_events[event.instance_id]:
+            #             if self._joystick_events[event.instance_id]["left_button"] == PRESSED:
+            #                 self._joystick_events[event.instance_id]["left_button"] = RELEASED
+            #         if "right_button" in self._joystick_events[event.instance_id]:
+            #             if self._joystick_events[event.instance_id]["right_button"] == PRESSED:
+            #                 self._joystick_events[event.instance_id]["right_button"] = RELEASED
+            #     if event.value[0] == 1:
+            #         self._joystick_events[event.instance_id]["right_button"] = PRESSED
+            #     if event.value[0] == -1:
+            #         self._joystick_events[event.instance_id]["left_button"] = PRESSED
 
-                if event.value[1] == 0:
-                    if "up_button" in self._joystick_events[event.instance_id]:
-                        if self._joystick_events[event.instance_id]["up_button"] == PRESSED:
-                            self._joystick_events[event.instance_id]["up_button"] = RELEASED
-                    if "down_button" in self._joystick_events[event.instance_id]:
-                        if self._joystick_events[event.instance_id]["down_button"] == PRESSED:
-                            self._joystick_events[event.instance_id]["down_button"] = RELEASED
-                if event.value[1] == 1:
-                    self._joystick_events[event.instance_id]["up_button"] = PRESSED
-                if event.value[1] == -1:
-                    self._joystick_events[event.instance_id]["down_button"] = PRESSED
-                # print(event)
+            #     if event.value[1] == 0:
+            #         if "up_button" in self._joystick_events[event.instance_id]:
+            #             if self._joystick_events[event.instance_id]["up_button"] == PRESSED:
+            #                 self._joystick_events[event.instance_id]["up_button"] = RELEASED
+            #         if "down_button" in self._joystick_events[event.instance_id]:
+            #             if self._joystick_events[event.instance_id]["down_button"] == PRESSED:
+            #                 self._joystick_events[event.instance_id]["down_button"] = RELEASED
+            #     if event.value[1] == 1:
+            #         self._joystick_events[event.instance_id]["up_button"] = PRESSED
+            #     if event.value[1] == -1:
+            #         self._joystick_events[event.instance_id]["down_button"] = PRESSED
+            #     # print(event)
 
-            if event.type == pygame.JOYDEVICEADDED:
-                # This event will be generated when the program starts for every
-                # joystick, filling up the list without needing to create them manually.
-                joy = pygame.joystick.Joystick(event.device_index)
-                self._joysticks[joy.get_instance_id()] = joy
-                for joystick in self._joystick_ports:
-                    if self._joystick_ports[joystick] == None:
-                        self._joystick_ports[joystick] = joy.get_instance_id()
-                        break
+            # if event.type == pygame.JOYDEVICEADDED:
+            #     # This event will be generated when the program starts for every
+            #     # joystick, filling up the list without needing to create them manually.
+            #     joy = pygame.joystick.Joystick(event.device_index)
+            #     self._joysticks[joy.get_instance_id()] = joy
+            #     for joystick in self._joystick_ports:
+            #         if self._joystick_ports[joystick] == None:
+            #             self._joystick_ports[joystick] = joy.get_instance_id()
+            #             break
 
-            if event.type == pygame.JOYDEVICEREMOVED:
-                del self._joysticks[event.instance_id]
-                for joystick in self._joystick_ports:
-                    if self._joystick_ports[joystick] == event.instance_id:
-                        self._joystick_ports[joystick] = None
-                # if event.instance_id in self._joystick_ports:
-                #     self._joystick_ports[event.instance_id] = None
-            
+            # if event.type == pygame.JOYDEVICEREMOVED:
+            #     del self._joysticks[event.instance_id]
+            #     for joystick in self._joystick_ports:
+            #         if self._joystick_ports[joystick] == event.instance_id:
+            #             self._joystick_ports[joystick] = None
+        
             if self.is_button_released(QUIT_KEY):
                 self.quit_game()
 
@@ -515,26 +512,32 @@ class Game:
         self._current_music = ""
     
     def is_button_pressed(self, button_name, controller=1):
-        controller_active = self._joystick_ports[controller]
-        if controller_active is None:
-            if button_name in self._input_events:
-                return True if self._input_events[button_name] == PRESSED else False
-        else:
-            controller_instance_id = self._joystick_ports[controller]
-            if controller_instance_id in self._joystick_events:
-                if button_name in self._joystick_events[controller_instance_id]:
-                    return True if self._joystick_events[controller_instance_id][button_name] == PRESSED else False
+        if button_name in self._input_events:
+            return True if self._input_events[button_name] == PRESSED else False
+        
+        # controller_active = self._joystick_ports[controller]
+        # if controller_active is None:
+        #     if button_name in self._input_events:
+        #         return True if self._input_events[button_name] == PRESSED else False
+        # else:
+        #     controller_instance_id = self._joystick_ports[controller]
+        #     if controller_instance_id in self._joystick_events:
+        #         if button_name in self._joystick_events[controller_instance_id]:
+        #             return True if self._joystick_events[controller_instance_id][button_name] == PRESSED else False
     
     def is_button_released(self, button_name, controller=1):
-        controller_active = self._joystick_ports[controller]
-        if controller_active is None:
-            if button_name in self._input_events:
-                return True if self._input_events[button_name] == RELEASED else False
-        else:
-            controller_instance_id = self._joystick_ports[controller]
-            if controller_instance_id in self._joystick_events:
-                if button_name in self._joystick_events[controller_instance_id]:
-                    return True if self._joystick_events[controller_instance_id][button_name] == RELEASED else False
+        if button_name in self._input_events:
+            return True if self._input_events[button_name] == RELEASED else False
+        
+        # controller_active = self._joystick_ports[controller]
+        # if controller_active is None:
+        #     if button_name in self._input_events:
+        #         return True if self._input_events[button_name] == RELEASED else False
+        # else:
+        #     controller_instance_id = self._joystick_ports[controller]
+        #     if controller_instance_id in self._joystick_events:
+        #         if button_name in self._joystick_events[controller_instance_id]:
+        #             return True if self._joystick_events[controller_instance_id][button_name] == RELEASED else False
                 
     
     def get_world(self):

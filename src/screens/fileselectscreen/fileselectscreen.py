@@ -26,6 +26,7 @@ class FileSelectScreen(State):
         self.menu_selection_font = pygame.font.Font(game.load_resource(menu_selection_font_path),menu_selection_text_size)
 
         self.select_a_file_font = pygame.font.Font(game.load_resource(menu_selection_font_path), select_a_file_font_size)
+        self.heading_font = pygame.font.Font(game.load_resource(HEADING_FONT), select_a_file_font_size)
         self.select_a_file_text_surface = None
 
         self.source_file = ""
@@ -39,7 +40,8 @@ class FileSelectScreen(State):
         
     
     def set_select_a_file_text(self, new_text):
-        self.select_a_file_text_surface = self.select_a_file_font.render(new_text,True,main_text_color)
+        ...
+        self.select_a_file_text_surface = self.heading_font.render(new_text,True,main_text_color)
 
     def process_events(self, game):
         if game.game_should_quit():

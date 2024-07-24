@@ -20,7 +20,7 @@ BACKGROUND_SCROLL_SPEED = 50
 
 scroll_speed = 1
 
-menu_selection_font_path = f"{FONTS_PATH}/{DEFAULT_FONT}"
+menu_selection_font_path = f"{FONTS_PATH}/{MENU_FONT_BOLD}"
 menu_selection_text_size = 16
 licensed_by_kablio_text_size = 12
 main_text_color = f"#fbcb1d"

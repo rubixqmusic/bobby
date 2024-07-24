@@ -18,7 +18,8 @@ COIN_SOUND = f"{SOUNDS_PATH}/coin.wav"
 SELECT_A_FILE_FX = f"{SOUNDS_PATH}/select_a_file.wav"
 ITS_BOBBY_TIME_FX = f"{SOUNDS_PATH}/its_bobby_time.wav"
 
-menu_selection_font_path = f"{FONTS_PATH}/{DEFAULT_FONT}"
+menu_selection_font_path = f"{FONTS_PATH}/{MENU_FONT_REGULAR}"
+HEADING_FONT = f"{FONTS_PATH}/default3.otf"
 menu_selection_text_size = 16
 select_a_file_font_size = 20
 main_text_color = f"#fbcb1d"

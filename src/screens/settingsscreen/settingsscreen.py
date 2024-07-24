@@ -26,7 +26,7 @@ class SettingsScreen(State):
 
         self.menu_selection_font = pygame.font.Font(game.load_resource(MENU_SELECTION_FONT),MENU_SELECTION_SIZE)
 
-        self.heading_font = pygame.font.Font(game.load_resource(MENU_SELECTION_FONT), HEADING_SIZE)
+        self.heading_font = pygame.font.Font(game.load_resource(HEADING_FONT), HEADING_SIZE)
         self.heading_text_surface = None
 
         game.play_music(SETTINGS_SCREEN_MUSIC)

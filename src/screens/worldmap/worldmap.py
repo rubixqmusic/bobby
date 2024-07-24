@@ -31,7 +31,7 @@ class WorldMap(State):
 
         self.font_size = 12
         self.font_color = GOLD_COLOR
-        self.font = pygame.font.Font(game.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), self.font_size)
+        self.font = pygame.font.Font(game.load_resource(MAP_FONT), self.font_size)
 
         self.tile_layer_1 = {}
         self.tile_layer_2 = {}

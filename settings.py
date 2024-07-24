@@ -62,7 +62,13 @@ TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 DEFAULT_FONT = "default3.otf"
 DEFAULT_FONT_SIZE = 12
 
+MAIN_FONT = "bobby_font.otf"
 VIDEO_CALL_FONT = "video_call_font_light.ttf"
+
+MENU_FONT_REGULAR = "tangosans_bold.ttf"
+MENU_FONT_BOLD = "tangosans_bold.ttf"
+
+MENU_FONT_BOLD_2 = "tangosans_bold.ttf"
 
 SAVE_DATA_FILE_NAME = "bob.sav"
 SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
@@ -109,10 +115,10 @@ DUST_PARTICLE = "dust_particle"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
+DEBUG_ENABLED = True
 DEBUG_SHOW_DEBUG_INFO = False
 DEBUG_SHOW_HITBOXES = True
-DEBUG_START_IN_STATE = "video_call_cutscene"
+DEBUG_START_IN_STATE = "title_screen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"
