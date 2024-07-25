@@ -2,9 +2,9 @@ from settings import*
 
 CHARACTER_SPRITESHEET = f"{GRAPHICS_PATH}/entities/bobby.png"
 CHARACTER_ANIMATION = f"{ANIMATIONS_PATH}/bobby.json"
-COLLISION_TYPES = ["ground", "gold_coin"]
+COLLISION_TYPES = ["ground", "gold_coin", "silver_coin", "copper_coin"]
 SOLID_OBJECTS = ["ground"]
-ITEMS = ["gold_coin"]
+ITEMS = ["gold_coin", "silver_coin", "copper_coin"]
 
 JUMP_SOUND = f"{SOUNDS_PATH}/jump.wav"
 

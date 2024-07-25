@@ -9,6 +9,7 @@ from src.bob import bob
 
 from src.entities.coin.resources import *
 from src.entities.coin.entitystates import *
+from src.signal import Signal
 # from settings import *
 
 
@@ -16,13 +17,15 @@ class Coin(Entity):
     def __init__(self, starting_position, camera, gravity, draw_target, hitboxes, coin_type=DEFAULT_COIN_TYPE) -> None:
         super().__init__()
 
-        self.type = DEFAULT_COIN_TYPE
+        self.type = coin_type
+        self.value = COIN_VALUE[coin_type]
         self.camera = camera
         self.position = pygame.Vector2(starting_position)
         self.velocity = pygame.Vector2([0,0])
+        self.collect_coin = Signal()
 
         self.animated_sprite = AnimatedSprite()
-        self.animated_sprite.load_spritesheet(bob.load_resource(SPRITESHEET))
+        self.animated_sprite.load_spritesheet(bob.load_resource(SPRITESHEET[coin_type]))
         self.animated_sprite.load_animation(bob.load_resource(ANIMATION))
         self.animated_sprite.set_draw_target(draw_target)
         self.animated_sprite.set_animation(FLOATING_ANIMATION)
@@ -48,6 +51,7 @@ class Coin(Entity):
         if self.state.name == "idle" and entity.type == "bobby":
             self.hitbox.disable()
             self.state.set_state(self, COLLECTED_STATE)
+            self.collect_coin.emit(self)
     
     def on_animation_finished(self, animation):
         if animation == COLLECTED_ANIMATION:

@@ -31,7 +31,10 @@ class Game:
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
 
+        pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.init()
+        
+        pygame.mixer.init(buffer=4096)
 
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
         # display_info = pygame.display.Info()
@@ -450,7 +453,7 @@ class Game:
 
     def set_current_level(self, level_name):
         if "current_level" in self.save_data and level_name in self.save_data["levels"]:
-            self.save_data["current_levle"] = level_name
+            self.save_data["current_level"] = level_name
             
     def game_should_quit(self):
         if "quit" in self._input_events:

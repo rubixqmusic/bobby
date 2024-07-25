@@ -6,6 +6,7 @@ from src.screens.gameplay.resources import *
 from src.screens.gameplay.screenstates import level_states
 from src.state import State
 from src.camera import Camera
+from src.hud import Hud
 from src.animatedsprite import AnimatedSprite
 from src.particleengine import ParticleEngine
 
@@ -27,6 +28,7 @@ class Gameplay(State):
         self.hitboxes = {}
         self.particle_engine = None
         self.new_entity_queue = []
+        self.hud = None
         self.clear_scene()
     
     def clear_scene(self):
@@ -69,6 +71,9 @@ class Gameplay(State):
         self.transition_overlay.load_spritesheet(TRANSITION_SPRITESHEET)
         self.transition_overlay.load_sprite_data(TRANSITION_ANIMATION)
         self.transition_overlay.set_animation("idle")
+
+        self.hud = Hud(self)
+        # self.hud.set_draw_target(self.camera.surface)
         
         self.particle_engine = ParticleEngine(MAX_PARTICLES, self.camera.surface, self.camera)
         self.state = State(level_states)
@@ -121,6 +126,9 @@ class Gameplay(State):
         self.state.update(self)
         
         self.particle_engine.update(delta)
+
+        if self.hud:
+            self.hud.update(delta)
 
     def draw(self, game):
         self.onscreen_tile_count = 0
@@ -236,6 +244,9 @@ class Gameplay(State):
                         
         if self.particle_engine:
             self.particle_engine.draw()
+        
+        if self.hud:
+            self.hud.draw()
 
         self.game.get_screen().blit(self.camera.surface, [0,0])
 
@@ -285,6 +296,17 @@ class Gameplay(State):
     def spawn_new_entity(self, entity_data):
         if entity_data["__identifier"] == GOLD_COIN_ENTITY:
             new_coin = Coin(entity_data["px"], self.camera, DEFAULT_GRAVITY, self.camera.surface, self.hitboxes, GOLD_COIN_ENTITY)
+            new_coin.collect_coin.attach(self, "collect_coin")
+            self.register_hitbox(new_coin.hitbox)
+            self.new_entity_queue.append(new_coin)
+        if entity_data["__identifier"] == COPPER_COIN_ENTITY:
+            new_coin = Coin(entity_data["px"], self.camera, DEFAULT_GRAVITY, self.camera.surface, self.hitboxes, COPPER_COIN_ENTITY)
+            new_coin.collect_coin.attach(self, "collect_coin")
+            self.register_hitbox(new_coin.hitbox)
+            self.new_entity_queue.append(new_coin)
+        if entity_data["__identifier"] == SILVER_COIN_ENTITY:
+            new_coin = Coin(entity_data["px"], self.camera, DEFAULT_GRAVITY, self.camera.surface, self.hitboxes, SILVER_COIN_ENTITY)
+            new_coin.collect_coin.attach(self, "collect_coin")
             self.register_hitbox(new_coin.hitbox)
             self.new_entity_queue.append(new_coin)
     
@@ -313,6 +335,11 @@ class Gameplay(State):
                 return
         logging.debug(f"could not add hitbox! all available hitbox slots are full")
         return
+    
+    def collect_coin(self, coin):
+        coin_count = self.game.get_save_data(PLAYER_MONEY)
+        coin_value = coin.value
+        self.game.set_save_data(PLAYER_MONEY, coin_count+coin_value)
 
         
 

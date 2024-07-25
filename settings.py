@@ -69,6 +69,7 @@ DEFAULT_FONT_SIZE = 12
 MAIN_FONT = "bobby_font.otf"
 VIDEO_CALL_FONT = "video_call_font_light.ttf"
 
+MENU_FONT_LIGHT = "video_call_font_light.ttf"
 MENU_FONT_REGULAR = "tangosans_bold.ttf"
 MENU_FONT_BOLD = "tangosans_bold.ttf"
 
@@ -119,10 +120,10 @@ DUST_PARTICLE = "dust_particle"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
+DEBUG_ENABLED = True
 DEBUG_SHOW_DEBUG_INFO = False
-DEBUG_SHOW_HITBOXES = True
-DEBUG_START_IN_STATE = "video_call_cutscene"
+DEBUG_SHOW_HITBOXES = False
+DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

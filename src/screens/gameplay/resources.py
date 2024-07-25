@@ -30,10 +30,11 @@ DEFAULT_GRAVITY = 350
 LEVEL_TILESET_IDENTIFIER = "levels"
 
 # entity identifiers
-
+COPPER_COIN_ENTITY = "copper_coin"
+SILVER_COIN_ENTITY = "silver_coin"
 GOLD_COIN_ENTITY = "gold_coin"
 
-HITBOX_TYPES = ["ground", "bobby", "gold_coin"]
+HITBOX_TYPES = ["ground", "bobby", "gold_coin", "silver_coin", "copper_coin"]
 
 MAX_ENTITIES = 1000
 MAX_HITBOXES = 5000
@@ -44,3 +45,5 @@ TILE_DATA = {
                                 "solid" : True,
                              }
 }
+
+PLAYER_MONEY = "player_money"

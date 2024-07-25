@@ -1,6 +1,15 @@
 from settings import *
 
-SPRITESHEET = f"{GRAPHICS_PATH}/entities/coin.png"
+SPRITESHEET = {
+                "gold_coin" : f"{GRAPHICS_PATH}/entities/gold_coin.png",
+                "silver_coin" : f"{GRAPHICS_PATH}/entities/silver_coin.png",
+                "copper_coin" : f"{GRAPHICS_PATH}/entities/copper_coin.png"
+}
+COIN_VALUE = {
+                "gold_coin" : 20,
+                "silver_coin" : 10,
+                "copper_coin" : 1
+}
 ANIMATION = f"{ANIMATIONS_PATH}/coin.json"
 DEFAULT_INITIAL_STATE = f"idle"
 COLLECTED_STATE = f"collected"
