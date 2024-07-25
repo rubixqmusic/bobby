@@ -90,7 +90,7 @@ class ShowDialog(State):
         if self.status == "get_next_character":
             if video_call_cutscene.backgrounds[1]["image"] is not None:
                 current_speaker_rect = video_call_cutscene.backgrounds[1]["image"].get_rect(topleft=video_call_cutscene.backgrounds[1]["position"])
-                pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 5)
+                pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 1, border_radius=2)
                 current_speaker_text_surface = self.current_speaker_font.render(f"Cody Feiko", True, "#ffffff", "#000055")
                 video_call_cutscene.game.get_screen().blit(current_speaker_text_surface, (video_call_cutscene.backgrounds[1]["position"][0] + 10, video_call_cutscene.backgrounds[1]["position"][1] + 76))
         elif self.status == "wait_for_button":

@@ -4,8 +4,8 @@ from src.screens.initscreen.resources import *
 
 class ControlNotification(State):
     def on_state_enter(self, init_screen):
-        self.regular_font = pygame.font.Font(init_screen.game.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), REGULAR_FONT_SIZE)
-        self.large_font = pygame.font.Font(init_screen.game.load_resource(f"{FONTS_PATH}/{DEFAULT_FONT}"), LARGE_FONT_SIZE)
+        self.regular_font = pygame.font.Font(init_screen.game.load_resource(f"{FONTS_PATH}/{MENU_FONT_BOLD}"), REGULAR_FONT_SIZE)
+        self.large_font = pygame.font.Font(init_screen.game.load_resource(f"{FONTS_PATH}/{MENU_FONT_BOLD}"), LARGE_FONT_SIZE)
 
         self.control_info_text = self.regular_font.render(CONTROL_INFO_TEXT, True, FONT_COLOR)
         self.quit_info_text = self.regular_font.render(QUIT_INFO_TEXT, True, FONT_COLOR)
