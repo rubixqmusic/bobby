@@ -99,7 +99,7 @@ class Choice(State):
         if self.status == "get_next_character":
             if video_call_cutscene.backgrounds[1]["image"] is not None:
                     current_speaker_rect = video_call_cutscene.backgrounds[1]["image"].get_rect(topleft=video_call_cutscene.backgrounds[1]["position"])
-                    pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 5)
+                    pygame.draw.rect(video_call_cutscene.game.get_screen(), CURRENT_SPEAKER_COLOR, current_speaker_rect, 1, border_radius=2)
         elif self.status == "make_choice":
             self.draw_menu(self.choices,self.choice, self.x_start, self.x_spacing, self.font, DIALOG_COLOR, video_call_cutscene.game.get_screen(), self.grow_factor)
     
