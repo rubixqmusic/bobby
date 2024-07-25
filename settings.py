@@ -60,6 +60,9 @@ ANIMATIONS_PATH = "res/animations"
 TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 CUTSCENES_PATH = "res/cutscenes"
 
+DEVELOPMENT_ENVIRONMENT_VARIABLE = "development"
+PRODUCTION_ENVIRONMENT_VARIABLE = "production"
+
 DEFAULT_FONT = "default3.otf"
 DEFAULT_FONT_SIZE = 12
 
@@ -116,7 +119,7 @@ DUST_PARTICLE = "dust_particle"
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 DEBUG_SHOW_DEBUG_INFO = False
 DEBUG_SHOW_HITBOXES = True
 DEBUG_START_IN_STATE = "video_call_cutscene"

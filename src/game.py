@@ -23,8 +23,10 @@ RELEASED = 2
 class Game:
     def __init__(self) -> None:
         
+        
         self._resource_pack = {}
-        self._load_resource_pack()
+        if os.environ.get("ENV") != "development":
+            self._load_resource_pack()
 
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
@@ -37,7 +39,7 @@ class Game:
         self.window = pygame.display.set_mode(WINDOW_SIZE, flags=pygame.SCALED, vsync=1)
         pygame.display.set_caption(WINDOW_CAPTION)
 
-        if not self._resource_pack:
+        if not self._resource_pack and os.environ.get("ENV") != "development":
             logging.error(f"no resource file could be found. womp womp. aborting this horseshit. fuck you")
             pygame.quit()
             sys.exit()
@@ -195,7 +197,7 @@ class Game:
                 self.quit_game()
 
     def run(self):
-        if not self._resource_pack:
+        if not self._resource_pack and os.environ.get("ENV") != "development":
             logging.error(f"program exited in a fucked up manner. We couldn't find a resource pack. fuck you")
             pygame.quit()
             sys.exit()
@@ -339,7 +341,10 @@ class Game:
     
 
     def resource_exists(self, resource_path: str) -> bool:
-        return True if resource_path in self._resource_pack else False
+        if os.environ.get("ENV") == DEVELOPMENT_ENVIRONMENT_VARIABLE:
+            return True if os.path.exists(resource_path) else False
+        else:
+            return True if resource_path in self._resource_pack else False
 
     def save_game(self):
         # if os.path.exists(self._current_save_file):
@@ -482,6 +487,7 @@ class Game:
         #     logging.debug(f"cannot play fx: fx filepath {filepath} does not exist")
         #     return
         if not self.resource_exists(filepath):
+            print(filepath)
             return
         
         sound = pygame.mixer.Sound(self.load_resource(filepath))
