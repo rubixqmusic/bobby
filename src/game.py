@@ -466,6 +466,12 @@ class Game:
         return self.window
     
     def load_resource(self, path):
+        if os.environ.get("ENV") == "development":
+            if os.path.exists(path):
+                with open(path, 'rb') as p:
+                    return io.BytesIO(p.read())
+            else:
+                return None
         if path in self._resource_pack:
             return io.BytesIO(self._resource_pack[path])
         else:
