@@ -3,7 +3,7 @@ import logging
 
 from settings import *
 from src.state import State
-from src.screens.videocallcutscene.screenstates import cutscenes
+from src.screens.videocallcutscene.screenstates import * #cutscenes
 
 VIDEO_CALL_WINDOW_BORDER_COLOR = "#5b6063"
 TEXT_BOX_Y_POSITION = 174
@@ -13,7 +13,7 @@ class VideoCallCutscene(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
         self.cutscene_name = args[0]
-        self.cutscenes = cutscenes
+        self.cutscenes = {}
         self.event_index = 0
         self.text_box = {"path": None, "position" : [120,TEXT_BOX_Y_POSITION], "image" : None}
         self.backgrounds = {
@@ -36,6 +36,9 @@ class VideoCallCutscene(State):
         
     def on_state_enter(self, game):
         self.game = game
+        cutscene_file = json.load(game.load_resource(CUTSCENES_FILE))
+        cutscene_resources = json.load(game.load_resource(CUTSCENES_RESOURCES))
+        self.cutscenes = load_video_call_cutscenes(cutscene_file, cutscene_resources)
         states = self.get_states_from_cutscene(self.cutscene_name)
         self.state = State(states)
         self.event_index = 0

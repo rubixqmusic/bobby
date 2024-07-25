@@ -16,7 +16,8 @@ COIN_SOUND = f"coin.wav"
 BACKGROUND_MUSIC = f"video_call.mp3"
 MUSIC_VOLUME = 0.5
 
-
+CUTSCENES_FILE = f"{CUTSCENES_PATH}/video_call_cutscenes/video_call_cutscenes.json"
+CUTSCENES_RESOURCES = f"{CUTSCENES_PATH}/video_call_cutscenes/resources.json"
 
 
 VIDEO_CALL_RINGING_IMAGE_PATH = f"{GRAPHICS_PATH}/video_call_cutscenes/video_call_ringing.png"

@@ -58,6 +58,7 @@ WORLD_DATA_PATH = "res/bobby.ldtk"
 BASE_PATH = "res/"
 ANIMATIONS_PATH = "res/animations"
 TILESET_ANIMATIONS_PATH = "res/tileset_animations"
+CUTSCENES_PATH = "res/cutscenes"
 
 DEFAULT_FONT = "default3.otf"
 DEFAULT_FONT_SIZE = 12

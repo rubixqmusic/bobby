@@ -11,6 +11,8 @@ class SetBackgroundImage(State):
 
         self.background_number = self.args[0]
         self.image_path = self.args[1]
+        print(self.background_number)
+        print(self.image_path)
 
 
     def on_state_enter(self, video_call_cutscene):
