@@ -5552,7 +5552,10 @@
 					"params": ["{\"image\" : \"sunset\", \"animation\" : \"sunset\"}"]
 				}] },
 				{ "__identifier": "background_1", "__type": "String", "__value": "{ \"image\" : null}", "__tile": null, "defUid": 79, "realEditorValues": [] },
-				{ "__identifier": "background_2", "__type": "String", "__value": "{\"image\" : null}", "__tile": null, "defUid": 80, "realEditorValues": [] },
+				{ "__identifier": "background_2", "__type": "String", "__value": "{\"image\" : null}", "__tile": null, "defUid": 80, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["{\"image\" : null}"]
+				}] },
 				{ "__identifier": "background_3", "__type": "String", "__value": "{\"image\" : \"beach_trees\"}", "__tile": null, "defUid": 81, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["{\"image\" : \"beach_trees\"}"]

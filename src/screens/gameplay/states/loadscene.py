@@ -68,7 +68,7 @@ class LoadScene(State):
                                 if level.game.resource_exists(bg_image_path):
                                     level.bg_1 = {}
                                     level.bg_1["parallax_x"] = 0.01
-                                    level.bg_1["parallax_y"] = 1.0
+                                    level.bg_1["parallax_y"] = 0.0
                                     level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                             
                     if level_property["__identifier"] == "background_2":
@@ -80,7 +80,7 @@ class LoadScene(State):
                                 if level.game.resource_exists(bg_image_path):
                                     level.bg_2 = {}
                                     level.bg_2["parallax_x"] = 0.05
-                                    level.bg_2["parallax_y"] = 0.9
+                                    level.bg_2["parallax_y"] = 0.0
                                     level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
 
                     if level_property["__identifier"] == "background_3":
@@ -92,7 +92,7 @@ class LoadScene(State):
                                 if level.game.resource_exists(bg_image_path):
                                     level.bg_3 = {}
                                     level.bg_3["parallax_x"] = 0.6
-                                    level.bg_3["parallax_y"] = 0.3
+                                    level.bg_3["parallax_y"] = 0.1
                                     level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                 
                 tileset_data = self.get_tileset_data()
