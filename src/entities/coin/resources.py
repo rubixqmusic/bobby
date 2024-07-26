@@ -6,7 +6,7 @@ SPRITESHEET = {
                 "copper_coin" : f"{GRAPHICS_PATH}/entities/copper_coin.png"
 }
 COIN_VALUE = {
-                "gold_coin" : 20,
+                "gold_coin" : 10,
                 "silver_coin" : 5,
                 "copper_coin" : 1
 }
