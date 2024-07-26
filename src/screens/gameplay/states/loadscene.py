@@ -11,7 +11,7 @@ from src.components.hitbox import Hitbox
 class LoadScene(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
-        self.level_name = args[0]
+        self.scene_name = args[0]
         self.player_start_position = args[1]
         self.transition_in = args[2]
 
@@ -23,7 +23,15 @@ class LoadScene(State):
 
             '''here is where the level loading begins'''
 
-            if scene["identifier"] == self.level_name:
+            if scene["identifier"] == self.scene_name:
+                level_data = level.game.get_level_data(level.level_name)
+                if "time_limit" in level_data:
+                    if level_data["time_limit"] > 0:
+                        level.time_limit_enabled = True
+                        level.time_limit = level_data["time_limit"]
+                if "quota" in level_data:
+                    level.quota = level_data["quota"]
+                    
                 level.width = scene["pxWid"]
                 level.height = scene["pxHei"]
                 level.bg_color = scene["__bgColor"]

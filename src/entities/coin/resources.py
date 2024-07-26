@@ -7,9 +7,10 @@ SPRITESHEET = {
 }
 COIN_VALUE = {
                 "gold_coin" : 20,
-                "silver_coin" : 10,
+                "silver_coin" : 5,
                 "copper_coin" : 1
 }
+
 ANIMATION = f"{ANIMATIONS_PATH}/coin.json"
 DEFAULT_INITIAL_STATE = f"idle"
 COLLECTED_STATE = f"collected"

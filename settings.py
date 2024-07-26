@@ -69,7 +69,7 @@ DEFAULT_FONT_SIZE = 12
 MAIN_FONT = "bobby_font.otf"
 VIDEO_CALL_FONT = "video_call_font_light.ttf"
 
-MENU_FONT_LIGHT = "video_call_font_light.ttf"
+MENU_FONT_LIGHT = "tangosans.ttf"
 MENU_FONT_REGULAR = "tangosans_bold.ttf"
 MENU_FONT_BOLD = "tangosans_bold.ttf"
 

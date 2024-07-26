@@ -4,30 +4,37 @@ from src.components.animatedsprite import AnimatedSprite
 
 PLAYER_MONEY = "player_money"
 
-LABEL_FONT_1 = f"{FONTS_PATH}/{MENU_FONT_REGULAR}"
+LABEL_FONT_1 = f"{FONTS_PATH}/{MENU_FONT_BOLD}"
 STAT_FONT_1 = f"{FONTS_PATH}/{MENU_FONT_LIGHT}"
-LABEL_FONT_SIZE = 8
-LABEL_COLOR_1 = "#ffffff"
+LABEL_FONT_SIZE = 12
+LABEL_COLOR_1 = GOLD_COLOR
+STAT_COLOR_1 = "#ffffff"
 STAT_FONT_SIZE = 10
+X_FONT_SIZE = 8
 
 LABELS_Y_POSITION = 8
 
-MONEY_LABEL= "MONEY"
+MONEY_LABEL= "Money"
 MONEY_LABEL_POSITION = [8,LABELS_Y_POSITION]
 MONEY_SPRITESHEET = f"{GRAPHICS_PATH}/entities/copper_coin.png"
 MONEY_ANIMATION = f"{ANIMATIONS_PATH}/coin.json"
 MONEY_ICON_ANIMATION = "idle"
-MONEY_ICON_POSITION = [28, 16]
-MONEY_X_SIGN_POSITION = [27, 17]
-MONEY_STAT_POSITION = [8,17]
+MONEY_ICON_POSITION = [39, 18]
+MONEY_X_SIGN_POSITION = [38, 21]
+MONEY_STAT_POSITION = [8,19]
+MONEY_STAT_RIGHT_X = [36, 26]
 
-QUOTA_LABEL= "QUOTA"
-QUOTA_LABEL_POSITION = [62,LABELS_Y_POSITION]
-QUOTA_ICON_POSITION = [83, 16]
-QUOTA_X_SIGN_POSITION = [82, 19]
+QUOTA_LABEL= "Quota"
+QUOTA_LABEL_POSITION = [68,LABELS_Y_POSITION]
+QUOTA_ICON_POSITION = [96, 18]
+QUOTA_X_SIGN_POSITION = [95, 21]
+QUOTA_STAT_RIGHT_X = [92, 26]
 
-HEALTH_LABEL = "HEALTH"
-HEALTH_LABEL_POSITION = [116, LABELS_Y_POSITION]
+STONES_LABEL = "Stones"
+STONES_LABEL_POSITION = [128, LABELS_Y_POSITION]
+
+HEALTH_LABEL = "Health"
+HEALTH_LABEL_POSITION = [192, LABELS_Y_POSITION]
 
 
 class Hud:
@@ -38,11 +45,13 @@ class Hud:
 
         self.label_font_1 = pygame.font.Font(gameplay.game.load_resource(LABEL_FONT_1), LABEL_FONT_SIZE)
         self.stat_font_1 = pygame.font.Font(gameplay.game.load_resource(STAT_FONT_1), STAT_FONT_SIZE)
+        self.x_font = pygame.font.Font(gameplay.game.load_resource(STAT_FONT_1), X_FONT_SIZE)
 
         self.money_label_surface = self.label_font_1.render(MONEY_LABEL, True, LABEL_COLOR_1)
         self.quota_label_surface = self.label_font_1.render(QUOTA_LABEL, True, LABEL_COLOR_1)
+        self.stones_label_surface = self.label_font_1.render(STONES_LABEL, True, LABEL_COLOR_1)
         self.health_label_surface = self.label_font_1.render(HEALTH_LABEL, True, LABEL_COLOR_1)
-        self.x_surface = self.stat_font_1.render("x", True, LABEL_COLOR_1)
+        self.x_surface = self.x_font.render("x", True, STAT_COLOR_1)
 
         self.money_icon = AnimatedSprite()
         self.money_icon.load_spritesheet(gameplay.game.load_resource(MONEY_SPRITESHEET))
@@ -61,12 +70,20 @@ class Hud:
         if not self.draw_target:
             return
         
-        money = str(self.gameplay.game.get_save_data(PLAYER_MONEY))
-        money_surface = self.stat_font_1.render(money, True, LABEL_COLOR_1)
+        money = str(self.gameplay.money)
+        money_surface = self.stat_font_1.render(money, True, STAT_COLOR_1)
+        money_rect = money_surface.get_rect(midright=MONEY_STAT_RIGHT_X)
 
-        self.draw_target.blit(money_surface, MONEY_STAT_POSITION)
+        quota = str(self.gameplay.quota)
+        quota_surface = self.stat_font_1.render(quota, True, STAT_COLOR_1)
+        quota_rect = quota_surface.get_rect(midright=QUOTA_STAT_RIGHT_X)
+
+        self.draw_target.blit(money_surface, money_rect)
+        self.draw_target.blit(quota_surface, quota_rect)
+
         self.draw_target.blit(self.money_label_surface, MONEY_LABEL_POSITION)
         self.draw_target.blit(self.quota_label_surface, QUOTA_LABEL_POSITION)
+        self.draw_target.blit(self.stones_label_surface, STONES_LABEL_POSITION)
         self.draw_target.blit(self.health_label_surface, HEALTH_LABEL_POSITION)
 
         self.draw_target.blit(self.x_surface, MONEY_X_SIGN_POSITION)

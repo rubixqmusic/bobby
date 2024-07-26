@@ -243,7 +243,7 @@ class Game:
         # debug_camera_pos = self.debug_font.render(f"Camera Pos: {camera_pos}", True, (255,255,255))
         # debug_number_of_tiles = self.debug_font.render(f"Number of Tiles: {number_of_tiles}", True, (255,255,255))
 
-        self.get_screen().blit(debug_fps, (12, 12))
+        self.get_screen().blit(debug_fps, (8, 34))
         # self.get_screen().blit(debug_camera_pos, (12, 28))
         # self.get_screen().blit(debug_number_of_tiles, (12, 44))
 

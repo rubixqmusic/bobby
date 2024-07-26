@@ -2579,12 +2579,12 @@
 									"id": "V_String",
 									"params": ["f6e6e320-d7b0-11ee-baec-7f986c8ddd42"]
 								}] },
-								{ "__identifier": "quota", "__type": "Int", "__value": 150, "__tile": null, "defUid": 73, "realEditorValues": [{ "id": "V_Int", "params": [150] }] },
+								{ "__identifier": "quota", "__type": "Int", "__value": 750, "__tile": null, "defUid": 73, "realEditorValues": [{ "id": "V_Int", "params": [750] }] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": "n", "__tile": null, "defUid": 74, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["n"]
 								}] },
-								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 250, "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Int", "params": [250] }] }
 							],
 							"__worldX": 624,
 							"__worldY": 384

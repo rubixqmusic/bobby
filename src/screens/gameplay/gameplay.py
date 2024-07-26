@@ -17,6 +17,7 @@ class Gameplay(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
         self.level_name = args[0]
+        self.scene_name = None
 
         self.player_start_position = args[1]
         self.transition_in = args[2]
@@ -29,6 +30,13 @@ class Gameplay(State):
         self.particle_engine = None
         self.new_entity_queue = []
         self.hud = None
+
+        self.time_limit = 0
+        self.time_limit_enabled = False
+        self.money = 0
+        self.stones = 0
+        self.quota = 0
+        
         self.clear_scene()
     
     def clear_scene(self):
@@ -258,14 +266,13 @@ class Gameplay(State):
     def unpause(self):
         self.paused = False
 
-    def load_scene(self, level_name, player_start_position, transition_out=None, transition_in=None):
-        self.level_name = level_name
+    def load_scene(self, scene_name, player_start_position, transition_out=None, transition_in=None):
+        self.scene_name = scene_name
         self.player_start_position = player_start_position
         self.transition_out = transition_out
         self.transition_in = transition_in
-
         if self.transition_out == None:
-            self.state.set_state(self,"load_scene", level_name, self.player_start_position, self.transition_in)
+            self.state.set_state(self,"load_scene", scene_name, self.player_start_position, self.transition_in)
     
     def money_in_transition(self):
         self.state.set_state(self, "money_in_transition")
@@ -337,9 +344,7 @@ class Gameplay(State):
         return
     
     def collect_coin(self, coin):
-        coin_count = self.game.get_save_data(PLAYER_MONEY)
-        coin_value = coin.value
-        self.game.set_save_data(PLAYER_MONEY, coin_count+coin_value)
+        self.money += coin.value
 
         
 
