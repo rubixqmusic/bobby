@@ -47,3 +47,5 @@ TILE_DATA = {
 }
 
 PLAYER_MONEY = "player_money"
+
+TIME_LIMIT_TICK_INTERVAL = 90

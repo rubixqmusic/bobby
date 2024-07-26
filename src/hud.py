@@ -36,6 +36,10 @@ STONES_LABEL_POSITION = [128, LABELS_Y_POSITION]
 HEALTH_LABEL = "Health"
 HEALTH_LABEL_POSITION = [192, LABELS_Y_POSITION]
 
+TIME_LABEL = "Time"
+TIME_LABEL_POSITION = [460, LABELS_Y_POSITION]
+TIME_STAT_RIGHT_SIDE = [489, 26]
+
 
 class Hud:
     def __init__(self, gameplay) -> None:
@@ -51,6 +55,7 @@ class Hud:
         self.quota_label_surface = self.label_font_1.render(QUOTA_LABEL, True, LABEL_COLOR_1)
         self.stones_label_surface = self.label_font_1.render(STONES_LABEL, True, LABEL_COLOR_1)
         self.health_label_surface = self.label_font_1.render(HEALTH_LABEL, True, LABEL_COLOR_1)
+        self.time_label_surface = self.label_font_1.render(TIME_LABEL, True, LABEL_COLOR_1)
         self.x_surface = self.x_font.render("x", True, STAT_COLOR_1)
 
         self.money_icon = AnimatedSprite()
@@ -78,13 +83,19 @@ class Hud:
         quota_surface = self.stat_font_1.render(quota, True, STAT_COLOR_1)
         quota_rect = quota_surface.get_rect(midright=QUOTA_STAT_RIGHT_X)
 
+        time = str(self.gameplay.time_limit)
+        time_surface = self.stat_font_1.render(time, True, STAT_COLOR_1)
+        time_rect = time_surface.get_rect(midright=TIME_STAT_RIGHT_SIDE)
+
         self.draw_target.blit(money_surface, money_rect)
         self.draw_target.blit(quota_surface, quota_rect)
+        self.draw_target.blit(time_surface, time_rect)
 
         self.draw_target.blit(self.money_label_surface, MONEY_LABEL_POSITION)
         self.draw_target.blit(self.quota_label_surface, QUOTA_LABEL_POSITION)
         self.draw_target.blit(self.stones_label_surface, STONES_LABEL_POSITION)
         self.draw_target.blit(self.health_label_surface, HEALTH_LABEL_POSITION)
+        self.draw_target.blit(self.time_label_surface, TIME_LABEL_POSITION)
 
         self.draw_target.blit(self.x_surface, MONEY_X_SIGN_POSITION)
         self.draw_target.blit(self.x_surface, QUOTA_X_SIGN_POSITION)

@@ -1,5 +1,6 @@
 import pygame
 from math import floor
+import json
 
 from src.state import State
 from src.animatedsprite import AnimatedSprite
@@ -24,13 +25,13 @@ class LoadScene(State):
             '''here is where the level loading begins'''
 
             if scene["identifier"] == self.scene_name:
-                level_data = level.game.get_level_data(level.level_name)
-                if "time_limit" in level_data:
-                    if level_data["time_limit"] > 0:
-                        level.time_limit_enabled = True
-                        level.time_limit = level_data["time_limit"]
-                if "quota" in level_data:
-                    level.quota = level_data["quota"]
+                # level_data = level.game.get_level_data(level.level_name)
+                # if "time_limit" in level_data:
+                #     if level_data["time_limit"] > 0:
+                #         level.time_limit_enabled = True
+                #         level.time_limit = level_data["time_limit"]
+                # if "quota" in level_data:
+                #     level.quota = level_data["quota"]
                     
                 level.width = scene["pxWid"]
                 level.height = scene["pxHei"]
@@ -41,42 +42,58 @@ class LoadScene(State):
                     if level_property["__identifier"] == "music":
                         if level_property["__value"] in LEVEL_MUSIC:
                             level.game.play_music(LEVEL_MUSIC[level_property["__value"]])
-                    if level_property["__identifier"] == "background":
+                    if level_property["__identifier"] == "animated_background":
                         if level_property["__value"]:
-                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_image/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
-                            bg_animation_data = f"{ANIMATIONS_PATH}/{level_property['__value']}.json"
-                            
-                            if level.game.resource_exists(bg_image_path) and level.game.resource_exists(bg_animation_data):
-                                level.bg_image = AnimatedSprite(level.game, level.camera.surface)
-                                level.bg_image.load_spritesheet(bg_image_path)
-                                level.bg_image.load_sprite_data(bg_animation_data)
-                                level.bg_image.set_animation("idle")
-                                level.bg_image.set_position(0,0)
-                                level.bg_image.play()
-                            
-                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_1/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
-                            
-                            if level.game.resource_exists(bg_image_path):
-                                level.bg_1 = {}
-                                level.bg_1["parallax_x"] = 0.01
-                                level.bg_1["parallax_y"] = 1.0
-                                level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
-                            
-                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_2/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
-                            
-                            if level.game.resource_exists(bg_image_path):
-                                level.bg_2 = {}
-                                level.bg_2["parallax_x"] = 0.05
-                                level.bg_2["parallax_y"] = 0.9
-                                level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+                            background_data = json.loads(level_property["__value"])
 
-                            bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/bg_3/{level_property['__value']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                            if "image" in background_data and "animation" in background_data:
+
+                                bg_image_path = f"{GRAPHICS_PATH}/animated_backgrounds/{background_data['image']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                                bg_animation_data = f"{ANIMATIONS_PATH}/{background_data['animation']}.json"
+                                
+                                if level.game.resource_exists(bg_image_path) and level.game.resource_exists(bg_animation_data):
+                                    level.bg_image = AnimatedSprite(level.game, level.camera.surface)
+                                    level.bg_image.load_spritesheet(bg_image_path)
+                                    level.bg_image.load_sprite_data(bg_animation_data)
+                                    level.bg_image.set_animation("idle")
+                                    level.bg_image.set_position(0,0)
+                                    level.bg_image.play()
+                    
+                    if level_property["__identifier"] == "background_1":
+                        if level_property["__value"]:
+                            background_data = json.loads(level_property["__value"])
+                            if "image" in background_data:
+                                bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/{background_data['image']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                                
+                                if level.game.resource_exists(bg_image_path):
+                                    level.bg_1 = {}
+                                    level.bg_1["parallax_x"] = 0.01
+                                    level.bg_1["parallax_y"] = 1.0
+                                    level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                             
-                            if level.game.resource_exists(bg_image_path):
-                                level.bg_3 = {}
-                                level.bg_3["parallax_x"] = 0.6
-                                level.bg_3["parallax_y"] = 0.3
-                                level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+                    if level_property["__identifier"] == "background_2":
+                        if level_property["__value"]:
+                            background_data = json.loads(level_property["__value"])
+                            if "image" in background_data:
+                                bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/{background_data['image']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                                
+                                if level.game.resource_exists(bg_image_path):
+                                    level.bg_2 = {}
+                                    level.bg_2["parallax_x"] = 0.05
+                                    level.bg_2["parallax_y"] = 0.9
+                                    level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+
+                    if level_property["__identifier"] == "background_3":
+                        if level_property["__value"]:
+                            background_data = json.loads(level_property["__value"])
+                            if "image" in background_data:
+                                bg_image_path = f"{GRAPHICS_PATH}/scene_backgrounds/{background_data['image']}{BACKGROUND_IMAGE_FILE_EXTENSION}"
+                                
+                                if level.game.resource_exists(bg_image_path):
+                                    level.bg_3 = {}
+                                    level.bg_3["parallax_x"] = 0.6
+                                    level.bg_3["parallax_y"] = 0.3
+                                    level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                 
                 tileset_data = self.get_tileset_data()
 

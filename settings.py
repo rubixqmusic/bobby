@@ -32,6 +32,7 @@ RESOURCE_DIRS = [
                     "res/audio/music", 
                     "res/fonts", 
                     "res/graphics/animated_tilesets", 
+                    "res/graphics/animated_backgrounds",
                     "res/graphics/backgrounds",
                     "res/graphics/entities", 
                     "res/graphics/hud", 
