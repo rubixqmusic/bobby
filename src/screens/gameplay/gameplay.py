@@ -11,6 +11,7 @@ from src.animatedsprite import AnimatedSprite
 from src.particleengine import ParticleEngine
 
 from src.entities.coin.coin import Coin
+from src.entities.stone.stone import Stone
 
 
 class Gameplay(State):
@@ -76,12 +77,13 @@ class Gameplay(State):
     def on_state_enter(self, game):
         self.game = game
         level_data = self.game.get_level_data(self.level_name)
-        if "time_limit" in level_data:
-            if level_data["time_limit"] > 0:
-                self.time_limit_enabled = True
-                self.time_limit = level_data["time_limit"]
-        if "quota" in level_data:
-            self.quota = level_data["quota"]
+        if level_data:
+            if "time_limit" in level_data:
+                if level_data["time_limit"] > 0:
+                    self.time_limit_enabled = True
+                    self.time_limit = level_data["time_limit"]
+            if "quota" in level_data:
+                self.quota = level_data["quota"]
         self.font = pygame.font.Font(game.load_resource(PAUSE_MENU_FONT), PAUSE_MENU_FONT_SIZE)
         self.camera = Camera(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
         self.transition_overlay = AnimatedSprite(self.game, self.game.get_screen())
@@ -105,11 +107,13 @@ class Gameplay(State):
     
     def update(self, game):
         delta = game.get_delta_time()
+        if delta > 1000/FPS:
+            delta = 1000/FPS
         self.text_grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
         self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
 
         if self.time_limit_enabled and self.state.get_name() == "level_active":
-            self.time_limit_ticks -= 1
+            self.time_limit_ticks -= delta
             if self.time_limit_ticks <= 0:
                 self.time_limit -= 1
                 self.time_limit_ticks = TIME_LIMIT_TICK_INTERVAL
@@ -156,8 +160,10 @@ class Gameplay(State):
     def draw(self, game):
         self.onscreen_tile_count = 0
         
-        game.get_screen().fill(self.bg_color)
-        
+        # game.get_screen().fill(self.bg_color)
+
+        self.camera.surface.fill(self.bg_color)
+
         if self.bg_image:
             self.bg_image.draw()
         
@@ -335,6 +341,12 @@ class Gameplay(State):
             new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
             self.register_hitbox(new_coin.hitbox)
             self.new_entity_queue.append(new_coin)
+        
+        if entity_data["__identifier"] == GREEN_STONE_ENTITY:
+            new_coin = Stone(self, GREEN_STONE_ENTITY)
+            new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
+            self.register_hitbox(new_coin.hitbox)
+            self.new_entity_queue.append(new_coin)
     
     
     def _add_queued_entities_to_scene(self):
@@ -364,6 +376,9 @@ class Gameplay(State):
     
     def collect_coin(self, coin):
         self.money += coin.value
+    
+    def collect_stone(self, stone):
+        self.stones += stone.value
 
         
 

@@ -33,8 +33,11 @@ LEVEL_TILESET_IDENTIFIER = "levels"
 COPPER_COIN_ENTITY = "copper_coin"
 SILVER_COIN_ENTITY = "silver_coin"
 GOLD_COIN_ENTITY = "gold_coin"
+GREEN_STONE_ENTITY = "green_stone"
+BLUE_STONE_ENTITY = "blue_stone"
+RED_STONE_ENTITY = "red_stone"
 
-HITBOX_TYPES = ["ground", "bobby", "gold_coin", "silver_coin", "copper_coin"]
+HITBOX_TYPES = ["ground", "bobby", "gold_coin", "silver_coin", "copper_coin", "green_stone", "blue_stone", "red_stone"]
 
 MAX_ENTITIES = 1000
 MAX_HITBOXES = 5000
@@ -48,4 +51,4 @@ TILE_DATA = {
 
 PLAYER_MONEY = "player_money"
 
-TIME_LIMIT_TICK_INTERVAL = 90
+TIME_LIMIT_TICK_INTERVAL = 1.0

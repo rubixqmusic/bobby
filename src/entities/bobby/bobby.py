@@ -58,7 +58,12 @@ class Bobby(Entity):
         self.idle()
         
     def update(self, delta):
-        
+
+        # print(i for i in range(100000))
+        # print(i for i in range(100000))
+        # print(i for i in range(100000))
+        # print(self.level.game.get_world())
+        # print(self.direction)
         # if bob.is_button_pressed(ACTION_BUTTON_1):
         #     self.jump_button_reset = False
         if self.level.game.is_button_released(ACTION_BUTTON_1):
@@ -235,7 +240,15 @@ class Bobby(Entity):
                         self.falling()
             
             self.position.y += y
-        
+            self.hitbox.set_position(self.position.x, self.position.y - 1)
+            collisions = self.hitbox.get_collisions()
+
+            if collisions:
+                for collision in collisions:
+                    if collision.get_type() in SOLID_OBJECTS:
+                        self.resolve_solid_collision_y(collision)
+                    elif collision.get_type() in ITEMS:
+                        collision.on_collision.emit(self)
 
         if current_state == JUMPING_STATE:
             

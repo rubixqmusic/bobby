@@ -16,6 +16,7 @@ class WallSlide(State):
         bobby.velocity.x = 0
         bobby.velocity.y = 0
         if bobby.is_on_ground():
+            # bobby.set_position(bobby.position.x, bobby.position.y - 1)
             bobby.idle()
             return
         else:
