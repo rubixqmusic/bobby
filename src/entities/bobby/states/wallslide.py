@@ -20,7 +20,7 @@ class WallSlide(State):
             bobby.idle()
             return
         else:
-            bobby.velocity.y += int(bobby.gravity/2)
+            bobby.velocity.y += int(bobby.gravity * 0.25)
 
         if self.wall_slide_delay <= 0:
          
