@@ -117,6 +117,8 @@ PARTICLE_CIRCLE = "particle_circle"
 JUMP_PARTICLE = "jump_particle"
 DUST_PARTICLE = "dust_particle"
 
+MAX_PLAYER_HEALTH = 20
+
 
 
 # Debug settings ------------------------------------------------------------]

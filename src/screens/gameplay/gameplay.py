@@ -37,6 +37,7 @@ class Gameplay(State):
         self.money = 0
         self.stones = 0
         self.quota = 0
+        self.player_health = MAX_PLAYER_HEALTH
         
         self.clear_scene()
     
@@ -107,7 +108,7 @@ class Gameplay(State):
         self.text_grow_factor = int(math.sin(self.sine_degrees) * MAX_TEXT_GROW)
         self.sine_degrees += TEXT_GROW_STEP_SIZE%MAX_TEXT_GROW
 
-        if self.time_limit_enabled:
+        if self.time_limit_enabled and self.state.get_name() == "level_active":
             self.time_limit_ticks -= 1
             if self.time_limit_ticks <= 0:
                 self.time_limit -= 1
