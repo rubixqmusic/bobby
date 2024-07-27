@@ -5,7 +5,7 @@ from src.entity import Entity
 from src.signal import Signal
 from src.components.animatedsprite import AnimatedSprite
 from src.components.hitbox import Hitbox
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.coin.resources import *
 from src.entities.coin.entitystates import *
@@ -14,20 +14,19 @@ from src.signal import Signal
 
 
 class Coin(Entity):
-    def __init__(self, starting_position, camera, gravity, draw_target, hitboxes, coin_type=DEFAULT_COIN_TYPE) -> None:
+    def __init__(self, level, coin_type=DEFAULT_COIN_TYPE) -> None:
         super().__init__()
-
+        self.level = level
         self.type = coin_type
         self.value = COIN_VALUE[coin_type]
-        self.camera = camera
-        self.position = pygame.Vector2(starting_position)
+        self.camera = level.camera
+        self.position = pygame.Vector2([0,0])
         self.velocity = pygame.Vector2([0,0])
-        self.collect_coin = Signal()
 
         self.animated_sprite = AnimatedSprite()
-        self.animated_sprite.load_spritesheet(bob.load_resource(SPRITESHEET[coin_type]))
-        self.animated_sprite.load_animation(bob.load_resource(ANIMATION))
-        self.animated_sprite.set_draw_target(draw_target)
+        self.animated_sprite.load_spritesheet(level.game.load_resource(SPRITESHEET[coin_type]))
+        self.animated_sprite.load_animation(level.game.load_resource(ANIMATION))
+        self.animated_sprite.set_draw_target(self.camera.surface)
         self.animated_sprite.set_animation(FLOATING_ANIMATION)
         self.animated_sprite.set_position(0,0)
         self.animated_sprite.play()
@@ -36,7 +35,7 @@ class Coin(Entity):
         self.hitbox = Hitbox()
         self.hitbox.set_type(DEFAULT_COIN_TYPE)
         self.hitbox.set_collision_types("bobby")
-        self.hitbox.set_colliders(hitboxes)
+        self.hitbox.set_colliders(level.hitboxes)
         self.hitbox.set_hitbox(0,0,12,12)
         self.hitbox.set_offset(2,2)
         self.hitbox.set_position(self.position.x, self.position.y)
@@ -47,11 +46,17 @@ class Coin(Entity):
 
         self.idle()
     
+    def set_position(self, position_x, position_y):
+        self.position.x = position_x
+        self.position.y = position_y
+        self.hitbox.set_position(self.position.x, self.position.y)
+
     def hit(self, entity):
         if self.state.name == "idle" and entity.type == "bobby":
             self.hitbox.disable()
             self.state.set_state(self, COLLECTED_STATE)
-            self.collect_coin.emit(self)
+            self.level.collect_coin(self)
+            # self.collect_coin.emit(self)
     
     def on_animation_finished(self, animation):
         if animation == COLLECTED_ANIMATION:

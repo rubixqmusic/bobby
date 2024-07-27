@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -10,9 +10,9 @@ class Jumping(State):
         self.wall_jump = True if bobby.velocity.x else False
         self.jump_hold = JUMP_HOLD
         self.extra_hold = False
-        bob.play_sound(JUMP_SOUND)
+        bobby.level.game.play_sound(JUMP_SOUND)
 
-        bobby.generate_particles.emit(JUMP_PARTICLE, [bobby.position.x + 32, bobby.position.y + 47],{})
+        bobby.level.generate_particles(JUMP_PARTICLE, [bobby.position.x + 32, bobby.position.y + 47])
         # bobby.velocity.x = bobby.speed /2
 
     def on_state_exit(self, bobby):
@@ -29,12 +29,12 @@ class Jumping(State):
 
         if not self.wall_jump and not bobby.lock_x_during_jump:
  
-            if bob.is_button_pressed(RIGHT_BUTTON):
+            if bobby.level.game.is_button_pressed(RIGHT_BUTTON):
                 bobby.velocity.x = bobby.speed # int(bobby.speed * 0.75)
-            elif bob.is_button_pressed(LEFT_BUTTON):
+            elif bobby.level.game.is_button_pressed(LEFT_BUTTON):
                 bobby.velocity.x = -bobby.speed # int(-bobby.speed * 0.75)
         
-        if not bob.is_button_pressed(ACTION_BUTTON_1) and self.jump_button_released == False:
+        if not bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and self.jump_button_released == False:
             self.jump_button_released = True
             bobby.jump_time -= JUMP_RELEASE
         
@@ -60,7 +60,7 @@ class Jumping(State):
         bobby.jump_time -= 1
 
         if bobby.jump_time < 0:
-            if bob.is_button_pressed(ACTION_BUTTON_1) and self.extra_hold == False:
+            if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and self.extra_hold == False:
                 self.extra_hold = True
                 self.jump_hold += EXTRA_JUMP_HOLD
             self.jump_hold -=1

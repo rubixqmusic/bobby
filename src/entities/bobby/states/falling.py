@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -30,7 +30,7 @@ class Falling(State):
         else:
             bobby.velocity.y += bobby.gravity
         
-        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.coyote_time > 0 and bobby.jump_button_reset:
+        if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.coyote_time > 0 and bobby.jump_button_reset:
             bobby.jumping()
 
         # if self.lock_x_velocity:
@@ -38,9 +38,9 @@ class Falling(State):
         # elif not self.jumping_into_wall: 
         if not self.jumping_into_wall:
 
-            if bob.is_button_pressed(RIGHT_BUTTON):
+            if bobby.level.game.is_button_pressed(RIGHT_BUTTON):
                 bobby.velocity.x = int(bobby.speed)
-            elif bob.is_button_pressed(LEFT_BUTTON):
+            elif bobby.level.game.is_button_pressed(LEFT_BUTTON):
                 bobby.velocity.x = -int(bobby.speed)
 
         # bobby.position.y += bobby.velocity.y

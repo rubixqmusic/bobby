@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -10,9 +10,9 @@ class WallSlide(State):
 
     def update(self, bobby, delta):
         if bobby.direction == RIGHT:
-            bobby.generate_particles.emit(DUST_PARTICLE, [bobby.position.x + 38, bobby.position.y + 29],{})
+            bobby.level.generate_particles(DUST_PARTICLE, [bobby.position.x + 38, bobby.position.y + 29])
         if bobby.direction == LEFT:
-            bobby.generate_particles.emit(DUST_PARTICLE, [bobby.position.x + 24, bobby.position.y + 29],{})
+            bobby.level.generate_particles(DUST_PARTICLE, [bobby.position.x + 24, bobby.position.y + 29])
         bobby.velocity.x = 0
         bobby.velocity.y = 0
         if bobby.is_on_ground():
@@ -23,7 +23,7 @@ class WallSlide(State):
 
         if self.wall_slide_delay <= 0:
          
-            if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+            if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
                 bobby.jump_button_reset = False
                 if bobby.direction == RIGHT:
                     x = int(-SPEED * delta)
@@ -37,12 +37,12 @@ class WallSlide(State):
                     bobby.jumping(SPEED)
                     return
         
-        if bob.is_button_pressed(RIGHT_BUTTON):
+        if bobby.level.game.is_button_pressed(RIGHT_BUTTON):
                 self.is_on_wall = False
               
                 bobby.velocity.x = bobby.speed
             
-        elif bob.is_button_pressed(LEFT_BUTTON):
+        elif bobby.level.game.is_button_pressed(LEFT_BUTTON):
             
             self.is_on_wall = False
             bobby.velocity.x = -bobby.speed

@@ -8,31 +8,32 @@ from src.entities.bobby.entitystates import player_states
 
 from src.components.animatedsprite import AnimatedSprite
 from src.components.hitbox import Hitbox
-from src.bob import bob
+
 
 class Bobby(Entity):
-    def __init__(self, starting_position, camera, gravity, draw_target, hitboxes) -> None:
+    def __init__(self, level) -> None:
         super().__init__()
 
         self.set_name("bobby")
         self.type = "bobby"
+        self.level = level
         self.jump_button_reset = True
         self.lock_x_during_jump = False
         self.direction = RIGHT
         self.jump_velocity = JUMP_VELOCITY
         self.jump_time = 0
-        self.camera = camera
+        self.camera = level.camera
         self.speed = SPEED
         self.coyote_time = 0
-        self.gravity = gravity
-        self.generate_particles = Signal()
-        self.position = pygame.Vector2(starting_position)
+        self.gravity = level.gravity
+        # self.generate_particles = Signal()
+        self.position = pygame.Vector2((0,0))
         self.velocity = pygame.Vector2([0,0])
 
         self.sprite = AnimatedSprite()
-        self.sprite.load_spritesheet(bob.load_resource(CHARACTER_SPRITESHEET))
-        self.sprite.load_animation(bob.load_resource(CHARACTER_ANIMATION))
-        self.sprite.set_draw_target(draw_target)
+        self.sprite.load_spritesheet(level.game.load_resource(CHARACTER_SPRITESHEET))
+        self.sprite.load_animation(level.game.load_resource(CHARACTER_ANIMATION))
+        self.sprite.set_draw_target(level.camera.surface)
         self.sprite.set_animation(IDLE_RIGHT)
         self.sprite.set_position(200,200)
         self.sprite.play()
@@ -42,7 +43,7 @@ class Bobby(Entity):
         self.hitbox._debug_show_range = True
         self.hitbox.set_type("bobby")
         self.hitbox.set_collision_types(COLLISION_TYPES)
-        self.hitbox.set_colliders(hitboxes)
+        self.hitbox.set_colliders(level.hitboxes)
         self.hitbox.set_hitbox(0,0, 10,24)
         self.hitbox.set_offset(26,24)
         self.hitbox.set_position(self.position.x, self.position.y)
@@ -60,7 +61,7 @@ class Bobby(Entity):
         
         # if bob.is_button_pressed(ACTION_BUTTON_1):
         #     self.jump_button_reset = False
-        if bob.is_button_released(ACTION_BUTTON_1):
+        if self.level.game.is_button_released(ACTION_BUTTON_1):
             self.jump_button_reset = True
 
         self.state.update(self, delta)
@@ -278,6 +279,11 @@ class Bobby(Entity):
         #         if collision.get_type() in SOLID_OBJECTS:
         #             self.resolve_solid_collision_y(collision)
         ...
+
+    def set_position(self, position_x, position_y):
+        self.position.x = position_x
+        self.position.y = position_y
+        self.hitbox.set_position(self.position.x, self.position.y)
 
     def set_animation(self, animation_name: str):
         self.sprite.set_animation(animation_name)

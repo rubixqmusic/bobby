@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -15,9 +15,9 @@ class Running(State):
             bobby.falling(True)
             return
         
-        if bob.is_button_pressed(RIGHT_BUTTON):
+        if bobby.level.game.is_button_pressed(RIGHT_BUTTON):
             bobby.velocity.x += bobby.speed
-        elif bob.is_button_pressed(LEFT_BUTTON):
+        elif bobby.level.game.is_button_pressed(LEFT_BUTTON):
             bobby.velocity.x -= bobby.speed
         else:
             bobby.idle()
@@ -31,7 +31,7 @@ class Running(State):
         #     return
 
         
-        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+        if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
             bobby.jump_button_reset = False
             
             bobby.hitbox.set_position(bobby.position.x + 1, bobby.position.y -1)

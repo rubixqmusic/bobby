@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -13,11 +13,11 @@ class Idle(State):
             bobby.falling()
             return
 
-        if bob.is_button_pressed(RIGHT_BUTTON) or bob.is_button_pressed(LEFT_BUTTON):
+        if bobby.level.game.is_button_pressed(RIGHT_BUTTON) or bobby.level.game.is_button_pressed(LEFT_BUTTON):
             bobby.running()
             return
         
-        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+        if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
             bobby.jump_button_reset = False
             bobby.jumping()
             return

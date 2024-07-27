@@ -1,5 +1,5 @@
 from src.state import State
-from src.bob import bob
+# from src.bob import bob
 
 from src.entities.bobby.resources import *
 
@@ -23,7 +23,7 @@ class Pivot(State):
         #     bobby.running()
         #     return
         
-        if bob.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
+        if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.jump_button_reset:
             bobby.jump_button_reset = False
             
             bobby.hitbox.set_position(bobby.position.x + 1, bobby.position.y -1)

@@ -144,8 +144,9 @@ class LoadScene(State):
 
                 level.camera.set_bounds(0, level.width, 0, level.height)
                 level.camera.center(self.player_start_position[0], self.player_start_position[1])
-                level.player = Bobby([self.player_start_position[0], self.player_start_position[1]], level.camera, DEFAULT_GRAVITY, level.camera.surface, level.hitboxes)
-                level.player.generate_particles.attach(level.particle_engine, "generate_particles")
+                level.player = Bobby(level)
+                level.player.set_position(self.player_start_position[0], self.player_start_position[1])
+                # level.player.generate_particles.attach(level.particle_engine, "generate_particles")
 
         level._add_queued_entities_to_scene()
 
