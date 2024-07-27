@@ -91,8 +91,8 @@ class LoadScene(State):
                                 
                                 if level.game.resource_exists(bg_image_path):
                                     level.bg_3 = {}
-                                    level.bg_3["parallax_x"] = 0.6
-                                    level.bg_3["parallax_y"] = 0.1
+                                    level.bg_3["parallax_x"] = 0.1
+                                    level.bg_3["parallax_y"] = 0.0
                                     level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
                 
                 tileset_data = self.get_tileset_data()
