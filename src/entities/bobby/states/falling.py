@@ -27,7 +27,7 @@ class Falling(State):
             # bobby.position.y -= 1
             bobby.idle()
             return
-        else:
+        elif bobby.coyote_time <= 0:
             bobby.velocity.y += bobby.gravity
         
         if bobby.level.game.is_button_pressed(ACTION_BUTTON_1) and bobby.coyote_time > 0 and bobby.jump_button_reset:

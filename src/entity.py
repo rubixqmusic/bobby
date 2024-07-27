@@ -4,6 +4,7 @@ class Entity:
         self._name = None
         self._alive = True
         self.type = None
+        self.update_if_not_in_view = False
     
     def set_name(self, name):
         self._name = name

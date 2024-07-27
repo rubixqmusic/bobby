@@ -10,6 +10,8 @@ class Camera:
         self.width = width
         self.height = height
         self.rect = pygame.rect.Rect(x, y, width, height)
+        self.update_range = pygame.rect.Rect(x, y, width + 64, height + 64)
+        self.update_range.center = self.rect.center
 
         self.surface = pygame.surface.Surface((width, height))
 
@@ -43,6 +45,7 @@ class Camera:
         self.y = y
         self.rect[0] = self.x
         self.rect[1] = self.y
+        self.update_range.center = self.rect.center
     
     def center(self, center_x, center_y):
         
@@ -62,10 +65,10 @@ class Camera:
             self.rect[0] = self.x
             self.rect[1] = self.y
             
-            
-
         self.x = self.rect[0]
         self.y = self.rect[1]
+
+        self.update_range.center = self.rect.center
     
     def move(self, x, y):
         self.x += x
@@ -81,3 +84,4 @@ class Camera:
                 self.y = self.limit_top
         self.rect[0] = self.x
         self.rect[1] = self.y
+        self.update_range.center = self.rect.center

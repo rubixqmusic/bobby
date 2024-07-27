@@ -142,8 +142,11 @@ class Gameplay(State):
                 if entity:
                     if entity._alive == False:
                         self.entities[entity_index] = None
-                    else:
-                        entity.update(delta)
+                    elif hasattr(entity, "position") and not entity.update_if_not_in_view:
+                        if self.camera.update_range.collidepoint(entity.position):
+                            entity.update(delta)
+                    # else:
+                    #     entity.update(delta)
                 entity_index += 1
 
             
