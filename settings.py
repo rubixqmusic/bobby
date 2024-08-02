@@ -114,6 +114,13 @@ DEFAULT_HITBOX_RANGE = 128
 
 PARTICLE_CIRCLE = "particle_circle"
 
+class ParticleShape(enum.Enum):
+    PARTICLE_CIRCLE = 0
+
+class ParticleType(enum.Enum):
+    JUMP_PARTICLE = 0
+    DUST_PARTICLE = 1
+
 JUMP_PARTICLE = "jump_particle"
 DUST_PARTICLE = "dust_particle"
 

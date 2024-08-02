@@ -14,16 +14,16 @@ class ParticleEngine:
         for i in range(max_particles):
             self._particles.append(None)
     
-    def generate_particles(self, particle_type: str, position: list, properties: dict):
+    def generate_particles(self, particle_type: ParticleType, position: list, properties: dict):
         
         # type, position, size, shape, color, lifetime, properties
         
-        if particle_type == JUMP_PARTICLE:
+        if particle_type == ParticleType.JUMP_PARTICLE:
             index = 0
             for particle in self._particles:
                 if particle == None:   
                     size = 4
-                    shape = PARTICLE_CIRCLE
+                    shape = ParticleShape.PARTICLE_CIRCLE
                     color = (200,200,255)
                     lifetime = 4
                     if index <= len(self._particles) -1:
@@ -31,7 +31,7 @@ class ParticleEngine:
                     return
                 index += 1
 
-        elif particle_type == DUST_PARTICLE:
+        elif particle_type == ParticleType.DUST_PARTICLE:
             number_of_particles = random.randint(1,2)
             index = 0
             for particle in self._particles:
@@ -39,7 +39,7 @@ class ParticleEngine:
                     x_pos = random.randint(1, 2)
                     size = 2
                     position[0] += x_pos
-                    shape = PARTICLE_CIRCLE
+                    shape = ParticleShape.PARTICLE_CIRCLE
                     color = (200,200,255)
                     lifetime = 3
                     if index <= len(self._particles) -1:
@@ -63,12 +63,12 @@ class ParticleEngine:
                     continue
                 else:
 
-                    if particle[0] == JUMP_PARTICLE:
+                    if particle[0] == ParticleType.JUMP_PARTICLE:
                         pygame.draw.circle(self._draw_target, particle[4], (particle[1][0] - self._camera.x, particle[1][1] - self._camera.y), particle[2], particle[5])
                         particle[2] += 1
                         particle[5] -= 1
                     
-                    if particle[0] == DUST_PARTICLE:
+                    if particle[0] == ParticleType.DUST_PARTICLE:
 
                         
                         pygame.draw.circle(self._draw_target, particle[4], (particle[1][0] - self._camera.x, particle[1][1] - self._camera.y), particle[2], particle[5])

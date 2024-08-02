@@ -10,9 +10,9 @@ class WallSlide(State):
 
     def update(self, bobby, delta):
         if bobby.direction == RIGHT:
-            bobby.level.generate_particles(DUST_PARTICLE, [bobby.position.x + 38, bobby.position.y + 29])
+            bobby.level.generate_particles(ParticleType.DUST_PARTICLE, [bobby.position.x + 38, bobby.position.y + 29])
         if bobby.direction == LEFT:
-            bobby.level.generate_particles(DUST_PARTICLE, [bobby.position.x + 24, bobby.position.y + 29])
+            bobby.level.generate_particles(ParticleType.DUST_PARTICLE, [bobby.position.x + 24, bobby.position.y + 29])
         bobby.velocity.x = 0
         bobby.velocity.y = 0
         if bobby.is_on_ground():

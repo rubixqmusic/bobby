@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 84,
+	"nextUid": 85,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1942,7 +1942,8 @@
 			{ "id": "landing", "tileRect": { "tilesetUid": 18, "x": 48, "y": 0, "w": 16, "h": 16 }, "color": 14984818 }
 		], "iconTilesetUid": 18, "externalRelPath": null, "externalFileChecksum": null, "tags": ["world_map_object"] },
 		{ "identifier": "entrance_types", "uid": 21, "values": [{ "id": "default", "tileRect": { "tilesetUid": 18, "x": 64, "y": 0, "w": 16, "h": 16 }, "color": 12470831 }], "iconTilesetUid": 18, "externalRelPath": null, "externalFileChecksum": null, "tags": ["entrance_and_exits"] },
-		{ "identifier": "biomes", "uid": 28, "values": [ { "id": "beach", "tileRect": null, "color": 12470831 }, { "id": "grassland", "tileRect": null, "color": 14120515 } ], "iconTilesetUid": 18, "externalRelPath": null, "externalFileChecksum": null, "tags": ["biomes"] }
+		{ "identifier": "biomes", "uid": 28, "values": [ { "id": "beach", "tileRect": null, "color": 12470831 }, { "id": "grassland", "tileRect": null, "color": 14120515 } ], "iconTilesetUid": 18, "externalRelPath": null, "externalFileChecksum": null, "tags": ["biomes"] },
+		{ "identifier": "item", "uid": 84, "values": [{ "id": "item", "tileRect": null, "color": 12470831 }], "iconTilesetUid": 18, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }
 	], "externalEnums": [], "levelFields": [
 		{
 			"identifier": "music",

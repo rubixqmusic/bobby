@@ -12,7 +12,7 @@ class Jumping(State):
         self.extra_hold = False
         bobby.level.game.play_sound(JUMP_SOUND)
 
-        bobby.level.generate_particles(JUMP_PARTICLE, [bobby.position.x + 32, bobby.position.y + 47])
+        bobby.level.generate_particles(ParticleType.JUMP_PARTICLE, [bobby.position.x + 32, bobby.position.y + 47])
         # bobby.velocity.x = bobby.speed /2
 
     def on_state_exit(self, bobby):

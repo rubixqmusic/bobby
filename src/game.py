@@ -426,9 +426,9 @@ class Game:
     def set_display_mode(self, display_mode):
         if display_mode == "fullscreen":
             display_info = pygame.display.Info()
-            pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN)
+            pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
         else:
-            pygame.display.set_mode(display_mode)
+            pygame.display.set_mode(display_mode, flags=pygame.SCALED, vsync=1)
 
 
     def get_save_data(self, save_data):
