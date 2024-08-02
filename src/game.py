@@ -52,6 +52,10 @@ class Game:
         self.running = True
         self.clock = pygame.time.Clock()
         self.delta_time = 0.0
+        self.resource_config = json.load(self.load_resource(RESOURCE_CONFIG_FILE))
+
+        print(self.resource_config)
+        
         self.world = None
         self.world = json.load(self.load_resource(WORLD_DATA_PATH))
 

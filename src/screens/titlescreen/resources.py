@@ -18,6 +18,8 @@ BACKGROUND_ALPHA = 256
 
 BACKGROUND_SCROLL_SPEED = 50
 
+SCROLL_SPEED = 1200
+
 scroll_speed = 1
 
 menu_selection_font_path = f"{FONTS_PATH}/{MENU_FONT_BOLD}"

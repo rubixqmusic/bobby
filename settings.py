@@ -25,6 +25,7 @@ DISPLAY_MODES = {
 FPS = 60
 
 RESOURCE_FILE_NAME = "bob.res"
+RESOURCE_CONFIG_FILE = "res/config.json"
 RESOURCE_DIRS = [
                     "res/animations", 
                     "res/cutscenes/video_call_cutscenes",
@@ -60,6 +61,9 @@ BASE_PATH = "res/"
 ANIMATIONS_PATH = "res/animations"
 TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 CUTSCENES_PATH = "res/cutscenes"
+
+MUSIC_FILE_EXTENSION = ".mp3"
+BACKGROUND_IMAGE_FILE_EXTENSION = ".png"
 
 DEVELOPMENT_ENVIRONMENT_VARIABLE = "development"
 PRODUCTION_ENVIRONMENT_VARIABLE = "production"
@@ -130,10 +134,10 @@ MAX_PLAYER_HEALTH = 20
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 DEBUG_SHOW_DEBUG_INFO = True
 DEBUG_SHOW_HITBOXES = False
-DEBUG_START_IN_STATE = "gameplay"
+DEBUG_START_IN_STATE = "title_screen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"
