@@ -39,7 +39,11 @@ class Game:
         self.screen = pygame.surface.Surface(SCREEN_SIZE)
         # display_info = pygame.display.Info()
         # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
-        self.window = pygame.display.set_mode(WINDOW_SIZE, flags=pygame.SCALED, vsync=1)
+
+
+        self.window = pygame.display.set_mode(WINDOW_SIZE, vsync=1)
+
+
         pygame.display.set_caption(WINDOW_CAPTION)
 
         if not self._resource_pack and os.environ.get("ENV") != "development":
@@ -428,9 +432,9 @@ class Game:
     def set_display_mode(self, display_mode):
         if display_mode == "fullscreen":
             display_info = pygame.display.Info()
-            pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
+            self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
         else:
-            pygame.display.set_mode(display_mode, flags=pygame.SCALED, vsync=1)
+            self.window = pygame.display.set_mode(display_mode, vsync=1)
 
 
     def get_save_data(self, save_data):
@@ -488,11 +492,10 @@ class Game:
             return None
     
     def play_sound(self,filepath):
-        # if not os.path.exists(filepath):
+        # if not os.path.exists(filepath): 
         #     logging.debug(f"cannot play fx: fx filepath {filepath} does not exist")
         #     return
         if not self.resource_exists(filepath):
-            print(filepath)
             return
         
         sound = pygame.mixer.Sound(self.load_resource(filepath))

@@ -134,7 +134,7 @@ MAX_PLAYER_HEALTH = 20
 
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = False
+DEBUG_ENABLED = True
 DEBUG_SHOW_DEBUG_INFO = False
 DEBUG_SHOW_HITBOXES = False
 DEBUG_START_IN_STATE = "title_screen"
