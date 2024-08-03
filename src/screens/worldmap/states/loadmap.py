@@ -64,7 +64,7 @@ class LoadMap(State):
                                         except:
                                             logging.debug(f"could not load map path image!!!")
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])
-                                        new_map_path = MapPath(entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image)
+                                        new_map_path = MapPath(entity["px"][0], entity["px"][1],entity["width"], entity["height"], image)
                                         world_map.map_path.append(new_map_path)
                                     if property["__value"] == "landing":
                                         try:
@@ -72,7 +72,7 @@ class LoadMap(State):
                                         except:
                                             logging.debug(f"could not load map path image!!!")
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])
-                                        new_map_landing = Landing(entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image)
+                                        new_map_landing = Landing(entity["px"][0], entity["px"][1],entity["width"], entity["height"], image)
                                         world_map.landings.append(new_map_landing)
                                     if property["__value"] == "level_tile":
                                         level_name = None
@@ -90,7 +90,7 @@ class LoadMap(State):
                                         
                                         animation = LEVEL_TILE_ANIMATION
 
-                                        new_level_tile = LevelTile(self.game, level_name, entity["__worldX"], entity["__worldY"], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera, leads_to_scene)
+                                        new_level_tile = LevelTile(self.game, level_name, entity["px"][0], entity["px"][1], entity["width"],spritesheet, animation, world_map.camera.surface, world_map.camera, leads_to_scene)
                                         # entity["__worldX"], entity["__worldY"],entity["width"], entity["height"], image
                                         world_map.level_tiles.append(new_level_tile)
 
@@ -111,7 +111,7 @@ class LoadMap(State):
         
         world_map.player = Player(self.game, world_map, self.player_start_position[0], self.player_start_position[1],world_map.tile_size, world_map.tile_size, PLAYER_SPRITESHEET, PLAYER_ANIMATION,world_map.camera.surface,world_map.camera)
         
-        world_map.camera.set_bounds(world_map.scene_x, world_map.scene_x + world_map.scene_width, world_map.scene_y, world_map.scene_y + world_map.scene_height)
+        world_map.camera.set_bounds(0, world_map.scene_width, 0, world_map.scene_height)
         # world_map.camera.set_position(467,300)
         world_map.camera.center(self.player_start_position[0], self.player_start_position[1])
         world_map.fade_in()

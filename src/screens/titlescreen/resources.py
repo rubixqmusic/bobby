@@ -39,3 +39,7 @@ max_text_grow = 5.0
 text_grow_step_size = 0.1
 sine_degrees = 0.0
 grow_factor = 0
+
+OVERLAY_TRANSITION_ANIMATION = f"{ANIMATIONS_PATH}/screen_transitions.json"
+OVERLAY_TRANSITION_SPRITESHEET = f"{GRAPHICS_PATH}/screen_transitions/screen_transitions.png"
+MONEY_IN_ANIMATION = "money_in"

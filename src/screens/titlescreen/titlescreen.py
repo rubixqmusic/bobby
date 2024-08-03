@@ -45,8 +45,13 @@ class TitleScreen(State):
 
         scene_name = game.resource_config["TITLE_SCREEN_SCENE"]
 
-        
+        self.overlay_transition = AnimatedSprite()
+        self.overlay_transition.set_draw_target(self.game.get_screen())
+        self.overlay_transition.load_animation(self.game.load_resource(OVERLAY_TRANSITION_ANIMATION))
+        self.overlay_transition.load_spritesheet(self.game.load_resource(OVERLAY_TRANSITION_SPRITESHEET))
+        self.overlay_transition.set_animation(MONEY_IN_ANIMATION)
 
+        
         self.animated_background = None
         self.background_1 = None
         self.background_2 = None
@@ -60,7 +65,7 @@ class TitleScreen(State):
         game.play_music(title_screen_music_path)
         
         self.state = State(title_screen_states)
-        self.state.start(self, "fade_in")
+        self.state.start(self, "money_in")
 
     def process_events(self, game):
         self.state.process_events(self)
@@ -121,10 +126,8 @@ class TitleScreen(State):
         # game.get_screen().blit(self.trees_image, self.trees_image_position)
         # game.get_screen().blit(self.trees_image_wrap, self.trees_image_wrap_position)
 
-
         game.get_screen().blit(self.title_text_image, (0,0))
         game.get_screen().blit(self.licensed_by_kablio_text_surface, text_rect)
-
 
         self.state.draw(self)
 
@@ -140,30 +143,17 @@ class TitleScreen(State):
 
     def fade_out_and_quit(self):
         self.state.set_state(self, "fade_out_and_quit")
+    
+    def money_in(self):
+        self.state.set_state(self, "money_in")
 
     
     def load_scene_data(self, scene_name):
-
-        
-
-        # return
         for scene in self.game.get_levels_from_world():
 
             '''here is where the level loading begins'''
 
             if scene["identifier"] == scene_name:
-                # return
-                # level_data = level.game.get_level_data(level.level_name)
-                # if "time_limit" in level_data:
-                #     if level_data["time_limit"] > 0:
-                #         level.time_limit_enabled = True
-                #         level.time_limit = level_data["time_limit"]
-                # if "quota" in level_data:
-                #     level.quota = level_data["quota"]
-                    
-                # level.width = scene["pxWid"]
-                # level.height = scene["pxHei"]
-                # level.bg_color = scene["__bgColor"]
                 for scene_property in scene["fieldInstances"]:
                     if scene_property["__identifier"] == "music":
                         music_path = f"{MUSIC_PATH}/{scene_property['__value']}{MUSIC_FILE_EXTENSION}"
@@ -227,11 +217,6 @@ class TitleScreen(State):
                                     self.background_3["parallax_y"] = 0.0
                                     self.background_3["image"] = pygame.image.load(self.game.load_resource(bg_image_path))
                 
-                # tileset = f"{BASE_PATH}{layer['__tilesetRelPath']}" 
-                # ground_layer_width = scene["pxWid"]
-                # ground_layer_height = scene["pxHei"]
-                # ground_tileset = pygame.image.load(self.game.load_resource(tileset))
-
                 ground_layer_width = scene["pxWid"]
                 ground_layer_height = scene["pxHei"]
                 self.ground = {}

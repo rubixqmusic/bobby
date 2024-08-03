@@ -71,8 +71,8 @@ class WorldMap(State):
                                     entity_properties = entity["fieldInstances"]
                                     for property in entity_properties:
                                         if property["__value"] == "default_start":
-                                            x = entity["__worldX"]
-                                            y = entity["__worldY"]
+                                            x = entity["px"][0]
+                                            y = entity["px"][1]
                                             player_start_position = [x,y]
 
         else:
@@ -90,8 +90,8 @@ class WorldMap(State):
                                     if property["__identifier"] == "level_name":
                                         if property["__value"] == current_level:
                                             scene_name = level_name
-                                            x = entity["__worldX"]
-                                            y = entity["__worldY"]
+                                            x = entity["px"][0]
+                                            y = entity["px"][1]
                                             player_start_position = [x,y]
 
         self.state = State(world_map_states)
