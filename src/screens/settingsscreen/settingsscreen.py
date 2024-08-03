@@ -16,13 +16,18 @@ class SettingsScreen(State):
         self.sine_degrees = 0
         self.grow_factor = 0
         self.game = game
-        self.background_image = pygame.image.load(self.game.load_resource(BACKGROUND_IMAGE)).convert_alpha()
-        '''use this to dim the background image'''
-        self.background_image.set_alpha(100)
+        self.background_image = None
 
-        self.trees_image = pygame.image.load(self.game.load_resource(TREES_IMAGE)).convert_alpha()
-        self.trees_image_wrap = pygame.image.load(self.game.load_resource(TREES_IMAGE)).convert_alpha()
-        self.trees_image_position = [0,0]
+        if "SETTINGS_SCREEN_BACKGROUND" in game.resource_config:
+            background_path = f"{GRAPHICS_PATH}/{game.resource_config['SETTINGS_SCREEN_BACKGROUND']}"
+            if game.resource_exists(background_path):
+                self.background_image = pygame.image.load(self.game.load_resource(background_path)).convert_alpha()
+                '''use this to dim the background image'''
+                self.background_image.set_alpha(50)
+
+        # self.trees_image = pygame.image.load(self.game.load_resource(TREES_IMAGE)).convert_alpha()
+        # self.trees_image_wrap = pygame.image.load(self.game.load_resource(TREES_IMAGE)).convert_alpha()
+        # self.trees_image_position = [0,0]
 
         self.menu_selection_font = pygame.font.Font(game.load_resource(MENU_SELECTION_FONT),MENU_SELECTION_SIZE)
 
@@ -50,8 +55,9 @@ class SettingsScreen(State):
 
     def draw(self, game):
         game.get_screen().fill("#000000")
-        game.get_screen().blit(self.background_image, (0,0))
-        game.get_screen().blit(self.trees_image, self.trees_image_position)
+        if self.background_image:
+            game.get_screen().blit(self.background_image, (0,0))
+        # game.get_screen().blit(self.trees_image, self.trees_image_position)
         if self.heading_text_surface is not None:
             text_rect = self.heading_text_surface.get_rect(center=(SCREEN_WIDTH/2, select_a_file_text_y_position))
             game.get_screen().blit(self.heading_text_surface, text_rect) 

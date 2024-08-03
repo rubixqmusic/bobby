@@ -1,3 +1,5 @@
 {
-    "TITLE_SCREEN_SCENE" : "title_screen"
+    "TITLE_SCREEN_SCENE" : "title_screen",
+    "SETTINGS_SCREEN_BACKGROUND" : "backgrounds/settings_screen.png",
+    "FILE_SELECT_SCREEN_BACKGROUND" : "backgrounds/file_select.png"
 }

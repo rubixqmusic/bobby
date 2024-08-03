@@ -38,7 +38,7 @@ FILE_COPIED_TEXT = f"File Copied!"
 select_a_file_text = f"Select A File"
 select_a_file_text_y_position = 32
 
-file_info_font_size = 10
+file_info_font_size = 12
 FILE_CONFIRM_FONT_SIZE = 20
 
 text_y_spacing = 60

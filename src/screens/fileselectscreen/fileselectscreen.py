@@ -15,13 +15,18 @@ class FileSelectScreen(State):
         self.sine_degrees = 0
         self.grow_factor = 0
         self.game = game
-        self.background_image = pygame.image.load(self.game.load_resource(background_image_path)).convert_alpha()
-        '''use this to dim the background image'''
-        self.background_image.set_alpha(100)
+        self.background_image = None
 
-        self.trees_image = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
-        self.trees_image_wrap = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
-        self.trees_image_position = [0,0]
+        if "FILE_SELECT_SCREEN_BACKGROUND" in game.resource_config:
+            background_path = f"{GRAPHICS_PATH}/{game.resource_config['FILE_SELECT_SCREEN_BACKGROUND']}"
+            if game.resource_exists(background_path):
+                self.background_image = pygame.image.load(self.game.load_resource(background_path)).convert_alpha()
+                '''use this to dim the background image'''
+                self.background_image.set_alpha(100)
+
+        # self.trees_image = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
+        # self.trees_image_wrap = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
+        # self.trees_image_position = [0,0]
 
         self.menu_selection_font = pygame.font.Font(game.load_resource(menu_selection_font_path),menu_selection_text_size)
 
@@ -57,8 +62,9 @@ class FileSelectScreen(State):
 
     def draw(self, game):
         game.get_screen().fill("#000000")
-        game.get_screen().blit(self.background_image, (0,0))
-        game.get_screen().blit(self.trees_image, self.trees_image_position)
+        if self.background_image:
+            game.get_screen().blit(self.background_image, (0,0))
+        # game.get_screen().blit(self.trees_image, self.trees_image_position)
         if self.select_a_file_text_surface is not None:
             text_rect = self.select_a_file_text_surface.get_rect(center=(SCREEN_WIDTH/2, select_a_file_text_y_position))
             game.get_screen().blit(self.select_a_file_text_surface, text_rect) 
