@@ -22,7 +22,7 @@ class FileSelectScreen(State):
             if game.resource_exists(background_path):
                 self.background_image = pygame.image.load(self.game.load_resource(background_path)).convert_alpha()
                 '''use this to dim the background image'''
-                self.background_image.set_alpha(100)
+                self.background_image.set_alpha(50)
 
         # self.trees_image = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
         # self.trees_image_wrap = pygame.image.load(self.game.load_resource(trees_image_path)).convert_alpha()
