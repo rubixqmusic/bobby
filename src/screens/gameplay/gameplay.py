@@ -12,9 +12,6 @@ from src.particleengine import ParticleEngine
 
 from src.components.hitbox import Hitbox
 
-from src.entities.coin.coin import Coin
-from src.entities.stone.stone import Stone
-from src.entities.item.item import Item
 
 
 class Gameplay(State):

@@ -18,6 +18,7 @@ def generate_resource_pack(resource_dirs, resource_file_name):
                 resource_pack[filepath] = generate_encoded_resource(filepath)
 
     resource_pack[WORLD_DATA_PATH] = generate_encoded_resource(WORLD_DATA_PATH)
+    resource_pack[RESOURCE_CONFIG_FILE] = generate_encoded_resource(RESOURCE_CONFIG_FILE)
 
     write_resource_file_to_disk(resource_file_name, resource_pack)
 

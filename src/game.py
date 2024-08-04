@@ -40,7 +40,6 @@ class Game:
         # display_info = pygame.display.Info()
         # self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
 
-
         self.window = pygame.display.set_mode(WINDOW_SIZE, vsync=1)
 
 

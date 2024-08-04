@@ -6,7 +6,6 @@ from src.state import State
 from src.animatedsprite import AnimatedSprite
 from src.screens.gameplay.resources import *
 from src.entities.bobby.bobby import Bobby
-from src.entities.coin.coin import Coin
 from src.components.hitbox import Hitbox
 
 class LoadScene(State):

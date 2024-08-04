@@ -36,5 +36,5 @@ if __name__ == '__main__':
 
     move("bob.res", "dist",)
 
-    os.environ["ENV"] = DEVELOPMENT_ENVIRONMENT_VARIABLE
+    # os.environ["ENV"] = DEVELOPMENT_ENVIRONMENT_VARIABLE
 
