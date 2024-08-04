@@ -500,6 +500,9 @@ class Game:
         
         sound = pygame.mixer.Sound(self.load_resource(filepath))
 
+        if pygame.mixer.Channel(0).get_busy():
+            pygame.mixer.Channel(0).stop()
+
         try:
             pygame.mixer.Sound.play(sound)
         except:
