@@ -41,7 +41,7 @@ class Bobby(Entity):
 
         self.hitbox = Hitbox()
         self.hitbox._debug_show_range = True
-        self.hitbox.set_type("bobby")
+        self.hitbox.set_type(HitboxType.BOBBY)
         self.hitbox.set_collision_types(COLLISION_TYPES)
         self.hitbox.set_colliders(level.hitboxes)
         self.hitbox.set_hitbox(0,0, 10,24)

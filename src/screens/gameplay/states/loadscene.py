@@ -137,9 +137,6 @@ class LoadScene(State):
                         entity_instances = layer["entityInstances"]
                         for entity in entity_instances:
                             new_entity = level.spawn_new_entity(entity)
-
-                            print(new_entity)
-                            
                             if new_entity:
                                 if new_entity.has_method("set_position"):
                                     new_entity.set_position(entity["px"][0], entity["px"][1])
@@ -172,8 +169,8 @@ class LoadScene(State):
                     tileset_data['width'] = tileset["pxWid"]/tileset["tileGridSize"]
                     
                     for data in tileset["customData"]:
-
-                        tileset_data[data["tileId"]] = data["data"]
+                        if data["data"] in TILE_HITBOX_TYPES:
+                            tileset_data[data["tileId"]] = TILE_HITBOX_TYPES[data["data"]]
             # print(tileset_data)
         return tileset_data
     

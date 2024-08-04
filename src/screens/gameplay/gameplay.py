@@ -338,9 +338,6 @@ class Gameplay(State):
     def spawn_new_entity(self, entity_data):
         new_entity_properties = {properties["__identifier"]: properties["__value"] for properties in entity_data["fieldInstances"]}
         new_entity_properties["iid"] = entity_data["iid"] if "iid" in entity_data else None
-
-        print(new_entity_properties)
-
         for property in new_entity_properties:
             if property == "type":
                 if new_entity_properties[property] in ENTITIES:
@@ -382,6 +379,8 @@ class Gameplay(State):
         self.stones += stone.value
 
     def collect_item(self, item):
+        if item.play_sound:
+            self.game.play_sound(item.play_sound)
         if item.target == "money":
             value = int(item.value)
             if value >= 0:

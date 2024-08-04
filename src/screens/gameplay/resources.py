@@ -38,7 +38,7 @@ GREEN_STONE_ENTITY = "green_stone"
 BLUE_STONE_ENTITY = "blue_stone"
 RED_STONE_ENTITY = "red_stone"
 
-HITBOX_TYPES = ["ground", "bobby", "gold_coin", "silver_coin", "copper_coin", "green_stone", "blue_stone", "red_stone", HitboxType.BOBBY, HitboxType.ITEM, HitboxType.GROUND]
+HITBOX_TYPES = [HitboxType.BOBBY, HitboxType.ITEM, HitboxType.GROUND]
 
 ENTITIES = {
                "item" : Item
@@ -53,6 +53,9 @@ TILE_DATA = {
                              }
 }
 
+TILE_HITBOX_TYPES = {
+                        "ground": HitboxType.GROUND
+}
 PLAYER_MONEY = "player_money"
 
 TIME_LIMIT_TICK_INTERVAL = 1.0

@@ -63,7 +63,7 @@ class Item(Entity):
     def collect(self):
         self.hitbox.disable()
         self.state.set_state(self, COLLECTED_STATE)
-        self.level.game.play_sound(self.play_sound)
+        # self.level.game.play_sound(self.play_sound)
         self.level.collect_item(self)
 
     def hit(self, entity):
