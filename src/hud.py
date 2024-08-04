@@ -32,6 +32,12 @@ QUOTA_STAT_RIGHT_X = [92, 26]
 
 STONES_LABEL = "Stones"
 STONES_LABEL_POSITION = [128, LABELS_Y_POSITION]
+STONES_SPRITESHEET = f"{GRAPHICS_PATH}/entities/green_stone.png"
+STONES_ANIMATION = f"{ANIMATIONS_PATH}/stone.json"
+STONES_ICON_ANIMATION = "idle"
+STONES_ICON_POSITION = [160, 18]
+STONES_X_SIGN_POSITION = [159, 21]
+STONES_STAT_RIGHT_X = [156, 26]
 
 HEALTH_LABEL = "Health"
 HEALTH_LABEL_POSITION = [192, LABELS_Y_POSITION]
@@ -65,9 +71,18 @@ class Hud:
         self.money_icon.set_animation(MONEY_ICON_ANIMATION)
         self.money_icon.set_position(*MONEY_ICON_POSITION)
         self.money_icon.play()
+
+        self.stones_icon = AnimatedSprite()
+        self.stones_icon.load_spritesheet(gameplay.game.load_resource(STONES_SPRITESHEET))
+        self.stones_icon.load_animation(gameplay.game.load_resource(STONES_ANIMATION))
+        self.stones_icon.set_draw_target(self.draw_target)
+        self.stones_icon.set_animation(STONES_ICON_ANIMATION)
+        self.stones_icon.set_position(*STONES_ICON_POSITION)
+        self.stones_icon.play()
     
     def update(self, delta):
         self.money_icon.update(delta)
+        self.stones_icon.update(delta)
 
     def draw(self):
         if not self.visible:
@@ -87,9 +102,14 @@ class Hud:
         time_surface = self.stat_font_1.render(time, True, STAT_COLOR_1)
         time_rect = time_surface.get_rect(midright=TIME_STAT_RIGHT_SIDE)
 
+        stones = str(self.gameplay.stones)
+        stones_surface = self.stat_font_1.render(stones, True, STAT_COLOR_1)
+        stones_rect = stones_surface.get_rect(midright=STONES_STAT_RIGHT_X)
+
         self.draw_target.blit(money_surface, money_rect)
         self.draw_target.blit(quota_surface, quota_rect)
         self.draw_target.blit(time_surface, time_rect)
+        self.draw_target.blit(stones_surface, stones_rect)
 
         self.draw_target.blit(self.money_label_surface, MONEY_LABEL_POSITION)
         self.draw_target.blit(self.quota_label_surface, QUOTA_LABEL_POSITION)
@@ -99,11 +119,14 @@ class Hud:
 
         self.draw_target.blit(self.x_surface, MONEY_X_SIGN_POSITION)
         self.draw_target.blit(self.x_surface, QUOTA_X_SIGN_POSITION)
+        self.draw_target.blit(self.x_surface, STONES_X_SIGN_POSITION)
 
         self.money_icon.set_position(*MONEY_ICON_POSITION)
         self.money_icon.draw()
         self.money_icon.set_position(*QUOTA_ICON_POSITION)
         self.money_icon.draw()
+        self.stones_icon.set_position(*STONES_ICON_POSITION)
+        self.stones_icon.draw()
     
     def set_draw_target(self, draw_target):
         self.draw_target = draw_target

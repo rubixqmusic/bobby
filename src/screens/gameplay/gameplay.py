@@ -345,8 +345,6 @@ class Gameplay(State):
                 else:
                     return None
         
-    
-    
     def _add_queued_entities_to_scene(self):
         if self.new_entity_queue:
             entity_slot_index = 0

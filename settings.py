@@ -142,7 +142,7 @@ MAX_PLAYER_HEALTH = 20
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = True
-DEBUG_SHOW_DEBUG_INFO = True
+DEBUG_SHOW_DEBUG_INFO = False
 DEBUG_SHOW_HITBOXES = False
 DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"
