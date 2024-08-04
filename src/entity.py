@@ -26,5 +26,8 @@ class Entity:
     def draw(self):
         pass
 
+    def has_method(self, method_name):
+        return True if hasattr(self, method_name) else False
+
     def kill(self):
         self._alive = False

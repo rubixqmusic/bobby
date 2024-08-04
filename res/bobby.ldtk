@@ -11,7 +11,7 @@
 	"iid": "a7c4aa60-d7b0-11ee-bfc5-c7a30b5106a2",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 132,
+	"nextUid": 140,
 	"identifierStyle": "Lowercase",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -1724,7 +1724,7 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "item",
+					"identifier": "type",
 					"doc": null,
 					"__type": "LocalEnum.item",
 					"uid": 86,
@@ -1886,11 +1886,11 @@
 				{
 					"identifier": "value",
 					"doc": null,
-					"__type": "Int",
-					"uid": 91,
-					"type": "F_Int",
+					"__type": "String",
+					"uid": 136,
+					"type": "F_Text",
 					"isArray": false,
-					"canBeNull": false,
+					"canBeNull": true,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
@@ -1910,7 +1910,50 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": { "id": "V_Int", "params": [10] },
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["10"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "play_sound",
+					"doc": null,
+					"__type": "String",
+					"uid": 132,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["coin.wav"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -2154,7 +2197,7 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "item",
+					"identifier": "type",
 					"doc": null,
 					"__type": "LocalEnum.item",
 					"uid": 100,
@@ -2316,11 +2359,11 @@
 				{
 					"identifier": "value",
 					"doc": null,
-					"__type": "Int",
-					"uid": 104,
-					"type": "F_Int",
+					"__type": "String",
+					"uid": 137,
+					"type": "F_Text",
 					"isArray": false,
-					"canBeNull": false,
+					"canBeNull": true,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
@@ -2340,7 +2383,50 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": { "id": "V_Int", "params": [5] },
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["5"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "play_sound",
+					"doc": null,
+					"__type": "String",
+					"uid": 133,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["coin.wav"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -2584,7 +2670,7 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "item",
+					"identifier": "type",
 					"doc": null,
 					"__type": "LocalEnum.item",
 					"uid": 111,
@@ -2692,7 +2778,7 @@
 					"acceptFileTypes": null,
 					"defaultOverride": {
 						"id": "V_String",
-						"params": ["gold_coin.json"]
+						"params": ["coin.json"]
 					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
@@ -2746,11 +2832,11 @@
 				{
 					"identifier": "value",
 					"doc": null,
-					"__type": "Int",
-					"uid": 115,
-					"type": "F_Int",
+					"__type": "String",
+					"uid": 138,
+					"type": "F_Text",
 					"isArray": false,
-					"canBeNull": false,
+					"canBeNull": true,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
@@ -2770,7 +2856,50 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": { "id": "V_Int", "params": [1] },
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["1"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "play_sound",
+					"doc": null,
+					"__type": "String",
+					"uid": 134,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["coin.wav"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -3014,7 +3143,7 @@
 			"pivotY": 0,
 			"fieldDefs": [
 				{
-					"identifier": "item",
+					"identifier": "type",
 					"doc": null,
 					"__type": "LocalEnum.item",
 					"uid": 122,
@@ -3176,11 +3305,11 @@
 				{
 					"identifier": "value",
 					"doc": null,
-					"__type": "Int",
-					"uid": 126,
-					"type": "F_Int",
+					"__type": "String",
+					"uid": 139,
+					"type": "F_Text",
 					"isArray": false,
-					"canBeNull": false,
+					"canBeNull": true,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
@@ -3200,7 +3329,50 @@
 					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": { "id": "V_Int", "params": [1] },
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["1"]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "play_sound",
+					"doc": null,
+					"__type": "String",
+					"uid": 135,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["coin.wav"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -3888,8 +4060,8 @@
 			"identifier": "world_map_main",
 			"iid": "a7c4aa62-d7b0-11ee-bfc5-41e1c6fd9d3f",
 			"uid": 0,
-			"worldX": 3072,
-			"worldY": 1728,
+			"worldX": 4096,
+			"worldY": 0,
 			"worldDepth": 0,
 			"pxWid": 1024,
 			"pxHei": 576,
@@ -4093,8 +4265,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3696,
-							"__worldY": 2096
+							"__worldX": 4720,
+							"__worldY": 368
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4120,8 +4292,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3712,
-							"__worldY": 2112
+							"__worldX": 4736,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4147,8 +4319,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3728,
-							"__worldY": 2112
+							"__worldX": 4752,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4174,8 +4346,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3744,
-							"__worldY": 2112
+							"__worldX": 4768,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4201,8 +4373,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3760,
-							"__worldY": 2112
+							"__worldX": 4784,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4228,8 +4400,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3776,
-							"__worldY": 2112
+							"__worldX": 4800,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4255,8 +4427,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3792,
-							"__worldY": 2112
+							"__worldX": 4816,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4285,8 +4457,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2112
+							"__worldX": 4832,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4329,8 +4501,8 @@
 								}] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 250, "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Int", "params": [250] }] }
 							],
-							"__worldX": 3696,
-							"__worldY": 2112
+							"__worldX": 4720,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4359,8 +4531,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2112
+							"__worldX": 4832,
+							"__worldY": 384
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4386,8 +4558,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3696,
-							"__worldY": 2080
+							"__worldX": 4720,
+							"__worldY": 352
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4413,8 +4585,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3696,
-							"__worldY": 2080
+							"__worldX": 4720,
+							"__worldY": 352
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4440,8 +4612,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2096
+							"__worldX": 4832,
+							"__worldY": 368
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4467,8 +4639,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2080
+							"__worldX": 4832,
+							"__worldY": 352
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4494,8 +4666,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2064
+							"__worldX": 4832,
+							"__worldY": 336
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4521,8 +4693,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2048
+							"__worldX": 4832,
+							"__worldY": 320
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4548,8 +4720,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2032
+							"__worldX": 4832,
+							"__worldY": 304
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4575,8 +4747,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2016
+							"__worldX": 4832,
+							"__worldY": 288
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4602,8 +4774,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2000
+							"__worldX": 4832,
+							"__worldY": 272
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4629,8 +4801,8 @@
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": null, "__tile": null, "defUid": 74, "realEditorValues": [] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 1984
+							"__worldX": 4832,
+							"__worldY": 256
 						},
 						{
 							"__identifier": "world_map_object",
@@ -4662,8 +4834,8 @@
 								}] },
 								{ "__identifier": "time_limit", "__type": "Int", "__value": 0, "__tile": null, "defUid": 76, "realEditorValues": [] }
 							],
-							"__worldX": 3808,
-							"__worldY": 2112
+							"__worldX": 4832,
+							"__worldY": 384
 						}
 					]
 				},
@@ -7143,7 +7315,7 @@
 			"identifier": "sunset_beach",
 			"iid": "c5e42420-d7b0-11ee-bfc5-bd3db531c040",
 			"uid": 3,
-			"worldX": 6144,
+			"worldX": 9216,
 			"worldY": 0,
 			"worldDepth": 0,
 			"pxWid": 3072,
@@ -7262,7 +7434,7 @@
 								{ "__identifier": "player_start_position", "__type": "Point", "__value": null, "__tile": null, "defUid": 20, "realEditorValues": [] },
 								{ "__identifier": "entrance_type", "__type": "LocalEnum.entrance_types", "__value": "default", "__tile": { "tilesetUid": 18, "x": 64, "y": 0, "w": 16, "h": 16 }, "defUid": 22, "realEditorValues": [] }
 							],
-							"__worldX": 6240,
+							"__worldX": 9312,
 							"__worldY": 464
 						},
 						{
@@ -7278,18 +7450,19 @@
 							"defUid": 72,
 							"px": [368,272],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6512,
+							"__worldX": 9584,
 							"__worldY": 272
 						},
 						{
@@ -7305,18 +7478,19 @@
 							"defUid": 72,
 							"px": [768,304],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6912,
+							"__worldX": 9984,
 							"__worldY": 304
 						},
 						{
@@ -7332,18 +7506,19 @@
 							"defUid": 72,
 							"px": [1888,304],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 8032,
+							"__worldX": 11104,
 							"__worldY": 304
 						},
 						{
@@ -7359,18 +7534,19 @@
 							"defUid": 72,
 							"px": [2320,384],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 8464,
+							"__worldX": 11536,
 							"__worldY": 384
 						},
 						{
@@ -7386,18 +7562,19 @@
 							"defUid": 72,
 							"px": [400,272],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6544,
+							"__worldX": 9616,
 							"__worldY": 272
 						},
 						{
@@ -7413,18 +7590,19 @@
 							"defUid": 72,
 							"px": [576,256],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6720,
+							"__worldX": 9792,
 							"__worldY": 256
 						},
 						{
@@ -7440,18 +7618,19 @@
 							"defUid": 72,
 							"px": [640,256],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6784,
+							"__worldX": 9856,
 							"__worldY": 256
 						},
 						{
@@ -7467,18 +7646,19 @@
 							"defUid": 72,
 							"px": [608,256],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6752,
+							"__worldX": 9824,
 							"__worldY": 256
 						},
 						{
@@ -7494,18 +7674,19 @@
 							"defUid": 72,
 							"px": [432,272],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6576,
+							"__worldX": 9648,
 							"__worldY": 272
 						},
 						{
@@ -7521,18 +7702,19 @@
 							"defUid": 72,
 							"px": [464,304],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6608,
+							"__worldX": 9680,
 							"__worldY": 304
 						},
 						{
@@ -7548,18 +7730,19 @@
 							"defUid": 72,
 							"px": [496,320],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6640,
+							"__worldX": 9712,
 							"__worldY": 320
 						},
 						{
@@ -7575,18 +7758,19 @@
 							"defUid": 72,
 							"px": [528,320],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6672,
+							"__worldX": 9744,
 							"__worldY": 320
 						},
 						{
@@ -7602,18 +7786,19 @@
 							"defUid": 72,
 							"px": [464,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6608,
+							"__worldX": 9680,
 							"__worldY": 416
 						},
 						{
@@ -7629,18 +7814,19 @@
 							"defUid": 72,
 							"px": [496,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6640,
+							"__worldX": 9712,
 							"__worldY": 416
 						},
 						{
@@ -7656,18 +7842,19 @@
 							"defUid": 72,
 							"px": [528,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6672,
+							"__worldX": 9744,
 							"__worldY": 416
 						},
 						{
@@ -7683,18 +7870,19 @@
 							"defUid": 72,
 							"px": [560,384],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6704,
+							"__worldX": 9776,
 							"__worldY": 384
 						},
 						{
@@ -7710,18 +7898,19 @@
 							"defUid": 72,
 							"px": [352,464],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6496,
+							"__worldX": 9568,
 							"__worldY": 464
 						},
 						{
@@ -7737,18 +7926,19 @@
 							"defUid": 72,
 							"px": [384,464],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6528,
+							"__worldX": 9600,
 							"__worldY": 464
 						},
 						{
@@ -7764,18 +7954,19 @@
 							"defUid": 72,
 							"px": [416,464],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 86, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/gold_coin.png", "__tile": null, "defUid": 87, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 88, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 90, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 10, "__tile": null, "defUid": 91, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "10", "__tile": null, "defUid": 136, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 132, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 93, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 96, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 97, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 95, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 98, "realEditorValues": [] }
 							],
-							"__worldX": 6560,
+							"__worldX": 9632,
 							"__worldY": 464
 						},
 						{
@@ -7791,18 +7982,19 @@
 							"defUid": 121,
 							"px": [592,256],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6736,
+							"__worldX": 9808,
 							"__worldY": 256
 						},
 						{
@@ -7818,18 +8010,19 @@
 							"defUid": 121,
 							"px": [624,256],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6768,
+							"__worldX": 9840,
 							"__worldY": 256
 						},
 						{
@@ -7845,18 +8038,19 @@
 							"defUid": 121,
 							"px": [720,304],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6864,
+							"__worldX": 9936,
 							"__worldY": 304
 						},
 						{
@@ -7872,18 +8066,19 @@
 							"defUid": 121,
 							"px": [800,336],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6944,
+							"__worldX": 10016,
 							"__worldY": 336
 						},
 						{
@@ -7899,18 +8094,19 @@
 							"defUid": 121,
 							"px": [832,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6976,
+							"__worldX": 10048,
 							"__worldY": 352
 						},
 						{
@@ -7926,18 +8122,19 @@
 							"defUid": 121,
 							"px": [864,368],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 7008,
+							"__worldX": 10080,
 							"__worldY": 368
 						},
 						{
@@ -7953,18 +8150,19 @@
 							"defUid": 121,
 							"px": [896,400],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 7040,
+							"__worldX": 10112,
 							"__worldY": 400
 						},
 						{
@@ -7980,18 +8178,19 @@
 							"defUid": 121,
 							"px": [896,432],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 7040,
+							"__worldX": 10112,
 							"__worldY": 432
 						},
 						{
@@ -8007,18 +8206,19 @@
 							"defUid": 99,
 							"px": [624,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6768,
+							"__worldX": 9840,
 							"__worldY": 352
 						},
 						{
@@ -8034,18 +8234,19 @@
 							"defUid": 99,
 							"px": [592,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6736,
+							"__worldX": 9808,
 							"__worldY": 352
 						},
 						{
@@ -8061,18 +8262,19 @@
 							"defUid": 99,
 							"px": [560,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6704,
+							"__worldX": 9776,
 							"__worldY": 416
 						},
 						{
@@ -8088,18 +8290,19 @@
 							"defUid": 99,
 							"px": [592,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6736,
+							"__worldX": 9808,
 							"__worldY": 416
 						},
 						{
@@ -8115,18 +8318,19 @@
 							"defUid": 99,
 							"px": [624,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6768,
+							"__worldX": 9840,
 							"__worldY": 416
 						},
 						{
@@ -8142,18 +8346,19 @@
 							"defUid": 99,
 							"px": [656,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6800,
+							"__worldX": 9872,
 							"__worldY": 416
 						},
 						{
@@ -8169,18 +8374,19 @@
 							"defUid": 99,
 							"px": [688,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6832,
+							"__worldX": 9904,
 							"__worldY": 416
 						},
 						{
@@ -8196,18 +8402,19 @@
 							"defUid": 99,
 							"px": [720,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6864,
+							"__worldX": 9936,
 							"__worldY": 416
 						},
 						{
@@ -8223,18 +8430,19 @@
 							"defUid": 99,
 							"px": [752,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6896,
+							"__worldX": 9968,
 							"__worldY": 416
 						},
 						{
@@ -8250,18 +8458,19 @@
 							"defUid": 99,
 							"px": [784,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6928,
+							"__worldX": 10000,
 							"__worldY": 416
 						},
 						{
@@ -8277,18 +8486,19 @@
 							"defUid": 99,
 							"px": [816,416],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6960,
+							"__worldX": 10032,
 							"__worldY": 416
 						},
 						{
@@ -8304,18 +8514,19 @@
 							"defUid": 99,
 							"px": [848,432],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 6992,
+							"__worldX": 10064,
 							"__worldY": 432
 						},
 						{
@@ -8331,18 +8542,19 @@
 							"defUid": 99,
 							"px": [880,464],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 7024,
+							"__worldX": 10096,
 							"__worldY": 464
 						},
 						{
@@ -8358,18 +8570,19 @@
 							"defUid": 99,
 							"px": [912,480],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 100, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/silver_coin.png", "__tile": null, "defUid": 101, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 102, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 103, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 5, "__tile": null, "defUid": 104, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "5", "__tile": null, "defUid": 137, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 133, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 105, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 106, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 107, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 108, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 109, "realEditorValues": [] }
 							],
-							"__worldX": 7056,
+							"__worldX": 10128,
 							"__worldY": 480
 						},
 						{
@@ -8385,18 +8598,19 @@
 							"defUid": 110,
 							"px": [320,496],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6464,
+							"__worldX": 9536,
 							"__worldY": 496
 						},
 						{
@@ -8412,18 +8626,19 @@
 							"defUid": 110,
 							"px": [288,496],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6432,
+							"__worldX": 9504,
 							"__worldY": 496
 						},
 						{
@@ -8439,18 +8654,19 @@
 							"defUid": 110,
 							"px": [256,496],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6400,
+							"__worldX": 9472,
 							"__worldY": 496
 						},
 						{
@@ -8466,18 +8682,19 @@
 							"defUid": 110,
 							"px": [320,464],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6464,
+							"__worldX": 9536,
 							"__worldY": 464
 						},
 						{
@@ -8493,18 +8710,19 @@
 							"defUid": 110,
 							"px": [224,496],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6368,
+							"__worldX": 9440,
 							"__worldY": 496
 						},
 						{
@@ -8520,18 +8738,19 @@
 							"defUid": 110,
 							"px": [192,496],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 111, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/copper_coin.png", "__tile": null, "defUid": 112, "realEditorValues": [] },
-								{ "__identifier": "animation", "__type": "String", "__value": "gold_coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
+								{ "__identifier": "animation", "__type": "String", "__value": "coin.json", "__tile": null, "defUid": 113, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "money", "__tile": null, "defUid": 114, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 115, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 138, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 134, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_coin", "__tile": null, "defUid": 116, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_coin", "__tile": null, "defUid": 117, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 118, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 119, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 120, "realEditorValues": [] }
 							],
-							"__worldX": 6336,
+							"__worldX": 9408,
 							"__worldY": 496
 						},
 						{
@@ -8547,18 +8766,19 @@
 							"defUid": 121,
 							"px": [608,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6752,
+							"__worldX": 9824,
 							"__worldY": 352
 						},
 						{
@@ -8574,18 +8794,19 @@
 							"defUid": 121,
 							"px": [576,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6720,
+							"__worldX": 9792,
 							"__worldY": 352
 						},
 						{
@@ -8601,18 +8822,19 @@
 							"defUid": 121,
 							"px": [640,352],
 							"fieldInstances": [
-								{ "__identifier": "item", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
+								{ "__identifier": "type", "__type": "LocalEnum.item", "__value": "item", "__tile": null, "defUid": 122, "realEditorValues": [] },
 								{ "__identifier": "spritesheet", "__type": "String", "__value": "entities/green_stone.png", "__tile": null, "defUid": 123, "realEditorValues": [] },
 								{ "__identifier": "animation", "__type": "String", "__value": "stone.json", "__tile": null, "defUid": 124, "realEditorValues": [] },
 								{ "__identifier": "target", "__type": "String", "__value": "stones", "__tile": null, "defUid": 125, "realEditorValues": [] },
-								{ "__identifier": "value", "__type": "Int", "__value": 1, "__tile": null, "defUid": 126, "realEditorValues": [] },
+								{ "__identifier": "value", "__type": "String", "__value": "1", "__tile": null, "defUid": 139, "realEditorValues": [] },
+								{ "__identifier": "play_sound", "__type": "String", "__value": "coin.wav", "__tile": null, "defUid": 135, "realEditorValues": [] },
 								{ "__identifier": "trigger_event_on_collect", "__type": "String", "__value": "collect_first_stone", "__tile": null, "defUid": 127, "realEditorValues": [] },
 								{ "__identifier": "event_condition", "__type": "String", "__value": "has_collected_first_stone", "__tile": null, "defUid": 128, "realEditorValues": [] },
 								{ "__identifier": "event_value", "__type": "Bool", "__value": false, "__tile": null, "defUid": 129, "realEditorValues": [] },
 								{ "__identifier": "toggle_event_condition_on_collect", "__type": "Bool", "__value": true, "__tile": null, "defUid": 130, "realEditorValues": [] },
 								{ "__identifier": "delete_once_collected", "__type": "Bool", "__value": true, "__tile": null, "defUid": 131, "realEditorValues": [] }
 							],
-							"__worldX": 6784,
+							"__worldX": 9856,
 							"__worldY": 352
 						}
 					]
@@ -9507,14 +9729,13 @@
 						{ "px": [1152,32], "src": [16,16], "f": 0, "t": 33, "d": [43,456], "a": 1 },
 						{ "px": [1168,32], "src": [16,16], "f": 0, "t": 33, "d": [43,457], "a": 1 },
 						{ "px": [1184,32], "src": [16,16], "f": 0, "t": 33, "d": [43,458], "a": 1 },
-						{ "px": [1200,32], "src": [16,16], "f": 0, "t": 33, "d": [43,459], "a": 1 },
 						{ "px": [1216,32], "src": [16,16], "f": 0, "t": 33, "d": [43,460], "a": 1 },
 						{ "px": [1232,32], "src": [16,16], "f": 0, "t": 33, "d": [43,461], "a": 1 },
 						{ "px": [1248,32], "src": [16,16], "f": 0, "t": 33, "d": [43,462], "a": 1 },
+						{ "px": [1264,32], "src": [16,16], "f": 0, "t": 33, "d": [43,463], "a": 1 },
 						{ "px": [3056,32], "src": [16,16], "f": 0, "t": 33, "d": [43,575], "a": 1 },
 						{ "px": [0,48], "src": [16,16], "f": 0, "t": 33, "d": [43,576], "a": 1 },
 						{ "px": [16,48], "src": [16,16], "f": 0, "t": 33, "d": [43,577], "a": 1 },
-						{ "px": [1040,48], "src": [16,16], "f": 0, "t": 33, "d": [43,641], "a": 1 },
 						{ "px": [1056,48], "src": [16,16], "f": 0, "t": 33, "d": [43,642], "a": 1 },
 						{ "px": [1072,48], "src": [16,16], "f": 0, "t": 33, "d": [43,643], "a": 1 },
 						{ "px": [1088,48], "src": [16,16], "f": 0, "t": 33, "d": [43,644], "a": 1 },
@@ -9549,7 +9770,6 @@
 						{ "px": [1264,64], "src": [16,16], "f": 0, "t": 33, "d": [43,847], "a": 1 },
 						{ "px": [3056,64], "src": [16,16], "f": 0, "t": 33, "d": [43,959], "a": 1 },
 						{ "px": [0,80], "src": [16,16], "f": 0, "t": 33, "d": [43,960], "a": 1 },
-						{ "px": [16,80], "src": [16,16], "f": 0, "t": 33, "d": [43,961], "a": 1 },
 						{ "px": [1040,80], "src": [16,16], "f": 0, "t": 33, "d": [43,1025], "a": 1 },
 						{ "px": [1056,80], "src": [16,16], "f": 0, "t": 33, "d": [43,1026], "a": 1 },
 						{ "px": [1072,80], "src": [16,16], "f": 0, "t": 33, "d": [43,1027], "a": 1 },
@@ -9567,6 +9787,7 @@
 						{ "px": [1264,80], "src": [16,16], "f": 0, "t": 33, "d": [43,1039], "a": 1 },
 						{ "px": [3056,80], "src": [16,16], "f": 0, "t": 33, "d": [43,1151], "a": 1 },
 						{ "px": [0,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1152], "a": 1 },
+						{ "px": [16,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1153], "a": 1 },
 						{ "px": [1040,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1217], "a": 1 },
 						{ "px": [1056,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1218], "a": 1 },
 						{ "px": [1072,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1219], "a": 1 },
@@ -9585,7 +9806,6 @@
 						{ "px": [3056,96], "src": [16,16], "f": 0, "t": 33, "d": [43,1343], "a": 1 },
 						{ "px": [0,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1344], "a": 1 },
 						{ "px": [16,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1345], "a": 1 },
-						{ "px": [1040,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1409], "a": 1 },
 						{ "px": [1056,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1410], "a": 1 },
 						{ "px": [1072,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1411], "a": 1 },
 						{ "px": [1088,112], "src": [16,16], "f": 0, "t": 33, "d": [43,1412], "a": 1 },
@@ -9607,7 +9827,6 @@
 						{ "px": [1056,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1602], "a": 1 },
 						{ "px": [1072,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1603], "a": 1 },
 						{ "px": [1088,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1604], "a": 1 },
-						{ "px": [1104,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1605], "a": 1 },
 						{ "px": [1120,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1606], "a": 1 },
 						{ "px": [1136,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1607], "a": 1 },
 						{ "px": [1152,128], "src": [16,16], "f": 0, "t": 33, "d": [43,1608], "a": 1 },
@@ -9622,6 +9841,7 @@
 						{ "px": [0,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1728], "a": 1 },
 						{ "px": [16,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1729], "a": 1 },
 						{ "px": [1040,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1793], "a": 1 },
+						{ "px": [1056,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1794], "a": 1 },
 						{ "px": [1072,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1795], "a": 1 },
 						{ "px": [1088,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1796], "a": 1 },
 						{ "px": [1104,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1797], "a": 1 },
@@ -9631,16 +9851,18 @@
 						{ "px": [1168,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1801], "a": 1 },
 						{ "px": [1184,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1802], "a": 1 },
 						{ "px": [1200,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1803], "a": 1 },
+						{ "px": [1216,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1804], "a": 1 },
 						{ "px": [1232,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1805], "a": 1 },
 						{ "px": [1248,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1806], "a": 1 },
 						{ "px": [1264,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1807], "a": 1 },
 						{ "px": [3056,144], "src": [16,16], "f": 0, "t": 33, "d": [43,1919], "a": 1 },
 						{ "px": [0,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1920], "a": 1 },
-						{ "px": [1040,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1985], "a": 1 },
+						{ "px": [16,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1921], "a": 1 },
 						{ "px": [1056,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1986], "a": 1 },
 						{ "px": [1072,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1987], "a": 1 },
 						{ "px": [1088,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1988], "a": 1 },
 						{ "px": [1104,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1989], "a": 1 },
+						{ "px": [1120,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1990], "a": 1 },
 						{ "px": [1136,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1991], "a": 1 },
 						{ "px": [1152,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1992], "a": 1 },
 						{ "px": [1168,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1993], "a": 1 },
@@ -9652,6 +9874,7 @@
 						{ "px": [1264,160], "src": [16,16], "f": 0, "t": 33, "d": [43,1999], "a": 1 },
 						{ "px": [3056,160], "src": [16,16], "f": 0, "t": 33, "d": [43,2111], "a": 1 },
 						{ "px": [0,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2112], "a": 1 },
+						{ "px": [16,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2113], "a": 1 },
 						{ "px": [1040,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2177], "a": 1 },
 						{ "px": [1056,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2178], "a": 1 },
 						{ "px": [1072,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2179], "a": 1 },
@@ -9664,6 +9887,7 @@
 						{ "px": [1184,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2186], "a": 1 },
 						{ "px": [1200,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2187], "a": 1 },
 						{ "px": [1216,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2188], "a": 1 },
+						{ "px": [1232,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2189], "a": 1 },
 						{ "px": [1248,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2190], "a": 1 },
 						{ "px": [1264,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2191], "a": 1 },
 						{ "px": [3056,176], "src": [16,16], "f": 0, "t": 33, "d": [43,2303], "a": 1 },
@@ -9686,7 +9910,6 @@
 						{ "px": [1264,192], "src": [16,16], "f": 0, "t": 33, "d": [43,2383], "a": 1 },
 						{ "px": [3056,192], "src": [16,16], "f": 0, "t": 33, "d": [43,2495], "a": 1 },
 						{ "px": [0,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2496], "a": 1 },
-						{ "px": [16,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2497], "a": 1 },
 						{ "px": [1040,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2561], "a": 1 },
 						{ "px": [1056,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2562], "a": 1 },
 						{ "px": [1072,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2563], "a": 1 },
@@ -9701,15 +9924,14 @@
 						{ "px": [1216,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2572], "a": 1 },
 						{ "px": [1232,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2573], "a": 1 },
 						{ "px": [1248,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2574], "a": 1 },
-						{ "px": [1264,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2575], "a": 1 },
 						{ "px": [3056,208], "src": [16,16], "f": 0, "t": 33, "d": [43,2687], "a": 1 },
 						{ "px": [0,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2688], "a": 1 },
-						{ "px": [16,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2689], "a": 1 },
 						{ "px": [1040,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2753], "a": 1 },
 						{ "px": [1056,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2754], "a": 1 },
 						{ "px": [1072,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2755], "a": 1 },
 						{ "px": [1088,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2756], "a": 1 },
 						{ "px": [1104,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2757], "a": 1 },
+						{ "px": [1120,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2758], "a": 1 },
 						{ "px": [1136,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2759], "a": 1 },
 						{ "px": [1152,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2760], "a": 1 },
 						{ "px": [1168,224], "src": [16,16], "f": 0, "t": 33, "d": [43,2761], "a": 1 },
@@ -9743,7 +9965,6 @@
 						{ "px": [1040,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3137], "a": 1 },
 						{ "px": [1056,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3138], "a": 1 },
 						{ "px": [1072,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3139], "a": 1 },
-						{ "px": [1088,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3140], "a": 1 },
 						{ "px": [1104,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3141], "a": 1 },
 						{ "px": [1120,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3142], "a": 1 },
 						{ "px": [1136,256], "src": [16,16], "f": 0, "t": 33, "d": [43,3143], "a": 1 },
@@ -9822,12 +10043,14 @@
 						{ "px": [1152,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3912], "a": 1 },
 						{ "px": [1168,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3913], "a": 1 },
 						{ "px": [1184,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3914], "a": 1 },
+						{ "px": [1200,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3915], "a": 1 },
 						{ "px": [1216,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3916], "a": 1 },
 						{ "px": [1232,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3917], "a": 1 },
 						{ "px": [1248,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3918], "a": 1 },
 						{ "px": [1264,320], "src": [16,16], "f": 0, "t": 33, "d": [43,3919], "a": 1 },
 						{ "px": [3056,320], "src": [16,16], "f": 0, "t": 33, "d": [43,4031], "a": 1 },
 						{ "px": [0,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4032], "a": 1 },
+						{ "px": [16,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4033], "a": 1 },
 						{ "px": [1040,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4097], "a": 1 },
 						{ "px": [1056,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4098], "a": 1 },
 						{ "px": [1072,336], "src": [16,16], "f": 0, "t": 33, "d": [43,4099], "a": 1 },
@@ -9879,7 +10102,6 @@
 						{ "px": [2112,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4548], "a": 1 },
 						{ "px": [3056,368], "src": [16,16], "f": 0, "t": 33, "d": [43,4607], "a": 1 },
 						{ "px": [0,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4608], "a": 1 },
-						{ "px": [16,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4609], "a": 1 },
 						{ "px": [1040,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4673], "a": 1 },
 						{ "px": [1056,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4674], "a": 1 },
 						{ "px": [1072,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4675], "a": 1 },
@@ -9891,9 +10113,9 @@
 						{ "px": [3056,384], "src": [16,16], "f": 0, "t": 33, "d": [43,4799], "a": 1 },
 						{ "px": [0,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4800], "a": 1 },
 						{ "px": [16,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4801], "a": 1 },
-						{ "px": [1040,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4865], "a": 1 },
 						{ "px": [1056,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4866], "a": 1 },
 						{ "px": [1072,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4867], "a": 1 },
+						{ "px": [1088,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4868], "a": 1 },
 						{ "px": [2080,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4930], "a": 1 },
 						{ "px": [2096,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4931], "a": 1 },
 						{ "px": [2112,400], "src": [16,16], "f": 0, "t": 33, "d": [43,4932], "a": 1 },
@@ -9919,11 +10141,13 @@
 						{ "px": [1040,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5249], "a": 1 },
 						{ "px": [1056,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5250], "a": 1 },
 						{ "px": [1072,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5251], "a": 1 },
+						{ "px": [1088,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5252], "a": 1 },
+						{ "px": [2080,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5314], "a": 1 },
 						{ "px": [2096,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5315], "a": 1 },
 						{ "px": [2112,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5316], "a": 1 },
+						{ "px": [2320,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5329], "a": 1 },
 						{ "px": [2640,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5349], "a": 1 },
 						{ "px": [2656,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5350], "a": 1 },
-						{ "px": [2672,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5351], "a": 1 },
 						{ "px": [2688,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5352], "a": 1 },
 						{ "px": [2704,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5353], "a": 1 },
 						{ "px": [3056,432], "src": [16,16], "f": 0, "t": 33, "d": [43,5375], "a": 1 },
@@ -9933,6 +10157,7 @@
 						{ "px": [1056,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5442], "a": 1 },
 						{ "px": [1072,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5443], "a": 1 },
 						{ "px": [1088,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5444], "a": 1 },
+						{ "px": [2080,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5506], "a": 1 },
 						{ "px": [2096,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5507], "a": 1 },
 						{ "px": [2112,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5508], "a": 1 },
 						{ "px": [2304,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5520], "a": 1 },
@@ -9948,6 +10173,7 @@
 						{ "px": [2736,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5547], "a": 1 },
 						{ "px": [3056,448], "src": [16,16], "f": 0, "t": 33, "d": [43,5567], "a": 1 },
 						{ "px": [0,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5568], "a": 1 },
+						{ "px": [16,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5569], "a": 1 },
 						{ "px": [480,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5598], "a": 1 },
 						{ "px": [496,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5599], "a": 1 },
 						{ "px": [512,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5600], "a": 1 },
@@ -9967,6 +10193,7 @@
 						{ "px": [736,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5614], "a": 1 },
 						{ "px": [752,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5615], "a": 1 },
 						{ "px": [768,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5616], "a": 1 },
+						{ "px": [1040,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5633], "a": 1 },
 						{ "px": [1056,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5634], "a": 1 },
 						{ "px": [1072,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5635], "a": 1 },
 						{ "px": [1088,464], "src": [16,16], "f": 0, "t": 33, "d": [43,5636], "a": 1 },
@@ -10012,7 +10239,6 @@
 						{ "px": [736,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5806], "a": 1 },
 						{ "px": [752,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5807], "a": 1 },
 						{ "px": [768,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5808], "a": 1 },
-						{ "px": [1168,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5833], "a": 1 },
 						{ "px": [1184,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5834], "a": 1 },
 						{ "px": [1200,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5835], "a": 1 },
 						{ "px": [1216,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5836], "a": 1 },
@@ -10036,7 +10262,6 @@
 						{ "px": [2736,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5931], "a": 1 },
 						{ "px": [2752,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5932], "a": 1 },
 						{ "px": [2768,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5933], "a": 1 },
-						{ "px": [2784,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5934], "a": 1 },
 						{ "px": [2800,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5935], "a": 1 },
 						{ "px": [3024,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5949], "a": 1 },
 						{ "px": [3040,480], "src": [16,16], "f": 0, "t": 33, "d": [43,5950], "a": 1 },
@@ -10072,6 +10297,7 @@
 						{ "px": [1408,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6040], "a": 1 },
 						{ "px": [2080,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6082], "a": 1 },
 						{ "px": [2096,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6083], "a": 1 },
+						{ "px": [2112,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6084], "a": 1 },
 						{ "px": [2576,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6113], "a": 1 },
 						{ "px": [2592,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6114], "a": 1 },
 						{ "px": [2608,496], "src": [16,16], "f": 0, "t": 33, "d": [43,6115], "a": 1 },
@@ -10120,6 +10346,7 @@
 						{ "px": [768,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6192], "a": 1 },
 						{ "px": [784,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6193], "a": 1 },
 						{ "px": [800,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6194], "a": 1 },
+						{ "px": [816,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6195], "a": 1 },
 						{ "px": [832,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6196], "a": 1 },
 						{ "px": [848,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6197], "a": 1 },
 						{ "px": [1168,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6217], "a": 1 },
@@ -10141,6 +10368,7 @@
 						{ "px": [2624,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6308], "a": 1 },
 						{ "px": [2640,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6309], "a": 1 },
 						{ "px": [2656,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6310], "a": 1 },
+						{ "px": [2672,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6311], "a": 1 },
 						{ "px": [2688,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6312], "a": 1 },
 						{ "px": [2704,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6313], "a": 1 },
 						{ "px": [2720,512], "src": [16,16], "f": 0, "t": 33, "d": [43,6314], "a": 1 },
@@ -10241,11 +10469,11 @@
 						{ "px": [224,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6542], "a": 1 },
 						{ "px": [240,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6543], "a": 1 },
 						{ "px": [256,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6544], "a": 1 },
-						{ "px": [272,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6545], "a": 1 },
 						{ "px": [288,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6546], "a": 1 },
 						{ "px": [304,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6547], "a": 1 },
 						{ "px": [320,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6548], "a": 1 },
 						{ "px": [336,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6549], "a": 1 },
+						{ "px": [352,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6550], "a": 1 },
 						{ "px": [368,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6551], "a": 1 },
 						{ "px": [384,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6552], "a": 1 },
 						{ "px": [400,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6553], "a": 1 },
@@ -10280,6 +10508,7 @@
 						{ "px": [864,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6582], "a": 1 },
 						{ "px": [880,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6583], "a": 1 },
 						{ "px": [896,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6584], "a": 1 },
+						{ "px": [912,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6585], "a": 1 },
 						{ "px": [928,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6586], "a": 1 },
 						{ "px": [944,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6587], "a": 1 },
 						{ "px": [960,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6588], "a": 1 },
@@ -10374,6 +10603,7 @@
 						{ "px": [2384,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6677], "a": 1 },
 						{ "px": [2400,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6678], "a": 1 },
 						{ "px": [2416,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6679], "a": 1 },
+						{ "px": [2432,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6680], "a": 1 },
 						{ "px": [2448,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6681], "a": 1 },
 						{ "px": [2464,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6682], "a": 1 },
 						{ "px": [2480,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6683], "a": 1 },
@@ -10383,6 +10613,7 @@
 						{ "px": [2544,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6687], "a": 1 },
 						{ "px": [2560,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6688], "a": 1 },
 						{ "px": [2576,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6689], "a": 1 },
+						{ "px": [2592,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6690], "a": 1 },
 						{ "px": [2608,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6691], "a": 1 },
 						{ "px": [2624,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6692], "a": 1 },
 						{ "px": [2640,544], "src": [16,16], "f": 0, "t": 33, "d": [43,6693], "a": 1 },
@@ -10596,59 +10827,59 @@
 						{ "px": [3024,560], "src": [16,16], "f": 0, "t": 33, "d": [43,6909], "a": 1 },
 						{ "px": [3040,560], "src": [16,16], "f": 0, "t": 33, "d": [43,6910], "a": 1 },
 						{ "px": [3056,560], "src": [16,16], "f": 0, "t": 33, "d": [43,6911], "a": 1 },
-						{ "px": [576,320], "src": [48,48], "f": 0, "t": 99, "d": [60,3876], "a": 1 },
-						{ "px": [2224,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4363], "a": 1 },
+						{ "px": [608,320], "src": [64,48], "f": 0, "t": 100, "d": [60,3878], "a": 1 },
+						{ "px": [624,320], "src": [48,48], "f": 0, "t": 99, "d": [60,3879], "a": 1 },
+						{ "px": [368,336], "src": [64,48], "f": 0, "t": 100, "d": [60,4055], "a": 1 },
+						{ "px": [384,336], "src": [48,48], "f": 0, "t": 99, "d": [60,4056], "a": 1 },
+						{ "px": [400,336], "src": [48,48], "f": 0, "t": 99, "d": [60,4057], "a": 1 },
+						{ "px": [416,336], "src": [64,48], "f": 0, "t": 100, "d": [60,4058], "a": 1 },
 						{ "px": [2240,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4364], "a": 1 },
-						{ "px": [2272,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4366], "a": 1 },
-						{ "px": [2320,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4369], "a": 1 },
-						{ "px": [2400,352], "src": [64,48], "f": 0, "t": 100, "d": [60,4374], "a": 1 },
+						{ "px": [2256,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4365], "a": 1 },
+						{ "px": [2288,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4367], "a": 1 },
+						{ "px": [2320,352], "src": [64,48], "f": 0, "t": 100, "d": [60,4369], "a": 1 },
+						{ "px": [2368,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4372], "a": 1 },
+						{ "px": [2496,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4380], "a": 1 },
 						{ "px": [2528,352], "src": [64,48], "f": 0, "t": 100, "d": [60,4382], "a": 1 },
-						{ "px": [2544,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4383], "a": 1 },
 						{ "px": [2560,352], "src": [48,48], "f": 0, "t": 99, "d": [60,4384], "a": 1 },
-						{ "px": [704,368], "src": [48,48], "f": 0, "t": 99, "d": [60,4460], "a": 1 },
-						{ "px": [720,368], "src": [64,48], "f": 0, "t": 100, "d": [60,4461], "a": 1 },
-						{ "px": [1872,368], "src": [48,48], "f": 0, "t": 99, "d": [60,4533], "a": 1 },
-						{ "px": [464,384], "src": [48,48], "f": 0, "t": 99, "d": [60,4637], "a": 1 },
-						{ "px": [1168,384], "src": [48,48], "f": 0, "t": 99, "d": [60,4681], "a": 1 },
-						{ "px": [1232,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4685], "a": 1 },
+						{ "px": [704,368], "src": [64,48], "f": 0, "t": 100, "d": [60,4460], "a": 1 },
+						{ "px": [448,384], "src": [48,48], "f": 0, "t": 99, "d": [60,4636], "a": 1 },
+						{ "px": [496,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4639], "a": 1 },
+						{ "px": [544,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4642], "a": 1 },
+						{ "px": [1120,384], "src": [48,48], "f": 0, "t": 99, "d": [60,4678], "a": 1 },
+						{ "px": [1200,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4683], "a": 1 },
+						{ "px": [1216,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4684], "a": 1 },
+						{ "px": [1248,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4686], "a": 1 },
+						{ "px": [1264,384], "src": [64,48], "f": 0, "t": 100, "d": [60,4687], "a": 1 },
 						{ "px": [1824,400], "src": [48,48], "f": 0, "t": 99, "d": [60,4914], "a": 1 },
-						{ "px": [576,416], "src": [48,48], "f": 0, "t": 99, "d": [60,5028], "a": 1 },
-						{ "px": [608,416], "src": [64,48], "f": 0, "t": 100, "d": [60,5030], "a": 1 },
-						{ "px": [1536,480], "src": [48,48], "f": 0, "t": 99, "d": [60,5856], "a": 1 },
-						{ "px": [1568,480], "src": [48,48], "f": 0, "t": 99, "d": [60,5858], "a": 1 },
+						{ "px": [592,416], "src": [64,48], "f": 0, "t": 100, "d": [60,5029], "a": 1 },
+						{ "px": [1744,432], "src": [64,48], "f": 0, "t": 100, "d": [60,5293], "a": 1 },
+						{ "px": [1536,480], "src": [64,48], "f": 0, "t": 100, "d": [60,5856], "a": 1 },
+						{ "px": [1584,480], "src": [64,48], "f": 0, "t": 100, "d": [60,5859], "a": 1 },
 						{ "px": [1648,480], "src": [64,48], "f": 0, "t": 100, "d": [60,5863], "a": 1 },
-						{ "px": [1664,480], "src": [48,48], "f": 0, "t": 99, "d": [60,5864], "a": 1 },
-						{ "px": [1056,496], "src": [64,48], "f": 0, "t": 100, "d": [60,6018], "a": 1 },
-						{ "px": [2016,496], "src": [64,48], "f": 0, "t": 100, "d": [60,6078], "a": 1 },
+						{ "px": [2336,480], "src": [64,48], "f": 0, "t": 100, "d": [60,5906], "a": 1 },
+						{ "px": [1040,496], "src": [48,48], "f": 0, "t": 99, "d": [60,6017], "a": 1 },
+						{ "px": [1104,496], "src": [64,48], "f": 0, "t": 100, "d": [60,6021], "a": 1 },
 						{ "px": [2256,496], "src": [64,48], "f": 0, "t": 100, "d": [60,6093], "a": 1 },
-						{ "px": [912,544], "src": [48,32], "f": 0, "t": 67, "d": [61,6585], "a": 1 },
+						{ "px": [2304,496], "src": [48,48], "f": 0, "t": 99, "d": [60,6096], "a": 1 },
+						{ "px": [2784,480], "src": [48,32], "f": 0, "t": 67, "d": [61,5934], "a": 1 },
 						{ "px": [16,32], "src": [48,32], "f": 0, "t": 67, "d": [62,385], "a": 1 },
-						{ "px": [1264,32], "src": [48,32], "f": 0, "t": 67, "d": [62,463], "a": 1 },
-						{ "px": [16,160], "src": [48,32], "f": 0, "t": 67, "d": [62,1921], "a": 1 },
-						{ "px": [16,176], "src": [48,32], "f": 0, "t": 67, "d": [62,2113], "a": 1 },
-						{ "px": [16,336], "src": [48,32], "f": 0, "t": 67, "d": [62,4033], "a": 1 },
-						{ "px": [1088,400], "src": [48,32], "f": 0, "t": 67, "d": [62,4868], "a": 1 },
-						{ "px": [1088,432], "src": [48,32], "f": 0, "t": 67, "d": [62,5252], "a": 1 },
-						{ "px": [2320,432], "src": [48,32], "f": 0, "t": 67, "d": [62,5329], "a": 1 },
-						{ "px": [16,464], "src": [48,32], "f": 0, "t": 67, "d": [62,5569], "a": 1 },
-						{ "px": [2112,496], "src": [48,32], "f": 0, "t": 67, "d": [62,6084], "a": 1 },
-						{ "px": [2080,432], "src": [48,32], "f": 0, "t": 67, "d": [63,5314], "a": 1 },
-						{ "px": [1040,464], "src": [64,32], "f": 0, "t": 68, "d": [63,5633], "a": 1 },
-						{ "px": [16,96], "src": [48,32], "f": 0, "t": 67, "d": [65,1153], "a": 1 },
-						{ "px": [1056,144], "src": [48,32], "f": 0, "t": 67, "d": [65,1794], "a": 1 },
-						{ "px": [1216,144], "src": [48,32], "f": 0, "t": 67, "d": [65,1804], "a": 1 },
-						{ "px": [1120,160], "src": [48,32], "f": 0, "t": 67, "d": [65,1990], "a": 1 },
-						{ "px": [1232,176], "src": [48,32], "f": 0, "t": 67, "d": [65,2189], "a": 1 },
-						{ "px": [1120,224], "src": [48,32], "f": 0, "t": 67, "d": [65,2758], "a": 1 },
-						{ "px": [1200,320], "src": [48,32], "f": 0, "t": 67, "d": [65,3915], "a": 1 },
-						{ "px": [2080,448], "src": [48,32], "f": 0, "t": 67, "d": [65,5506], "a": 1 },
-						{ "px": [816,512], "src": [48,32], "f": 0, "t": 67, "d": [65,6195], "a": 1 },
-						{ "px": [2672,512], "src": [48,32], "f": 0, "t": 67, "d": [65,6311], "a": 1 },
-						{ "px": [352,544], "src": [48,32], "f": 0, "t": 67, "d": [65,6550], "a": 1 },
-						{ "px": [2432,544], "src": [48,32], "f": 0, "t": 67, "d": [65,6680], "a": 1 },
-						{ "px": [2592,544], "src": [48,32], "f": 0, "t": 67, "d": [65,6690], "a": 1 }
+						{ "px": [16,80], "src": [48,32], "f": 0, "t": 67, "d": [62,961], "a": 1 },
+						{ "px": [16,208], "src": [48,32], "f": 0, "t": 67, "d": [62,2497], "a": 1 },
+						{ "px": [1264,208], "src": [48,32], "f": 0, "t": 67, "d": [62,2575], "a": 1 },
+						{ "px": [16,224], "src": [48,32], "f": 0, "t": 67, "d": [62,2689], "a": 1 },
+						{ "px": [16,384], "src": [48,32], "f": 0, "t": 67, "d": [62,4609], "a": 1 },
+						{ "px": [1040,48], "src": [64,32], "f": 0, "t": 68, "d": [63,641], "a": 1 },
+						{ "px": [1040,112], "src": [64,32], "f": 0, "t": 68, "d": [63,1409], "a": 1 },
+						{ "px": [1040,160], "src": [64,32], "f": 0, "t": 68, "d": [63,1985], "a": 1 },
+						{ "px": [1040,400], "src": [48,32], "f": 0, "t": 67, "d": [63,4865], "a": 1 },
+						{ "px": [1168,480], "src": [64,32], "f": 0, "t": 68, "d": [63,5833], "a": 1 },
+						{ "px": [1200,32], "src": [48,32], "f": 0, "t": 67, "d": [65,459], "a": 1 },
+						{ "px": [1104,128], "src": [48,32], "f": 0, "t": 67, "d": [65,1605], "a": 1 },
+						{ "px": [1088,256], "src": [48,32], "f": 0, "t": 67, "d": [65,3140], "a": 1 },
+						{ "px": [2672,432], "src": [48,32], "f": 0, "t": 67, "d": [65,5351], "a": 1 },
+						{ "px": [272,544], "src": [48,32], "f": 0, "t": 67, "d": [65,6545], "a": 1 }
 					],
-					"seed": 44967,
+					"seed": 2749293,
 					"overrideTilesetUid": 30,
 					"gridTiles": [],
 					"entityInstances": []
@@ -10900,7 +11131,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "f2805da0-25d0-11ef-8597-e3008535e60c", "dir": "s" }]
+			"__neighbours": []
 		},
 		{
 			"identifier": "dee_bug",
@@ -11636,14 +11867,14 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [{ "levelIid": "c5e42420-d7b0-11ee-bfc5-bd3db531c040", "dir": "n" }]
+			"__neighbours": []
 		},
 		{
 			"identifier": "title_screen",
 			"iid": "2e347400-4ce0-11ef-8597-4f9e8eef0696",
 			"uid": 85,
 			"worldX": 0,
-			"worldY": 1728,
+			"worldY": 0,
 			"worldDepth": 0,
 			"pxWid": 1024,
 			"pxHei": 576,

@@ -63,6 +63,7 @@ TILESET_ANIMATIONS_PATH = "res/tileset_animations"
 CUTSCENES_PATH = "res/cutscenes"
 
 MUSIC_FILE_EXTENSION = ".mp3"
+SOUND_FILE_EXTENSION = ".wav"
 BACKGROUND_IMAGE_FILE_EXTENSION = ".png"
 
 DEVELOPMENT_ENVIRONMENT_VARIABLE = "development"
@@ -128,6 +129,12 @@ class ParticleType(enum.Enum):
 JUMP_PARTICLE = "jump_particle"
 DUST_PARTICLE = "dust_particle"
 
+class HitboxType(enum.Enum):
+    BOBBY = 0
+    ITEM = 1
+    GROUND = 2
+    WATER = 3
+
 MAX_PLAYER_HEALTH = 20
 
 
@@ -135,7 +142,7 @@ MAX_PLAYER_HEALTH = 20
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = True
-DEBUG_SHOW_DEBUG_INFO = False
+DEBUG_SHOW_DEBUG_INFO = True
 DEBUG_SHOW_HITBOXES = False
 DEBUG_START_IN_STATE = "gameplay"
 DEBUG_LEVEL_NAME = "sunset_beach"

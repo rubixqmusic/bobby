@@ -10,8 +10,11 @@ from src.hud import Hud
 from src.animatedsprite import AnimatedSprite
 from src.particleengine import ParticleEngine
 
+from src.components.hitbox import Hitbox
+
 from src.entities.coin.coin import Coin
 from src.entities.stone.stone import Stone
+from src.entities.item.item import Item
 
 
 class Gameplay(State):
@@ -325,31 +328,26 @@ class Gameplay(State):
     
     def generate_particles(self, type, position, properties={}):
         self.particle_engine.generate_particles(type, position, properties)
+    
+    def add_entity_to_scene(self, entity):
+        for attribute in entity.__dict__:
+            if isinstance(entity.__dict__[attribute], Hitbox):
+                self.register_hitbox(entity.__dict__[attribute])
+        self.new_entity_queue.append(entity)
 
     def spawn_new_entity(self, entity_data):
-        if entity_data["__identifier"] == GOLD_COIN_ENTITY:
-            new_coin = Coin(self, GOLD_COIN_ENTITY)
-            new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
-            self.register_hitbox(new_coin.hitbox)
-            self.new_entity_queue.append(new_coin)
+        new_entity_properties = {properties["__identifier"]: properties["__value"] for properties in entity_data["fieldInstances"]}
+        new_entity_properties["iid"] = entity_data["iid"] if "iid" in entity_data else None
 
-        if entity_data["__identifier"] == COPPER_COIN_ENTITY:
-            new_coin = Coin(self, COPPER_COIN_ENTITY)
-            new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
-            self.register_hitbox(new_coin.hitbox)
-            self.new_entity_queue.append(new_coin)
-            
-        if entity_data["__identifier"] == SILVER_COIN_ENTITY:
-            new_coin = Coin(self, SILVER_COIN_ENTITY)
-            new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
-            self.register_hitbox(new_coin.hitbox)
-            self.new_entity_queue.append(new_coin)
+        print(new_entity_properties)
+
+        for property in new_entity_properties:
+            if property == "type":
+                if new_entity_properties[property] in ENTITIES:
+                    return ENTITIES[new_entity_properties[property]](self, new_entity_properties)
+                else:
+                    return None
         
-        if entity_data["__identifier"] == GREEN_STONE_ENTITY:
-            new_coin = Stone(self, GREEN_STONE_ENTITY)
-            new_coin.set_position(entity_data["px"][0], entity_data["px"][1])
-            self.register_hitbox(new_coin.hitbox)
-            self.new_entity_queue.append(new_coin)
     
     
     def _add_queued_entities_to_scene(self):
@@ -382,6 +380,22 @@ class Gameplay(State):
     
     def collect_stone(self, stone):
         self.stones += stone.value
+
+    def collect_item(self, item):
+        if item.target == "money":
+            value = int(item.value)
+            if value >= 0:
+                self.money += value
+            else:
+                # something here if you want different behavior if the value is negative
+                ...
+        elif item.target == "stones":
+            value = int(item.value)
+            if value >= 0:
+                self.stones += value
+            else:
+                ...
+            
 
         
 

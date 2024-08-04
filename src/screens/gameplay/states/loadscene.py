@@ -136,7 +136,14 @@ class LoadScene(State):
                     if layer["__identifier"] == ENTITIES_LAYER_NAME:
                         entity_instances = layer["entityInstances"]
                         for entity in entity_instances:
-                            level.spawn_new_entity(entity)
+                            new_entity = level.spawn_new_entity(entity)
+
+                            print(new_entity)
+                            
+                            if new_entity:
+                                if new_entity.has_method("set_position"):
+                                    new_entity.set_position(entity["px"][0], entity["px"][1])
+                                level.add_entity_to_scene(new_entity)
                             # if entity["__identifier"] == GOLD_COIN_ENTITY:
                             #     new_coin = Coin(entity["px"], level.camera, DEFAULT_GRAVITY, level.camera.surface, level.hitboxes, GOLD_COIN_ENTITY)
                             #     level.register_hitbox(new_coin.hitbox)

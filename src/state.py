@@ -2,7 +2,7 @@ import logging
 
 class State:
     def __init__(self, states: dict, *args) -> None:
-        self.name: str = None
+        self.name = None
         self.states: dict = states
         self.next_state: str = None
         self.previous_state: str = None
