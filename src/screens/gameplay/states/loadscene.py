@@ -24,14 +24,6 @@ class LoadScene(State):
             '''here is where the level loading begins'''
 
             if scene["identifier"] == self.scene_name:
-                # level_data = level.game.get_level_data(level.level_name)
-                # if "time_limit" in level_data:
-                #     if level_data["time_limit"] > 0:
-                #         level.time_limit_enabled = True
-                #         level.time_limit = level_data["time_limit"]
-                # if "quota" in level_data:
-                #     level.quota = level_data["quota"]
-                    
                 level.width = scene["pxWid"]
                 level.height = scene["pxHei"]
                 level.bg_color = scene["__bgColor"]

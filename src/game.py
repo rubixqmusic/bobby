@@ -31,7 +31,7 @@ class Game:
         if DEBUG_ENABLED == True:
             logging.getLogger().setLevel(logging.DEBUG)
 
-        pygame.mixer.pre_init(44100, -16, 2, 2048)
+        pygame.mixer.pre_init(44100, -16, 2, 4096)
         pygame.init()
         
         pygame.mixer.init(buffer=4096)

@@ -13,7 +13,6 @@ from src.particleengine import ParticleEngine
 from src.components.hitbox import Hitbox
 
 
-
 class Gameplay(State):
     def __init__(self, states: dict, *args) -> None:
         super().__init__(states, *args)
@@ -38,7 +37,7 @@ class Gameplay(State):
         self.money = 0
         self.stones = 0
         self.quota = 0
-        self.player_health = MAX_PLAYER_HEALTH
+        self.player_health = DEFAULT_PLAYER_HEALTH
         
         self.clear_scene()
     

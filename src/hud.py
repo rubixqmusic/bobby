@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from src.components.animatedsprite import AnimatedSprite
+from src.utilities.math import linear_conversion
 
 PLAYER_MONEY = "player_money"
 
@@ -41,6 +42,10 @@ STONES_STAT_RIGHT_X = [156, 26]
 
 HEALTH_LABEL = "Health"
 HEALTH_LABEL_POSITION = [192, LABELS_Y_POSITION]
+HEALTH_BAR_SPRITESHEET = f"{GRAPHICS_PATH}/hud/health_bar.png"
+HEALTH_BAR_ANIMATION = f"{ANIMATIONS_PATH}/health_bar.json"
+HEALTH_BAR_POSITION = [191, 21]
+MAX_HEALTH_ANIMATION_FRAMES = 12
 
 TIME_LABEL = "Time"
 TIME_LABEL_POSITION = [460, LABELS_Y_POSITION]
@@ -79,10 +84,21 @@ class Hud:
         self.stones_icon.set_animation(STONES_ICON_ANIMATION)
         self.stones_icon.set_position(*STONES_ICON_POSITION)
         self.stones_icon.play()
+
+        self.health_bar = AnimatedSprite()
+        self.health_bar.load_spritesheet(gameplay.game.load_resource(HEALTH_BAR_SPRITESHEET))
+        self.health_bar.load_animation(gameplay.game.load_resource(HEALTH_BAR_ANIMATION))
+        self.health_bar.set_draw_target(self.draw_target)
+        animation_number = linear_conversion(self.gameplay.player_health, 0, MAX_PLAYER_HEALTH, 0, MAX_HEALTH_ANIMATION_FRAMES)
+
+        self.health_bar.set_animation(str(int(animation_number)))
+        self.health_bar.set_position(*HEALTH_BAR_POSITION)
+        self.health_bar.play()
     
     def update(self, delta):
         self.money_icon.update(delta)
         self.stones_icon.update(delta)
+        self.health_bar.update(delta)
 
     def draw(self):
         if not self.visible:
@@ -127,6 +143,8 @@ class Hud:
         self.money_icon.draw()
         self.stones_icon.set_position(*STONES_ICON_POSITION)
         self.stones_icon.draw()
+        self.health_bar.set_position(*HEALTH_BAR_POSITION)
+        self.health_bar.draw()
     
     def set_draw_target(self, draw_target):
         self.draw_target = draw_target

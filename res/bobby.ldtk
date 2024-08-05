@@ -4494,12 +4494,12 @@
 									"id": "V_String",
 									"params": ["5b5dd970-25d0-11ef-8597-1743a68c19a9"]
 								}] },
-								{ "__identifier": "quota", "__type": "Int", "__value": 320, "__tile": null, "defUid": 73, "realEditorValues": [{ "id": "V_Int", "params": [320] }] },
+								{ "__identifier": "quota", "__type": "Int", "__value": 130, "__tile": null, "defUid": 73, "realEditorValues": [{ "id": "V_Int", "params": [130] }] },
 								{ "__identifier": "entrance_direction", "__type": "String", "__value": "n", "__tile": null, "defUid": 74, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["n"]
 								}] },
-								{ "__identifier": "time_limit", "__type": "Int", "__value": 250, "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Int", "params": [250] }] }
+								{ "__identifier": "time_limit", "__type": "Int", "__value": 150, "__tile": null, "defUid": 76, "realEditorValues": [{ "id": "V_Int", "params": [150] }] }
 							],
 							"__worldX": 4720,
 							"__worldY": 384
@@ -7364,7 +7364,7 @@
 				], "__tile": null, "defUid": 68, "realEditorValues": [ {
 					"id": "V_String",
 					"params": [
-						"def _on_scene_loaded():\\n  bob.get_camera(\"piss_cam\")\\n  bob.move_entity(\"pee_pee_boss\", [9,4])\\n  bob.load_level(\"assfuck_caverns\", [200,194])\\n \\ndef _on_update(delta):\\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\\n    bob.kill_entity(\"fuckboy\")"
+						"def _on_scene_loaded():\n  bob.get_camera(\"piss_cam\")\n  bob.move_entity(\"pee_pee_boss\", [9,4])\n  bob.load_level(\"assfuck_caverns\", [200,194])\n \ndef _on_update(delta):\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\n    bob.kill_entity(\"fuckboy\")"
 					]
 				}, null, null ] }
 			],

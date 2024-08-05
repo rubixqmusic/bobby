@@ -136,9 +136,7 @@ class HitboxType(enum.Enum):
     WATER = 3
 
 MAX_PLAYER_HEALTH = 20
-
-
-
+DEFAULT_PLAYER_HEALTH = 16
 # Debug settings ------------------------------------------------------------]
 
 DEBUG_ENABLED = True
