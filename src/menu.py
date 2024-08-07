@@ -25,9 +25,9 @@ class Menu:
                     
 
     def draw_menu(self,
-              font: pygame.font.Font, 
+              font, 
               font_color: str, 
-              destination_surface: pygame.surface.Surface, 
+              destination_surface, 
               grow_factor: int,
               drop_shadow=False,
               drop_shadow_color=f"#000000",
@@ -113,9 +113,9 @@ class Menu:
 
 class FileSelectMenu(Menu):
     def draw_menu(self, 
-                  font: pygame.Font, 
+                  font, 
                   font_color: str, 
-                  destination_surface: pygame.Surface, 
+                  destination_surface, 
                   grow_factor: int, 
                   drop_shadow=False, 
                   drop_shadow_color=f"#000000", 
@@ -133,7 +133,7 @@ class FileSelectMenu(Menu):
         menu_item_index = 0
         for menu_item in self._menu:
             if "bg_image" in menu_item:
-                file_info_background = pygame.image.load(bob.load_resource(FILE_SELECT_BACKGROUND))
+                file_info_background = pygame.image.load(bob.load_resource(FILE_SELECT_BACKGROUND)).convert_alpha()
                 file_number_text_surface = font.render(str(menu_item_index+1),True,(0,0,0))
                 last_played_text_surface = font.render(menu_item['last_saved'],True,(0,0,0))
                 percent_text_surface = font.render(menu_item['percent_to_plan'],True,(0,0,0))
