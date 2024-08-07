@@ -191,7 +191,7 @@ class TitleScreen(State):
                                     self.background_1["position"] = [0,0]
                                     self.background_1["parallax_x"] = 0.0
                                     self.background_1["parallax_y"] = 0.0
-                                    self.background_1["image"] = pygame.image.load(self.game.load_resource(bg_image_path))
+                                    self.background_1["image"] = pygame.image.load(self.game.load_resource(bg_image_path)).convert_alpha()
                             
                     if scene_property["__identifier"] == "background_2":
                         if scene_property["__value"]:
@@ -204,7 +204,7 @@ class TitleScreen(State):
                                     self.background_2["position"] = [0,0]
                                     self.background_2["parallax_x"] = 0.05
                                     self.background_2["parallax_y"] = 0.0
-                                    self.background_2["image"] = pygame.image.load(self.game.load_resource(bg_image_path))
+                                    self.background_2["image"] = pygame.image.load(self.game.load_resource(bg_image_path)).convert_alpha()
 
                     if scene_property["__identifier"] == "background_3":
                         if scene_property["__value"]:
@@ -217,7 +217,7 @@ class TitleScreen(State):
                                     self.background_3["position"] = [0,0]
                                     self.background_3["parallax_x"] = 0.1
                                     self.background_3["parallax_y"] = 0.0
-                                    self.background_3["image"] = pygame.image.load(self.game.load_resource(bg_image_path))
+                                    self.background_3["image"] = pygame.image.load(self.game.load_resource(bg_image_path)).convert_alpha()
                 
                 ground_layer_width = scene["pxWid"]
                 ground_layer_height = scene["pxHei"]
@@ -231,7 +231,7 @@ class TitleScreen(State):
 
                     if layer["__identifier"] == GROUND_2_LAYER_NAME:
                         tileset = f"{BASE_PATH}{layer['__tilesetRelPath']}"    
-                        ground_tileset = pygame.image.load(self.game.load_resource(tileset))
+                        ground_tileset = pygame.image.load(self.game.load_resource(tileset)).convert_alpha()
                         tiles = layer["gridTiles"]
                         tile_size = layer["__gridSize"]
 

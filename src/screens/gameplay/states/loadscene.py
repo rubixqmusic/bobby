@@ -60,7 +60,7 @@ class LoadScene(State):
                                     level.bg_1 = {}
                                     level.bg_1["parallax_x"] = 0.01
                                     level.bg_1["parallax_y"] = 0.0
-                                    level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+                                    level.bg_1["image"] = pygame.image.load(level.game.load_resource(bg_image_path)).convert_alpha()
                             
                     if level_property["__identifier"] == "background_2":
                         if level_property["__value"]:
@@ -72,7 +72,7 @@ class LoadScene(State):
                                     level.bg_2 = {}
                                     level.bg_2["parallax_x"] = 0.05
                                     level.bg_2["parallax_y"] = 0.0
-                                    level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+                                    level.bg_2["image"] = pygame.image.load(level.game.load_resource(bg_image_path)).convert_alpha()
 
                     if level_property["__identifier"] == "background_3":
                         if level_property["__value"]:
@@ -84,7 +84,7 @@ class LoadScene(State):
                                     level.bg_3 = {}
                                     level.bg_3["parallax_x"] = 0.1
                                     level.bg_3["parallax_y"] = 0.0
-                                    level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path))
+                                    level.bg_3["image"] = pygame.image.load(level.game.load_resource(bg_image_path)).convert_alpha()
                 
                 tileset_data = self.get_tileset_data()
 

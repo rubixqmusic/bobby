@@ -60,7 +60,7 @@ class LoadMap(State):
                                 for property in entity_properties:
                                     if property["__value"] == "path":
                                         try:
-                                            image = pygame.image.load(self.game.load_resource(MAP_PATH_IMAGE))
+                                            image = pygame.image.load(self.game.load_resource(MAP_PATH_IMAGE)).convert_alpha()
                                         except:
                                             logging.debug(f"could not load map path image!!!")
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])
@@ -68,7 +68,7 @@ class LoadMap(State):
                                         world_map.map_path.append(new_map_path)
                                     if property["__value"] == "landing":
                                         try:
-                                            image = pygame.image.load(self.game.load_resource(MAP_LANDING_IMAGE))
+                                            image = pygame.image.load(self.game.load_resource(MAP_LANDING_IMAGE)).convert_alpha()
                                         except:
                                             logging.debug(f"could not load map path image!!!")
                                             image = pygame.surface.Surface([entity["width"], entity["height"]])

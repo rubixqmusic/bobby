@@ -4,8 +4,9 @@ save_data = {
                 "total_money" : 0,
                 "total_quota" : 0,
                 "current_level" : None,
-                # "player_health" : 0,
-                # "player_money" : 0,
+                "player_health" : 0,
+                "player_money" : 0,
+                "player_weapon" : None,
                 # "level_quota" : 0,
 
                 "levels" : {}

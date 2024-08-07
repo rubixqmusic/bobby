@@ -76,6 +76,10 @@ class Gameplay(State):
     def on_state_enter(self, game):
         self.game = game
         level_data = self.game.get_level_data(self.level_name)
+        health = game.get_save_data("player_health")
+        if health:
+            if health > 0:
+                self.player_health = health
         if level_data:
             if "time_limit" in level_data:
                 if level_data["time_limit"] > 0:
@@ -113,7 +117,7 @@ class Gameplay(State):
 
         if self.time_limit_enabled and self.state.get_name() == "level_active":
             self.time_limit_ticks -= delta
-            if self.time_limit_ticks <= 0:
+            if self.time_limit_ticks <= 0 and self.time_limit > 0:
                 self.time_limit -= 1
                 self.time_limit_ticks = TIME_LIMIT_TICK_INTERVAL
 
