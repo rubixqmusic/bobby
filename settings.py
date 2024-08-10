@@ -5,7 +5,7 @@ VERSION = f"0.0.1"
 
 GAME_NAME = "BOBBY'S MONEY MADNESS"
 WINDOW_CAPTION = "Bobby's Money Madness"
-EXECUTABLE_NAME = "Bobbys-Money-Maddness"
+EXECUTABLE_NAME = "Bobbys-Money-Madness"
 
 SCREEN_WIDTH = 512
 SCREEN_HEIGHT = 288
@@ -139,10 +139,10 @@ MAX_PLAYER_HEALTH = 20
 DEFAULT_PLAYER_HEALTH = 18
 # Debug settings ------------------------------------------------------------]
 
-DEBUG_ENABLED = True
+DEBUG_ENABLED = False
 DEBUG_SHOW_DEBUG_INFO = True
 DEBUG_SHOW_HITBOXES = False
-DEBUG_START_IN_STATE = "gameplay"
+DEBUG_START_IN_STATE = "title_screen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

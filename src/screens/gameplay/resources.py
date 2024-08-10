@@ -43,9 +43,10 @@ HITBOX_TYPES = [HitboxType.BOBBY, HitboxType.ITEM, HitboxType.GROUND]
 ENTITIES = {
                "item" : Item
             }
+
 MAX_ENTITIES = 1000
 MAX_HITBOXES = 5000
-MAX_PARTICLES = 3000
+MAX_PARTICLES = 1000
 
 TILE_DATA = {
                 "ground" :  {

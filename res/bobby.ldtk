@@ -7364,7 +7364,7 @@
 				], "__tile": null, "defUid": 68, "realEditorValues": [ {
 					"id": "V_String",
 					"params": [
-						"def _on_scene_loaded():\n  bob.get_camera(\"piss_cam\")\n  bob.move_entity(\"pee_pee_boss\", [9,4])\n  bob.load_level(\"assfuck_caverns\", [200,194])\n \ndef _on_update(delta):\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\n    bob.kill_entity(\"fuckboy\")"
+						"def _on_scene_loaded():\\n  bob.get_camera(\"piss_cam\")\\n  bob.move_entity(\"pee_pee_boss\", [9,4])\\n  bob.load_level(\"assfuck_caverns\", [200,194])\\n \\ndef _on_update(delta):\\n  if bob.get_save_data(\"is_pee_enabled\") == \"fart\":\\n    bob.kill_entity(\"fuckboy\")"
 					]
 				}, null, null ] }
 			],
