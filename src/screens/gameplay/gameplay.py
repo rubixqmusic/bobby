@@ -6,7 +6,7 @@ from src.screens.gameplay.resources import *
 from src.screens.gameplay.screenstates import level_states
 from src.state import State
 from src.camera import Camera
-from src.hud import Hud
+from src.hud2 import Hud
 from src.animatedsprite import AnimatedSprite
 from src.particleengine import ParticleEngine
 
