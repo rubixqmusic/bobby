@@ -28,7 +28,7 @@
                             ["ShowDialog", ["As long as you do what we say, there's no way you can fail!", {}]],
                             ["ShowDialog", ["You see, it's very simple, Bobby:", {}]],
                             ["ShowDialog", ["Do whatever it takes to hit your number,", {}]],
-                            ["ShowDialog", ["or you're a dead motherfucker.", {}]],
+                            ["ShowDialog", ["or you're dead.", {}]],
                             ["Wait", [80, {}]],
                             ["ShowDialog", ["Oh, and one more thing...", {}]],
                             ["ShowDialog", ["Please try not to destroy too much stuff,", {}]],
@@ -40,7 +40,7 @@
               "intro_no" :  [
                             ["PlaySound", ["DENY_SOUND",{}]],
                             ["Wait", [60, {}]],
-                            ["ShowDialog", ["Goddammit, Bobby, I need you to pay attention.", {}]],
+                            ["ShowDialog", ["Come on, Bobby, I need you to pay attention.", {}]],
                             ["GoTo", ["intro_explanation", {}]]
                             ],
               "intro_end" : [
@@ -51,7 +51,7 @@
                             ["ShowDialog", ["After that, it's all you.", {}]],
                             ["ShowDialog", ["Get out there and make it happen...", {}]],
                             ["Wait", [80, {}]],
-                            ["ShowDialog", ["...or I'll fucking kill you", {}]],
+                            ["ShowDialog", ["...or I'll kill you", {}]],
                             ["Wait", [80, {}]],
                             ["EndCall",["world_map", {}]]
                           ]
