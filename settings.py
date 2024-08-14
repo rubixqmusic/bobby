@@ -82,7 +82,7 @@ MENU_FONT_BOLD = "tangosans_bold.ttf"
 MENU_FONT_BOLD_2 = "tangosans_bold.ttf"
 
 SAVE_DATA_FILE_NAME = "bob.sav"
-SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby"
+SAVE_DATA_PATH = f"{os.path.expanduser('~')}/.bobby" # deprecated, save file is now located in executable directory. haven't deleted this yet bc i'm lazy
 
 FILE_1_NAME = "file_1.json"
 FILE_2_NAME = "file_2.json"

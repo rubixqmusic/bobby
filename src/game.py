@@ -508,7 +508,7 @@ class Game:
             logging.debug(f"could not play sounsound fx! here is the sound fx that was passed: {sound}")
 
     def play_music(self,filepath, volume=1.0, loop=-1):
-        if DEBUG_NO_MUSIC:
+        if DEBUG_ENABLED and DEBUG_NO_MUSIC:
             return
         # if not os.path.exists(filepath):
         #     logging.debug(f"cannot play music: music filepath {filepath} does not exist")
