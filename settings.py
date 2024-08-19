@@ -17,7 +17,7 @@ WINDOW_SIZE = WINDOW_WIDTH, WINDOW_HEIGHT
 
 DISPLAY_MODES = {
                     "fullscreen" : "fullscreen",
-                    "mode_1" : (2048, 1152),
+                    "mode_1" : (1920, 1080),
                     "mode_2" : (1024, 576),
                     "mode_3" : (512, 288)
                 }
@@ -143,7 +143,7 @@ DEBUG_ENABLED = True
 DEBUG_SHOW_DEBUG_INFO = False
 DEBUG_SHOW_HITBOXES = False
 DEBUG_NO_MUSIC = True
-DEBUG_START_IN_STATE = "gameplay"
+DEBUG_START_IN_STATE = "title_screen"
 DEBUG_LEVEL_NAME = "sunset_beach"
 DEBUG_LEVEL_START_POSITION = [34,40]
 DEBUG_LEVEL_START_TRANSITION = "money_in"

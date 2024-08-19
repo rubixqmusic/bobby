@@ -109,7 +109,11 @@ class Game:
         self.delta_time = dt
 
     def _draw_screen_to_window(self):
+        print(pygame.display.get_window_size(), self.get_window().get_width())
+
         pygame.transform.scale(self.get_screen(), pygame.display.get_window_size(), self.get_window()) 
+        # self.window.blit(self.screen, (0,0))
+    
     
     def _process_events(self):
         self._input_events["quit"] = False
@@ -431,6 +435,10 @@ class Game:
     def set_display_mode(self, display_mode):
         if display_mode == "fullscreen":
             display_info = pygame.display.Info()
+            # self.window = pygame.display.set_mode((2048, 1152), vsync=1)
+
+            # print(self.window.get_size())
+
             self.window = pygame.display.set_mode((display_info.current_w, display_info.current_h), pygame.FULLSCREEN, vsync=1)
         else:
             self.window = pygame.display.set_mode(display_mode, vsync=1)

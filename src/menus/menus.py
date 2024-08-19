@@ -11,7 +11,7 @@ menus = {
 
             "display_settings": [
                                     {"name" : "fullscreen",    "text" : "Fullscreen",               "position" : [SCREEN_WIDTH/2, 80]},
-                                    {"name" : "mode_1",        "text" : "2048 x 1152",             "position" : [SCREEN_WIDTH/2, 120]},
+                                    {"name" : "mode_1",        "text" : "1920 x 1080",             "position" : [SCREEN_WIDTH/2, 120]},
                                     {"name" : "mode_2",        "text" : "1024 x 576",              "position" : [SCREEN_WIDTH/2, 160]},
                                     {"name" : "mode_3",        "text" : "512 x 288",               "position" : [SCREEN_WIDTH/2, 200]},
                                     {"name" : "back",          "text" : "Back To Title Screen",     "position" : [SCREEN_WIDTH/2, 240]}
